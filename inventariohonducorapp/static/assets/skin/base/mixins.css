@@ -1,0 +1,64 @@
+body.boxed-layout.sb-top .sidebar-menu,
+body.sb-top.sb-top-collapsed .sidebar-menu,
+body.sb-top.sb-top-lg .sidebar-menu,
+body.sb-top.sb-top-md .sidebar-menu,
+body.sb-top.sb-top-sm .sidebar-menu {
+  overflow: visible;
+  margin-left: 0;
+}
+body.boxed-layout.sb-top .sidebar-menu .sub-nav,
+body.sb-top.sb-top-collapsed .sidebar-menu .sub-nav,
+body.sb-top.sb-top-lg .sidebar-menu .sub-nav,
+body.sb-top.sb-top-md .sidebar-menu .sub-nav,
+body.sb-top.sb-top-sm .sidebar-menu .sub-nav {
+  background-color: #454241;
+}
+body.boxed-layout.sb-top .navbar-branding,
+body.sb-top.sb-top-collapsed .navbar-branding,
+body.sb-top.sb-top-lg .navbar-branding,
+body.sb-top.sb-top-md .navbar-branding,
+body.sb-top.sb-top-sm .navbar-branding {
+  position: static;
+  display: block;
+  float: none;
+  text-align: center;
+  padding: 1px;
+  margin: 0;
+  width: auto;
+}
+body.boxed-layout.sb-top .navbar-branding .navbar-brand,
+body.sb-top.sb-top-collapsed .navbar-branding .navbar-brand,
+body.sb-top.sb-top-lg .navbar-branding .navbar-brand,
+body.sb-top.sb-top-md .navbar-branding .navbar-brand,
+body.sb-top.sb-top-sm .navbar-branding .navbar-brand {
+  float: none;
+  height: auto;
+  padding: 0;
+}
+body.boxed-layout.sb-top #sidebar_left .sidebar-menu li a,
+body.sb-top.sb-top-collapsed #sidebar_left .sidebar-menu li a,
+body.sb-top.sb-top-lg #sidebar_left .sidebar-menu li a,
+body.sb-top.sb-top-md #sidebar_left .sidebar-menu li a,
+body.sb-top.sb-top-sm #sidebar_left .sidebar-menu li a {
+  padding: 0 13px;
+}
+body.boxed-layout.sb-top #sidebar_left .sidebar-menu .sub-nav li a,
+body.sb-top.sb-top-collapsed #sidebar_left .sidebar-menu .sub-nav li a,
+body.sb-top.sb-top-lg #sidebar_left .sidebar-menu .sub-nav li a,
+body.sb-top.sb-top-md #sidebar_left .sidebar-menu .sub-nav li a,
+body.sb-top.sb-top-sm #sidebar_left .sidebar-menu .sub-nav li a {
+  padding: 5px 18px;
+}
+body.sb-top.sb-top-collapsed #content {
+  padding-top: 100px;
+}
+body.sb-top.sb-top-lg .sidebar-light .sidebar-menu .sub-nav {
+  background: #c9c9c9;
+  background: -moz-linear-gradient(left, #c9c9c9 0%, #ffffff 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, #c9c9c9), color-stop(100%, #ffffff));
+  background: -webkit-linear-gradient(left, #c9c9c9 0%, #ffffff 100%);
+  background: -o-linear-gradient(left, #c9c9c9 0%, #ffffff 100%);
+  background: -ms-linear-gradient(left, #c9c9c9 0%, #ffffff 100%);
+  background: linear-gradient(to right, #c9c9c9 0%, #ffffff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c9c9c9', endColorstr='#ffffff', GradientType=1);
+}

@@ -1,0 +1,54 @@
+extends  _skeleton
+
+block stylesheets
+  link(rel='stylesheet', type='text/css', href='assets/admin-tools/admin-forms/css/admin-forms.css')
+
+block body
+  body.external-page.external-alt.sb-l-c.sb-r-c
+    // Start: Main
+    #main.animated.fadeIn
+      // Start: Content-Wrapper
+      section#content_wrapper.bg-gradient-1.well-cover
+        // Begin: Content
+        section#content
+          #login1.admin-form.theme-primary.mw600(style='margin-top: 11%;')
+            .row.mb15.table-layout
+              .col-xs-6.pln
+                a(href='dashboard.html', title='Return to Dashboard')
+                  img.img-responsive.w250(src='assets/img/logos/logo-white.png', title='AdminDesigns Logo')
+            .panels
+              form#contact(method='post', action='/')
+                .panel-body.pn
+                  .row.table-layout
+                    .col-xs-3.p20.pv15.va-m.br-r
+                      img.br-a.bw4.br-grey.img-responsive.center-block(src='assets/img/avatars/3.jpg', title='AdminDesigns Logo')
+                    .col-xs-9.p20.pv15.va-m
+                      h3.mb5.text-white
+                        | Michael Rowls
+                        = ' '
+                        small
+                          | - logged out for
+                          b  5 hours
+                      small
+                        p.text-muted michaelrowls@company.com
+                      .section.mt25
+                        label.field.prepend-icon(for='password')
+                          input#password.gui-input(type='text', name='password', placeholder='Enter password')
+                          label.field-icon(for='password')
+                            i.fa.fa-lock
+            button.button.btn-primary.pull-right(type='submit') Unlock
+    // core scripts
+    script(src='plugins/core.min.js')
+    // Theme Javascript
+    script(src='assets/js/utility/utility.js')
+    script(src='assets/js/demo/demo.js')
+    script(src='assets/js/main.js')
+    // Page Javascript
+    script(type='text/javascript').
+      jQuery(document).ready(function () {
+        "use strict";
+        // Init Theme Core
+        Core.init();
+        // Init Demo JS
+        Demo.init();
+      });

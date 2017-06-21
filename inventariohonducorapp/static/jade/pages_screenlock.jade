@@ -1,0 +1,67 @@
+extends  _skeleton
+
+block stylesheets
+  link(rel='stylesheet', type='text/css', href='assets/admin-tools/admin-forms/css/admin-forms.css')
+
+block body
+  body.external-page.sb-l-c.sb-r-c
+    // Start: Main
+    #main.animated.fadeIn
+      // Start: Content-Wrapper
+      section#content_wrapper
+        // begin canvas animation bg
+        #canvas-wrapper
+          canvas#demo-canvas
+        // Begin: Content
+        section#content
+          #login.admin-form.theme-info.mw600(style='margin-top: 13%;')
+            .row.mb15.table-layout
+              .col-xs-6.pln
+                a(href='dashboard.html', title='Return to Dashboard')
+                  img.img-responsive.w250(src='assets/img/logos/logo_white.png', title='AdminDesigns Logo')
+              .col-xs-6.text-right.va-b.pr5
+                .login-links
+                  a(href='#', title='False Credentials') Not Michael Rowls?
+            .panel.panel-primary.heading-border.br-n
+              form#contact(method='post', action='/')
+                .panel-body.pn.bg-gradient-1
+                  .row.table-layout
+                    .col-xs-3.p20.pv15.va-m.br-r
+                      img.br-a.bw4.br-grey.img-responsive.center-block(src='assets/img/avatars/3.jpg', title='AdminDesigns Logo')
+                    .col-xs-9.p20.pv15.va-m
+                      h3.mb5.text-white
+                        | Michael Rowls
+                        = ' '
+                        small
+                          | - logged out for
+                          b  5 hours
+                      small
+                        p.text-muted michaelrowls@company.com
+                      .section.mt25
+                        label.field.prepend-icon(for='password')
+                          input#password.gui-input(type='text', name='password', placeholder='Enter password')
+                          label.field-icon(for='password')
+                            i.fa.fa-lock
+            button.button.btn-primary.pull-right(type='submit') Unlock
+    // core scripts
+    script(src='plugins/core.min.js')
+    // Theme Javascript
+    script(src='assets/js/utility/utility.js')
+    script(src='assets/js/demo/demo.js')
+    script(src='assets/js/main.js')
+    // Page Javascript
+    script(type='text/javascript').
+      jQuery(document).ready(function () {
+        "use strict";
+        // Init Theme Core
+        Core.init();
+        // Init Demo JS
+        Demo.init();
+        // Init CanvasBG and pass target starting location
+        CanvasBG.init({
+          Loc: {
+            x: window.innerWidth / 2.1,
+            y: window.innerHeight / 2.3
+          },
+        });
+      });

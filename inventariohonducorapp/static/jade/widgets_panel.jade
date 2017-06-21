@@ -1,0 +1,1494 @@
+extends  _skeleton
+
+block stylesheets
+  link(rel='stylesheet', type='text/css', href='plugins/css/fullcalendar.css')
+  link(rel='stylesheet', type='text/css', href='plugins/css/summernote.css')
+  link(rel='stylesheet', type='text/css', href='assets/admin-tools/admin-forms/css/admin-forms.css')
+
+block body
+  body.widgets-panel-page(data-spy='scroll', data-target='#nav-spy', data-offset='300')
+    // Start: Theme Preview Pane
+    #skin-toolbox
+      .panel
+        .panel-heading
+          span.panel-icon
+            i.fa.fa-gear.text-primary
+          span.panel-title  Theme Options
+        .panel-body.pn
+          ul.nav.nav-list.nav-list-sm.pl15.pt10(role='tablist')
+
+            li.active
+              a(href='#toolbox-sidebar', role='tab', data-toggle='tab') Sidebar
+            li
+              a(href='#toolbox-settings', role='tab', data-toggle='tab') Misc
+          .tab-content.p20.ptn.pb15
+
+            #toolbox-sidebar.tab-pane.active(role='tabpanel')
+              form#toolbox-sidebar-skin
+                h4.mv20 Sidebar Skins
+                .skin-toolbox-swatches
+                  .checkbox-custom.fill.mb5
+                    input#sidebarSkin3(type='radio', name='sidebarSkin', checked='', value='')
+                    label(for='sidebarSkin3') Dark
+                  .checkbox-custom.fill.checkbox-disabled.mb5
+                    input#sidebarSkin1(type='radio', name='sidebarSkin', value='sidebar-light')
+                    label(for='sidebarSkin1') Light
+                  .checkbox-custom.fill.checkbox-light.mb5
+                    input#sidebarSkin2(type='radio', name='sidebarSkin', value='sidebar-light light')
+                    label(for='sidebarSkin2') Lighter
+            #toolbox-settings.tab-pane(role='tabpanel')
+              form#toolbox-settings-misc
+                h4.mv20.mtn Layout Options
+
+                .form-group
+                  .checkbox-custom.fill.mb5
+                    input#sidebar-option(type='checkbox', checked='')
+                    label(for='sidebar-option') Fixed Sidebar
+
+                h4.mv20 Layout Options
+                .form-group
+                  .radio-custom.mb5
+                    input#fullwidth-option(type='radio', checked='', name='layout-option')
+                    label(for='fullwidth-option') Fullwidth Layout
+                .form-group.mb20.pointer-events-none
+                  .radio-custom.radio-disabled.mb5
+                    input#boxed-option(type='radio', name='layout-option', disabled='')
+                    label(for='boxed-option')
+                      | Boxed Layout
+                      b.text-muted (Coming Soon)
+          .form-group.mn.br-t.p10
+            a#clearLocalStorage.btn.btn-primary.btn-block.pb10.pt10(href='#') Clear LocalStorage
+    // Start: Main
+    #main
+      // Start: Sidebar Left
+      aside#sidebar_left.nano.nano-light.affix
+        // Navbar Branding
+        .navbar-branding
+          a.navbar-brand(href='dashboard.html')
+            span.text-white Ruby
+            = ' '
+            | Admin
+          span#toggle_sidemenu_l.ad.ad-lines
+        // Start: Sidebar Left Content
+        .sidebar-left-content.nano-content
+          // Start: Sidebar Header
+          header.sidebar-header
+            // Sidebar Widget - Author
+            .sidebar-widget.author-widget
+              .media
+                a.media-left(href='#')
+                  img.img-responsive(src='assets/img/avatars/3.jpg')
+                .media-body
+                  .media-links
+                  .media-author Ryan Harrison
+                  a.sidebar-menu-toggle(href='#') User Menu
+                  a(href='pages_login(alt).html') Logout
+            // Sidebar Widget - Menu (slidedown)
+            .sidebar-widget.menu-widget
+              .row.text-center.mbn
+                .col-xs-4
+                  a.text-primary(href='dashboard.html', data-toggle='tooltip', data-placement='top', title='Dashboard')
+                    span.glyphicon.glyphicon-home
+                .col-xs-4
+                  a.text-info(href='pages_messages.html', data-toggle='tooltip', data-placement='top', title='Messages')
+                    span.glyphicon.glyphicon-inbox
+                .col-xs-4
+                  a.text-alert(href='pages_profile.html', data-toggle='tooltip', data-placement='top', title='Tasks')
+                    span.fa.fa-asterisk
+              .row.text-center.mbn
+                .col-xs-4
+                  a.text-system(href='pages_timeline.html', data-toggle='tooltip', data-placement='top', title='Activity')
+                    span.fa.fa-desktop
+                .col-xs-4
+                  a.text-danger(href='pages_profile.html', data-toggle='tooltip', data-placement='top', title='Settings')
+                    span.fa.fa-gears
+                .col-xs-4
+                  a.text-warning(href='pages_gallery.html', data-toggle='tooltip', data-placement='top', title='Cron Jobs')
+                    span.fa.fa-flask
+            // Sidebar Widget - Search (hidden)
+            .sidebar-widget.search-widget.hidden
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-search
+                input#sidebar-search.form-control(type='text', placeholder='Search...')
+          // Start: Sidebar Left Menu
+          ul.nav.sidebar-menu
+            li.sidebar-label.pt30 Menu
+            li
+              a(href='pages_calendar.html')
+                span.fa.fa-calendar
+                span.sidebar-title Calendar
+                span.sidebar-title-tray
+                  span.label.label-xs.bg-primary New
+            li
+              a(href='documentation/')
+                span.glyphicon.glyphicon-book
+                span.sidebar-title Documentation
+            li.active
+              a(href='dashboard.html')
+                span.glyphicon.glyphicon-home
+                span.sidebar-title Dashboard
+            li.sidebar-label.pt15 Theme Tools
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-columns
+                span.sidebar-title Admin Layouts
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa.fa-arrows-h
+                    |                   Sidebars
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_sidebar-left-static.html')
+                        | Left Static
+                    li
+                      a(href='layout_sidebar-left-fixed.html')
+                        | Left Fixed
+                    li
+                      a(href='layout_sidebar-left-widgets.html')
+                        | Left Widgets
+                    li
+                      a(href='layout_sidebar-left-minified.html')
+                        | Left Minified
+                    li
+                      a(href='layout_sidebar-left-light.html')
+                        | Left White
+                    li
+                      a(href='layout_sidebar-right-static.html')
+                        | Right Static
+                    li
+                      a(href='layout_sidebar-right-fixed.html')
+                        | Right Fixed
+                    li
+                      a(href='layout_sidebar-right-menu.html')
+                        | Right w/Menu
+                
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-hand-o-up
+                    |                   Topbar
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_topbar.html')
+                        | Default Style
+                    li
+                      a(href='layout_topbar-menu.html')
+                        | Default w/Menu
+                    li
+                      a(href='layout_topbar-alt.html')
+                        | Alternate Style
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-arrows-v
+                    |                   Content Body
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_content-blank.html')
+                        | Blank Starter
+                    li
+                      a(href='layout_content-fixed.html')
+                        | Fixed Window
+                    li
+                      a(href='layout_content-heading.html')
+                        | Content Heading
+                    li
+                      a(href='layout_content-tabs.html')
+                        | Content Tabs
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-pause
+                    |                   Content Trays
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_tray-left.html')
+                        | Tray Left Static
+                    li
+                      a(href='layout_tray-left-fixed.html')
+                        | Tray Left Fixed
+                    li
+                      a(href='layout_tray-right.html')
+                        | Tray Right Static
+                    li
+                      a(href='layout_tray-right-fixed.html')
+                        | Tray Right Fixed
+                    li
+                      a(href='layout_tray-both.html')
+                        | Left + Right Static
+                    li
+                      a(href='layout_tray-both-fixed.html')
+                        | Left + Right Fixed
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-plus-square-o
+                    |                   Boxed Layout
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_boxed.html')
+                        | Default
+                    li
+                      a(href='layout_boxed-horizontal.html')
+                        | Horizontal Menu
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-arrow-circle-o-up
+                    |                   Horizontal Menu
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_horizontal-sm.html')
+                        | Small Size
+                    li
+                      a(href='layout_horizontal-md.html')
+                        | Medium Size
+                    li
+                      a(href='layout_horizontal-lg.html')
+                        | Large Size
+                    li
+                      a(href='layout_horizontal-light.html')
+                        | Light Skin
+                    li
+                      a(href='layout_horizontal-topbar.html')
+                        | With Topbar
+                    li
+                      a(href='layout_horizontal-topbar-alt.html')
+                        | With Alt Topbar
+                    li
+                      a(href='layout_horizontal-collapsed.html')
+                        | Collapsed onLoad
+                    li
+                      a(href='layout_horizontal-boxed.html')
+                        | In Boxed Layout
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-fire
+                span.sidebar-title Admin Plugins
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='admin_plugins-panels.html')
+                    span.glyphicon.glyphicon-book
+                    |  Admin Panels
+                li
+                  a(href='admin_plugins-modals.html')
+                    span.glyphicon.glyphicon-modal-window
+                    |  Admin Modals
+                li
+                  a(href='admin_plugins-dock.html')
+                    span.glyphicon.glyphicon-equalizer
+                    |  Admin Dock
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-check
+                span.sidebar-title Admin Forms
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='admin_forms-elements.html')
+                    span.glyphicon.glyphicon-edit
+                    |  Admin Elements
+                li
+                  a(href='admin_forms-widgets.html')
+                    span.glyphicon.glyphicon-calendar
+                    |  Admin Widgets
+                li
+                  a(href='admin_forms-validation.html')
+                    span.glyphicon.glyphicon-check
+                    |  Admin Validation
+                li
+                  a(href='admin_forms-layouts.html')
+                    span.fa.fa-desktop
+                    |  Admin Layouts
+                li
+                  a(href='admin_forms-wizard.html')
+                    span.fa.fa-clipboard
+                    |  Admin Wizard
+            li.sidebar-label.pt20 Systems
+            li
+              a.accordion-toggle.menu-open(href='#')
+                span.fa.fa-diamond
+                span.sidebar-title Widget Packages
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='widgets_tile.html')
+                    span.fa.fa-cube
+                    |  Tile Widgets
+                li.active
+                  a(href='widgets_panel.html')
+                    span.fa.fa-desktop
+                    |  Panel Widgets
+                li
+                  a(href='widgets_scroller.html')
+                    span.fa.fa-columns
+                    |  Scroller Widgets
+                li
+                  a(href='widgets_data.html')
+                    span.fa.fa-dot-circle-o
+                    |  Admin Widgets
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-shopping-cart
+                span.sidebar-title Ecommerce
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='ecommerce_dashboard.html')
+                    span.glyphicon.glyphicon-shopping-cart
+                    |  Dashboard
+                    span.label.label-xs.bg-primary New
+                li
+                  a(href='ecommerce_products.html')
+                    span.glyphicon.glyphicon-tags
+                    |  Products
+                li
+                  a(href='ecommerce_orders.html')
+                    span.fa.fa-money
+                    |  Orders
+                li
+                  a(href='ecommerce_customers.html')
+                    span.fa.fa-users
+                    |  Customers
+                li
+                  a(href='ecommerce_settings.html')
+                    span.fa.fa-gears
+                    |  Store Settings
+
+            // sidebar resources
+            li.sidebar-label.pt20 Elements
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-asterisk
+                span.sidebar-title UI Elements
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='ui_alerts.html')
+                    span.fa.fa-warning
+                    |  Alerts
+                li
+                  a(href='ui_animations.html')
+                    span.fa.fa-spinner
+                    |  Animations
+                li
+                  a(href='ui_buttons.html')
+                    span.fa.fa-plus-square-o
+                    |  Buttons
+                li
+                  a(href='ui_typography.html')
+                    span.fa.fa-text-width
+                    |  Typography
+                li
+                  a(href='ui_portlets.html')
+                    span.fa.fa-archive
+                    |  Portlets
+                li
+                  a(href='ui_progress-bars.html')
+                    span.fa.fa-bars
+                    |  Progress Bars
+                li
+                  a(href='ui_tabs.html')
+                    span.fa.fa-toggle-off
+                    |  Tabs
+                li
+                  a(href='ui_icons.html')
+                    span.fa.fa-hand-o-right
+                    |  Icons
+                li
+                  a(href='ui_grid.html')
+                    span.fa.fa-th-large
+                    |  Grid
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-align-justify
+                span.sidebar-title Form Elements
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='form_inputs.html')
+                    span.fa.fa-magic
+                    |  Basic Inputs
+                li
+                  a(href='form_plugins.html')
+                    span.fa.fa-bell-o
+                    |  Plugin Inputs
+                    span.label.label-xs.bg-primary New
+                li
+                  a(href='form_editors.html')
+                    span.fa.fa-clipboard
+                    |  Editors
+                li
+                  a(href='form_treeview.html')
+                    span.fa.fa-tree
+                    |  Treeview
+                li
+                  a(href='form_nestable.html')
+                    span.fa.fa-tasks
+                    |  Nestable
+                li
+                  a(href='form_image-tools.html')
+                    span.fa.fa-cloud-upload
+                    |  Image Tools
+                    span.label.label-xs.bg-primary New
+                li
+                  a(href='form_uploaders.html')
+                    span.fa.fa-cloud-upload
+                    |  Uploaders
+                li
+                  a(href='form_notifications.html')
+                    span.fa.fa-bell-o
+                    |  Notifications
+                li
+                  a(href='form_content-sliders.html')
+                    span.fa.fa-exchange
+                    |  Content Sliders
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-tower
+                span.sidebar-title Plugins
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-globe
+                    |  Maps
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='maps_basic.html') Basic Maps
+                    li
+                      a(href='maps_vector.html') Vector Maps
+                    li
+                      a(href='maps_full.html') Full Map
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-line-chart
+                    |  Charts
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='charts_highcharts.html') Highcharts
+                    li
+                      a(href='charts_d3.html') D3 Charts
+                    li
+                      a(href='charts_flot.html') Flot Charts
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-table
+                    |  Tables
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='tables_basic.html')  Basic Tables
+
+
+                    li
+                      a(href='tables_footable.html')  FooTables
+                    li
+                      a(href='tables_pricing.html')  Pricing Tables
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-flask
+                    |  Misc
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='misc_tour.html')  Site Tour
+                    li
+                      a(href='misc_timeout.html')  Session Timeout
+                    li
+                      a(href='misc_nprogress.html')  Page Progress Loader
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-duplicate
+                span.sidebar-title Pages
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-gears
+                    |  Utility
+                    span.caret
+                  ul.nav.sub-nav
+
+                    li
+                      a(href='pages_confirmation.html', target='_blank')
+                        | Confirmation
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_login.html', target='_blank')  Login
+                    li
+                      a(href='pages_login(alt).html', target='_blank')
+                        | Login Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_register.html', target='_blank')  Register
+                    li
+                      a(href='pages_register(alt).html', target='_blank')
+                        | Register Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_screenlock.html', target='_blank')  Screenlock
+                    li
+                      a(href='pages_screenlock(alt).html', target='_blank')
+                        | Screenlock Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_forgotpw.html', target='_blank')  Forgot Password
+                    li
+                      a(href='pages_forgotpw(alt).html', target='_blank')
+                        | Forgot Password Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_coming-soon.html', target='_blank')
+                        | Coming Soon
+                    li
+                      a(href='pages_404.html')  404 Error
+                    li
+                      a(href='pages_500.html')  500 Error
+                    li
+                      a(href='pages_404(alt).html')  404 Error Alt
+                    li
+                      a(href='pages_500(alt).html')  500 Error Alt
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-desktop
+                    |  Basic
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='pages_search-results.html')
+                        | Search Results
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_profile.html')  Profile
+                    li
+                      a(href='pages_timeline.html')  Timeline Split
+                    li
+                      a(href='pages_timeline-single.html')  Timeline Single
+                    li
+                      a(href='pages_faq.html')  FAQ Page
+                    li
+                      a(href='pages_calendar.html')  Calendar
+                    li
+                      a(href='pages_messages.html')  Messages
+                    li
+                      a(href='pages_messages(alt).html')  Messages Alt
+                    li
+                      a(href='pages_gallery.html')  Gallery
+                    li
+                      a(href='pages_invoice.html')  Printable Invoice
+            // sidebar bullets
+            li.sidebar-label.pt20 Projects
+            li.sidebar-proj
+              a(href='#projectOne')
+                span.fa.fa-bookmark.text-primary
+                span.sidebar-title Executive Meeting
+            li.sidebar-proj
+              a(href='#projectTwo')
+                span.fa.fa-bookmark.text-info
+                span.sidebar-title HelpDesk Redesign
+            li.sidebar-proj
+              a(href='#projectTwo')
+                span.fa.fa-bookmark.text-danger
+                span.sidebar-title Sony Board Meeting
+            li.sidebar-proj
+              a(href='#projectThree')
+                span.fa.fa-bookmark.text-warning
+                span.sidebar-title Apple Tech Conference
+      // Start: Content-Wrapper
+      section#content_wrapper
+        // Start: Topbar
+        header#topbar.badges-mod.alt
+          .topbar-left
+            ol.breadcrumb
+              li
+                a(href="dashboard.html") Dashboard
+              li
+                a(href="admin_forms-elements.html") Form Elements
+              li
+                a(href="maps_basic.html") Plugins Pages
+              li
+                a(href="ui_alerts.html") UI Elements
+              li
+                a(href="documentation/") Documentation
+          .topbar-right
+            a.topbar-icon(href='#')
+              span.fa.fa-search
+            a.topbar-icon.topbar-menu-toggle.ml40(href='#', data-toggle='button')
+              span.badge.badge-strikemaster.offset-badge 6
+              span.fa.fa-magic
+            .topbar-icon-wrap.ml40
+              button.topbar-icon.dropdown-toggle(data-toggle='dropdown')
+                span.badge.badge-primary 5
+                span.fa.fa-bell.va-m
+              .dropdown-menu.dropdown-persist.w350.animated.animated-shorter.fadeIn(role='menu')
+                .panel.mbn
+                  .panel-menu
+                    span.panel-icon
+                      i.fa.fa-clock-o
+                    span.panel-title.fw600  Recent Activity
+                    button.btn.btn-xs.pull-right(type='button')
+                      i.fa.fa-refresh
+                  .panel-body.panel-scroller.scroller-navbar.scroller-overlay.scroller-pn.pn
+                    ol.timeline-list
+                      li.timeline-item
+                        .timeline-icon.bg-alert
+                          span.fa.fa-tags
+                        .timeline-desc
+                          b Michael
+                          |  Added to his store:
+                          a(href='#') Ipod
+                        .timeline-date 1:25am
+                      li.timeline-item
+                        .timeline-icon.bg-alert
+                          span.fa.fa-tags
+                        .timeline-desc
+                          b Sara
+                          |  Added his store:
+                          a(href='#') Notebook
+                        .timeline-date 3:05am
+                      li.timeline-item
+                        .timeline-icon.bg-success
+                          span.fa.fa-usd
+                        .timeline-desc
+                          b Admin
+                          |  created invoice for:
+                          a(href='#') Software
+                        .timeline-date 4:15am
+                      li.timeline-item
+                        .timeline-icon.bg-success
+                          span.fa.fa-usd
+                        .timeline-desc
+                          b Admin
+                          |  created invoice for:
+                          a(href='#') Apple
+                        .timeline-date 7:45am
+                      li.timeline-item
+                        .timeline-icon.bg-success
+                          span.fa.fa-usd
+                        .timeline-desc
+                          b Admin
+                          |  created invoice for:
+                          a(href='#') Software
+                        .timeline-date 4:15am
+                      li.timeline-item
+                        .timeline-icon.bg-success
+                          span.fa.fa-usd
+                        .timeline-desc
+                          b Admin
+                          |  created invoice for:
+                          a(href='#') Apple
+                        .timeline-date 7:45am
+                      li.timeline-item
+                        .timeline-icon.bg-alert
+                          span.fa.fa-tags
+                        .timeline-desc
+                          b Michael
+                          |  Added his store:
+                          a(href='#') Ipod
+                        .timeline-date 8:25am
+                      li.timeline-item
+                        .timeline-icon.bg-system
+                          span.fa.fa-fire
+                        .timeline-desc
+                          b Admin
+                          |  created invoice for:
+                          a(href='#') Software
+                        .timeline-date 4:15am
+                      li.timeline-item
+                        .timeline-icon.bg-alert
+                          span.fa.fa-tags
+                        .timeline-desc
+                          b Sara
+                          |  Added to his store:
+                          a(href='#') Notebook
+                        .timeline-date 3:05am
+                  .panel-footer.text-center.p7
+                    a.link-unstyled(href='#')  View All
+            .topbar-icon-wrap.ml35
+              button.topbar-icon.dropdown-toggle(data-toggle='dropdown')
+                span.badge.badge-mandy 5
+                span.fa.fa-comments.va-m
+              .dropdown-menu.dropdown-menu-offset.dropdown-persist.w350.animated.animated-shorter.fadeIn(role='menu')
+                .panel.mbn
+                  .panel-menu
+                    span.panel-title.fw600 Messages
+                  .panel-body.panel-scroller.scroller-navbar.scroller-overlay.scroller-pn.pn
+                    .br-n.p10
+                      .chat-widget
+                        .media
+                          .media-left
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/3.jpg')
+                          .media-body
+                            span.media-status.online
+                            h5.media-heading
+                              | Courtney Faught
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+                        .media
+                          .media-body
+                            span.media-status.offline
+                            h5.media-heading
+                              | Joe Gibbons
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque.
+                          .media-right
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/1.jpg')
+                        .media
+                          .media-left
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/2.jpg')
+                          .media-body
+                            span.media-status.online
+                            h5.media-heading
+                              | Courtney Faught
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metuscommodo.
+                        .media
+                          .media-body
+                            span.media-status.offline
+                            h5.media-heading
+                              | Joe Gibbons
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in Nulla vel metus scelerisque antecommodo.
+                          .media-right
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/1.jpg')
+                        .media
+                          .media-left
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/2.jpg')
+                          .media-body
+                            span.media-status.online
+                            h5.media-heading
+                              | Courtney Faught
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque soltudino.
+                        .media
+                          .media-body
+                            span.media-status.offline
+                            h5.media-heading
+                              | Joe Gibbons
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+                          .media-right
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/1.jpg')
+                  .panel-footer.text-center.p7
+                    a.link-unstyled(href='#')  View All
+        // Start: Topbar-Dropdown
+        #topbar-dropmenu.alt
+          .topbar-menu.row
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-primary.light(href='#')
+                span.glyphicon.glyphicon-inbox.text-white
+                span.metro-title Messages
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-info.light(href='#')
+                span.glyphicon.glyphicon-user.text-white
+                span.metro-title Users
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-success.light(href='#')
+                span.glyphicon.glyphicon-headphones.text-white
+                span.metro-title Support
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-system.light(href='#')
+                span.glyphicon.glyphicon-facetime-video.text-white
+                span.metro-title Videos
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-warning.light(href='#')
+                span.fa.fa-gears.text-white
+                span.metro-title Settings
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-alert.light(href='#')
+                span.glyphicon.glyphicon-picture.text-white
+                span.metro-title Pictures
+        // Begin: Content
+        section#content.table-layout.animated.fadeIn
+          // begin: .tray-left
+          aside.tray.tray-left.tray290(data-tray-height='match')
+            #nav-spy
+              ul.nav.tray-nav.tray-nav-border(data-smoothscroll='-145', data-spy='affix', data-offset-top='150')
+                li.active
+                  a(href='#spy1')
+                    | Calendar Widget
+                li
+                  a(href='#spy1')
+                    | Task-List Widget
+                li
+                  a(href='#spy2')
+                    | Chat Widget
+                li
+                  a(href='#spy2')
+                    | Timeline Widget
+                li
+                  a(href='#spy3')
+                    | Compose Widget
+                li
+                  a(href='#spy3')
+                    | Quick-Compose Widget
+                li
+                  a(href='#spy4')
+                    | Utility Widgets
+                li
+                  a(href='#spy4')
+                    | User Index Widget
+          // begin: .tray-center
+          .tray.tray-center
+            .page-tabs
+              ul.nav.nav-tabs
+                li
+                  a(href='widgets_tile.html') Tile Widgets
+                li.active
+                  a(href='widgets_panel.html') Panel Widgets
+                li
+                  a(href='widgets_scroller.html') Scroller Widgets
+                li
+                  a(href='widgets_data.html') Admin Widgets
+            div(style='max-width: 1200px;')
+              #spy1.row.mb15
+                // Calendar Widget
+                .col-md-6
+                  .panel.panel-widget.calendar-widget
+                    .panel-heading
+                      span.panel-icon
+                        i.fa.fa-pencil
+                      span.panel-title  Calendar Widget
+                    .panel-body
+                      #calendar-widget
+                // Task Widget
+                .col-md-6
+                  // Task Widget
+                  .panel.panel-widget.task-widget
+                    .panel-heading.cursor
+                      span.panel-icon
+                        i.fa.fa-cog
+                      span.panel-title  Task-List Widget
+                    .panel-body.pn
+                      ul.task-list.task-current
+                        li.task-label Current Tasks
+                        li.task-item.mt10
+                          .task-handle
+                            .checkbox-custom
+                              input#task1(type='checkbox')
+                              label(for='task1')
+                          .task-desc Create documentation for launch
+                          .task-menu
+                        li.task-item.mt10
+                          .task-handle
+                            .checkbox-custom
+                              input#task2(type='checkbox')
+                              label(for='task2')
+                          .task-desc Add new servers to design board
+                          .task-menu
+                        li.task-item.mt10
+                          .task-handle
+                            .checkbox-custom
+                              input#task3(type='checkbox')
+                              label(for='task3')
+                          .task-desc Finish building prototype for Sony
+                          .task-menu
+                        li.task-item.mt10
+                          .task-handle
+                            .checkbox-custom
+                              input#task4(type='checkbox')
+                              label(for='task4')
+                          .task-desc Order new building supplies for Microsoft
+                          .task-menu
+                        li.task-item.mt10
+                          .task-handle
+                            .checkbox-custom
+                              input#task5(type='checkbox')
+                              label(for='task5')
+                          .task-desc Add new servers to design board
+                          .task-menu
+                      ul.task-list.task-completed.mt30
+                        li.task-label Completed Tasks
+                        li.task-item.item-checked.mt10
+                          .task-handle
+                            .checkbox-custom
+                              input#task7(type='checkbox', checked='')
+                              label(for='task7')
+                          .task-desc Finish building prototype for Sony
+                          .task-menu
+                        li.task-item.mt10.item-checked
+                          .task-handle
+                            .checkbox-custom
+                              input#task8(type='checkbox', checked='')
+                              label(for='task8')
+                          .task-desc Order new building supplies for Microsoft
+                          .task-menu
+                        li.task-item.mt10.item-checked
+                          .task-handle
+                            .checkbox-custom
+                              input#task9(type='checkbox', checked='')
+                              label(for='task9')
+                          .task-desc Finish building prototype for Sony
+                          .task-menu
+                        li.task-item.mt10.item-checked
+                          .task-handle
+                            .checkbox-custom
+                              input#task10(type='checkbox', checked='')
+                              label(for='task10')
+                          .task-desc Order new building supplies for Microsoft
+                          .task-menu
+              #spy2.row.mb15
+                // Chat Widget
+                .col-md-6
+                  .panel.panel-widget.chat-widget.pn.panel-scroller
+                    .panel-heading
+                      span.panel-icon
+                        i.fa.fa-pencil
+                      span.panel-title  Chat Widget
+                    .panel-body.bg-light.dark.pn
+                      .media
+                        .media-left
+                          a(href='#')
+                            img.media-object(alt='64x64', src='assets/img/avatars/2.jpg')
+                        .media-body
+                          span.media-status
+                          h5.media-heading
+                            | Courtney Faught
+                            small  - 12:30am
+                          |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+                      .media
+                        .media-body
+                          span.media-status.offline
+                          h5.media-heading
+                            | Joe Gibbons
+                            small  - 12:30am
+                          |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+                        .media-right
+                          a(href='#')
+                            img.media-object(alt='64x64', src='assets/img/avatars/1.jpg')
+                      .media
+                        .media-left
+                          a(href='#')
+                            img.media-object(alt='64x64', src='assets/img/avatars/2.jpg')
+                        .media-body
+                          span.media-status.online
+                          h5.media-heading
+                            | Courtney Faught
+                            small  - 12:30am
+                          |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+                      .media
+                        .media-body
+                          span.media-status.offline
+                          h5.media-heading
+                            | Joe Gibbons
+                            small  - 12:30am
+                          |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+                        .media-right
+                          a(href='#')
+                            img.media-object(alt='64x64', src='assets/img/avatars/1.jpg')
+                      .media
+                        .media-left
+                          a(href='#')
+                            img.media-object(alt='64x64', src='assets/img/avatars/2.jpg')
+                        .media-body
+                          span.media-status.online
+                          h5.media-heading
+                            | Courtney Faught
+                            small  - 12:30am
+                          |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+                      .media
+                        .media-body
+                          span.media-status.offline
+                          h5.media-heading
+                            | Joe Gibbons
+                            small  - 12:30am
+                          |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+                        .media-right
+                          a(href='#')
+                            img.media-object(alt='64x64', src='assets/img/avatars/1.jpg')
+                    .panel-footer
+                      .input-group
+                        input.form-control(type='text', placeholder='Enter your message here...')
+                        span.input-group-btn
+                          button.btn.btn-default(type='button') Send Message
+                      // /input-group
+                // Timline Widget
+                .col-md-6
+                  .bs-component
+                    .panel
+                      .panel-heading
+                        span.panel-icon
+                          i.fa.fa-clock-o
+                        span.panel-title  Activity/Timeline Widget
+                      .panel-body.ptn.pbn.p10
+                        ol.timeline-list
+                          li.timeline-item
+                            .timeline-icon.bg-dark.light
+                              span.fa.fa-tags
+                            .timeline-desc
+                              b Michael
+                              |  Added to his store:
+                              = ' '
+                              a(href='#') Ipod
+                            .timeline-date 1:25am
+                          li.timeline-item
+                            .timeline-icon.bg-dark.light
+                              span.fa.fa-tags
+                            .timeline-desc
+                              b Sara
+                              |  Added his store:
+                              = ' '
+                              a(href='#') Notebook
+                            .timeline-date 3:05am
+                          li.timeline-item
+                            .timeline-icon.bg-success
+                              span.fa.fa-usd
+                            .timeline-desc
+                              b Admin
+                              |  created invoice for:
+                              = ' '
+                              a(href='#') Software
+                            .timeline-date 4:15am
+                          li.timeline-item
+                            .timeline-icon.bg-success
+                              span.fa.fa-usd
+                            .timeline-desc
+                              b Admin
+                              |  created invoice for:
+                              = ' '
+                              a(href='#') Apple
+                            .timeline-date 7:45am
+                          li.timeline-item
+                            .timeline-icon.bg-success
+                              span.fa.fa-usd
+                            .timeline-desc
+                              b Admin
+                              |  created invoice for:
+                              = ' '
+                              a(href='#') Software
+                            .timeline-date 4:15am
+                          li.timeline-item
+                            .timeline-icon.bg-success
+                              span.fa.fa-usd
+                            .timeline-desc
+                              b Admin
+                              |  created invoice for:
+                              = ' '
+                              a(href='#') Apple
+                            .timeline-date 7:45am
+                          li.timeline-item
+                            .timeline-icon.bg-dark.light
+                              span.fa.fa-tags
+                            .timeline-desc
+                              b Michael
+                              |  Added his store:
+                              = ' '
+                              a(href='#') Ipod
+                            .timeline-date 8:25am
+                          li.timeline-item
+                            .timeline-icon.bg-system
+                              span.fa.fa-fire
+                            .timeline-desc
+                              b Admin
+                              |  created invoice for:
+                              = ' '
+                              a(href='#') Software
+                            .timeline-date 4:15am
+                          li.timeline-item
+                            .timeline-icon.bg-dark.light
+                              span.fa.fa-tags
+                            .timeline-desc
+                              b Sara
+                              |  Added to his store:
+                              = ' '
+                              a(href='#') Notebook
+                            .timeline-date 3:05am
+              #spy3.row.mb15
+                // Quick Post Widget
+                .col-md-6
+                  .panel.panel-widget.compose-widget
+                    .panel-heading
+                      span.panel-icon
+                        i.fa.fa-pencil
+                      span.panel-title  Quick Post
+                    .panel-body
+                      .summernote-quick Compose your message here...
+                    .panel-footer.text-right
+                      button.btn.btn-default.btn-sm.ph15.mr5(type='button') Draft
+                      button.btn.btn-primary.btn-sm.ph15(type='button') Send
+                // Draft Widget
+                .col-md-6
+                  .bs-component
+                    .panel.panel-widget.draft-widget
+                      .panel-heading
+                        span.panel-icon
+                          i.fa.fa-pencil
+                        span.panel-title  Quick Draft
+                      .panel-body.p20
+                        .admin-form.theme-primary
+                          .section.mb20
+                            input#draft-title.gui-input.bg-light(type='text', placeholder='Title')
+                          .section
+                            label.field
+                              textarea#comment.gui-textarea.bg-light(name='comment', placeholder='Message here...')
+                      .panel-footer.text-right
+                        button.btn.btn-primary.btn-sm.ph15(type='button') Save Draft
+              #spy4.row.mb15
+                .col-md-6
+                  // Tag Cloud Widget
+                  .bs-component
+                    .panel.tagcloud-widget
+                      .panel-heading
+                        span.panel-icon
+                          i.fa.fa-pencil
+                        span.panel-title  Tag Cloud
+                      .panel-body
+                        span.label.label-rounded.label-primary Photoshop
+
+                        = ' '
+                        span.label.label-rounded.label-primary Fireworks
+
+                        = ' '
+                        span.label.label-rounded.label-primary Dreamweaver
+
+                        = ' '
+                        span.label.label-rounded.label-primary Sublime
+
+                        = ' '
+                        span.label.label-rounded.label-primary Firefox
+
+                        = ' '
+                        span.label.label-rounded.label-primary Chrome
+
+                        = ' '
+                        span.label.label-rounded.label-primary Microsoft
+
+                        = ' '
+                        span.label.label-rounded.label-primary Apple
+
+                        = ' '
+                        span.label.label-rounded.label-primary Google
+
+                        = ' '
+                        span.label.label-rounded.label-primary Facebook
+
+                        = ' '
+                        span.label.label-rounded.label-primary Twitter
+
+                        = ' '
+                        span.label.label-rounded.label-primary LinkedIn
+
+                        = ' '
+                        span.label.label-rounded.label-primary Design
+                  .panel.panel-widget.newsletter-widget
+                    .panel-heading
+                      span.panel-title  Newsletter Widget
+                    .panel-body.bg-light.dark.pb25
+                      p.mb15
+                        | Sign up for AdminDesigns
+                        = ' '
+                        b Newsletter
+                        | .
+                      .input-group
+                        input.form-control(type='text', placeholder='Enter your message here...')
+                        span.input-group-btn
+                          button.btn.btn-default.btn-gradient(type='button') Sign Up!
+                  // List-Group Tag Widget
+                  .bs-component
+                    .panel.listgroup-widget
+                      .panel-heading
+                        span.panel-icon
+                          i.fa.fa-tag
+                        span.panel-title  Tag Group
+                      ul.list-group
+                        li.list-group-item
+                          span.badge.badge-primary 14
+                          |                         Entertainment
+                        li.list-group-item
+                          span.badge.badge-success 9
+                          |                         Movies
+                        li.list-group-item
+                          span.badge.badge-info 11
+                          |                         TV Shows
+                        li.list-group-item
+                          span.badge.badge-warning 18
+                          |                         Celebs & Gossip
+                        li.list-group-item
+                          span.badge.badge-danger 22
+                          |                         Video Games
+                        li.list-group-item
+                          span.badge.badge-alert 9
+                          |                         Sports & Events
+                .col-md-6
+                  // User Group Widget
+                  .panel.user-group-widget.pn.panel-scroller
+                    .panel-heading
+                      span.panel-icon
+                        i.fa.fa-users
+                      span.panel-title  Recent User Activity
+                    .panel-menu
+                      .input-group
+                        span.input-group-addon
+                          i.fa.fa-search
+                        input.form-control(type='text', placeholder='Search user...')
+                    .panel-body(style='max-height: 513px;')
+                      .row
+                        .col-sm-3
+                          img.user-avatar(src='assets/img/avatars/1.jpg')
+                          .caption
+                            h5
+                              | Mike Pavlov
+                              br
+                              small  Designer
+                        .col-sm-3
+                          img.user-avatar(src='assets/img/avatars/2.jpg')
+                          .caption
+                            h5
+                              | Mike Pavlov
+                              br
+                              small  Designer
+                        .col-sm-3
+                          img.user-avatar(src='assets/img/avatars/6.jpg')
+                          .caption
+                            h5
+                              | Mike Pavlov
+                              br
+                              small  Designer
+                        .col-sm-3
+                          img.user-avatar(src='assets/img/avatars/4.jpg')
+                          .caption
+                            h5
+                              | Mike Pavlov
+                              br
+                              small  Designer
+                      .row.mt15
+                        .col-sm-3
+                          img.user-avatar(src='assets/img/avatars/5.jpg')
+                          .caption
+                            h5
+                              | Mike Pavlov
+                              br
+                              small  Designer
+                        .col-sm-3
+                          img.user-avatar(src='assets/img/avatars/6.jpg')
+                          .caption
+                            h5
+                              | Mike Pavlov
+                              br
+                              small  Designer
+                        .col-sm-3
+                          img.user-avatar(src='assets/img/avatars/1.jpg')
+                          .caption
+                            h5
+                              | Mike Pavlov
+                              br
+                              small  Designer
+                        .col-sm-3
+                          img.user-avatar(src='assets/img/avatars/2.jpg')
+                          .caption
+                            h5
+                              | Mike Pavlov
+                              br
+                              small  Designer
+                      .row.mt15
+                        .col-sm-3
+                          img.user-avatar(src='assets/img/avatars/2.jpg')
+                          .caption
+                            h5
+                              | Mike Pavlov
+                              br
+                              small  Designer
+                        .col-sm-3
+                          img.user-avatar(src='assets/img/avatars/4.jpg')
+                          .caption
+                            h5
+                              | Mike Pavlov
+                              br
+                              small  Designer
+                        .col-sm-3
+                          img.user-avatar(src='assets/img/avatars/5.jpg')
+                          .caption
+                            h5
+                              | Mike Pavlov
+                              br
+                              small  Designer
+                        .col-sm-3
+                          img.user-avatar(src='assets/img/avatars/6.jpg')
+                          .caption
+                            h5
+                              | Mike Pavlov
+                              br
+                              small  Designer
+                      .row.mt15
+                        .col-sm-3
+                          img.user-avatar(src='assets/img/avatars/1.jpg')
+                          .caption
+                            h5
+                              | Mike Pavlov
+                              br
+                              small  Designer
+                        .col-sm-3
+                          img.user-avatar(src='assets/img/avatars/2.jpg')
+                          .caption
+                            h5
+                              | Mike Pavlov
+                              br
+                              small  Designer
+                        .col-sm-3
+                          img.user-avatar(src='assets/img/avatars/1.jpg')
+                          .caption
+                            h5
+                              | Mike Pavlov
+                              br
+                              small  Designer
+                        .col-sm-3
+                          img.user-avatar(src='assets/img/avatars/4.jpg')
+                          .caption
+                            h5
+                              | Mike Pavlov
+                              br
+                              small  Designer
+                      .row.mt15
+                        .col-sm-3
+                          img.user-avatar(src='assets/img/avatars/5.jpg')
+                          .caption
+                            h5
+                              | Mike Pavlov
+                              br
+                              small  Designer
+                        .col-sm-3
+                          img.user-avatar(src='assets/img/avatars/6.jpg')
+                          .caption
+                            h5
+                              | Mike Pavlov
+                              br
+                              small  Designer
+                        .col-sm-3
+                          img.user-avatar(src='assets/img/avatars/1.jpg')
+                          .caption
+                            h5
+                              | Mike Pavlov
+                              br
+                              small  Designer
+                        .col-sm-3
+                          img.user-avatar(src='assets/img/avatars/2.jpg')
+                          .caption
+                            h5
+                              | Mike Pavlov
+                              br
+                              small  Designer
+    // core scripts
+    script(src='plugins/core.min.js')
+    // Theme Javascript
+    script(src='assets/js/utility/utility.js')
+    script(src='assets/js/demo/demo.js')
+    script(src='assets/js/main.js')
+    script(type='text/javascript').
+      jQuery(document).ready(function () {
+        "use strict";
+        // Init Theme Core
+        Core.init();
+        // Init Demo JS
+        Demo.init();
+        // Init plugins for ".calendar-widget"
+        // plugins: FullCalendar
+        //
+        $('#calendar-widget').fullCalendar({
+          contentHeight: 397,
+          editable: true,
+          events: [{
+            title: 'Sony Meeting',
+            start: '2016-03-2',
+            end: '2016-03-2',
+            className: 'fc-event-success',
+          }, {
+            title: 'Conference',
+            start: '2016-03-12',
+            end: '2016-03-12',
+            className: 'fc-event-primary'
+          }, {
+            title: 'Lunch Testing',
+            start: '2016-03-21',
+            end: '2016-03-21',
+            className: 'fc-event-danger'
+          },],
+          eventRender: function (event, element) {
+            // create event tooltip using bootstrap tooltips
+            $(element).attr("data-original-title", event.title);
+            $(element).tooltip({
+              container: 'body',
+              delay: {
+                "show": 100,
+                "hide": 200
+              }
+            });
+            // create a tooltip auto close timer
+            $(element).on('show.bs.tooltip', function () {
+              var autoClose = setTimeout(function () {
+                $('.tooltip').fadeOut();
+              }, 3500);
+            });
+          }
+        });
+        // Init plugins for ".compose-widget"
+        // plugins: Summernote
+        //
+        $('.summernote-quick').summernote({
+          height: 179, //set editable area's height
+          focus: false, //set focus editable area after Initialize summernote
+          toolbar: [
+            ['style', ['bold', 'italic', 'underline',]],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']],
+          ]
+        });
+        // Init plugins for ".task-widget"
+        // plugins: Custom Functions + jQuery Sortable
+        //
+        var taskWidget = $('div.task-widget');
+        var taskItems = taskWidget.find('li.task-item');
+        var currentItems = taskWidget.find('ul.task-current');
+        var completedItems = taskWidget.find('ul.task-completed');
+        // Init jQuery Sortable on Task Widget
+        taskWidget.sortable({
+          items: taskItems, // only init sortable on list items (not labels)
+          handle: '.task-menu',
+          axis: 'y',
+          connectWith: ".task-list",
+          update: function (event, ui) {
+            var Item = ui.item;
+            var ParentList = Item.parent();
+            // If item is already checked move it to "current items list"
+            if (ParentList.hasClass('task-current')) {
+              Item.removeClass('item-checked').find('input[type="checkbox"]').prop('checked', false);
+            }
+            if (ParentList.hasClass('task-completed')) {
+              Item.addClass('item-checked').find('input[type="checkbox"]').prop('checked', true);
+            }
+          }
+        });
+        // Custom Functions to handle/assign list filter behavior
+        taskItems.on('click', function (e) {
+          e.preventDefault();
+          var This = $(this);
+          var Target = $(e.target);
+          if (Target.is('.task-menu') && Target.parents('.task-completed').length) {
+            This.remove();
+            return;
+          }
+          if (Target.parents('.task-handle').length) {
+            // If item is already checked move it to "current items list"
+            if (This.hasClass('item-checked')) {
+              This.removeClass('item-checked').find('input[type="checkbox"]').prop('checked', false);
+            }
+            // Otherwise move it to the "completed items list"
+            else {
+              This.addClass('item-checked').find('input[type="checkbox"]').prop('checked', true);
+            }
+          }
+        });
+      });

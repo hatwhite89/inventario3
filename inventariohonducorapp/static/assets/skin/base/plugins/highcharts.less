@@ -1,0 +1,49 @@
+/*===============================================
+  High Charts
+================================================= */
+
+/* Custom Legend */
+.chart-legend {
+}
+
+.legend-item {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 2s;
+  &.active{
+    color:@brand-info;
+  }
+}
+
+/* Label Text */
+#p01 {
+  .highcharts-container {
+    background: rgba(236, 168, 95, 1);
+    background: -moz-linear-gradient(top, rgba(236, 168, 95, 1) 0%, rgba(207, 115, 81, 1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(236, 168, 95, 1)), color-stop(100%, rgba(207, 115, 81, 1)));
+    background: -webkit-linear-gradient(top, rgba(236, 168, 95, 1) 0%, rgba(207, 115, 81, 1) 100%);
+    background: -o-linear-gradient(top, rgba(236, 168, 95, 1) 0%, rgba(207, 115, 81, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(236, 168, 95, 1) 0%, rgba(207, 115, 81, 1) 100%);
+    background: linear-gradient(to bottom, rgba(236, 168, 95, 1) 0%, rgba(207, 115, 81, 1) 100%);
+  }
+}
+#p6,#p7{
+  .highcharts-container {
+    background: rgba(123,92,119,1);
+    background: -moz-radial-gradient(top, ellipse cover, rgba(123,92,119,1) 0%, rgba(68,56,74,1) 100%);
+    background: -webkit-gradient(radial, center top, 0px, center top, 100%, color-stop(0%, rgba(123,92,119,1)), color-stop(100%, rgba(68,56,74,1)));
+    background: -webkit-radial-gradient(top, ellipse cover, rgba(123,92,119,1) 0%, rgba(68,56,74,1) 100%);
+    background: -o-radial-gradient(top, ellipse cover, rgba(123,92,119,1) 0%, rgba(68,56,74,1) 100%);
+    background: -ms-radial-gradient(top, ellipse cover, rgba(123,92,119,1) 0%, rgba(68,56,74,1) 100%);
+    background: radial-gradient(ellipse at top, rgba(123,92,119,1) 0%, rgba(68,56,74,1) 100%);
+  }
+}
+.highcharts-container {
+  width: 100%;
+  max-width:100%;
+  .highcharts-axis-labels text {
+    color: #fff !important;
+    fill: #fff !important;
+    opacity: 0.4 !important;
+  }
+}

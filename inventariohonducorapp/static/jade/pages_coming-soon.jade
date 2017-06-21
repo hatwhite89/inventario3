@@ -1,0 +1,62 @@
+extends  _skeleton
+
+block stylesheets
+  link(rel='stylesheet', type='text/css', href='assets/admin-tools/admin-forms/css/admin-forms.css')
+
+block body
+  body.external-page.sb-l-c.sb-r-c
+    // Start: Main
+    #main.animated.fadeIn
+      // Start: Content-Wrapper
+      section#content_wrapper
+        // Begin: Animated Canvas BG
+        #canvas-wrapper
+          canvas#demo-canvas
+        // Begin: Content
+        section#content
+          a(href='dashboard.html', title='home')
+            img.img-responsive.w200.ml10(src='assets/img/logos/logo_white.png', title='AdminDesigns Logo')
+          #login1.admin-form.theme-info(style='margin-top: 6%;')
+            #counter
+            h1.coming-soon-title  We're Getting Ready To Launch!
+            .panel.panel-primary.bw10
+              form#contact(method='post', action='/')
+                .panel-menu
+                  .row
+                    .col-md-9.mt5.mb5
+                      label.field.prepend-icon(for='password')
+                        input#password.gui-input(type='text', name='password', placeholder='Your Email Address')
+                        label.field-icon(for='password')
+                          i.fa.fa-envelope-o
+                    .col-md-3.mt5.mb5
+                      button.button.btn-primary.mr10.btn-block(type='submit') Notify
+    // core scripts
+    script(src='plugins/core.min.js')
+    // Theme Javascript
+    script(src='assets/js/utility/utility.js')
+    script(src='assets/js/demo/demo.js')
+    script(src='assets/js/main.js')
+    // Page Javascript
+    script(type='text/javascript').
+      jQuery(document).ready(function () {
+        "use strict";
+        // Init Theme Core
+        Core.init();
+        // Init Demo JS
+        Demo.init();
+        // Init CanvasBG and pass target starting location
+        CanvasBG.init({
+          Loc: {
+            x: window.innerWidth / 10,
+            y: window.innerHeight / 20
+          },
+        });
+        // Init Countdown Plugin
+        var newYear = new Date();
+        newYear = new Date(2015, 6, 0);
+        $('#counter').countdown({
+          until: newYear
+        });
+        // For further documentation, settings, and examples
+        // see http://keith-wood.name/countdownRef.html
+      });

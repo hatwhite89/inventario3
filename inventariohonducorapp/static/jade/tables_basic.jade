@@ -1,0 +1,1484 @@
+extends  _skeleton
+
+block stylesheets
+  link(rel='stylesheet', type='text/css', href='assets/admin-tools/admin-forms/css/admin-forms.css')
+
+block body
+  body.tables-basic-page(data-spy='scroll', data-target='#nav-spy', data-offset='300')
+    // Start: Theme Preview Pane
+    #skin-toolbox
+      .panel
+        .panel-heading
+          span.panel-icon
+            i.fa.fa-gear.text-primary
+          span.panel-title  Theme Options
+        .panel-body.pn
+          ul.nav.nav-list.nav-list-sm.pl15.pt10(role='tablist')
+
+            li.active
+              a(href='#toolbox-sidebar', role='tab', data-toggle='tab') Sidebar
+            li
+              a(href='#toolbox-settings', role='tab', data-toggle='tab') Misc
+          .tab-content.p20.ptn.pb15
+
+            #toolbox-sidebar.tab-pane.active(role='tabpanel')
+              form#toolbox-sidebar-skin
+                h4.mv20 Sidebar Skins
+                .skin-toolbox-swatches
+                  .checkbox-custom.fill.mb5
+                    input#sidebarSkin3(type='radio', name='sidebarSkin', checked='', value='')
+                    label(for='sidebarSkin3') Dark
+                  .checkbox-custom.fill.checkbox-disabled.mb5
+                    input#sidebarSkin1(type='radio', name='sidebarSkin', value='sidebar-light')
+                    label(for='sidebarSkin1') Light
+                  .checkbox-custom.fill.checkbox-light.mb5
+                    input#sidebarSkin2(type='radio', name='sidebarSkin', value='sidebar-light light')
+                    label(for='sidebarSkin2') Lighter
+            #toolbox-settings.tab-pane(role='tabpanel')
+              form#toolbox-settings-misc
+                h4.mv20.mtn Layout Options
+
+                .form-group
+                  .checkbox-custom.fill.mb5
+                    input#sidebar-option(type='checkbox', checked='')
+                    label(for='sidebar-option') Fixed Sidebar
+
+                h4.mv20 Layout Options
+                .form-group
+                  .radio-custom.mb5
+                    input#fullwidth-option(type='radio', checked='', name='layout-option')
+                    label(for='fullwidth-option') Fullwidth Layout
+                .form-group.mb20.pointer-events-none
+                  .radio-custom.radio-disabled.mb5
+                    input#boxed-option(type='radio', name='layout-option', disabled='')
+                    label(for='boxed-option')
+                      | Boxed Layout
+                      b.text-muted (Coming Soon)
+          .form-group.mn.br-t.p15
+            a#clearLocalStorage.btn.btn-primary.btn-block.pb10.pt10(href='#') Clear LocalStorage
+    // Start: Main
+    #main
+      // Start: Sidebar
+      aside#sidebar_left.nano.nano-light.affix
+        // Navbar Branding
+        .navbar-branding
+          a.navbar-brand(href='dashboard.html')
+            span.text-white Ruby
+            = ' '
+            | Admin
+          span#toggle_sidemenu_l.ad.ad-lines
+        // Start: Sidebar Left Content
+        .sidebar-left-content.nano-content
+          // Start: Sidebar Header
+          header.sidebar-header
+            // Sidebar Widget - Author
+            .sidebar-widget.author-widget
+              .media
+                a.media-left(href='#')
+                  img.img-responsive(src='assets/img/avatars/3.jpg')
+                .media-body
+                  .media-links
+                  .media-author Ryan Harrison
+                  a.sidebar-menu-toggle(href='#') User Menu
+                  a(href='pages_login(alt).html') Logout
+            // Sidebar Widget - Menu (slidedown)
+            .sidebar-widget.menu-widget
+              .row.text-center.mbn
+                .col-xs-4
+                  a.text-primary(href='dashboard.html', data-toggle='tooltip', data-placement='top', title='Dashboard')
+                    span.glyphicon.glyphicon-home
+                .col-xs-4
+                  a.text-info(href='pages_messages.html', data-toggle='tooltip', data-placement='top', title='Messages')
+                    span.glyphicon.glyphicon-inbox
+                .col-xs-4
+                  a.text-alert(href='pages_profile.html', data-toggle='tooltip', data-placement='top', title='Tasks')
+                    span.fa.fa-asterisk
+                .col-xs-4
+                  a.text-system(href='pages_timeline.html', data-toggle='tooltip', data-placement='top', title='Activity')
+                    span.fa.fa-desktop
+                .col-xs-4
+                  a.text-danger(href='pages_profile.html', data-toggle='tooltip', data-placement='top', title='Settings')
+                    span.fa.fa-gears
+                .col-xs-4
+                  a.text-warning(href='pages_gallery.html', data-toggle='tooltip', data-placement='top', title='Cron Jobs')
+                    span.fa.fa-flask
+            // Sidebar Widget - Search (hidden)
+            .sidebar-widget.search-widget.hidden
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-search
+                input#sidebar-search.form-control(type='text', placeholder='Search...')
+          // Start: Sidebar Menu
+          ul.nav.sidebar-menu
+            li.sidebar-label.pt20 Menu
+            li
+              a(href='pages_calendar.html')
+                span.fa.fa-calendar
+                span.sidebar-title Calendar
+            li
+              a(href='documentation/')
+                span.glyphicon.glyphicon-book
+                span.sidebar-title Documentation
+            li.active
+              a(href='dashboard.html')
+                span.glyphicon.glyphicon-home
+                span.sidebar-title Dashboard
+            li.sidebar-label.pt15 Theme Tools
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-columns
+                span.sidebar-title Admin Layouts
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa.fa-arrows-h
+                    |                   Sidebars
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_sidebar-left-static.html')
+                        | Left Static
+                    li
+                      a(href='layout_sidebar-left-fixed.html')
+                        | Left Fixed
+                    li
+                      a(href='layout_sidebar-left-widgets.html')
+                        | Left Widgets
+                    li
+                      a(href='layout_sidebar-left-minified.html')
+                        | Left Minified
+                    li
+                      a(href='layout_sidebar-left-light.html')
+                        | Left White
+                    li
+                      a(href='layout_sidebar-right-static.html')
+                        | Right Static
+                    li
+                      a(href='layout_sidebar-right-fixed.html')
+                        | Right Fixed
+                    li
+                      a(href='layout_sidebar-right-menu.html')
+                        | Right w/Menu
+                
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-hand-o-up
+                    |                   Topbar
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_topbar.html')
+                        | Default Style
+                    li
+                      a(href='layout_topbar-menu.html')
+                        | Default w/Menu
+                    li
+                      a(href='layout_topbar-alt.html')
+                        | Alternate Style
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-arrows-v
+                    |                   Content Body
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_content-blank.html')
+                        | Blank Starter
+                    li
+                      a(href='layout_content-fixed.html')
+                        | Fixed Window
+                    li
+                      a(href='layout_content-heading.html')
+                        | Content Heading
+                    li
+                      a(href='layout_content-tabs.html')
+                        | Content Tabs
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-pause
+                    |                   Content Trays
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_tray-left.html')
+                        | Tray Left Static
+                    li
+                      a(href='layout_tray-left-fixed.html')
+                        | Tray Left Fixed
+                    li
+                      a(href='layout_tray-right.html')
+                        | Tray Right Static
+                    li
+                      a(href='layout_tray-right-fixed.html')
+                        | Tray Right Fixed
+                    li
+                      a(href='layout_tray-both.html')
+                        | Left + Right Static
+                    li
+                      a(href='layout_tray-both-fixed.html')
+                        | Left + Right Fixed
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-plus-square-o
+                    |                   Boxed Layout
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_boxed.html')
+                        | Default
+                    li
+                      a(href='layout_boxed-horizontal.html')
+                        | Horizontal Menu
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-arrow-circle-o-up
+                    |                   Horizontal Menu
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_horizontal-sm.html')
+                        | Small Size
+                    li
+                      a(href='layout_horizontal-md.html')
+                        | Medium Size
+                    li
+                      a(href='layout_horizontal-lg.html')
+                        | Large Size
+                    li
+                      a(href='layout_horizontal-light.html')
+                        | Light Skin
+                    li
+                      a(href='layout_horizontal-topbar.html')
+                        | With Topbar
+                    li
+                      a(href='layout_horizontal-topbar-alt.html')
+                        | With Alt Topbar
+                    li
+                      a(href='layout_horizontal-collapsed.html')
+                        | Collapsed onLoad
+                    li
+                      a(href='layout_horizontal-boxed.html')
+                        | In Boxed Layout
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-fire
+                span.sidebar-title Admin Plugins
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='admin_plugins-panels.html')
+                    span.glyphicon.glyphicon-book
+                    |  Admin Panels
+                li
+                  a(href='admin_plugins-modals.html')
+                    span.glyphicon.glyphicon-modal-window
+                    |  Admin Modals
+                li
+                  a(href='admin_plugins-dock.html')
+                    span.glyphicon.glyphicon-equalizer
+                    |  Admin Dock
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-check
+                span.sidebar-title Admin Forms
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='admin_forms-elements.html')
+                    span.glyphicon.glyphicon-edit
+                    |  Admin Elements
+                li
+                  a(href='admin_forms-widgets.html')
+                    span.glyphicon.glyphicon-calendar
+                    |  Admin Widgets
+                li
+                  a(href='admin_forms-validation.html')
+                    span.glyphicon.glyphicon-check
+                    |  Admin Validation
+                li
+                  a(href='admin_forms-layouts.html')
+                    span.fa.fa-desktop
+                    |  Admin Layouts
+                li
+                  a(href='admin_forms-wizard.html')
+                    span.fa.fa-clipboard
+                    |  Admin Wizard
+            li.sidebar-label.pt20 Systems
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-diamond
+                span.sidebar-title Widget Packages
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='widgets_tile.html')
+                    span.fa.fa-cube
+                    |  Tile Widgets
+                li
+                  a(href='widgets_panel.html')
+                    span.fa.fa-desktop
+                    |  Panel Widgets
+                li
+                  a(href='widgets_scroller.html')
+                    span.fa.fa-columns
+                    |  Scroller Widgets
+                li
+                  a(href='widgets_data.html')
+                    span.fa.fa-dot-circle-o
+                    |  Admin Widgets
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-shopping-cart
+                span.sidebar-title Ecommerce
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='ecommerce_dashboard.html')
+                    span.glyphicon.glyphicon-shopping-cart
+                    |  Dashboard
+                    span.label.label-xs.bg-primary New
+                li
+                  a(href='ecommerce_products.html')
+                    span.glyphicon.glyphicon-tags
+                    |  Products
+                li
+                  a(href='ecommerce_orders.html')
+                    span.fa.fa-money
+                    |  Orders
+                li
+                  a(href='ecommerce_customers.html')
+                    span.fa.fa-users
+                    |  Customers
+                li
+                  a(href='ecommerce_settings.html')
+                    span.fa.fa-gears
+                    |  Store Settings
+
+            // sidebar resources
+            li.sidebar-label.pt20 Elements
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-asterisk
+                span.sidebar-title UI Elements
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='ui_alerts.html')
+                    span.fa.fa-warning
+                    |  Alerts
+                li
+                  a(href='ui_animations.html')
+                    span.fa.fa-spinner
+                    |  Animations
+                li
+                  a(href='ui_buttons.html')
+                    span.fa.fa-plus-square-o
+                    |  Buttons
+                li
+                  a(href='ui_typography.html')
+                    span.fa.fa-text-width
+                    |  Typography
+                li
+                  a(href='ui_portlets.html')
+                    span.fa.fa-archive
+                    |  Portlets
+                li
+                  a(href='ui_progress-bars.html')
+                    span.fa.fa-bars
+                    |  Progress Bars
+                li
+                  a(href='ui_tabs.html')
+                    span.fa.fa-toggle-off
+                    |  Tabs
+                li
+                  a(href='ui_icons.html')
+                    span.fa.fa-hand-o-right
+                    |  Icons
+                li
+                  a(href='ui_grid.html')
+                    span.fa.fa-th-large
+                    |  Grid
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-align-justify
+                span.sidebar-title Form Elements
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='form_inputs.html')
+                    span.fa.fa-magic
+                    |  Basic Inputs
+                li
+                  a(href='form_plugins.html')
+                    span.fa.fa-bell-o
+                    |  Plugin Inputs
+                    span.label.label-xs.bg-primary New
+                li
+                  a(href='form_editors.html')
+                    span.fa.fa-clipboard
+                    |  Editors
+                li
+                  a(href='form_treeview.html')
+                    span.fa.fa-tree
+                    |  Treeview
+                li
+                  a(href='form_nestable.html')
+                    span.fa.fa-tasks
+                    |  Nestable
+                li
+                  a(href='form_image-tools.html')
+                    span.fa.fa-cloud-upload
+                    |  Image Tools
+                    span.label.label-xs.bg-primary New
+                li
+                  a(href='form_uploaders.html')
+                    span.fa.fa-cloud-upload
+                    |  Uploaders
+                li
+                  a(href='form_notifications.html')
+                    span.fa.fa-bell-o
+                    |  Notifications
+                li
+                  a(href='form_content-sliders.html')
+                    span.fa.fa-exchange
+                    |  Content Sliders
+            li
+              a.accordion-toggle.menu-open(href='#')
+                span.glyphicon.glyphicon-tower
+                span.sidebar-title Plugins
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a.accordion-toggle(href='#')
+                    span.glyphicon.glyphicon-globe
+                    |  Maps
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='maps_basic.html') Basic Maps
+                    li
+                      a(href='maps_vector.html') Vector Maps
+                    li
+                      a(href='maps_full.html') Full Map
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-area-chart
+                    |  Charts
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='charts_highcharts.html') Highcharts
+                    li
+                      a(href='charts_d3.html') D3 Charts
+                    li
+                      a(href='charts_flot.html') Flot Charts
+                li
+                  a.accordion-toggle.menu-open(href='#')
+                    span.fa.fa-table
+                    |  Tables
+                    span.caret
+                  ul.nav.sub-nav
+                    li.active
+                      a(href='tables_basic.html')  Basic Tables
+
+
+                    li
+                      a(href='tables_footable.html')  FooTables
+                    li
+                      a(href='tables_pricing.html')  Pricing Tables
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-flask
+                    |  Misc
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='misc_tour.html')  Site Tour
+                    li
+                      a(href='misc_timeout.html')  Session Timeout
+                    li
+                      a(href='misc_nprogress.html')  Page Progress Loader
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-duplicate
+                span.sidebar-title Pages
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-gears
+                    |  Utility
+                    span.caret
+                  ul.nav.sub-nav
+
+                    li
+                      a(href='pages_confirmation.html', target='_blank')
+                        | Confirmation
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_login.html', target='_blank')  Login
+                    li
+                      a(href='pages_login(alt).html', target='_blank')
+                        | Login Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_register.html', target='_blank')  Register
+                    li
+                      a(href='pages_register(alt).html', target='_blank')
+                        | Register Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_screenlock.html', target='_blank')  Screenlock
+                    li
+                      a(href='pages_screenlock(alt).html', target='_blank')
+                        | Screenlock Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_forgotpw.html', target='_blank')  Forgot Password
+                    li
+                      a(href='pages_forgotpw(alt).html', target='_blank')
+                        | Forgot Password Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_coming-soon.html', target='_blank')
+                        | Coming Soon
+                    li
+                      a(href='pages_404.html')  404 Error
+                    li
+                      a(href='pages_500.html')  500 Error
+                    li
+                      a(href='pages_404(alt).html')  404 Error Alt
+                    li
+                      a(href='pages_500(alt).html')  500 Error Alt
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-desktop
+                    |  Basic
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='pages_search-results.html')
+                        | Search Results
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_profile.html')  Profile
+                    li
+                      a(href='pages_timeline.html')  Timeline Split
+                    li
+                      a(href='pages_timeline-single.html')  Timeline Single
+                    li
+                      a(href='pages_faq.html')  FAQ Page
+                    li
+                      a(href='pages_calendar.html')  Calendar
+                    li
+                      a(href='pages_messages.html')  Messages
+                    li
+                      a(href='pages_messages(alt).html')  Messages Alt
+                    li
+                      a(href='pages_gallery.html')  Gallery
+                    li
+                      a(href='pages_invoice.html')  Printable Invoice
+            // sidebar bullets
+            li.sidebar-label.pt20 Projects
+            li.sidebar-proj
+              a(href='#projectOne')
+                span.fa.fa-bookmark.text-primary
+                span.sidebar-title Executive Meeting
+            li.sidebar-proj
+              a(href='#projectTwo')
+                span.fa.fa-bookmark.text-info
+                span.sidebar-title HelpDesk Redesign
+            li.sidebar-proj
+              a(href='#projectTwo')
+                span.fa.fa-bookmark.text-danger
+                span.sidebar-title Sony Board Meeting
+            li.sidebar-proj
+              a(href='#projectThree')
+                span.fa.fa-bookmark.text-warning
+                span.sidebar-title Apple Tech Conference
+      // Start: Content-Wrapper
+      section#content_wrapper
+        // Start: Topbar-Dropdown
+        #topbar-dropmenu.alt
+          .topbar-menu.row
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-primary.light(href='#')
+                span.glyphicon.glyphicon-inbox.text-muted
+                span.metro-title Messages
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-info.light(href='#')
+                span.glyphicon.glyphicon-user.text-muted
+                span.metro-title Users
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-success.light(href='#')
+                span.glyphicon.glyphicon-headphones.text-muted
+                span.metro-title Support
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-system.light(href='#')
+                span.glyphicon.glyphicon-facetime-video.text-muted
+                span.metro-title Videos
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-warning.light(href='#')
+                span.fa.fa-gears.text-muted
+                span.metro-title Settings
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-alert.light(href='#')
+                span.glyphicon.glyphicon-picture.text-muted
+                span.metro-title Pictures
+        // Start: Topbar
+        header#topbar.alt
+          .topbar-left
+            ol.breadcrumb
+              li
+                a(href="dashboard.html") Dashboard
+              li
+                a(href="admin_forms-elements.html") Form Elements
+              li
+                a(href="maps_basic.html") Plugins Pages
+              li
+                a(href="ui_alerts.html") UI Elements
+              li
+                a(href="documentation/") Documentation
+        // Begin: Content
+        section#content.table-layout.animated.fadeIn
+          // begin: .tray-left
+          aside.tray.tray-left.tray320(data-tray-height='match')
+            #nav-spy
+              ul.nav.tray-nav(data-smoothscroll='-145', data-spy='affix', data-offset-top='200')
+                li.active
+                  a(href='#spy1')
+                    | Contextual Headers
+                li
+                  a(href='#spy2')
+                    | Basic Table
+                li
+                  a(href='#spy3')
+                    | On-Hover Table
+                li
+                  a(href='#spy4')
+                    | Responsive Table
+                li
+                  a(href='#spy5')
+                    | Striped Table
+                li
+                  a(href='#spy6')
+                    | Condensed Table
+                li
+                  a(href='#spy7')
+                    | Bordered Table
+                li
+                  a(href='#spy8')
+                    | Contextual Rows
+                li
+                  a(href='#spy9')
+                    | Preformatted Rows
+          // begin: .tray-center
+          .tray.tray-center
+            .panel
+              .panel-heading
+                span.panel-title
+                  span.fa.fa-table
+                  | Header Colors
+                .pull-right.hidden-xs
+                  code.mr20 &lt;tr class="success info warning danger"&gt;
+            #spy1.row
+              .col-sm-6
+                .panel
+                  .panel-body.pn
+                    .bs-component
+                      table.table
+                        thead
+                          tr.primary
+                            th #
+                            th First Name
+                            th
+                              code .primary
+                        tbody
+                          tr
+                            td 1
+                            td Mark
+                            td Cell
+                          tr
+                            td 2
+                            td Jacob
+                            td Cell
+                          tr
+                            td 3
+                            td Larry
+                            td Cell
+                          tr
+                            td 4
+                            td Sussy
+                            td Cell
+              .col-sm-6
+                .panel
+                  .panel-body.pn
+                    .bs-component
+                      table.table
+                        thead
+                          tr.success
+                            th #
+                            th First Name
+                            th
+                              code .success
+                        tbody
+                          tr
+                            td 1
+                            td Mark
+                            td Cell
+                          tr
+                            td 2
+                            td Jacob
+                            td Cell
+                          tr
+                            td 3
+                            td Larry
+                            td Cell
+                          tr
+                            td 4
+                            td Sussy
+                            td Cell
+              .col-sm-6
+                .panel
+                  .panel-body.pn
+                    .bs-component
+                      table.table
+                        thead
+                          tr.info
+                            th #
+                            th First Name
+                            th
+                              code .info
+                        tbody
+                          tr
+                            td 1
+                            td Mark
+                            td Cell
+                          tr
+                            td 2
+                            td Jacob
+                            td Cell
+                          tr
+                            td 3
+                            td Larry
+                            td Cell
+                          tr
+                            td 4
+                            td Sussy
+                            td Cell
+              .col-sm-6
+                .panel
+                  .panel-body.pn
+                    .bs-component
+                      table.table
+                        thead
+                          tr.warning
+                            th #
+                            th First Name
+                            th
+                              code .warning
+                        tbody
+                          tr
+                            td 1
+                            td Mark
+                            td Cell
+                          tr
+                            td 2
+                            td Jacob
+                            td Cell
+                          tr
+                            td 3
+                            td Larry
+                            td Cell
+                          tr
+                            td 4
+                            td Sussy
+                            td Cell
+              .col-sm-6
+                .panel
+                  .panel-body.pn
+                    .bs-component
+                      table.table
+                        thead
+                          tr.danger
+                            th #
+                            th First Name
+                            th
+                              code .danger
+                        tbody
+                          tr
+                            td 1
+                            td Mark
+                            td Cell
+                          tr
+                            td 2
+                            td Jacob
+                            td Cell
+                          tr
+                            td 3
+                            td Larry
+                            td Cell
+                          tr
+                            td 4
+                            td Sussy
+                            td Cell
+              .col-sm-6
+                .panel
+                  .panel-body.pn
+                    .bs-component
+                      table.table
+                        thead
+                          tr.alert
+                            th #
+                            th First Name
+                            th
+                              code .alert
+                        tbody
+                          tr
+                            td 1
+                            td Mark
+                            td Cell
+                          tr
+                            td 2
+                            td Jacob
+                            td Cell
+                          tr
+                            td 3
+                            td Larry
+                            td Cell
+                          tr
+                            td 4
+                            td Sussy
+                            td Cell
+              .col-sm-6
+                .panel
+                  .panel-body.pn
+                    .bs-component
+                      table.table
+                        thead
+                          tr.system
+                            th #
+                            th First Name
+                            th
+                              code .system
+                        tbody
+                          tr
+                            td 1
+                            td Mark
+                            td Cell
+                          tr
+                            td 2
+                            td Jacob
+                            td Cell
+                          tr
+                            td 3
+                            td Larry
+                            td Cell
+                          tr
+                            td 4
+                            td Sussy
+                            td Cell
+              .col-sm-6
+                .panel
+                  .panel-body.pn
+                    .bs-component
+                      table.table
+                        thead
+                          tr.dark
+                            th #
+                            th First Name
+                            th
+                              code .dark
+                        tbody
+                          tr
+                            td 1
+                            td Mark
+                            td Cell
+                          tr
+                            td 2
+                            td Jacob
+                            td Cell
+                          tr
+                            td 3
+                            td Larry
+                            td Cell
+                          tr
+                            td 4
+                            td Sussy
+                            td Cell
+            #spy2.panel
+              .panel-heading
+                span.panel-title
+                  span.fa.fa-table
+                  | Basic Table
+                .pull-right
+                  code.mr20 .table
+              .panel-body.pn
+                .bs-component
+                  table.table
+                    thead
+                      tr
+                        th #
+                        th First Name
+                        th Last Name
+                        th Username
+                    tbody
+                      tr
+                        td 1
+                        td Mark
+                        td Otto
+                        td @mdo
+                      tr
+                        td 2
+                        td Jacob
+                        td Thornton
+                        td @fat
+                      tr
+                        td 3
+                        td Larry
+                        td the Bird
+                        td @twitter
+                      tr
+                        td 4
+                        td Sussy
+                        td Watcher
+                        td @thehawk
+            #spy3.panel
+              .panel-heading
+                span.panel-title
+                  span.fa.fa-table
+                  | On-Hover Table
+                .pull-right.hidden-xs
+                  code.mr20 .table .table-hover
+              .panel-body.pn
+                .bs-component
+                  table.table.table-hover
+                    thead
+                      tr
+                        th #
+                        th First Name
+                        th Last Name
+                        th Username
+                    tbody
+                      tr
+                        td 1
+                        td Mark
+                        td Otto
+                        td @mdo
+                      tr
+                        td 2
+                        td Jacob
+                        td Thornton
+                        td @fat
+                      tr
+                        td 3
+                        td Larry
+                        td the Bird
+                        td @twitter
+                      tr
+                        td 4
+                        td Sussy
+                        td Watcher
+                        td @thehawk
+            #spy4.panel
+              .panel-heading
+                span.panel-title
+                  span.fa.fa-table
+                  | Responsive Table
+                .pull-right.hidden-xs
+                  code.mr20 .table .table-responsive
+              .panel-body.pn
+                .table-responsive
+                  .bs-component
+                    table.table.table-bordered.mbn
+                      thead
+                        tr
+                          th #
+                          th Table heading
+                          th Table heading
+                          th Table heading
+                          th Table heading
+                          th Table heading
+                      tbody
+                        tr
+                          td 1
+                          td Table cell
+                          td Table cell
+                          td Table cell
+                          td Table cell
+                          td Table cell
+                        tr
+                          td 2
+                          td Table cell
+                          td Table cell
+                          td Table cell
+                          td Table cell
+                          td Table cell
+                        tr
+                          td 3
+                          td Table cell
+                          td Table cell
+                          td Table cell
+                          td Table cell
+                          td Table cell
+                        tr
+                          td 4
+                          td Table cell
+                          td Table cell
+                          td Table cell
+                          td Table cell
+                          td Table cell
+            #spy5.panel
+              .panel-heading
+                span.panel-title
+                  span.fa.fa-table
+                  | Striped Table
+                .pull-right.hidden-xs
+                  code.mr20 .table .table-striped
+              .panel-body.pn
+                .bs-component
+                  table.table.table-striped
+                    thead
+                      tr
+                        th #
+                        th First Name
+                        th Last Name
+                        th Username
+                    tbody
+                      tr
+                        td 1
+                        td Mark
+                        td Otto
+                        td @mdo
+                      tr
+                        td 2
+                        td Jacob
+                        td Thornton
+                        td @fat
+                      tr
+                        td 3
+                        td Larry
+                        td the Bird
+                        td @twitter
+                      tr
+                        td 4
+                        td Sussy
+                        td Watcher
+                        td @thehawk
+            #spy6.panel
+              .panel-heading
+                span.panel-title
+                  span.fa.fa-table
+                  | Condensed Table
+                .pull-right.hidden-xs
+                  code.mr20 .table .table-condensed
+              .panel-body.pn
+                .bs-component
+                  table.table.table-condensed
+                    thead
+                      tr
+                        th #
+                        th First Name
+                        th Last Name
+                        th Username
+                    tbody
+                      tr
+                        td 1
+                        td Mark
+                        td Otto
+                        td @mdo
+                      tr
+                        td 2
+                        td Jacob
+                        td Thornton
+                        td @fat
+                      tr
+                        td 3
+                        td Larry
+                        td the Bird
+                        td @twitter
+                      tr
+                        td 4
+                        td Todd
+                        td the Lion
+                        td @rawr
+                      tr
+                        td 5
+                        td Cynthia
+                        td the Dino
+                        td @mewo
+            #spy7.panel
+              .panel-heading
+                span.panel-title
+                  span.fa.fa-table
+                  | Bordered Table
+                .pull-right.hidden-xs
+                  code.mr20 .table .table-bordered
+              .panel-body.pn
+                .bs-component
+                  table.table.table-bordered
+                    thead
+                      tr
+                        th #
+                        th First Name
+                        th Last Name
+                        th Username
+                    tbody
+                      tr
+                        td 1
+                        td Mark
+                        td Otto
+                        td @mdo
+                      tr
+                        td 2
+                        td Jacob
+                        td Thornton
+                        td @fat
+                      tr
+                        td 3
+                        td Larry
+                        td the Bird
+                        td @twitter
+                      tr
+                        td 4
+                        td Sussy
+                        td Watcher
+                        td @thehawk
+            #spy8.panel
+              .panel-heading
+                span.panel-title
+                  span.fa.fa-table
+                  | Colored Table
+                .pull-right.hidden-xs
+                  code.mr20 <tr class="success info etc">
+              .panel-body.pn
+                .bs-component
+                  table.table.table-hover.mbn
+                    thead
+                      tr.active
+                        th #
+                        th First Name
+                        th Last Name
+                        th Username
+                    tbody
+                      tr.primary
+                        td 1
+                        td Mark
+                        td Otto
+                        td @mdo
+                      tr.success
+                        td 1
+                        td Mark
+                        td Otto
+                        td @mdo
+                      tr.info
+                        td 2
+                        td Jacob
+                        td Thornton
+                        td @fat
+                      tr.warning
+                        td 3
+                        td Larry
+                        td the Bird
+                        td @twitter
+                      tr.danger
+                        td 4
+                        td Sussy
+                        td Watcher
+                        td @thehawk
+                      tr.alert
+                        td 3
+                        td Larry
+                        td the Bird
+                        td @twitter
+                      tr.system
+                        td 4
+                        td Sussy
+                        td Watcher
+                        td @thehawk
+                      tr.dark
+                        td 4
+                        td Sussy
+                        td Watcher
+                        td @thehawk
+                      tr.default
+                        td 4
+                        td Sussy
+                        td Watcher
+                        td @thehawk
+            #spy9.panel
+              .panel-heading
+                span.fa.fa-star-o.mr5
+                |  Preformatted Row Content
+              .panel-body.p5
+                .table-responsive
+                  .bs-component
+                    table.table.mbn.table-striped.admin-form.theme-info
+                      thead
+                        tr.hiden
+                          th.w30 1.
+                          th.hidden-xs Body
+                          th.w175.text-right Widget
+                      tbody
+                        tr
+                          td.fs15.fw600 2.
+                          td.hidden-xs Lorem ipsum dolor sit amet, adipiscing eli
+                          td.text-right
+                            label.option.block.mn(for='female')
+                              input#female(type='radio', name='gender', value='female')
+                              span.radio
+                        tr
+                          td.fs15.fw600 3.
+                          td.hidden-xs Lorem ipsum dolor sit amet tulac beyond raytas
+                          td.text-right
+                            label.option.block.mn
+                              input(type='checkbox', name='mobileos', value='FR')
+                              span.checkbox
+                        tr
+                          td.fs15.fw600 4.
+                          td.hidden-xs Lorem ipsum dolor sit amet, consectetur adipiscing
+                          td.text-right
+                            label.switch.switch-round.block.mn
+                              input#fr2(type='radio', name='framework', value='angular')
+                              label(for='fr2', data-on='ON', data-off='OFF')
+                        tr
+                          td.fs15.fw600 5.
+                          td.hidden-xs Lorem ipsum dolor sit amet, consectetur adipiscing eli
+                          td.text-right
+                            label.switch.block.switch-info.mn
+                              input#t1(type='checkbox', name='tools', value='analytics', checked='')
+                              label(for='t1', data-on='YES', data-off='NO')
+                        tr
+                          td.fs15.fw600 6.
+                          td.hidden-xs Lorem ipsum dolor sit amet, consectetur adipiscing eli
+                          td.text-right
+                            span.fs11.text-muted
+                              i.fa.fa-circle.text-success.fs12.pr5
+                              |  45
+                            span.fs11.text-muted.ml10
+                              i.fa.fa-circle.text-info.fs12.pr5
+                              |  17
+                            span.fs11.text-muted.ml10
+                              i.fa.fa-circle.text-alert.fs12.pr5
+                              |  26
+                        tr
+                          td.fs15.fw600 7.
+                          td.hidden-xs Lorem ipsum dolor sit amet, consectetur
+                          td.text-right
+                            span.rating.block.mn
+                              input#r5.rating-input(type='radio', name='custom', checked='')
+                              label.rating-star(for='r5')
+                                i.fa.fa-star
+                              input#r4.rating-input(type='radio', name='custom')
+                              label.rating-star(for='r4')
+                                i.fa.fa-star
+                              input#r3.rating-input(type='radio', name='custom')
+                              label.rating-star(for='r3')
+                                i.fa.fa-star
+                              input#r2.rating-input(type='radio', name='custom')
+                              label.rating-star(for='r2')
+                                i.fa.fa-star
+                              input#r1.rating-input(type='radio', name='custom')
+                              label.rating-star(for='r1')
+                                i.fa.fa-star
+                        tr
+                          td.fs15.fw600 8.
+                          td.hidden-xs Lorem ipsum dolor sit amet, consectetur adipiscing eli
+                          td.text-right
+                            i.fa.fa-home.fs18.text-info.mr10.va-b
+                            i.fa.fa-globe.fs18.text-warning.mr10.va-b
+                            i.fa.fa-user.fs18.text-primary.mr10.va-b
+                            i.fa.fa-heart.fs18.text-alert.mr10.va-b
+                            i.fa.fa-bookmark.fs18.text-success.va-b
+                        tr
+                          td.fs15.fw600 9.
+                          td.hidden-xs Lorem ipsum dolor sit amet, consectetur adipiscing eli
+                          td.w100.text-right
+                            span.inlinesparkline 1,4,4,7,5,9,10
+                        tr
+                          td.fs15.fw600 10.
+                          td.hidden-xs Lorem ipsum dolor sit amet, consectetur adipiscing eli
+                          td.w100.text-right
+                            span.inlinesparkbar 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
+                        tr
+                          td.fs15.fw600 11.
+                          td.hidden-xs Lorem ipsum dolor sit amet, consectetur adipiscing eli
+                          td.w100.text-right
+                            span.inlinesparkpie 1,1,1
+                            span.inlinesparkpie2 1,1,2
+                        tr.hidden
+                          td.fs15.fw600 12.
+                          td.hidden-xs Lorem ipsum dolor sit amet, consectetur adipiscing eli
+                          td.w250
+                            label.field.select
+                              select#location(name='location')
+                                option(value='') Select with double arrows
+                                option(value='AL') Albania
+                                option(value='DZ') Algeria
+                              i.arrow.double
+                        tr
+                          td.fs15.fw600 13.
+                          td.hidden-xs Lorem ipsum dolor sit amet, consectetur adipiscing eli
+                          td.text-right
+                            img.mw30.mr15.border.bw2.border-alert(src='assets/img/avatars/1.jpg')
+                            img.mw30.br8.mr15.border.bw2.border-info(src='assets/img/avatars/1.jpg')
+                            img.mw30.br64.border.bw2.border-warning(src='assets/img/avatars/1.jpg')
+                        tr
+                          td.fs15.fw600 14.
+                          td.hidden-xs Lorem ipsum dolor sit amet, consectetur adipiscing eli
+                          td.text-right
+                            .btn-group
+                              button.btn.btn-info.btn-sm.fs12.fw500.dropdown-toggle.ph10(type='button', data-toggle='dropdown')
+                                | Dropdown
+                                span.caret
+                              ul.dropdown-menu.pull-right(role='menu')
+                                li
+                                  a(href='#') Action
+                                li
+                                  a(href='#') Another action
+                                li
+                                  a(href='#') Something else here
+                                li.divider
+                                li
+                                  a(href='#') Separated link
+                        tr
+                          td.fs15.fw600 15.
+                          td.hidden-xs Lorem ipsum dolor sit amet, consectetur adipiscing eli
+                          td.text-right
+                            .progress.progress-bar-sm.mn
+                              .progress-bar.progress-bar-info.progress-bar-striped(style='width: 75%')
+                        tr
+                          td.fs15.fw600 16.
+                          td.hidden-xs Lorem ipsum dolor sit amet, consectetur adipiscing eli
+                          td.text-right
+                            span.badge.badge-warning 8
+                            span.label.label-info.ml5 Urgent
+                        tr
+                          td.fs15.fw600 17.
+                          td.hidden-xs Lorem ipsum dolor sit amet, consectetur adipiscing eli
+                          td.text-right
+                            button.btn.btn-primary.btn-sm.fs12(type='button', data-toggle='tooltip', data-placement='left', title='Tooltip on left') Left Tooltip
+                        tr
+                          td.fs15.fw600 18.
+                          td.hidden-xs Lorem ipsum dolor sit amet, consectetur adipiscing eli
+                          td.text-right
+                            button.btn.btn-info.btn-sm.fs12(type='button', data-container='body', data-toggle='popover', data-placement='left', title='Popover Title', data-content='Vivamus sagittis lacus vel augue laoreet rutrum faucibus.')
+                              | Left Popover
+      // Start: Right Sidebar
+      aside#sidebar_right.nano.affix
+        // Start: Sidebar Right Content
+        .sidebar-right-content.nano-content
+          .tab-block.sidebar-block.br-n
+            ul.nav.nav-tabs.tabs-border.nav-justified.hidden
+              li.active
+                a(href='#sidebar-right-tab1', data-toggle='tab') Tab 1
+              li
+                a(href='#sidebar-right-tab2', data-toggle='tab') Tab 2
+              li
+                a(href='#sidebar-right-tab3', data-toggle='tab') Tab 3
+            .tab-content.br-n
+              #sidebar-right-tab1.tab-pane.active
+                h5.title-divider.text-muted.mb20
+                  | Server Statistics
+                  span.pull-right
+                    | 2013
+                    i.fa.fa-caret-down.ml5
+                .progress.mh5
+                  .progress-bar.progress-bar-primary(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 44%')
+                    span.fs11 DB Request
+                .progress.mh5
+                  .progress-bar.progress-bar-info(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 84%')
+                    span.fs11.text-left Server Load
+                .progress.mh5
+                  .progress-bar.progress-bar-warning(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 61%')
+                    span.fs11.text-left Server Connections
+                h5.title-divider.text-muted.mt30.mb10 Traffic Margins
+                .row
+                  .col-xs-5
+                    h3.text-primary.mn.pl5 132
+                  .col-xs-7.text-right
+                    h3.text-success-dark.mn
+                      i.fa.fa-caret-up
+                      |  13.2%
+                h5.title-divider.text-muted.mt25.mb10 Database Request
+                .row
+                  .col-xs-5
+                    h3.text-primary.mn.pl5 212
+                  .col-xs-7.text-right
+                    h3.text-success-dark.mn
+                      i.fa.fa-caret-up
+                      |  25.6%
+                h5.title-divider.text-muted.mt25.mb10 Server Response
+                .row
+                  .col-xs-5
+                    h3.text-primary.mn.pl5 82.5
+                  .col-xs-7.text-right
+                    h3.text-danger.mn
+                      i.fa.fa-caret-down
+                      |  17.9%
+                h5.title-divider.text-muted.mt40.mb20
+                  | Server Statistics
+                  span.pull-right.text-primary.fw600 USA
+              #sidebar-right-tab2.tab-pane
+              #sidebar-right-tab3.tab-pane
+    // core scripts
+    script(src='plugins/core.min.js')
+    // Theme Javascript
+    script(src='assets/js/utility/utility.js')
+    script(src='assets/js/demo/demo.js')
+    script(src='assets/js/main.js')
+    script(type='text/javascript').
+      jQuery(document).ready(function () {
+        "use strict";
+        // Init Theme Core
+        Core.init();
+        // Init Demo JS
+        Demo.init();
+        // Init Sparklines Plugin
+        $('.inlinesparkline').sparkline('html', {
+          type: 'line',
+          height: 30,
+          width: 100,
+          lineColor: bgInfoDr, // Also tooltip icon color
+          fillColor: bgInfoLr,
+          spotColor: bgPrimary,
+          minSpotColor: bgPrimary,
+          maxSpotColor: bgPrimary,
+          highlightSpotColor: bgWarningDr,
+          highlightLineColor: bgWarningLr
+        });
+        var barColors = $.range_map({
+          '1:6': bgWarning,
+          '7:11': bgInfo,
+          '12:': bgPrimary
+        })
+        $('.inlinesparkbar').sparkline('html', {
+          type: 'bar',
+          height: 25,
+          barWidth: 4,
+          barSpacing: 1,
+          barColor: bgPrimary, // Also tooltip icon color
+          fillColor: bgInfoLr,
+          colorMap: barColors, // Colors mapped/stored in object above
+          spotColor: bgPrimary,
+          minSpotColor: bgPrimary,
+          maxSpotColor: bgPrimary,
+          highlightSpotColor: bgWarningDr,
+          highlightLineColor: bgWarningLr
+        });
+        $('.inlinesparkpie').sparkline('html', {
+          type: 'pie',
+          width: 30,
+          height: 23,
+          offset: 90,
+          sliceColors: [bgPrimary, bgInfo, bgWarning, bgAlert, bgDanger]
+        });
+        $('.inlinesparkpie2').sparkline('html', {
+          type: 'pie',
+          width: 23,
+          height: 23,
+          offset: -45,
+          sliceColors: [bgPrimary, bgSuccess, bgAlert, bgDark, bgDanger]
+        });
+      });

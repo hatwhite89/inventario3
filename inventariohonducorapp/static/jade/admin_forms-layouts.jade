@@ -1,0 +1,2950 @@
+extends  _skeleton
+
+block stylesheets
+  link(rel='stylesheet', type='text/css', href='assets/admin-tools/admin-forms/css/admin-forms.css')
+
+block body
+  // Start: Theme Preview Pane
+  #skin-toolbox
+    .panel
+      .panel-heading
+        span.panel-icon
+          i.fa.fa-gear.text-primary
+        span.panel-title  Theme Options
+      .panel-body.pn
+        ul.nav.nav-list.nav-list-sm.pl15.pt10(role='tablist')
+
+          li.active
+            a(href='#toolbox-sidebar', role='tab', data-toggle='tab') Sidebar
+          li
+            a(href='#toolbox-settings', role='tab', data-toggle='tab') Misc
+        .tab-content.p20.ptn.pb15
+
+          #toolbox-sidebar.tab-pane.active(role='tabpanel')
+            form#toolbox-sidebar-skin
+              h4.mv20 Sidebar Skins
+              .skin-toolbox-swatches
+                .checkbox-custom.fill.mb5
+                  input#sidebarSkin3(type='radio', name='sidebarSkin', checked='', value='')
+                  label(for='sidebarSkin3') Dark
+                .checkbox-custom.fill.checkbox-disabled.mb5
+                  input#sidebarSkin1(type='radio', name='sidebarSkin', value='sidebar-light')
+                  label(for='sidebarSkin1') Light
+                .checkbox-custom.fill.checkbox-light.mb5
+                  input#sidebarSkin2(type='radio', name='sidebarSkin', value='sidebar-light light')
+                  label(for='sidebarSkin2') Lighter
+          #toolbox-settings.tab-pane(role='tabpanel')
+            form#toolbox-settings-misc
+              h4.mv20.mtn Layout Options
+
+              .form-group
+                .checkbox-custom.fill.mb5
+                  input#sidebar-option(type='checkbox', checked='')
+                  label(for='sidebar-option') Fixed Sidebar
+
+              h4.mv20 Layout Options
+              .form-group
+                .radio-custom.mb5
+                  input#fullwidth-option(type='radio', checked='', name='layout-option')
+                  label(for='fullwidth-option') Fullwidth Layout
+              .form-group.mb20.pointer-events-none
+                .radio-custom.radio-disabled.mb5
+                  input#boxed-option(type='radio', name='layout-option', disabled='')
+                  label(for='boxed-option')
+                    | Boxed Layout
+                    b.text-muted (Coming Soon)
+        .form-group.mn.br-t.p15
+          a#clearLocalStorage.btn.btn-primary.btn-block.pb10.pt10(href='#') Clear LocalStorage
+  // Start: Main
+  #main
+    // Start: Sidebar
+    aside#sidebar_left.nano.nano-light.affix
+      // Navbar Branding
+      .navbar-branding
+        a.navbar-brand(href='dashboard.html')
+          span.text-white Ruby
+          = ' '
+          | Admin
+        span#toggle_sidemenu_l.ad.ad-lines
+      // Start: Sidebar Left Content
+      .sidebar-left-content.nano-content
+        // Start: Sidebar Header
+        header.sidebar-header
+          // Sidebar Widget - Author
+          .sidebar-widget.author-widget
+            .media
+              a.media-left(href='#')
+                img.img-responsive(src='assets/img/avatars/3.jpg')
+              .media-body
+                .media-links
+                .media-author Ryan Harrison
+                a.sidebar-menu-toggle(href='#') User Menu
+                a(href='pages_login(alt).html') Logout
+          // Sidebar Widget - Menu (slidedown)
+          .sidebar-widget.menu-widget
+            .row.text-center.mbn
+              .col-xs-4
+                a.text-primary(href='dashboard.html', data-toggle='tooltip', data-placement='top', title='Dashboard')
+                  span.glyphicon.glyphicon-home
+              .col-xs-4
+                a.text-info(href='pages_messages.html', data-toggle='tooltip', data-placement='top', title='Messages')
+                  span.glyphicon.glyphicon-inbox
+              .col-xs-4
+                a.text-alert(href='pages_profile.html', data-toggle='tooltip', data-placement='top', title='Tasks')
+                  span.fa.fa-asterisk
+            .row.text-center.mbn
+              .col-xs-4
+                a.text-system(href='pages_timeline.html', data-toggle='tooltip', data-placement='top', title='Activity')
+                  span.fa.fa-desktop
+              .col-xs-4
+                a.text-danger(href='pages_profile.html', data-toggle='tooltip', data-placement='top', title='Settings')
+                  span.fa.fa-gears
+              .col-xs-4
+                a.text-warning(href='pages_gallery.html', data-toggle='tooltip', data-placement='top', title='Cron Jobs')
+                  span.fa.fa-flask
+          // Sidebar Widget - Search (hidden)
+          .sidebar-widget.search-widget.hidden
+            .input-group
+              span.input-group-addon
+                i.fa.fa-search
+              input#sidebar-search.form-control(type='text', placeholder='Search...')
+        // Start: Sidebar Menu
+        ul.nav.sidebar-menu
+          li.sidebar-label.pt30 Menu
+          li
+            a(href='pages_calendar.html')
+              span.fa.fa-calendar
+              span.sidebar-title Calendar
+              span.sidebar-title-tray
+                span.label.label-xs.bg-primary New
+          li
+            a(href='documentation/')
+              span.glyphicon.glyphicon-book
+              span.sidebar-title Documentation
+          li.active
+            a(href='dashboard.html')
+              span.glyphicon.glyphicon-home
+              span.sidebar-title Dashboard
+          li.sidebar-label.pt15 Exclusive Tools
+          li
+            a.accordion-toggle(href='#')
+              span.fa.fa-columns
+              span.sidebar-title Admin Layouts
+              span.caret
+            ul.nav.sub-nav
+              li
+                a.accordion-toggle(href='#')
+                  span.fa.fa.fa-arrows-h
+                  |                   Sidebars
+                  span.caret
+                ul.nav.sub-nav
+                  li
+                    a(href='layout_sidebar-left-static.html') Left Static
+                  li
+                    a(href='layout_sidebar-left-fixed.html') Left Fixed
+                  li
+                    a(href='layout_sidebar-left-widgets.html') Left Widgets
+                  li
+                    a(href='layout_sidebar-left-minified.html') Left Minified
+                  li
+                    a(href='layout_sidebar-left-light.html') Left White
+                  li
+                    a(href='layout_sidebar-right-static.html') Right Static
+                  li
+                    a(href='layout_sidebar-right-fixed.html') Right Fixed
+                  li
+                    a(href='layout_sidebar-right-menu.html') Right w/Menu
+              li
+                a.accordion-toggle(href='#')
+                  span.fa.fa-arrows-v
+                  |                   Navbar
+                  span.caret
+                ul.nav.sub-nav
+                  li
+                    a(href='layout_navbar-static.html') Navbar Static
+                  li
+                    a(href='layout_navbar-fixed.html') Navbar Fixed
+                  li
+                    a(href='layout_navbar-menus.html') Navbar Menus
+                  li
+                    a(href='layout_navbar-contextual.html') Contextual Example
+                  li
+                    a(href='layout_navbar-search-alt.html') Search Alt Style
+              li
+                a.accordion-toggle(href='#')
+                  span.fa.fa-hand-o-up
+                  |                   Topbar
+                  span.caret
+                ul.nav.sub-nav
+                  li
+                    a(href='layout_topbar.html') Default Style
+                  li
+                    a(href='layout_topbar-menu.html') Default w/Menu
+                  li
+                    a(href='layout_topbar-alt.html') Alternate Style
+              li
+                a.accordion-toggle(href='#')
+                  span.fa.fa-arrows-v
+                  |                   Content Body
+                  span.caret
+                ul.nav.sub-nav
+                  li
+                    a(href='layout_content-blank.html') Blank Starter
+                  li
+                    a(href='layout_content-fixed.html') Fixed Window
+                  li
+                    a(href='layout_content-heading.html') Content Heading
+                  li
+                    a(href='layout_content-tabs.html') Content Tabs
+              li
+                a.accordion-toggle(href='#')
+                  span.fa.fa-pause
+                  |                   Content Trays
+                  span.caret
+                ul.nav.sub-nav
+                  li
+                    a(href='layout_tray-left.html') Tray Left Static
+                  li
+                    a(href='layout_tray-left-fixed.html') Tray Left Fixed
+                  li
+                    a(href='layout_tray-right.html') Tray Right Static
+                  li
+                    a(href='layout_tray-right-fixed.html') Tray Right Fixed
+                  li
+                    a(href='layout_tray-both.html') Left + Right Static
+                  li
+                    a(href='layout_tray-both-fixed.html') Left + Right Fixed
+              li
+                a.accordion-toggle(href='#')
+                  span.fa.fa-plus-square-o
+                  |                   Boxed Layout
+                  span.caret
+                ul.nav.sub-nav
+                  li
+                    a(href='layout_boxed.html') Default
+                  li
+                    a(href='layout_boxed-horizontal.html') Horizontal Menu
+              li
+                a.accordion-toggle(href='#')
+                  span.fa.fa-arrow-circle-o-up
+                  |                   Horizontal Menu
+                  span.caret
+                ul.nav.sub-nav
+                  li
+                    a(href='layout_horizontal-sm.html') Small Size
+                  li
+                    a(href='layout_horizontal-md.html') Medium Size
+                  li
+                    a(href='layout_horizontal-lg.html') Large Size
+                  li
+                    a(href='layout_horizontal-light.html') Light Skin
+                  li
+                    a(href='layout_horizontal-topbar.html') With Topbar
+                  li
+                    a(href='layout_horizontal-topbar-alt.html') With Alt Topbar
+                  li
+                    a(href='layout_horizontal-collapsed.html') Collapsed onLoad
+                  li
+                    a(href='layout_horizontal-boxed.html') In Boxed Layout
+          li
+            a.accordion-toggle(href='#')
+              span.glyphicon.glyphicon-fire
+              span.sidebar-title Admin Plugins
+              span.caret
+            ul.nav.sub-nav
+              li
+                a(href='admin_plugins-panels.html')
+                  span.glyphicon.glyphicon-book
+                  |  Admin Panels
+              li
+                a(href='admin_plugins-modals.html')
+                  span.glyphicon.glyphicon-modal-window
+                  |  Admin Modals
+              li
+                a(href='admin_plugins-dock.html')
+                  span.glyphicon.glyphicon-equalizer
+                  |  Admin Dock
+          li
+            a.accordion-toggle.menu-open(href='#')
+              span.glyphicon.glyphicon-check
+              span.sidebar-title Admin Forms
+              span.caret
+            ul.nav.sub-nav
+              li
+                a(href='admin_forms-elements.html')
+                  span.glyphicon.glyphicon-edit
+                  |  Admin Elements
+              li
+                a(href='admin_forms-widgets.html')
+                  span.glyphicon.glyphicon-calendar
+                  |  Admin Widgets
+              li
+                a(href='admin_forms-validation.html')
+                  span.glyphicon.glyphicon-check
+                  |  Admin Validation
+              li.active
+                a(href='admin_forms-layouts.html')
+                  span.fa.fa-desktop
+                  |  Admin Layouts
+              li
+                a(href='admin_forms-wizard.html')
+                  span.fa.fa-clipboard
+                  |  Admin Wizard
+          li.sidebar-label.pt20 Systems
+          li
+            a.accordion-toggle(href='#')
+              span.fa.fa-diamond
+              span.sidebar-title Widget Packages
+              span.caret
+            ul.nav.sub-nav
+              li
+                a(href='widgets_tile.html')
+                  span.fa.fa-cube
+                  |  Tile Widgets
+              li
+                a(href='widgets_panel.html')
+                  span.fa.fa-desktop
+                  |  Panel Widgets
+              li
+                a(href='widgets_scroller.html')
+                  span.fa.fa-columns
+                  |  Scroller Widgets
+              li
+                a(href='widgets_data.html')
+                  span.fa.fa-dot-circle-o
+                  |  Admin Widgets
+          li
+            a.accordion-toggle(href='#')
+              span.glyphicon.glyphicon-shopping-cart
+              span.sidebar-title Ecommerce
+              span.caret
+            ul.nav.sub-nav
+              li
+                a(href='ecommerce_dashboard.html')
+                  span.glyphicon.glyphicon-shopping-cart
+                  |  Dashboard
+                  span.label.label-xs.bg-primary New
+              li
+                a(href='ecommerce_products.html')
+                  span.glyphicon.glyphicon-tags
+                  |  Products
+              li
+                a(href='ecommerce_orders.html')
+                  span.fa.fa-money
+                  |  Orders
+              li
+                a(href='ecommerce_customers.html')
+                  span.fa.fa-users
+                  |  Customers
+              li
+                a(href='ecommerce_settings.html')
+                  span.fa.fa-gears
+                  |  Store Settings
+          li
+            a(href='email_templates.html')
+              span.fa.fa-envelope-o
+              span.sidebar-title Email Templates
+          // sidebar resources
+          li.sidebar-label.pt20 Elements
+          li
+            a.accordion-toggle(href='#')
+              span.fa.fa-asterisk
+              span.sidebar-title UI Elements
+              span.caret
+            ul.nav.sub-nav
+              li
+                a(href='ui_alerts.html')
+                  span.fa.fa-warning
+                  |  Alerts
+              li
+                a(href='ui_animations.html')
+                  span.fa.fa-spinner
+                  |  Animations
+              li
+                a(href='ui_buttons.html')
+                  span.fa.fa-plus-square-o
+                  |  Buttons
+              li
+                a(href='ui_typography.html')
+                  span.fa.fa-text-width
+                  |  Typography
+              li
+                a(href='ui_portlets.html')
+                  span.fa.fa-archive
+                  |  Portlets
+              li
+                a(href='ui_progress-bars.html')
+                  span.fa.fa-bars
+                  |  Progress Bars
+              li
+                a(href='ui_tabs.html')
+                  span.fa.fa-toggle-off
+                  |  Tabs
+              li
+                a(href='ui_icons.html')
+                  span.fa.fa-hand-o-right
+                  |  Icons
+              li
+                a(href='ui_grid.html')
+                  span.fa.fa-th-large
+                  |  Grid
+          li
+            a.accordion-toggle(href='#')
+              span.fa.fa-align-justify
+              span.sidebar-title Form Elements
+              span.caret
+            ul.nav.sub-nav
+              li
+                a(href='form_inputs.html')
+                  span.fa.fa-magic
+                  |  Basic Inputs
+              li
+                a(href='form_plugins.html')
+                  span.fa.fa-bell-o
+                  |  Plugin Inputs
+                  span.label.label-xs.bg-primary New
+              li
+                a(href='form_editors.html')
+                  span.fa.fa-clipboard
+                  |  Editors
+              li
+                a(href='form_treeview.html')
+                  span.fa.fa-tree
+                  |  Treeview
+              li
+                a(href='form_nestable.html')
+                  span.fa.fa-tasks
+                  |  Nestable
+              li
+                a(href='form_image-tools.html')
+                  span.fa.fa-cloud-upload
+                  |  Image Tools
+                  span.label.label-xs.bg-primary New
+              li
+                a(href='form_uploaders.html')
+                  span.fa.fa-cloud-upload
+                  |  Uploaders
+              li
+                a(href='form_notifications.html')
+                  span.fa.fa-bell-o
+                  |  Notifications
+              li
+                a(href='form_content-sliders.html')
+                  span.fa.fa-exchange
+                  |  Content Sliders
+          li
+            a.accordion-toggle(href='#')
+              span.glyphicon.glyphicon-tower
+              span.sidebar-title Plugins
+              span.caret
+            ul.nav.sub-nav
+              li
+                a.accordion-toggle(href='#')
+                  span.glyphicon.glyphicon-globe
+                  |  Maps
+                  span.caret
+                ul.nav.sub-nav
+                  li
+                    a(href='maps_basic.html') Basic Maps
+                  li
+                    a(href='maps_vector.html') Vector Maps
+                  li
+                    a(href='maps_full.html') Full Map
+              li
+                a.accordion-toggle(href='#')
+                  span.fa.fa-area-chart
+                  |  Charts
+                  span.caret
+                ul.nav.sub-nav
+                  li
+                    a(href='charts_highcharts.html') Highcharts
+                  li
+                    a(href='charts_d3.html') D3 Charts
+                  li
+                    a(href='charts_flot.html') Flot Charts
+              li
+                a.accordion-toggle(href='#')
+                  span.fa.fa-table
+                  |  Tables
+                  span.caret
+                ul.nav.sub-nav
+                  li
+                    a(href='tables_basic.html')  Basic Tables
+                  li
+                    a(href='tables_datatables.html')  DataTables
+                  li
+                    a(href='tables_datatables-editor.html')  Editable Tables
+                  li
+                    a(href='tables_footable.html')  FooTables
+                  li
+                    a(href='tables_pricing.html')  Pricing Tables
+              li
+                a.accordion-toggle(href='#')
+                  span.fa.fa-flask
+                  |  Misc
+                  span.caret
+                ul.nav.sub-nav
+                  li
+                    a(href='misc_tour.html')  Site Tour
+                  li
+                    a(href='misc_timeout.html')  Session Timeout
+                  li
+                    a(href='misc_nprogress.html')  Page Progress Loader
+          li
+            a.accordion-toggle(href='#')
+              span.glyphicon.glyphicon-duplicate
+              span.sidebar-title Pages
+              span.caret
+            ul.nav.sub-nav
+              li
+                a.accordion-toggle(href='#')
+                  span.fa.fa-gears
+                  |  Utility
+                  span.caret
+                ul.nav.sub-nav
+                  li
+                    a(href='landing-page/landing1/index.html', target='_blank')  Landing Page
+                  li
+                    a(href='pages_confirmation.html', target='_blank')
+                      | Confirmation
+                      span.label.label-xs.bg-primary New
+                  li
+                    a(href='pages_login.html', target='_blank')  Login
+                  li
+                    a(href='pages_login(alt).html', target='_blank')
+                      | Login Alt
+                      span.label.label-xs.bg-primary New
+                  li
+                    a(href='pages_register.html', target='_blank')  Register
+                  li
+                    a(href='pages_register(alt).html', target='_blank')
+                      | Register Alt
+                      span.label.label-xs.bg-primary New
+                  li
+                    a(href='pages_screenlock.html', target='_blank')  Screenlock
+                  li
+                    a(href='pages_screenlock(alt).html', target='_blank')
+                      | Screenlock Alt
+                      span.label.label-xs.bg-primary New
+                  li
+                    a(href='pages_forgotpw.html', target='_blank')  Forgot Password
+                  li
+                    a(href='pages_forgotpw(alt).html', target='_blank')
+                      | Forgot Password Alt
+                      span.label.label-xs.bg-primary New
+                  li
+                    a(href='pages_coming-soon.html', target='_blank') Coming Soon
+                  li
+                    a(href='pages_404.html')  404 Error
+                  li
+                    a(href='pages_500.html')  500 Error
+                  li
+                    a(href='pages_404(alt).html')  404 Error Alt
+                  li
+                    a(href='pages_500(alt).html')  500 Error Alt
+              li
+                a.accordion-toggle(href='#')
+                  span.fa.fa-desktop
+                  |  Basic
+                  span.caret
+                ul.nav.sub-nav
+                  li
+                    a(href='pages_search-results.html')
+                      | Search Results
+                      span.label.label-xs.bg-primary New
+                  li
+                    a(href='pages_profile.html')  Profile
+                  li
+                    a(href='pages_timeline.html')  Timeline Split
+                  li
+                    a(href='pages_timeline-single.html')  Timeline Single
+                  li
+                    a(href='pages_faq.html')  FAQ Page
+                  li
+                    a(href='pages_calendar.html')  Calendar
+                  li
+                    a(href='pages_messages.html')  Messages
+                  li
+                    a(href='pages_messages(alt).html')  Messages Alt
+                  li
+                    a(href='pages_gallery.html')  Gallery
+                  li
+                    a(href='pages_invoice.html')  Printable Invoice
+          // sidebar bullets
+          li.sidebar-label.pt20 Projects
+          li.sidebar-proj
+            a(href='#projectOne')
+              span.fa.fa-bookmark.text-primary
+              span.sidebar-title Executive Meeting
+          li.sidebar-proj
+            a(href='#projectTwo')
+              span.fa.fa-bookmark.text-info
+              span.sidebar-title HelpDesk Redesign
+          li.sidebar-proj
+            a(href='#projectTwo')
+              span.fa.fa-bookmark.text-danger
+              span.sidebar-title Sony Board Meeting
+          li.sidebar-proj
+            a(href='#projectThree')
+              span.fa.fa-bookmark.text-warning
+              span.sidebar-title Apple Tech Conference
+          // sidebar progress bars
+    // Start: Content-Wrapper
+    section#content_wrapper
+      // Start: Topbar
+      header#topbar.badges-mod.alt
+        .topbar-left
+          ol.breadcrumb
+            li
+              a(href="dashboard.html") Dashboard
+            li
+              a(href="admin_forms-elements.html") Form Elements
+            li
+              a(href="maps_basic.html") Plugins Pages
+            li
+              a(href="ui_alerts.html") UI Elements
+            li
+              a(href="documentation/") Documentation
+        .topbar-right
+          a.topbar-icon(href='#')
+            span.fa.fa-search
+          a.topbar-icon.topbar-menu-toggle.ml40(href='#', data-toggle='button')
+            span.badge.badge-strikemaster.offset-badge 6
+            span.fa.fa-magic
+          .topbar-icon-wrap.ml40
+            button.topbar-icon.dropdown-toggle(data-toggle='dropdown')
+              span.badge.badge-primary 5
+              span.fa.fa-bell.va-m
+            .dropdown-menu.dropdown-persist.w350.animated.animated-shorter.fadeIn(role='menu')
+              .panel.mbn
+                .panel-menu
+                  span.panel-icon
+                    i.fa.fa-clock-o
+                  span.panel-title.fw600  Recent Activity
+                  button.btn.btn-xs.pull-right(type='button')
+                    i.fa.fa-refresh
+                .panel-body.panel-scroller.scroller-navbar.scroller-overlay.scroller-pn.pn
+                  ol.timeline-list
+                    li.timeline-item
+                      .timeline-icon.bg-alert
+                        span.fa.fa-tags
+                      .timeline-desc
+                        b Michael
+                        |  Added to his store:
+                        a(href='#') Ipod
+                      .timeline-date 1:25am
+                    li.timeline-item
+                      .timeline-icon.bg-alert
+                        span.fa.fa-tags
+                      .timeline-desc
+                        b Sara
+                        |  Added his store:
+                        a(href='#') Notebook
+                      .timeline-date 3:05am
+                    li.timeline-item
+                      .timeline-icon.bg-success
+                        span.fa.fa-usd
+                      .timeline-desc
+                        b Admin
+                        |  created invoice for:
+                        a(href='#') Software
+                      .timeline-date 4:15am
+                    li.timeline-item
+                      .timeline-icon.bg-success
+                        span.fa.fa-usd
+                      .timeline-desc
+                        b Admin
+                        |  created invoice for:
+                        a(href='#') Apple
+                      .timeline-date 7:45am
+                    li.timeline-item
+                      .timeline-icon.bg-success
+                        span.fa.fa-usd
+                      .timeline-desc
+                        b Admin
+                        |  created invoice for:
+                        a(href='#') Software
+                      .timeline-date 4:15am
+                    li.timeline-item
+                      .timeline-icon.bg-success
+                        span.fa.fa-usd
+                      .timeline-desc
+                        b Admin
+                        |  created invoice for:
+                        a(href='#') Apple
+                      .timeline-date 7:45am
+                    li.timeline-item
+                      .timeline-icon.bg-alert
+                        span.fa.fa-tags
+                      .timeline-desc
+                        b Michael
+                        |  Added his store:
+                        a(href='#') Ipod
+                      .timeline-date 8:25am
+                    li.timeline-item
+                      .timeline-icon.bg-system
+                        span.fa.fa-fire
+                      .timeline-desc
+                        b Admin
+                        |  created invoice for:
+                        a(href='#') Software
+                      .timeline-date 4:15am
+                    li.timeline-item
+                      .timeline-icon.bg-alert
+                        span.fa.fa-tags
+                      .timeline-desc
+                        b Sara
+                        |  Added to his store:
+                        a(href='#') Notebook
+                      .timeline-date 3:05am
+                .panel-footer.text-center.p7
+                  a.link-unstyled(href='#')  View All
+          .topbar-icon-wrap.ml35
+            button.topbar-icon.dropdown-toggle(data-toggle='dropdown')
+              span.badge.badge-mandy 5
+              span.fa.fa-comments.va-m
+            .dropdown-menu.dropdown-menu-offset.dropdown-persist.w350.animated.animated-shorter.fadeIn(role='menu')
+              .panel.mbn
+                .panel-menu
+                  span.panel-title.fw600 Messages
+                .panel-body.panel-scroller.scroller-navbar.scroller-overlay.scroller-pn.pn
+                  .br-n.p10
+                    .chat-widget
+                      .media
+                        .media-left
+                          a(href='#')
+                            img.media-object(alt='64x64', src='assets/img/avatars/3.jpg')
+                        .media-body
+                          span.media-status.online
+                          h5.media-heading
+                            | Courtney Faught
+                            small  - 12:30am
+                          |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+                      .media
+                        .media-body
+                          span.media-status.offline
+                          h5.media-heading
+                            | Joe Gibbons
+                            small  - 12:30am
+                          |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque.
+                        .media-right
+                          a(href='#')
+                            img.media-object(alt='64x64', src='assets/img/avatars/1.jpg')
+                      .media
+                        .media-left
+                          a(href='#')
+                            img.media-object(alt='64x64', src='assets/img/avatars/2.jpg')
+                        .media-body
+                          span.media-status.online
+                          h5.media-heading
+                            | Courtney Faught
+                            small  - 12:30am
+                          |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metuscommodo.
+                      .media
+                        .media-body
+                          span.media-status.offline
+                          h5.media-heading
+                            | Joe Gibbons
+                            small  - 12:30am
+                          |  Cras sit amet nibh libero, in Nulla vel metus scelerisque antecommodo.
+                        .media-right
+                          a(href='#')
+                            img.media-object(alt='64x64', src='assets/img/avatars/1.jpg')
+                      .media
+                        .media-left
+                          a(href='#')
+                            img.media-object(alt='64x64', src='assets/img/avatars/2.jpg')
+                        .media-body
+                          span.media-status.online
+                          h5.media-heading
+                            | Courtney Faught
+                            small  - 12:30am
+                          |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque soltudino.
+                      .media
+                        .media-body
+                          span.media-status.offline
+                          h5.media-heading
+                            | Joe Gibbons
+                            small  - 12:30am
+                          |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+                        .media-right
+                          a(href='#')
+                            img.media-object(alt='64x64', src='assets/img/avatars/1.jpg')
+                .panel-footer.text-center.p7
+                  a.link-unstyled(href='#')  View All
+      // Start: Topbar-Dropdown
+      #topbar-dropmenu.alt
+        .topbar-menu.row
+          .col-xs-4.col-sm-2
+            a.metro-tile.bg-primary.light(href='#')
+              span.glyphicon.glyphicon-inbox.text-white
+              span.metro-title Messages
+          .col-xs-4.col-sm-2
+            a.metro-tile.bg-info.light(href='#')
+              span.glyphicon.glyphicon-user.text-white
+              span.metro-title Users
+          .col-xs-4.col-sm-2
+            a.metro-tile.bg-success.light(href='#')
+              span.glyphicon.glyphicon-headphones.text-white
+              span.metro-title Support
+          .col-xs-4.col-sm-2
+            a.metro-tile.bg-system.light(href='#')
+              span.glyphicon.glyphicon-facetime-video.text-white
+              span.metro-title Videos
+          .col-xs-4.col-sm-2
+            a.metro-tile.bg-warning.light(href='#')
+              span.fa.fa-gears.text-white
+              span.metro-title Settings
+          .col-xs-4.col-sm-2
+            a.metro-tile.bg-alert.light(href='#')
+              span.glyphicon.glyphicon-picture.text-white
+              span.metro-title Pictures
+      // Begin: Content
+      section#content.table-layout.animated.fadeIn
+        // begin: .tray-center
+        .tray.tray-center
+          div
+            // Begin: Content Header
+            .content-header
+              h2
+                | Admin Forms includes
+                = ' '
+                b.text-primary Fifteen Predesigned
+                |  forms.
+              p.lead Because sometimes shortcuts can be wonderful. More forms coming in the future!
+            .tab-content.mw900.center-block.center-children
+              // Comment Form 1
+              #comment1.admin-form.theme-primary.tab-pane.mw700(role='tabpanel')
+                .panel.panel-primary.heading-border
+                  .panel-heading
+                    span.panel-title
+                      i.fa.fa-rocket
+                      | Leave a comment
+                  form#form-comment1(method='post', action='/')
+                    .panel-body.p25
+                      .section.row
+                        .col-md-6
+                          label.field.prepend-icon(for='firstname')
+                            input#firstname.gui-input(type='text', name='firstname', placeholder='First name...')
+                            label.field-icon(for='firstname')
+                              i.fa.fa-user
+                        .col-md-6
+                          label.field.prepend-icon(for='lastname')
+                            input#lastname.gui-input(type='text', name='lastname', placeholder='Last name...')
+                            label.field-icon(for='lastname')
+                              i.fa.fa-user
+                      .section.row
+                        .col-md-6
+                          label.field.prepend-icon(for='email')
+                            input#email.gui-input(type='email', name='email', placeholder='Email address')
+                            label.field-icon(for='email')
+                              i.fa.fa-envelope
+                        .col-md-6
+                          label.field.prepend-icon(for='website')
+                            input#lastname.gui-input(type='url', name='website', placeholder='Website url...')
+                            label.field-icon(for='website')
+                              i.fa.fa-globe
+                      .section
+                        label.field.prepend-icon(for='comment')
+                          textarea#comment.gui-textarea(name='comment', placeholder='Your comment')
+                          label.field-icon(for='comment')
+                            i.fa.fa-comments
+                          span.input-footer
+                            strong DO:
+                            | Be awesome.
+                            strong DO NOT:
+                            | Be negative or off topic. We expect a great comment...
+                    .panel-footer
+                      button.button.btn-primary(type='submit') Post Comment
+              // Comment Form 2
+              #comment2.admin-form.theme-primary.tab-pane.mw600(role='tabpanel')
+                .panel.panel-primary.heading-border
+                  .panel-heading
+                    span.panel-title
+                      i.fa.fa-comments
+                      |  Please comment
+                  form#form-comment2(method='post', action='/')
+                    .panel-body.p25
+                      .section
+                        label.field.prepend-icon(for='names')
+                          input#names.gui-input(type='text', name='names', placeholder='Enter name...')
+                          label.field-icon(for='names')
+                            i.fa.fa-user
+                      .section
+                        label.field.prepend-icon(for='email')
+                          input#email.gui-input(type='email', name='email', placeholder='Enter Email...')
+                          label.field-icon(for='email')
+                            i.fa.fa-envelope
+                      .section
+                        label.field.prepend-icon(for='website')
+                          input#website.gui-input(type='url', name='website', placeholder='Website url (optional)...')
+                          label.field-icon(for='website')
+                            i.fa.fa-globe
+                      .section
+                        label.field.prepend-icon(for='comment')
+                          textarea#comment.gui-textarea(name='comment', placeholder='Enter message...')
+                          label.field-icon(for='comment')
+                            i.fa.fa-comments
+                          span.input-footer
+                              strong USE HTML TAGS: #[ &lt;blockquote&gt;, &lt;strong&gt;&lt;a&gt;, &lt;b&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;code&gt;]
+                      .section
+                        label.option
+                          input(type='checkbox', name='check1', checked='')
+                          span.checkbox
+                          | Notify me with comment updates
+                      .section-divider.mv40
+                        span Just a moment
+                      // .section-divider
+                      .section
+                        span.rating.block
+                          span.lbl-text Rate this article
+                          input#five-stars.rating-input(type='radio', name='article-rate')
+                          label.rating-star(for='five-stars')
+                            i.fa.fa-star
+                          input#four-stars.rating-input(type='radio', name='article-rate')
+                          label.rating-star(for='four-stars')
+                            i.fa.fa-star
+                          input#three-stars.rating-input(type='radio', name='article-rate', checked='')
+                          label.rating-star(for='three-stars')
+                            i.fa.fa-star
+                          input#two-stars.rating-input(type='radio', name='article-rate')
+                          label.rating-star(for='two-stars')
+                            i.fa.fa-star
+                          input#one-star.rating-input(type='radio', name='article-rate')
+                          label.rating-star(for='one-star')
+                            i.fa.fa-star
+                    .panel-footer
+                      button.button.btn-primary(type='submit') Post Comment
+              // Contact Form 1
+              #contact1.admin-form.theme-info.tab-pane.mw600(role='tabpanel')
+                .panel.panel-info.heading-border
+                  .panel-heading
+                    span.panel-title
+                      i.fa.fa-comments
+                      | Contact us
+                  form#form-contact1(method='post', action='/')
+                    .panel-body.p25
+                      .section
+                        label.field.prepend-icon(for='names')
+                          input#names.gui-input(type='text', name='names', placeholder='Enter name...')
+                          label.field-icon(for='names')
+                            i.fa.fa-user
+                      .section
+                        label.field.prepend-icon(for='email')
+                          input#email.gui-input(type='email', name='email', placeholder='Enter Email...')
+                          label.field-icon(for='email')
+                            i.fa.fa-envelope
+                      .section
+                        label.field.prepend-icon(for='subject')
+                          input#subject.gui-input(type='text', name='subject', placeholder='Enter subject...')
+                          label.field-icon(for='subject')
+                            i.fa.fa-lightbulb-o
+                      .section
+                        label.field.prepend-icon(for='comment')
+                          textarea#comment.gui-textarea(name='comment', placeholder='Enter message...')
+                          label.field-icon(for='comment')
+                            i.fa.fa-comments
+                          span.input-footer
+                            strong Hint:
+                            | Please enter between 80 - 300 characters.
+                      .section
+                        .smart-widget.sm-left.sml-80
+                          label.field.prepend-icon(for='verify')
+                            input#verify.gui-input(type='text', name='verify', placeholder='Solve captcha')
+                            label.field-icon(for='verify')
+                              i.fa.fa-shield
+                          label.button(for='verify') 4 + 12
+                      .section
+                        label.option.option-info
+                          input(type='checkbox', name='check1', checked='')
+                          span.checkbox
+                          | Sign me up to the newsletter
+                    .panel-footer
+                      button.button.btn-info(type='submit') Submit
+              // Contact Form 2
+              #contact2.admin-form.theme-info.tab-pane.mw500(role='tabpanel')
+                .panel.panel-info.heading-border
+                  .panel-heading
+                    span.panel-title
+                      i.fa.fa-comments
+                      | Get in touch
+                  form#form-contact2(method='post', action='/')
+                    .panel-body.p25
+                      .section.row
+                        label.field-label.col-md-5(for='names') Your personal names
+                        .col-md-7
+                          label.field.prepend-icon(for='names')
+                            input#names.gui-input(type='text', name='names', placeholder='Enter name...')
+                            label.field-icon(for='names')
+                              i.fa.fa-user
+                      .section.row
+                        label.field-label.col-md-5(for='email') Your email address
+                        .col-md-7
+                          label.field.prepend-icon(for='email')
+                            input#email.gui-input(type='email', name='email', placeholder='example@domain.com...')
+                            label.field-icon(for='email')
+                              i.fa.fa-envelope
+                      .section.row
+                        label.field-label.col-md-5(for='telephone') Telephone / mobile
+                        .col-md-7
+                          label.field.prepend-icon(for='telephone')
+                            input#telephone.gui-input(type='tel', name='telephone', placeholder='Enter telephone or mobile...')
+                            label.field-icon(for='telephone')
+                              i.fa.fa-phone-square
+                      .section
+                        label.field-label(for='comment') Message / Comment
+                        label.field.prepend-icon(for='comment')
+                          textarea#comment.gui-textarea(name='comment')
+                          label.field-icon(for='comment')
+                            i.fa.fa-comments
+                          span.input-footer
+                            strong Hint:
+                            | Please enter between 80 - 300 characters.
+                      .section
+                        label.switch.switch-round
+                          input#newsletter(type='checkbox', name='newsletter', checked='')
+                          label(for='newsletter', data-on='YES', data-off='NO')
+                          span Subscribe to our newsletter?
+                    .panel-footer
+                      button.button.btn-info(type='submit') Submit
+              // Contact Form 3 (Gmap)
+              #contact3.admin-form.theme-info.tab-pane(role='tabpanel')
+                .panel.panel-info.heading-border
+                  .panel-heading
+                    span.panel-title
+                      i.fa.fa-comments
+                      | Get in touch
+                  form#form-contact3(method='post', action='/')
+                    .panel-body.p25
+                      .row
+                        .col-md-6
+                          .section
+                            label.field.prepend-icon(for='names')
+                              input#names.gui-input(type='text', name='names', placeholder='Enter name...')
+                              label.field-icon(for='names')
+                                i.fa.fa-user
+                          .section
+                            label.field.prepend-icon(for='email')
+                              input#email.gui-input(type='email', name='email', placeholder='example@domain.com...')
+                              label.field-icon(for='email')
+                                i.fa.fa-envelope
+                          .section
+                            label.field.prepend-icon(for='telephone')
+                              input#telephone.gui-input(type='tel', name='telephone', placeholder='Enter telephone or mobile...')
+                              label.field-icon(for='telephone')
+                                i.fa.fa-phone-square
+                          .section
+                            label.field.prepend-icon(for='comment')
+                              textarea#comment.gui-textarea(name='comment')
+                              label.field-icon(for='comment')
+                                i.fa.fa-comments
+                              span.input-footer
+                                strong Hint:
+                                | Please enter between 80 - 300 characters.
+                        .col-md-6
+                          .map-container
+                            // <div id="map_canvas"></div>
+                            iframe(width='100%', height='307', frameborder='0', style='border:0', src='https://www.google.com/maps/embed/v1/place?q=Disneyland%20Park%2C%20Disneyland%20Drive%2C%20Anaheim%2C%20CA%2C%20United%20States&key=AIzaSyBqf9cjsPAh3rGJPKLCsYL2IeAveGhGJTw&zoom=14')
+                    .panel-footer
+                      button.button.btn-info(type='submit') Submit
+              // Feedback Form
+              #feedback1.admin-form.theme-info.tab-pane.mw600(role='tabpanel')
+                .panel.panel-info.heading-border
+                  .panel-heading
+                    span.panel-title
+                      i.fa.fa-rocket
+                      | Your feedback
+                  form#form-feedback(method='post', action='/')
+                    .panel-body.p25
+                      .section.row
+                        .col-md-6
+                          label.field.prepend-icon(for='firstname')
+                            input#firstname.gui-input(type='text', name='firstname', placeholder='First name...')
+                            label.field-icon(for='firstname')
+                              i.fa.fa-user
+                        .col-md-6
+                          label.field.prepend-icon(for='lastname')
+                            input#lastname.gui-input(type='text', name='lastname', placeholder='Last name...')
+                            label.field-icon(for='lastname')
+                              i.fa.fa-user
+                      .section
+                        label.field.prepend-icon(for='company')
+                          input#company.gui-input(type='text', name='company', placeholder='Company')
+                          label.field-icon(for='company')
+                            i.fa.fa-building-o
+                      .section
+                        label.field.prepend-icon(for='email')
+                          input#email.gui-input(type='email', name='email', placeholder='Email address')
+                          label.field-icon(for='email')
+                            i.fa.fa-envelope
+                      .section
+                        label.field.prepend-icon(for='mobile')
+                          input#mobile.gui-input(type='tel', name='mobile', placeholder='Moble contact')
+                          label.field-icon(for='mobile')
+                            i.fa.fa-phone-square
+                      .section
+                        label.field.select
+                          select#gender(name='gender')
+                            option(value='') Select department...
+                            option(value='admin') Administration
+                            option(value='sales') Marketing & Sales
+                            option(value='tech') Technical
+                            option(value='other') Other
+                          i.arrow.double
+                      .section
+                        label.field.prepend-icon(for='comment')
+                          textarea#comment.gui-textarea(name='comment', placeholder='Feedback message')
+                          label.field-icon(for='comment')
+                            i.fa.fa-comments
+                          span.input-footer
+                            strong Hint:
+                            | Please enter between 80 - 300 characters.
+                      .spacer.mb20
+                      .section
+                        span.rating.block
+                          span.lbl-text Rate our products
+                          input#five-stars.rating-input(type='radio', name='product-rate')
+                          label.rating-star(for='five-stars')
+                            i.fa.fa-star
+                          input#four-stars.rating-input(type='radio', name='product-rate')
+                          label.rating-star(for='four-stars')
+                            i.fa.fa-star
+                          input#three-stars.rating-input(type='radio', name='product-rate', checked='')
+                          label.rating-star(for='three-stars')
+                            i.fa.fa-star
+                          input#two-stars.rating-input(type='radio', name='product-rate')
+                          label.rating-star(for='two-stars')
+                            i.fa.fa-star
+                          input#one-star.rating-input(type='radio', name='product-rate')
+                          label.rating-star(for='one-star')
+                            i.fa.fa-star
+                        span.rating.block
+                          span.lbl-text Rate support team
+                          input#5stars.rating-input(type='radio', name='support-rate')
+                          label.rating-star(for='5stars')
+                            i.fa.fa-star
+                          input#4stars.rating-input(type='radio', name='support-rate')
+                          label.rating-star(for='4stars')
+                            i.fa.fa-star
+                          input#3stars.rating-input(type='radio', name='support-rate')
+                          label.rating-star(for='3stars')
+                            i.fa.fa-star
+                          input#2stars.rating-input(type='radio', name='support-rate', checked='')
+                          label.rating-star(for='2stars')
+                            i.fa.fa-star
+                          input#1star.rating-input(type='radio', name='support-rate')
+                          label.rating-star(for='1star')
+                            i.fa.fa-star
+                        span.rating.block
+                          span.lbl-text Rate our response
+                          input#5s.rating-input(type='radio', name='response-rate')
+                          label.rating-star(for='5s')
+                            i.fa.fa-star
+                          input#4s.rating-input(type='radio', name='response-rate')
+                          label.rating-star(for='4s')
+                            i.fa.fa-star
+                          input#3s.rating-input(type='radio', name='response-rate')
+                          label.rating-star(for='3s')
+                            i.fa.fa-star
+                          input#2s.rating-input(type='radio', name='response-rate')
+                          label.rating-star(for='2s')
+                            i.fa.fa-star
+                          input#1s.rating-input(type='radio', name='response-rate', checked='')
+                          label.rating-star(for='1s')
+                            i.fa.fa-star
+                      .spacer.mb25
+                      .mb20
+                        label.field-label Which areas require further improvement?
+                      .section.row
+                        .col-md-6
+                          label.option.block.mb10
+                            input(type='checkbox', name='response')
+                            span.checkbox
+                            | Response time
+                          label.option.block.mb10
+                            input(type='checkbox', name='support')
+                            span.checkbox
+                            | Customer support
+                          label.option.block
+                            input(type='checkbox', name='updates')
+                            span.checkbox
+                            | Product updates
+                        .col-md-6
+                          label.option.block.mb10
+                            input(type='checkbox', name='invoicing')
+                            span.checkbox
+                            | Timely invoicing
+                          label.option.block.mb10
+                            input(type='checkbox', name='social')
+                            span.checkbox
+                            | Social features
+                          label.option.block
+                            input(type='checkbox', name='reports')
+                            span.checkbox
+                            | Reports & analytics
+                    .panel-footer
+                      button.button.btn-info(type='submit') Submit Feedback
+              // Login 1
+              #login1.admin-form.theme-primary.tab-pane.mw800(role='tabpanel')
+                .panel.panel-primary.heading-border
+                  .panel-heading
+                    span.panel-title
+                      i.fa.fa-sign-in
+                      | Login
+                  form#form-login1(method='post', action='/')
+                    .panel-body.p25.pt10
+                      .section-divider.mt30.mb40
+                        span Sign in With
+                      // .section-divider
+                      .section.row
+                        .col-md-4
+                          a.button.btn-social.facebook.span-left.mr5.btn-block(href='#')
+                            span
+                              i.fa.fa-facebook
+                            | Facebook
+                        .col-md-4
+                          a.button.btn-social.twitter.span-left.mr5.btn-block(href='#')
+                            span
+                              i.fa.fa-twitter
+                            | Twitter
+                        .col-md-4
+                          a.button.btn-social.googleplus.span-left.btn-block(href='#')
+                            span
+                              i.fa.fa-google-plus
+                            | Google+
+                      .section-divider.mv40
+                        span OR Login
+                      // .section-divider
+                      .section
+                        label.field.prepend-icon(for='username')
+                          input#username.gui-input(type='text', name='username', placeholder='Enter username')
+                          label.field-icon(for='username')
+                            i.fa.fa-user
+                      .section
+                        label.field.prepend-icon(for='password')
+                          input#password.gui-input(type='text', name='password', placeholder='Enter password')
+                          label.field-icon(for='password')
+                            i.fa.fa-lock
+                      .section
+                        label.switch.block
+                          input#remember(type='checkbox', name='remember', checked='')
+                          label(for='remember', data-on='YES', data-off='NO')
+                          span Keep me logged in ?
+                    .panel-footer
+                      button.button.btn-primary(type='submit') Sign in
+              // Login 2
+              #login2.admin-form.theme-primary.tab-pane.active(role='tabpanel')
+                .panel.panel-primary.heading-border
+                  .panel-heading
+                    span.panel-title
+                      i.fa.fa-sign-in
+                      | Login
+                  form#form-login2(method='post', action='/')
+                    .panel-body.p25.pt10
+                      .section.row
+                        .col-md-6
+                          .section-divider.mv40
+                            span Sign in With
+                          // .tagline
+                          .section
+                            a.button.btn-social.facebook.span-left.btn-block(href='#')
+                              span
+                                i.fa.fa-facebook
+                              | Facebook
+                            a.button.btn-social.twitter.span-left.btn-block(href='#')
+                              span
+                                i.fa.fa-twitter
+                              | Twitter
+                            a.button.btn-social.googleplus.span-left.btn-block(href='#')
+                              span
+                                i.fa.fa-google-plus
+                              | Google+
+                        .col-md-6
+                          .section-divider.mv40
+                            span OR Login
+                          // .tagline
+                          .section
+                            label.field.prepend-icon(for='username')
+                              input#username.gui-input(type='text', name='username', placeholder='Enter username')
+                              label.field-icon(for='username')
+                                i.fa.fa-user
+                          .section
+                            label.field.prepend-icon(for='password')
+                              input#password.gui-input(type='text', name='password', placeholder='Enter password')
+                              label.field-icon(for='password')
+                                i.fa.fa-lock
+                          .section
+                            label.switch.block
+                              input#remember2(type='checkbox', name='remember2', checked='')
+                              label(for='remember2', data-on='YES', data-off='NO')
+                              span Remember me
+                    .panel-footer
+                      button.button.btn-primary(type='submit') Sign in
+              // Order Form 1
+              #order1.admin-form.theme-success.tab-pane.mw700(role='tabpanel')
+                .panel.panel-success.heading-border
+                  .panel-heading
+                    span.panel-title
+                      i.fa.fa-truck
+                      | Confirm order
+                  form#form-order1(method='post', action='/')
+                    .panel-body.p25
+                      .section-divider.mt20.mb40
+                        span You are ordering for
+                      // .section-divider
+                      .section.row.hidden
+                        .col-md-6
+                          .section
+                            .price-box
+                              h4
+                                sup $
+                                | 29
+                                span.per-month /month
+                              h5 Starter
+                              .spacer.mt20.mb20
+                              p For those looking for something simple to get started.
+                              .spacer.mt20.mb20
+                              a.button.block.pushed.expand(href='#')  Learn more
+                          .section.align-center
+                            label.switch
+                              input#order1(type='radio', name='order')
+                              label(for='order1', data-on='YES', data-off='NO')
+                              span Select
+                        .col-md-6
+                          .section
+                            .price-box.selected-box
+                              .ribbon-large
+                                .ribbon-inner POPULAR
+                              h4
+                                sup $
+                                | 179
+                                span.per-month /month
+                              h5 Professional
+                              .spacer.mt20.mb20
+                              p For large enterprises selling over one million plus a year.
+                              .spacer.mt20.mb20
+                              a.button.btn-primary.block.pushed.expand(href='#')  Learn more
+                          .section.align-center
+                            label.switch
+                              input#orderid2(type='radio', name='order2', checked='')
+                              label(for='orderid2', data-on='YES', data-off='NO')
+                              span Select
+                      .section.row
+                        .col-md-6
+                          label.field.prepend-icon(for='pname')
+                            input#pname.gui-input(type='text', name='pname', placeholder='Your names...')
+                            label.field-icon(for='pname')
+                              i.fa.fa-user
+                        .col-md-6
+                          label.field.prepend-icon(for='email')
+                            input#email.gui-input(type='email', name='email', placeholder='Email address')
+                            label.field-icon(for='email')
+                              i.fa.fa-envelope
+                      .section.row
+                        .col-md-6
+                          label.field.prepend-icon(for='mobile')
+                            input#mobile.gui-input(type='tel', name='mobile', placeholder='Tel / moble')
+                            label.field-icon(for='mobile')
+                              i.fa.fa-phone-square
+                        .col-md-6
+                          label.field.prepend-icon(for='firstaddr')
+                            input#firstaddr.gui-input(type='text', name='firstaddr', placeholder='Street address')
+                            label.field-icon(for='firstaddr')
+                              i.fa.fa-map-marker
+                      .section.row
+                        .col-md-6
+                          label.field.prepend-icon(for='zip')
+                            input#zip.gui-input(type='text', name='zip', placeholder='Zip')
+                            label.field-icon(for='zip')
+                              i.fa.fa-certificate
+                        .col-md-6
+                          label.field.prepend-icon(for='city')
+                            input#city.gui-input(type='text', name='city', placeholder='City')
+                            label.field-icon(for='city')
+                              i.fa.fa-building-o
+                      .section.row
+                        .col-md-6
+                          label.field.select
+                            select#location(name='location')
+                              option(value='') Select country...
+                              option(value='AL') Albania
+                              option(value='DZ') Algeria
+                              option(value='AD') Andorra
+                              option(value='AO') Angola
+                              option(value='AI') Anguilla
+                              option(value='AG') Antigua and Barbuda
+                              option(value='AR') Argentina
+                              option(value='AM') Armenia
+                              option(value='AW') Aruba
+                              option(value='AU') Australia
+                              option(value='AT') Austria
+                              option(value='AZ') Azerbaijan Republic
+                              option(value='BS') Bahamas
+                              option(value='BH') Bahrain
+                              option(value='BB') Barbados
+                              option(value='BE') Belgium
+                              option(value='BZ') Belize
+                              option(value='BJ') Benin
+                              option(value='BM') Bermuda
+                              option(value='BT') Bhutan
+                              option(value='BO') Bolivia
+                              option(value='BA') Bosnia and Herzegovina
+                              option(value='BW') Botswana
+                              option(value='BR') Brazil
+                              option(value='BN') Brunei
+                              option(value='BG') Bulgaria
+                              option(value='BF') Burkina Faso
+                              option(value='BI') Burundi
+                              option(value='KH') Cambodia
+                              option(value='CA') Canada
+                              option(value='CV') Cape Verde
+                              option(value='KY') Cayman Islands
+                              option(value='TD') Chad
+                              option(value='CL') Chile
+                              option(value='C2') China Worldwide
+                              option(value='CO') Colombia
+                              option(value='KM') Comoros
+                              option(value='CK') Cook Islands
+                              option(value='CR') Costa Rica
+                              option(value='HR') Croatia
+                              option(value='CY') Cyprus
+                              option(value='CZ') Czech Republic
+                              option(value='CD') Democratic Republic of the Congo
+                              option(value='DK') Denmark
+                              option(value='DJ') Djibouti
+                              option(value='DM') Dominica
+                              option(value='DO') Dominican Republic
+                              option(value='EC') Ecuador
+                              option(value='EG') Egypt
+                              option(value='SV') El Salvador
+                              option(value='ER') Eritrea
+                              option(value='EE') Estonia
+                              option(value='ET') Ethiopia
+                              option(value='FK') Falkland Islands
+                              option(value='FO') Faroe Islands
+                              option(value='FJ') Fiji
+                              option(value='FI') Finland
+                              option(value='FR') France
+                              option(value='GF') French Guiana
+                              option(value='PF') French Polynesia
+                              option(value='GA') Gabon Republic
+                              option(value='GM') Gambia
+                              option(value='GE') Georgia
+                              option(value='DE') Germany
+                              option(value='GI') Gibraltar
+                              option(value='GR') Greece
+                              option(value='GL') Greenland
+                              option(value='GD') Grenada
+                              option(value='GP') Guadeloupe
+                              option(value='GT') Guatemala
+                              option(value='GN') Guinea
+                              option(value='GW') Guinea Bissau
+                              option(value='GY') Guyana
+                              option(value='HN') Honduras
+                              option(value='HK') Hong Kong
+                              option(value='HU') Hungary
+                              option(value='IS') Iceland
+                              option(value='IN') India
+                              option(value='ID') Indonesia
+                              option(value='IE') Ireland
+                              option(value='IL') Israel
+                              option(value='IT') Italy
+                              option(value='JM') Jamaica
+                              option(value='JP') Japan
+                              option(value='JO') Jordan
+                              option(value='KZ') Kazakhstan
+                              option(value='KE') Kenya
+                              option(value='KI') Kiribati
+                              option(value='KW') Kuwait
+                              option(value='KG') Kyrgyzstan
+                              option(value='LA') Laos
+                              option(value='LV') Latvia
+                              option(value='LS') Lesotho
+                              option(value='LI') Liechtenstein
+                              option(value='LT') Lithuania
+                              option(value='LU') Luxembourg
+                              option(value='MG') Madagascar
+                              option(value='MW') Malawi
+                              option(value='MY') Malaysia
+                              option(value='MV') Maldives
+                              option(value='ML') Mali
+                              option(value='MT') Malta
+                              option(value='MH') Marshall Islands
+                              option(value='MQ') Martinique
+                              option(value='MR') Mauritania
+                              option(value='MU') Mauritius
+                              option(value='YT') Mayotte
+                              option(value='MX') Mexico
+                              option(value='FM') Micronesia
+                              option(value='MN') Mongolia
+                              option(value='MS') Montserrat
+                              option(value='MA') Morocco
+                              option(value='MZ') Mozambique
+                              option(value='NA') Namibia
+                              option(value='NR') Nauru
+                              option(value='NP') Nepal
+                              option(value='NL') Netherlands
+                              option(value='AN') Netherlands Antilles
+                              option(value='NC') New Caledonia
+                              option(value='NZ') New Zealand
+                              option(value='NI') Nicaragua
+                              option(value='NE') Niger
+                              option(value='NU') Niue
+                              option(value='NF') Norfolk Island
+                              option(value='NO') Norway
+                              option(value='OM') Oman
+                              option(value='PW') Palau
+                              option(value='PA') Panama
+                              option(value='PG') Papua New Guinea
+                              option(value='PE') Peru
+                              option(value='PH') Philippines
+                              option(value='PN') Pitcairn Islands
+                              option(value='PL') Poland
+                              option(value='PT') Portugal
+                              option(value='QA') Qatar
+                              option(value='CG') Republic of the Congo
+                              option(value='RE') Reunion
+                              option(value='RO') Romania
+                              option(value='RU') Russia
+                              option(value='RW') Rwanda
+                              option(value='KN') Saint Kitts and Nevis Anguilla
+                              option(value='PM') Saint Pierre and Miquelon
+                              option(value='VC') Saint Vincent and Grenadines
+                              option(value='WS') Samoa
+                              option(value='SM') San Marino
+                              option(value='ST') São Tomé and Príncipe
+                              option(value='SA') Saudi Arabia
+                              option(value='SN') Senegal
+                              option(value='RS') Serbia
+                              option(value='SC') Seychelles
+                              option(value='SL') Sierra Leone
+                              option(value='SG') Singapore
+                              option(value='SK') Slovakia
+                              option(value='SI') Slovenia
+                              option(value='SB') Solomon Islands
+                              option(value='SO') Somalia
+                              option(value='ZA') South Africa
+                              option(value='KR') South Korea
+                              option(value='ES') Spain
+                              option(value='LK') Sri Lanka
+                              option(value='SH') St. Helena
+                              option(value='LC') St. Lucia
+                              option(value='SR') Suriname
+                              option(value='SJ') Svalbard and Jan Mayen Islands
+                              option(value='SZ') Swaziland
+                              option(value='SE') Sweden
+                              option(value='CH') Switzerland
+                              option(value='TW') Taiwan
+                              option(value='TJ') Tajikistan
+                              option(value='TZ') Tanzania
+                              option(value='TH') Thailand
+                              option(value='TG') Togo
+                              option(value='TO') Tonga
+                              option(value='TT') Trinidad and Tobago
+                              option(value='TN') Tunisia
+                              option(value='TR') Turkey
+                              option(value='TM') Turkmenistan
+                              option(value='TC') Turks and Caicos Islands
+                              option(value='TV') Tuvalu
+                              option(value='UG') Uganda
+                              option(value='UA') Ukraine
+                              option(value='AE') United Arab Emirates
+                              option(value='GB') United Kingdom
+                              option(value='US') United States
+                              option(value='UY') Uruguay
+                              option(value='VU') Vanuatu
+                              option(value='VA') Vatican City State
+                              option(value='VE') Venezuela
+                              option(value='VN') Vietnam
+                              option(value='VG') Virgin Islands (British)
+                              option(value='WF') Wallis and Futuna Islands
+                              option(value='YE') Yemen
+                              option(value='ZM') Zambia
+                            i.arrow.double
+                        .col-md-6
+                          label.field.select(for='states')
+                            select#states(name='states')
+                              option(value='') Choose state
+                              option(value='AL') Alabama
+                              option(value='AK') Alaska
+                              option(value='AZ') Arizona
+                              option(value='AR') Arkansas
+                              option(value='CA') California
+                              option(value='CO') Colorado
+                              option(value='CT') Connecticut
+                              option(value='DE') Delaware
+                              option(value='DC') District Of Columbia
+                              option(value='FL') Florida
+                              option(value='GA') Georgia
+                              option(value='HI') Hawaii
+                              option(value='ID') Idaho
+                              option(value='IL') Illinois
+                              option(value='IN') Indiana
+                              option(value='IA') Iowa
+                              option(value='KS') Kansas
+                              option(value='KY') Kentucky
+                              option(value='LA') Louisiana
+                              option(value='ME') Maine
+                              option(value='MD') Maryland
+                              option(value='MA') Massachusetts
+                              option(value='MI') Michigan
+                              option(value='MN') Minnesota
+                              option(value='MS') Mississippi
+                              option(value='MO') Missouri
+                              option(value='MT') Montana
+                              option(value='NE') Nebraska
+                              option(value='NV') Nevada
+                              option(value='NH') New Hampshire
+                              option(value='NJ') New Jersey
+                              option(value='NM') New Mexico
+                              option(value='NY') New York
+                              option(value='NC') North Carolina
+                              option(value='ND') North Dakota
+                              option(value='OH') Ohio
+                              option(value='OK') Oklahoma
+                              option(value='OR') Oregon
+                              option(value='PA') Pennsylvania
+                              option(value='RI') Rhode Island
+                              option(value='SC') South Carolina
+                              option(value='SD') South Dakota
+                              option(value='TN') Tennessee
+                              option(value='TX') Texas
+                              option(value='UT') Utah
+                              option(value='VT') Vermont
+                              option(value='VA') Virginia
+                              option(value='WA') Washington
+                              option(value='WV') West Virginia
+                              option(value='WI') Wisconsin
+                              option(value='WY') Wyoming
+                            i.arrow.double
+                      .section-divider.mt50.mb40
+                        span Payment Details
+                      // .section-divider
+                      .section.mb10
+                        p.small-text.text-muted Please choose a preferred method of payment below
+                      .section.mb25
+                        label.option.option-success
+                          input(type='radio', name='payment', checked='')
+                          span.radio
+                          | Credit Card
+                        label.option.option-success
+                          input(type='radio', name='payment')
+                          span.radio
+                          | Paypal
+                        label.option.option-success
+                          input(type='radio', name='payment')
+                          span.radio
+                          | Check
+                      .section.row
+                        .col-md-6
+                          label.field.prepend-icon(for='cardname')
+                            input#cardname.gui-input(type='text', name='cardname', placeholder='Name on card...')
+                            label.field-icon(for='cardname')
+                              i.fa.fa-user
+                        .col-md-6
+                          label.field.prepend-icon(for='cardno')
+                            input#lastname.gui-input(type='text', name='cardno', placeholder='Card number...')
+                            label.field-icon(for='cardno')
+                              i.fa.fa-credit-card
+                      .section.row
+                        .col-md-6
+                          label.field.select(for='cardmonth')
+                            select#cardmonth(name='cardmonth')
+                              option(value='') Expiry month...
+                              option(value='01') 01 - Jan
+                              option(value='02') 02 - Feb
+                              option(value='03') 03 - Mar
+                              option(value='04') 04 - Apr
+                              option(value='05') 05 - May
+                              option(value='06') 06 - Jun
+                              option(value='07') 07 - Jul
+                              option(value='08') 08 - Aug
+                              option(value='09') 09 - Sep
+                              option(value='10') 10 - Oct
+                              option(value='11') 11 - Nov
+                              option(value='12') 12 - Dec
+                            i.arrow.double
+                        .col-md-6
+                          label.field.select
+                            select#cardyear(name='cardyear')
+                              option(value='') Expiry year...
+                              option(value='2014') 2014
+                              option(value='2015') 2015
+                              option(value='2016') 2016
+                              option(value='2017') 2017
+                              option(value='2018') 2018
+                              option(value='2019') 2019
+                              option(value='2020') 2020
+                              option(value='2021') 2021
+                              option(value='2022') 2022
+                              option(value='2023') 2023
+                              option(value='2024') 2024
+                              option(value='2025') 2025
+                              option(value='2026') 2026
+                            i.arrow.double
+                      .section.row
+                        .col-md-6
+                          label.field.prepend-icon(for='secno')
+                            input#secno.gui-input(type='text', name='secno', placeholder='Security number...')
+                            b.tooltip.tip-left-top
+                              em  This is a four diigit number at the back of your card
+                            label.field-icon(for='secno')
+                              i.fa.fa-barcode
+                        .col-md-6
+                          p
+                            a.theme-link.field-align(href='#')  What is this?
+                      .section
+                        label.option.option-success
+                          input(type='checkbox', name='info', checked='')
+                          span.checkbox
+                          | Save my information
+                          em.small-text.text-muted (Its safe & secure)
+                    .panel-footer.align-right
+                      button.button.btn-success(type='submit') Place Order
+                      button.button(type='reset') Cancel Order
+              // Order Form 2
+              #order2.admin-form.theme-success.tab-pane.mw700(role='tabpanel')
+                .panel.panel-success.heading-border
+                  .panel-heading
+                    span.panel-title
+                      i.fa.fa-comments
+                      | Make your order
+                  form#form-order2(method='post', action='/')
+                    .panel-body.p25
+                      .section.row
+                        .col-md-6
+                          .section
+                            label.field-label(for='names')
+                              | Your names
+                              em *
+                            label.field.prepend-icon(for='names')
+                              input#names.gui-input(type='text', name='names', placeholder='Enter first name...')
+                              label.field-icon(for='names')
+                                i.fa.fa-user
+                          .section
+                            label.field-label(for='othernames')
+                              | Other names
+                              em *
+                            label.field.prepend-icon(for='othernames')
+                              input#othernames.gui-input(type='text', name='othernames', placeholder='Enter other name...')
+                              label.field-icon(for='othernames')
+                                i.fa.fa-user
+                          .section
+                            label.field-label(for='email')
+                              | Your email address
+                              em *
+                            label.field.prepend-icon(for='email')
+                              input#email.gui-input(type='email', name='email', placeholder='Enter Email...')
+                              label.field-icon(for='email')
+                                i.fa.fa-envelope
+                        .col-md-6
+                          .section
+                            label.field-label(for='mobile')
+                              | Telephone / mobile
+                              em *
+                            label.field.prepend-icon(for='mobile')
+                              input#mobile.gui-input(type='tel', name='mobile', placeholder='Enter mobile')
+                              label.field-icon(for='mobile')
+                                i.fa.fa-phone-square
+                          .section
+                            label.field-label(for='services')
+                              | Services required
+                              em *
+                            label.field.select
+                              select#services(name='services')
+                                option(value='') Choose a service...
+                                option(value='webdesign') Web design
+                                option(value='wordpress') Wordpress
+                                option(value='identity') Corporate identity
+                                option(value='cms') Custom CMS
+                              i.arrow.double
+                          .section
+                            label.field-label(for='budget')
+                              | Project budget
+                              em *
+                            label.field.select
+                              select#budget(name='budget')
+                                option(value='') Select budget...
+                                option(value='500-1000') $500 - $1000
+                                option(value='1000-2000') $1000 - $2000
+                                option(value='2000-4000') $2000 - $4000
+                                option(value='5000+') $5000+
+                              i.arrow.double
+                      .section
+                        label.field-label(for='file1')
+                          | Upload project samples -
+                          span.small-text.text-muted (ONLY JPG : PNG : PDF)
+                        label.field.prepend-icon.file(for='file1')
+                          span.button.btn-success Choose File
+                          input#file1.gui-file(type='file', name='upload1', onchange="document.getElementById('uploader1').value = this.value;")
+                          input#uploader1.gui-input(type='text', placeholder='no file selected', readonly='')
+                          label.field-icon(for='comment')
+                            i.fa.fa-upload
+                      .section
+                        label.field-label(for='description')
+                          | Project description
+                          em *
+                        label.field.prepend-icon(for='description')
+                          textarea#description.gui-textarea(name='description', placeholder='Write your project description...')
+                          label.field-icon(for='description')
+                            i.fa.fa-file-text
+                          span.input-footer
+                            strong Hint:
+                            | Please be as detailed as possible.
+                    .panel-footer
+                      button.button.btn-success(type='submit') Submit
+              // Order Form 3
+              #order3.admin-form.theme-success.tab-pane.mw700(role='tabpanel')
+                .panel.panel-success.heading-border
+                  .panel-heading
+                    span.panel-title
+                      i.fa.fa-shopping-cart
+                      |  Checkout
+                  form#form-order3(method='post', action='/')
+                    .panel-body.p25
+                      .section-divider
+                        span Personal Information
+                      // .section-divider
+                      .section
+                        label.field.prepend-icon(for='firstname')
+                          input#firstname.gui-input(type='text', name='firstname', placeholder='First name...')
+                          label.field-icon(for='firstname')
+                            i.fa.fa-user
+                      .section
+                        label.field.prepend-icon(for='lastname')
+                          input#lastname.gui-input(type='text', name='lastname', placeholder='Last name...')
+                          label.field-icon(for='lastname')
+                            i.fa.fa-user
+                      .section
+                        label.field.prepend-icon(for='email')
+                          input#email.gui-input(type='email', name='email', placeholder='Email address')
+                          label.field-icon(for='email')
+                            i.fa.fa-envelope
+                      .section
+                        label.field.prepend-icon(for='mobile')
+                          input#mobile.gui-input(type='tel', name='mobile', placeholder='Telephone / moble number')
+                          label.field-icon(for='mobile')
+                            i.fa.fa-phone-square
+                      .section-divider.mv40
+                        span Payment Details
+                      // .section-divider
+                      p.small-text.text-muted.mb20 Please choose a preferred method of payment below
+                      .section
+                        label.field.option.option-success
+                          input(type='radio', name='payment', checked='')
+                          span.radio
+                          | Credit Card
+                        label.field.option.option-success
+                          input(type='radio', name='payment')
+                          span.radio
+                          | Paypal
+                        label.field.option.option-success
+                          input(type='radio', name='payment')
+                          span.radio
+                          | Check
+                      .section
+                        label.field.prepend-icon(for='cardname')
+                          input#cardname.gui-input(type='text', name='cardname', placeholder='Name on card...')
+                          label.field-icon(for='cardname')
+                            i.fa.fa-user
+                      .section.row
+                        .col-md-6
+                          label.field.select(for='cardmonth')
+                            select#cardmonth(name='cardmonth')
+                              option(value='') Expiryss month...
+                              option(value='01') 01 - Jan
+                              option(value='02') 02 - Feb
+                              option(value='03') 03 - Mar
+                              option(value='04') 04 - Apr
+                              option(value='05') 05 - May
+                              option(value='06') 06 - Jun
+                              option(value='07') 07 - Jul
+                              option(value='08') 08 - Aug
+                              option(value='09') 09 - Sep
+                              option(value='10') 10 - Oct
+                              option(value='11') 11 - Nov
+                              option(value='12') 12 - Dec
+                            i.arrow.double
+                        .col-md-6
+                          label.field.select
+                            select#cardyear(name='cardyear')
+                              option(value='') Expiry year...
+                              option(value='2014') 2014
+                              option(value='2015') 2015
+                              option(value='2016') 2016
+                              option(value='2017') 2017
+                              option(value='2018') 2018
+                              option(value='2019') 2019
+                              option(value='2020') 2020
+                              option(value='2021') 2021
+                              option(value='2022') 2022
+                              option(value='2023') 2023
+                              option(value='2024') 2024
+                              option(value='2025') 2025
+                              option(value='2026') 2026
+                            i.arrow.double
+                      .section
+                        label.field.prepend-icon(for='cardno')
+                          input#lastname.gui-input(type='text', name='cardno', placeholder='Card number...')
+                          label.field-icon(for='cardno')
+                            i.fa.fa-credit-card
+                      .section.row
+                        .col-md-6
+                          label.field.select(for='cardmonth')
+                            select#cardmonth(name='cardmonth')
+                              option(value='') Expiry month...
+                              option(value='01') 01 - Jan
+                              option(value='02') 02 - Feb
+                              option(value='03') 03 - Mar
+                              option(value='04') 04 - Apr
+                              option(value='05') 05 - May
+                              option(value='06') 06 - Jun
+                              option(value='07') 07 - Jul
+                              option(value='08') 08 - Aug
+                              option(value='09') 09 - Sep
+                              option(value='10') 10 - Oct
+                              option(value='11') 11 - Nov
+                              option(value='12') 12 - Dec
+                            i.arrow.double
+                        .col-md-6
+                          label.field.select
+                            select#cardyear(name='cardyear')
+                              option(value='') Expiry year...
+                              option(value='2014') 2014
+                              option(value='2015') 2015
+                              option(value='2016') 2016
+                              option(value='2017') 2017
+                              option(value='2018') 2018
+                              option(value='2019') 2019
+                              option(value='2020') 2020
+                              option(value='2021') 2021
+                              option(value='2022') 2022
+                              option(value='2023') 2023
+                              option(value='2024') 2024
+                              option(value='2025') 2025
+                              option(value='2026') 2026
+                            i.arrow.double
+                      .section.row
+                        .col-md-6
+                          label.field.prepend-icon(for='secno')
+                            input#secno.gui-input(type='text', name='secno', placeholder='Security number...')
+                            b.tooltip.tip-left-top
+                              em  This is a four diigit number at the back of your card
+                            label.field-icon(for='secno')
+                              i.fa.fa-barcode
+                        .col-md-6
+                          p.field-align
+                            a.theme-link(href='#')  What is this?
+                      .section-divider.mv40
+                        span Shipping Address
+                      // .tagline
+                      .section
+                        label.field.prepend-icon(for='firstaddr')
+                          input#firstaddr.gui-input(type='text', name='firstaddr', placeholder='Street address')
+                          label.field-icon(for='firstaddr')
+                            i.fa.fa-building-o
+                      .section
+                        label.field.prepend-icon(for='lastaddr')
+                          input#lastaddr.gui-input(type='text', name='lastaddr', placeholder='Street address 2')
+                          label.field-icon(for='lastaddr')
+                            i.fa.fa-map-marker
+                      .section
+                        label.field.select
+                          select#location(name='location')
+                            option(value='') Select country...
+                            option(value='AL') Albania
+                            option(value='DZ') Algeria
+                            option(value='AD') Andorra
+                            option(value='AO') Angola
+                            option(value='AI') Anguilla
+                            option(value='AG') Antigua and Barbuda
+                            option(value='AR') Argentina
+                            option(value='AM') Armenia
+                            option(value='AW') Aruba
+                            option(value='AU') Australia
+                            option(value='AT') Austria
+                            option(value='AZ') Azerbaijan Republic
+                            option(value='BS') Bahamas
+                            option(value='BH') Bahrain
+                            option(value='BB') Barbados
+                            option(value='BE') Belgium
+                            option(value='BZ') Belize
+                            option(value='BJ') Benin
+                            option(value='BM') Bermuda
+                            option(value='BT') Bhutan
+                            option(value='BO') Bolivia
+                            option(value='BA') Bosnia and Herzegovina
+                            option(value='BW') Botswana
+                            option(value='BR') Brazil
+                            option(value='BN') Brunei
+                            option(value='BG') Bulgaria
+                            option(value='BF') Burkina Faso
+                            option(value='BI') Burundi
+                            option(value='KH') Cambodia
+                            option(value='CA') Canada
+                            option(value='CV') Cape Verde
+                            option(value='KY') Cayman Islands
+                            option(value='TD') Chad
+                            option(value='CL') Chile
+                            option(value='C2') China Worldwide
+                            option(value='CO') Colombia
+                            option(value='KM') Comoros
+                            option(value='CK') Cook Islands
+                            option(value='CR') Costa Rica
+                            option(value='HR') Croatia
+                            option(value='CY') Cyprus
+                            option(value='CZ') Czech Republic
+                            option(value='CD') Democratic Republic of the Congo
+                            option(value='DK') Denmark
+                            option(value='DJ') Djibouti
+                            option(value='DM') Dominica
+                            option(value='DO') Dominican Republic
+                            option(value='EC') Ecuador
+                            option(value='EG') Egypt
+                            option(value='SV') El Salvador
+                            option(value='ER') Eritrea
+                            option(value='EE') Estonia
+                            option(value='ET') Ethiopia
+                            option(value='FK') Falkland Islands
+                            option(value='FO') Faroe Islands
+                            option(value='FJ') Fiji
+                            option(value='FI') Finland
+                            option(value='FR') France
+                            option(value='GF') French Guiana
+                            option(value='PF') French Polynesia
+                            option(value='GA') Gabon Republic
+                            option(value='GM') Gambia
+                            option(value='GE') Georgia
+                            option(value='DE') Germany
+                            option(value='GI') Gibraltar
+                            option(value='GR') Greece
+                            option(value='GL') Greenland
+                            option(value='GD') Grenada
+                            option(value='GP') Guadeloupe
+                            option(value='GT') Guatemala
+                            option(value='GN') Guinea
+                            option(value='GW') Guinea Bissau
+                            option(value='GY') Guyana
+                            option(value='HN') Honduras
+                            option(value='HK') Hong Kong
+                            option(value='HU') Hungary
+                            option(value='IS') Iceland
+                            option(value='IN') India
+                            option(value='ID') Indonesia
+                            option(value='IE') Ireland
+                            option(value='IL') Israel
+                            option(value='IT') Italy
+                            option(value='JM') Jamaica
+                            option(value='JP') Japan
+                            option(value='JO') Jordan
+                            option(value='KZ') Kazakhstan
+                            option(value='KE') Kenya
+                            option(value='KI') Kiribati
+                            option(value='KW') Kuwait
+                            option(value='KG') Kyrgyzstan
+                            option(value='LA') Laos
+                            option(value='LV') Latvia
+                            option(value='LS') Lesotho
+                            option(value='LI') Liechtenstein
+                            option(value='LT') Lithuania
+                            option(value='LU') Luxembourg
+                            option(value='MG') Madagascar
+                            option(value='MW') Malawi
+                            option(value='MY') Malaysia
+                            option(value='MV') Maldives
+                            option(value='ML') Mali
+                            option(value='MT') Malta
+                            option(value='MH') Marshall Islands
+                            option(value='MQ') Martinique
+                            option(value='MR') Mauritania
+                            option(value='MU') Mauritius
+                            option(value='YT') Mayotte
+                            option(value='MX') Mexico
+                            option(value='FM') Micronesia
+                            option(value='MN') Mongolia
+                            option(value='MS') Montserrat
+                            option(value='MA') Morocco
+                            option(value='MZ') Mozambique
+                            option(value='NA') Namibia
+                            option(value='NR') Nauru
+                            option(value='NP') Nepal
+                            option(value='NL') Netherlands
+                            option(value='AN') Netherlands Antilles
+                            option(value='NC') New Caledonia
+                            option(value='NZ') New Zealand
+                            option(value='NI') Nicaragua
+                            option(value='NE') Niger
+                            option(value='NU') Niue
+                            option(value='NF') Norfolk Island
+                            option(value='NO') Norway
+                            option(value='OM') Oman
+                            option(value='PW') Palau
+                            option(value='PA') Panama
+                            option(value='PG') Papua New Guinea
+                            option(value='PE') Peru
+                            option(value='PH') Philippines
+                            option(value='PN') Pitcairn Islands
+                            option(value='PL') Poland
+                            option(value='PT') Portugal
+                            option(value='QA') Qatar
+                            option(value='CG') Republic of the Congo
+                            option(value='RE') Reunion
+                            option(value='RO') Romania
+                            option(value='RU') Russia
+                            option(value='RW') Rwanda
+                            option(value='KN') Saint Kitts and Nevis Anguilla
+                            option(value='PM') Saint Pierre and Miquelon
+                            option(value='VC') Saint Vincent and Grenadines
+                            option(value='WS') Samoa
+                            option(value='SM') San Marino
+                            option(value='ST') São Tomé and Príncipe
+                            option(value='SA') Saudi Arabia
+                            option(value='SN') Senegal
+                            option(value='RS') Serbia
+                            option(value='SC') Seychelles
+                            option(value='SL') Sierra Leone
+                            option(value='SG') Singapore
+                            option(value='SK') Slovakia
+                            option(value='SI') Slovenia
+                            option(value='SB') Solomon Islands
+                            option(value='SO') Somalia
+                            option(value='ZA') South Africa
+                            option(value='KR') South Korea
+                            option(value='ES') Spain
+                            option(value='LK') Sri Lanka
+                            option(value='SH') St. Helena
+                            option(value='LC') St. Lucia
+                            option(value='SR') Suriname
+                            option(value='SJ') Svalbard and Jan Mayen Islands
+                            option(value='SZ') Swaziland
+                            option(value='SE') Sweden
+                            option(value='CH') Switzerland
+                            option(value='TW') Taiwan
+                            option(value='TJ') Tajikistan
+                            option(value='TZ') Tanzania
+                            option(value='TH') Thailand
+                            option(value='TG') Togo
+                            option(value='TO') Tonga
+                            option(value='TT') Trinidad and Tobago
+                            option(value='TN') Tunisia
+                            option(value='TR') Turkey
+                            option(value='TM') Turkmenistan
+                            option(value='TC') Turks and Caicos Islands
+                            option(value='TV') Tuvalu
+                            option(value='UG') Uganda
+                            option(value='UA') Ukraine
+                            option(value='AE') United Arab Emirates
+                            option(value='GB') United Kingdom
+                            option(value='US') United States
+                            option(value='UY') Uruguay
+                            option(value='VU') Vanuatu
+                            option(value='VA') Vatican City State
+                            option(value='VE') Venezuela
+                            option(value='VN') Vietnam
+                            option(value='VG') Virgin Islands (British)
+                            option(value='WF') Wallis and Futuna Islands
+                            option(value='YE') Yemen
+                            option(value='ZM') Zambia
+                          i.arrow.double
+                      .section.row
+                        .col-md-3
+                          label.field.prepend-icon(for='zip')
+                            input#zip.gui-input(type='text', name='zip', placeholder='Zip')
+                            label.field-icon(for='zip')
+                              i.fa.fa-certificate
+                        .col-md-4
+                          label.field.prepend-icon(for='city')
+                            input#city.gui-input(type='text', name='city', placeholder='City')
+                            label.field-icon(for='city')
+                              i.fa.fa-building-o
+                        .col-md-5
+                          label.field.select(for='states')
+                            select#states(name='states')
+                              option(value='') Choose state
+                              option(value='AL') Alabama
+                              option(value='AK') Alaska
+                              option(value='AZ') Arizona
+                              option(value='AR') Arkansas
+                              option(value='CA') California
+                              option(value='CO') Colorado
+                              option(value='CT') Connecticut
+                              option(value='DE') Delaware
+                              option(value='DC') District Of Columbia
+                              option(value='FL') Florida
+                              option(value='GA') Georgia
+                              option(value='HI') Hawaii
+                              option(value='ID') Idaho
+                              option(value='IL') Illinois
+                              option(value='IN') Indiana
+                              option(value='IA') Iowa
+                              option(value='KS') Kansas
+                              option(value='KY') Kentucky
+                              option(value='LA') Louisiana
+                              option(value='ME') Maine
+                              option(value='MD') Maryland
+                              option(value='MA') Massachusetts
+                              option(value='MI') Michigan
+                              option(value='MN') Minnesota
+                              option(value='MS') Mississippi
+                              option(value='MO') Missouri
+                              option(value='MT') Montana
+                              option(value='NE') Nebraska
+                              option(value='NV') Nevada
+                              option(value='NH') New Hampshire
+                              option(value='NJ') New Jersey
+                              option(value='NM') New Mexico
+                              option(value='NY') New York
+                              option(value='NC') North Carolina
+                              option(value='ND') North Dakota
+                              option(value='OH') Ohio
+                              option(value='OK') Oklahoma
+                              option(value='OR') Oregon
+                              option(value='PA') Pennsylvania
+                              option(value='RI') Rhode Island
+                              option(value='SC') South Carolina
+                              option(value='SD') South Dakota
+                              option(value='TN') Tennessee
+                              option(value='TX') Texas
+                              option(value='UT') Utah
+                              option(value='VT') Vermont
+                              option(value='VA') Virginia
+                              option(value='WA') Washington
+                              option(value='WV') West Virginia
+                              option(value='WI') Wisconsin
+                              option(value='WY') Wyoming
+                            i.arrow.double
+                      .section
+                        label.field.option.option-success
+                          input(type='checkbox', name='info', checked='')
+                          span.checkbox
+                          | Save my information
+                          em.small-text.text-muted (No worries, its secure)
+                    .panel-footer
+                      button.button.btn-success(type='submit') Proceed to confirm
+              // Registration 1
+              #register1.admin-form.theme-danger.tab-pane.mw700(role='tabpanel')
+                .panel.panel-danger.heading-border
+                  .panel-heading
+                    span.panel-title
+                      i.fa.fa-pencil-square
+                      | Create Account
+                  form#form-register1(method='post', action='/')
+                    .panel-body.p25
+                      label.field-label(for='names') Your names
+                      .section.row
+                        .col-md-6
+                          label.field.prepend-icon(for='firstname')
+                            input#firstname.gui-input(type='text', name='firstname', placeholder='First name...')
+                            label.field-icon(for='firstname')
+                              i.fa.fa-user
+                        .col-md-6
+                          label.field.prepend-icon(for='lastname')
+                            input#lastname.gui-input(type='text', name='lastname', placeholder='Last name...')
+                            label.field-icon(for='lastname')
+                              i.fa.fa-user
+                      .section
+                        label.field-label(for='username') Choose your username
+                        .smart-widget.sm-right.smr-120
+                          label.field.prepend-icon(for='username')
+                            input#username.gui-input(type='text', name='username', placeholder='john-doe')
+                            label.field-icon(for='username')
+                              i.fa.fa-user
+                          label.button(for='username') .envato.com
+                      .section
+                        label.field-label(for='password') Create a password
+                        label.field.prepend-icon(for='password')
+                          input#password.gui-input(type='password', name='password')
+                          label.field-icon(for='password')
+                            i.fa.fa-lock
+                      .section
+                        label.field-label(for='confirmPassword') Confirm your password
+                        label.field.prepend-icon(for='confirmPassword')
+                          input#confirmPassword.gui-input(type='password', name='confirmPassword')
+                          label.field-icon(for='confirmPassword')
+                            i.fa.fa-unlock-alt
+                      label.field-label(for='birthday') Your birthday
+                      .section.row
+                        .col-md-4
+                          label.field.select(for='month')
+                            select#month(name='month')
+                              option(value='01') 01 - Jan
+                              option(value='02') 02 - Feb
+                              option(value='03') 03 - Mar
+                              option(value='04') 04 - Apr
+                              option(value='05') 05 - May
+                              option(value='06') 06 - Jun
+                              option(value='07') 07 - Jul
+                              option(value='08') 08 - Aug
+                              option(value='09') 09 - Sep
+                              option(value='10') 10 - Oct
+                              option(value='11') 11 - Nov
+                              option(value='12') 12 - Dec
+                            i.arrow.double
+                        .col-md-4
+                          label.field(for='day')
+                            input#day.gui-input(type='text', name='day', placeholder='Day...')
+                        .col-md-4
+                          label.field(for='year')
+                            input#year.gui-input(type='text', name='year', placeholder='Year...')
+                      .section
+                        label.field-label(for='location') Location
+                        label.field.select
+                          select#location(name='location')
+                            option(value='') Select country...
+                            option(value='AL') Albania
+                            option(value='DZ') Algeria
+                            option(value='AD') Andorra
+                            option(value='AO') Angola
+                            option(value='AI') Anguilla
+                            option(value='AG') Antigua and Barbuda
+                            option(value='AR') Argentina
+                            option(value='AM') Armenia
+                            option(value='AW') Aruba
+                            option(value='AU') Australia
+                            option(value='AT') Austria
+                            option(value='AZ') Azerbaijan Republic
+                            option(value='BS') Bahamas
+                            option(value='BH') Bahrain
+                            option(value='BB') Barbados
+                            option(value='BE') Belgium
+                            option(value='BZ') Belize
+                            option(value='BJ') Benin
+                            option(value='BM') Bermuda
+                            option(value='BT') Bhutan
+                            option(value='BO') Bolivia
+                            option(value='BA') Bosnia and Herzegovina
+                            option(value='BW') Botswana
+                            option(value='BR') Brazil
+                            option(value='BN') Brunei
+                            option(value='BG') Bulgaria
+                            option(value='BF') Burkina Faso
+                            option(value='BI') Burundi
+                            option(value='KH') Cambodia
+                            option(value='CA') Canada
+                            option(value='CV') Cape Verde
+                            option(value='KY') Cayman Islands
+                            option(value='TD') Chad
+                            option(value='CL') Chile
+                            option(value='C2') China Worldwide
+                            option(value='CO') Colombia
+                            option(value='KM') Comoros
+                            option(value='CK') Cook Islands
+                            option(value='CR') Costa Rica
+                            option(value='HR') Croatia
+                            option(value='CY') Cyprus
+                            option(value='CZ') Czech Republic
+                            option(value='CD') Democratic Republic of the Congo
+                            option(value='DK') Denmark
+                            option(value='DJ') Djibouti
+                            option(value='DM') Dominica
+                            option(value='DO') Dominican Republic
+                            option(value='EC') Ecuador
+                            option(value='EG') Egypt
+                            option(value='SV') El Salvador
+                            option(value='ER') Eritrea
+                            option(value='EE') Estonia
+                            option(value='ET') Ethiopia
+                            option(value='FK') Falkland Islands
+                            option(value='FO') Faroe Islands
+                            option(value='FJ') Fiji
+                            option(value='FI') Finland
+                            option(value='FR') France
+                            option(value='GF') French Guiana
+                            option(value='PF') French Polynesia
+                            option(value='GA') Gabon Republic
+                            option(value='GM') Gambia
+                            option(value='GE') Georgia
+                            option(value='DE') Germany
+                            option(value='GI') Gibraltar
+                            option(value='GR') Greece
+                            option(value='GL') Greenland
+                            option(value='GD') Grenada
+                            option(value='GP') Guadeloupe
+                            option(value='GT') Guatemala
+                            option(value='GN') Guinea
+                            option(value='GW') Guinea Bissau
+                            option(value='GY') Guyana
+                            option(value='HN') Honduras
+                            option(value='HK') Hong Kong
+                            option(value='HU') Hungary
+                            option(value='IS') Iceland
+                            option(value='IN') India
+                            option(value='ID') Indonesia
+                            option(value='IE') Ireland
+                            option(value='IL') Israel
+                            option(value='IT') Italy
+                            option(value='JM') Jamaica
+                            option(value='JP') Japan
+                            option(value='JO') Jordan
+                            option(value='KZ') Kazakhstan
+                            option(value='KE') Kenya
+                            option(value='KI') Kiribati
+                            option(value='KW') Kuwait
+                            option(value='KG') Kyrgyzstan
+                            option(value='LA') Laos
+                            option(value='LV') Latvia
+                            option(value='LS') Lesotho
+                            option(value='LI') Liechtenstein
+                            option(value='LT') Lithuania
+                            option(value='LU') Luxembourg
+                            option(value='MG') Madagascar
+                            option(value='MW') Malawi
+                            option(value='MY') Malaysia
+                            option(value='MV') Maldives
+                            option(value='ML') Mali
+                            option(value='MT') Malta
+                            option(value='MH') Marshall Islands
+                            option(value='MQ') Martinique
+                            option(value='MR') Mauritania
+                            option(value='MU') Mauritius
+                            option(value='YT') Mayotte
+                            option(value='MX') Mexico
+                            option(value='FM') Micronesia
+                            option(value='MN') Mongolia
+                            option(value='MS') Montserrat
+                            option(value='MA') Morocco
+                            option(value='MZ') Mozambique
+                            option(value='NA') Namibia
+                            option(value='NR') Nauru
+                            option(value='NP') Nepal
+                            option(value='NL') Netherlands
+                            option(value='AN') Netherlands Antilles
+                            option(value='NC') New Caledonia
+                            option(value='NZ') New Zealand
+                            option(value='NI') Nicaragua
+                            option(value='NE') Niger
+                            option(value='NU') Niue
+                            option(value='NF') Norfolk Island
+                            option(value='NO') Norway
+                            option(value='OM') Oman
+                            option(value='PW') Palau
+                            option(value='PA') Panama
+                            option(value='PG') Papua New Guinea
+                            option(value='PE') Peru
+                            option(value='PH') Philippines
+                            option(value='PN') Pitcairn Islands
+                            option(value='PL') Poland
+                            option(value='PT') Portugal
+                            option(value='QA') Qatar
+                            option(value='CG') Republic of the Congo
+                            option(value='RE') Reunion
+                            option(value='RO') Romania
+                            option(value='RU') Russia
+                            option(value='RW') Rwanda
+                            option(value='KN') Saint Kitts and Nevis Anguilla
+                            option(value='PM') Saint Pierre and Miquelon
+                            option(value='VC') Saint Vincent and Grenadines
+                            option(value='WS') Samoa
+                            option(value='SM') San Marino
+                            option(value='ST') São Tomé and Príncipe
+                            option(value='SA') Saudi Arabia
+                            option(value='SN') Senegal
+                            option(value='RS') Serbia
+                            option(value='SC') Seychelles
+                            option(value='SL') Sierra Leone
+                            option(value='SG') Singapore
+                            option(value='SK') Slovakia
+                            option(value='SI') Slovenia
+                            option(value='SB') Solomon Islands
+                            option(value='SO') Somalia
+                            option(value='ZA') South Africa
+                            option(value='KR') South Korea
+                            option(value='ES') Spain
+                            option(value='LK') Sri Lanka
+                            option(value='SH') St. Helena
+                            option(value='LC') St. Lucia
+                            option(value='SR') Suriname
+                            option(value='SJ') Svalbard and Jan Mayen Islands
+                            option(value='SZ') Swaziland
+                            option(value='SE') Sweden
+                            option(value='CH') Switzerland
+                            option(value='TW') Taiwan
+                            option(value='TJ') Tajikistan
+                            option(value='TZ') Tanzania
+                            option(value='TH') Thailand
+                            option(value='TG') Togo
+                            option(value='TO') Tonga
+                            option(value='TT') Trinidad and Tobago
+                            option(value='TN') Tunisia
+                            option(value='TR') Turkey
+                            option(value='TM') Turkmenistan
+                            option(value='TC') Turks and Caicos Islands
+                            option(value='TV') Tuvalu
+                            option(value='UG') Uganda
+                            option(value='UA') Ukraine
+                            option(value='AE') United Arab Emirates
+                            option(value='GB') United Kingdom
+                            option(value='US') United States
+                            option(value='UY') Uruguay
+                            option(value='VU') Vanuatu
+                            option(value='VA') Vatican City State
+                            option(value='VE') Venezuela
+                            option(value='VN') Vietnam
+                            option(value='VG') Virgin Islands (British)
+                            option(value='WF') Wallis and Futuna Islands
+                            option(value='YE') Yemen
+                            option(value='ZM') Zambia
+                          i.arrow.double
+                      .section
+                        label.field-label(for='gender') Gender
+                        label.field.select
+                          select#gender(name='gender')
+                            option(value='') I am...
+                            option(value='male') Male
+                            option(value='female') Female
+                            option(value='other') Other
+                          i.arrow.double
+                      .section
+                        label.field-label(for='email') Your email address
+                        label.field.prepend-icon(for='email')
+                          input#email.gui-input(type='email', name='email', placeholder='example@domain.com...')
+                          label.field-icon(for='email')
+                            i.fa.fa-envelope
+                      .section
+                        label.field-label(for='mobile') Mobile phone
+                        label.field.prepend-icon(for='mobile')
+                          input#mobile.gui-input(type='tel', name='mobile', placeholder='+256')
+                          label.field-icon(for='mobile')
+                            i.fa.fa-phone-square
+                      .section
+                        label.field-label(for='verify') Prove you're not a robot
+                        .smart-widget.sm-left.sml-80
+                          label.field.prepend-icon(for='verify')
+                            input#verify.gui-input(type='text', name='verify', placeholder='Enter captcha')
+                            label.field-icon(for='verify')
+                              i.fa.fa-shield
+                          label.button(for='verify') 4 + 12
+                      .section
+                        label.option
+                          input(type='checkbox', name='check1')
+                          span.checkbox.mr10
+                          | Agree to our
+                          a.theme-link(href='#')  terms of service
+                    .panel-footer
+                      button.button.btn-danger(type='submit') Create Account
+              // Registration 2
+              #register2.admin-form.theme-danger.tab-pane.mw800(role='tabpanel')
+                .panel.panel-danger.heading-border
+                  .panel-heading
+                    span.panel-title
+                      i.fa.fa-pencil-square
+                      | Registration form
+                  form#form-register2(method='post', action='/')
+                    .panel-body.p25
+                      .section-divider.mt10.mb40
+                        span Set up your account
+                      // .section-divider
+                      .section.row
+                        .col-md-6
+                          label.field.prepend-icon(for='firstname')
+                            input#firstname.gui-input(type='text', name='firstname', placeholder='First name...')
+                            label.field-icon(for='firstname')
+                              i.fa.fa-user
+                        .col-md-6
+                          label.field.prepend-icon(for='lastname')
+                            input#lastname.gui-input(type='text', name='lastname', placeholder='Last name...')
+                            label.field-icon(for='lastname')
+                              i.fa.fa-user
+                      .section
+                        label.field.prepend-icon(for='email')
+                          input#email.gui-input(type='email', name='email', placeholder='Email address')
+                          label.field-icon(for='email')
+                            i.fa.fa-envelope
+                      .section
+                        .smart-widget.sm-right.smr-120
+                          label.field.prepend-icon(for='username')
+                            input#username.gui-input(type='text', name='username', placeholder='Choose your username')
+                            label.field-icon(for='username')
+                              i.fa.fa-user
+                          label.button(for='username') .envato.com
+                      .section
+                        label.field.prepend-icon(for='password')
+                          input#password.gui-input(type='text', name='password', placeholder='Create a password')
+                          label.field-icon(for='password')
+                            i.fa.fa-lock
+                      .section
+                        label.field.prepend-icon(for='confirmPassword')
+                          input#confirmPassword.gui-input(type='text', name='confirmPassword', placeholder='Retype your password')
+                          label.field-icon(for='confirmPassword')
+                            i.fa.fa-unlock-alt
+                      .section-divider.mv40
+                        span 7 days free trial
+                      // .section-divider
+                      .section
+                        label.option.block
+                          input(type='checkbox', name='trial')
+                          span.checkbox.mr10
+                          | Sign me up for a
+                          a.theme-link(href='#')  7-day free PRO trial.
+                        label.option.block.mt10
+                          input(type='checkbox', name='terms')
+                          span.checkbox.mr10
+                          | I agree to the
+                          a.theme-link(href='#')  terms of use.
+                    .panel-footer
+                      button.button.btn-danger(type='submit') I Accept - Create Account
+              // Small Survey
+              #survey1.admin-form.theme-alert.tab-pane.mw800(role='tabpanel')
+                .panel.panel-alert.heading-border
+                  .panel-heading
+                    span.panel-title
+                      i.fa.fa-comments
+                      |  Simple survey
+                  form#form-survey1(method='post', action='/')
+                    .panel-body.p25
+                      .section-divider.mt10.mb40
+                        span Personal Details
+                      // .section-divider
+                      .section.row
+                        .col-md-6
+                          .section
+                            label.field-label(for='names') Your names
+                            label.field.prepend-icon(for='names')
+                              input#names.gui-input(type='text', name='names', placeholder='Enter first name...')
+                              label.field-icon(for='names')
+                                i.fa.fa-user
+                          .section
+                            label.field-label(for='othernames') Other names
+                            label.field.prepend-icon(for='othernames')
+                              input#othernames.gui-input(type='text', name='othernames', placeholder='Enter other name...')
+                              label.field-icon(for='othernames')
+                                i.fa.fa-user
+                          .section
+                            label.field-label(for='email') Your email address
+                            label.field.prepend-icon(for='email')
+                              input#email.gui-input(type='email', name='email', placeholder='Enter Email...')
+                              label.field-icon(for='email')
+                                i.fa.fa-envelope
+                        .col-md-6
+                          .section
+                            label.field-label(for='mobile') Telephone / mobile
+                            label.field.prepend-icon(for='mobile')
+                              input#mobile.gui-input(type='tel', name='mobile', placeholder='Enter mobile')
+                              label.field-icon(for='mobile')
+                                i.fa.fa-phone-square
+                          .section
+                            label.field-label(for='firstaddr') Street address
+                            label.field.prepend-icon(for='firstaddr')
+                              input#firstaddr.gui-input(type='text', name='firstaddr', placeholder='Street address')
+                              label.field-icon(for='firstaddr')
+                                i.fa.fa-map-marker
+                          .section
+                            label.field-label(for='city') Home city
+                            label.field.prepend-icon(for='city')
+                              input#city.gui-input(type='text', name='city', placeholder='City')
+                              label.field-icon(for='city')
+                                i.fa.fa-building-o
+                      .section-divider.mv40
+                        span Our services
+                      // .section-divider
+                      .section.row
+                        .col-md-4
+                          label.option.option-alert.block
+                            input(type='checkbox', name='service', value='marketing')
+                            span.checkbox
+                            | Marketing
+                          label.option.option-alert.block.mt10
+                            input(type='checkbox', name='service', value='motion')
+                            span.checkbox
+                            | Motion graphics
+                          label.option.option-alert.block.mt10
+                            input(type='checkbox', name='service', value='videos')
+                            span.checkbox
+                            | Videography
+                        .col-md-4
+                          label.option.option-alert.block
+                            input(type='checkbox', name='service', value='webdesign')
+                            span.checkbox
+                            | Webdesign
+                          label.option.option-alert.block.mt10
+                            input(type='checkbox', name='service', value='webhosting')
+                            span.checkbox
+                            | Web hosting
+                          label.option.option-alert.block.mt10
+                            input(type='checkbox', name='service', value='wordpress')
+                            span.checkbox
+                            | Wordpress CMS
+                        .col-md-4
+                          label.option.option-alert.block
+                            input(type='checkbox', name='service', value='apps')
+                            span.checkbox
+                            | Mobile apps
+                          label.option.option-alert.block.mt10
+                            input(type='checkbox', name='service', value='info')
+                            span.checkbox
+                            | Infographics
+                          label.option.option-alert.block.mt10
+                            input(type='checkbox', name='service', value='icons')
+                            span.checkbox
+                            | Icon design
+                      .section-divider.mv40
+                        span How can we reach you
+                      // .section-divider
+                      .section
+                        .option-group.field
+                          label.option(for='tv')
+                            input#tv(type='radio', name='reach', value='tv')
+                            span.radio
+                            | Television
+                          label.option(for='int')
+                            input#int(type='radio', name='reach', value='int')
+                            span.radio
+                            | Internet
+                          label.option(for='paper')
+                            input#paper(type='radio', name='reach', value='paper')
+                            span.radio
+                            | Newspaper
+                          label.option(for='radios')
+                            input#radios(type='radio', name='reach', value='radios')
+                            span.radio
+                            | Radio
+                          label.option(for='othermedia')
+                            input#othermedia(type='radio', name='reach', value='othermedia')
+                            span.radio
+                            | Other media
+                    .panel-footer
+                      button.button.btn-alert(type='submit') Submit
+              // Project Quote
+              #quote1.admin-form.theme-warning.tab-pane(role='tabpanel')
+                .panel.panel-warning.heading-border
+                  .panel-heading
+                    span.panel-title
+                      i.fa.fa-tachometer
+                      | Project quote
+                  form#form-quote1(method='post', action='/')
+                    .panel-body.p25
+                      .section.row
+                        .col-md-4
+                          .section
+                            label.field-label(for='fullname') Full name
+                            label.field(for='fullname')
+                              input#fullname.gui-input(type='text', name='fullname')
+                          .section
+                            label.field-label(for='company') Company name
+                            label.field(for='company')
+                              input#company.gui-input(type='text', name='company')
+                          .section
+                            label.field-label(for='email') Email address
+                            label.field(for='email')
+                              input#email.gui-input(type='email', name='email')
+                        .col-md-4
+                          .section
+                            label.field-label(for='projectname') Project name
+                            label.field(for='projectname')
+                              input#projectname.gui-input(type='text', name='projectname')
+                          .section
+                            label.field-label(for='website') Current website url
+                            label.field(for='website')
+                              input#website.gui-input(type='url', name='website')
+                          .section
+                            label.field-label(for='likewebsite') Websites you like
+                            label.field(for='likewebsite')
+                              input#likewebsite.gui-input(type='text', name='likewebsite', placeholder='Seperate with comas')
+                        .col-md-4
+                          .section
+                            label.field-label(for='budget') Project budget
+                            label.field.select
+                              select#budget(name='budget')
+                                option(value='') Select budget...
+                                option(value='500-1000') $500 - $1000
+                                option(value='1000-2000') $1000 - $2000
+                                option(value='2000-4000') $2000 - $4000
+                                option(value='5000+') $5000+
+                              i.arrow.double
+                          .section
+                            label.field-label(for='timeframe') Project time frame
+                            label.field.select
+                              select#timeframe(name='timeframe')
+                                option(value='') Select time frame...
+                                option(value='1week') 1 Week
+                                option(value='2week') 2 Weeks
+                                option(value='3week') 3 Weeks
+                                option(value='4week') 4 Weeks
+                              i.arrow.double
+                          .section
+                            label.field-label(for='services') Services required
+                            label.field.select
+                              select#services(name='services')
+                                option(value='') Choose a service...
+                                option(value='webdesign') Web design
+                                option(value='wordpress') Wordpress
+                                option(value='identity') Corporate identity
+                                option(value='cms') Custom CMS
+                              i.arrow.double
+                      .section.row
+                        .col-md-8
+                          .section
+                            label.field-label(for='details') Project details
+                            label.field(for='details')
+                              textarea#details.gui-textarea(name='details')
+                              span.input-footer
+                                strong Hint:
+                                | A maxmum of 3000 words.
+                        .col-md-4
+                          .mb10
+                            label.field-label Services required
+                          .section
+                            label.option.block.mb10
+                              input(type='checkbox', name='webdesign')
+                              span.checkbox
+                              | Webdesign & Info
+                            label.option.block.mb10
+                              input(type='checkbox', name='wordpress')
+                              span.checkbox
+                              | Wordpress Setup
+                            label.option.block.mb10
+                              input(type='checkbox', name='identity')
+                              span.checkbox
+                              | Corporate Branding
+                            label.option.block
+                              input(type='checkbox', name='html')
+                              span.checkbox
+                              | HTML5 & CSS3
+                    .panel-footer
+                      button.button.btn-warning(type='submit') Receive Quote
+        // begin: .tray-right
+        aside.tray.tray-right.tray320(data-tray-height='match')
+          .row
+            .col-xs-4.pr5
+              a.btn.tabs-size.btn-primary.btn-block.ph5.br0.animation-nav(href='#form-tab3', data-toggle='tab') Account
+            .col-xs-4.ph5
+              a.btn.tabs-size.btn-default.btn-block.ph5.br0.animation-nav(href='#form-tab1', data-toggle='tab') Ecommerce
+            .col-xs-4.pl5
+              a.btn.tabs-size.btn-default.btn-block.ph5.br0.animation-nav(href='#form-tab2', data-toggle='tab') Contact
+          .tray-bin.stretch.btn-dimmer.mt20
+            .tab-content.pn.br-n.bg-none.admin-form-list
+              #form-tab1.tab-pane
+                ul#form-list1.nav.list-unstyled(role='tablist')
+                  li.nav-label.mtn Ecommerce Forms
+                  li
+                    a.btn.btn-warning.btn-gradient.btn-alt.btn-block(href='#quote1', role='tab', data-toggle='tab')  Product Quote
+                  li
+                    a.btn.btn-info.btn-gradient.btn-alt.btn-block(href='#feedback1', role='tab', data-toggle='tab')  Feedback
+                  li
+                    a.btn.btn-alert.btn-gradient.btn-alt.btn-block(href='#survey1', role='tab', data-toggle='tab')  Small Survey
+                  li.nav-label Order Forms
+                  li
+                    a.btn.btn-success.btn-gradient.btn-alt.btn-block(href='#order1', role='tab', data-toggle='tab')  Order 1
+                  li
+                    a.btn.btn-success.btn-gradient.btn-alt.btn-block(href='#order2', role='tab', data-toggle='tab')  Order 2
+                  li
+                    a.btn.btn-success.btn-gradient.btn-alt.btn-block(href='#order3', role='tab', data-toggle='tab')  Order 3
+              #form-tab2.tab-pane
+                ul#form-list2.nav.list-unstyled(role='tablist')
+                  li.nav-label.mtn Contact Forms
+                  li
+                    a.btn.btn-info.btn-gradient.btn-alt.btn-block(href='#contact1', role='tab', data-toggle='tab')  Contact 1
+                  li
+                    a.btn.btn-info.btn-gradient.btn-alt.btn-block(href='#contact2', role='tab', data-toggle='tab')  Contact 2
+                  li
+                    a.btn.btn-info.btn-gradient.btn-alt.btn-block(href='#contact3', role='tab', data-toggle='tab')  Contact 3
+                  li.nav-label Comment Forms
+                  li
+                    a.btn.btn-primary.btn-gradient.btn-alt.btn-block.item-active(href='#comment1', role='tab', data-toggle='tab')  Comment 1
+                  li
+                    a.btn.btn-primary.btn-gradient.btn-alt.btn-block(href='#comment2', role='tab', data-toggle='tab')  Comment 2
+              #form-tab3.tab-pane.active
+                ul#form-list3.nav.list-unstyled(role='tablist')
+                  li.nav-label.mtn Login Forms
+                  li
+                    a.btn.btn-primary.btn-gradient.btn-alt.btn-block(href='#login1', role='tab', data-toggle='tab')  Login 1
+                  li
+                    a.btn.btn-primary.btn-gradient.btn-alt.btn-block.item-active(href='#login2', role='tab', data-toggle='tab')  Login 2
+                  li.nav-label Registration Forms
+                  li
+                    a.btn.btn-danger.btn-gradient.btn-alt.btn-block(href='#register1', role='tab', data-toggle='tab')  Registration 1
+                  li
+                    a.btn.btn-danger.btn-gradient.btn-alt.btn-block(href='#register2', role='tab', data-toggle='tab')  Registration 2
+    // Start: Right Sidebar
+    aside#sidebar_right.nano.affix
+      // Start: Sidebar Right Content
+      .sidebar-right-content.nano-content
+        .tab-block.sidebar-block.br-n
+          ul.nav.nav-tabs.tabs-border.nav-justified.hidden
+            li.active
+              a(href='#sidebar-right-tab1', data-toggle='tab') Tab 1
+            li
+              a(href='#sidebar-right-tab2', data-toggle='tab') Tab 2
+            li
+              a(href='#sidebar-right-tab3', data-toggle='tab') Tab 3
+          .tab-content.br-n
+            #sidebar-right-tab1.tab-pane.active
+              h5.title-divider.text-muted.mb20
+                | Server Statistics
+                span.pull-right
+                  | 2013
+                  i.fa.fa-caret-down.ml5
+              .progress.mh5
+                .progress-bar.progress-bar-primary(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 44%')
+                  span.fs11 DB Request
+              .progress.mh5
+                .progress-bar.progress-bar-info(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 84%')
+                  span.fs11.text-left Server Load
+              .progress.mh5
+                .progress-bar.progress-bar-warning(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 61%')
+                  span.fs11.text-left Server Connections
+              h5.title-divider.text-muted.mt30.mb10 Traffic Margins
+              .row
+                .col-xs-5
+                  h3.text-primary.mn.pl5 132
+                .col-xs-7.text-right
+                  h3.text-success-dark.mn
+                    i.fa.fa-caret-up
+                    |  13.2%
+              h5.title-divider.text-muted.mt25.mb10 Database Request
+              .row
+                .col-xs-5
+                  h3.text-primary.mn.pl5 212
+                .col-xs-7.text-right
+                  h3.text-success-dark.mn
+                    i.fa.fa-caret-up
+                    |  25.6%
+              h5.title-divider.text-muted.mt25.mb10 Server Response
+              .row
+                .col-xs-5
+                  h3.text-primary.mn.pl5 82.5
+                .col-xs-7.text-right
+                  h3.text-danger.mn
+                    i.fa.fa-caret-down
+                    |  17.9%
+              h5.title-divider.text-muted.mt40.mb20
+                | Server Statistics
+                span.pull-right.text-primary.fw600 USA
+            #sidebar-right-tab2.tab-pane
+            #sidebar-right-tab3.tab-pane
+  style.
+    /* demo page styles */
+    .admin-form .panel.heading-border:before,
+    .admin-form .panel .heading-border:before {
+      transition: all 0.7s ease;
+    }
+  // core scripts
+  script(src='plugins/core.min.js')
+  // Theme Javascript
+  script(src='assets/js/utility/utility.js')
+  script(src='assets/js/demo/demo.js')
+  script(src='assets/js/main.js')
+  script(type='text/javascript').
+    jQuery(document).ready(function () {
+      "use strict";
+      // Init Theme Core
+      Core.init();
+      // Init Demo JS
+      Demo.init();
+      // Demo code - active navigation btns
+      $('.animation-nav').click(function () {
+        $('.animation-nav').removeClass('btn-primary').addClass('btn-default');
+        $(this).addClass('btn-primary');
+      });
+      // Form switcher nav
+      var formSwitches = $('.admin-form-list a');
+      formSwitches.on('click', function () {
+        formSwitches.removeClass('item-active');
+        $(this).addClass('item-active')
+        if ($(this).attr('href') === "#contact3") {
+          setTimeout(function () {
+            initialize();
+          }, 100);
+        }
+      });
+    });

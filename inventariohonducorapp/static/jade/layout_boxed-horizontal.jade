@@ -1,0 +1,349 @@
+extends  _skeleton
+
+block body
+  body.boxed-layout.sb-top
+    // Start: Main
+    #main
+      // Page Header horizontal
+      block header_horizontal
+        include _header_horizontal
+      // Start: Sidebar
+      aside#sidebar_left
+        // Start: Sidebar Left Content
+        .sidebar-left-content.nano-content
+          // Start: Sidebar Menu
+          ul.nav.sidebar-menu
+            li
+              a(href='dashboard.html')
+                span.glyphicon.glyphicon-home
+                span.sidebar-title Dashboard
+            li
+              a(href='documentation/')
+                span.glyphicon.glyphicon-book
+                span.sidebar-title Documentation
+            li
+              a.accordion-toggle.menu-open(href='#')
+                span.fa.fa-columns
+                span.sidebar-title Admin Layouts
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa.fa-arrows-h
+                    |                   Sidebars
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_sidebar-left-static.html')
+                        | Left Static
+                    li
+                      a(href='layout_sidebar-left-fixed.html')
+                        | Left Fixed
+                    li
+                      a(href='layout_sidebar-left-widgets.html')
+                        | Left Widgets
+                    li
+                      a(href='layout_sidebar-left-minified.html')
+                        | Left Minified
+                    li
+                      a(href='layout_sidebar-left-light.html')
+                        | Left White
+                    li
+                      a(href='layout_sidebar-right-static.html')
+                        | Right Static
+                    li
+                      a(href='layout_sidebar-right-fixed.html')
+                        | Right Fixed
+                    li
+                      a(href='layout_sidebar-right-menu.html')
+                        | Right w/Menu
+
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-hand-o-up
+                    |                   Topbar
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_topbar.html')
+                        | Default Style
+                    li
+                      a(href='layout_topbar-menu.html')
+                        | Default w/Menu
+                    li
+                      a(href='layout_topbar-alt.html')
+                        | Alternate Style
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-arrows-v
+                    |                   Content Body
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_content-blank.html')
+                        | Blank Starter
+                    li
+                      a(href='layout_content-fixed.html')
+                        | Fixed Window
+                    li
+                      a(href='layout_content-heading.html')
+                        | Content Heading
+                    li
+                      a(href='layout_content-tabs.html')
+                        | Content Tabs
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-pause
+                    |                   Content Trays
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_tray-left.html')
+                        | Tray Left Static
+                    li
+                      a(href='layout_tray-left-fixed.html')
+                        | Tray Left Fixed
+                    li
+                      a(href='layout_tray-right.html')
+                        | Tray Right Static
+                    li
+                      a(href='layout_tray-right-fixed.html')
+                        | Tray Right Fixed
+                    li
+                      a(href='layout_tray-both.html')
+                        | Left + Right Static
+                    li
+                      a(href='layout_tray-both-fixed.html')
+                        | Left + Right Fixed
+                li
+                  a.accordion-toggle.menu-open(href='#')
+                    span.fa.fa-plus-square-o
+                    |                   Boxed Layout
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_boxed.html')
+                        | Default
+                    li.active
+                      a(href='layout_boxed-horizontal.html')
+                        | Horizontal Menu
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-arrow-circle-o-up
+                    |                   Horizontal Menu
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_horizontal-sm.html')
+                        | Small Size
+                    li
+                      a(href='layout_horizontal-md.html')
+                        | Medium Size
+                    li
+                      a(href='layout_horizontal-lg.html')
+                        | Large Size
+                    li
+                      a(href='layout_horizontal-light.html')
+                        | Light Skin
+                    li
+                      a(href='layout_horizontal-topbar.html')
+                        | With Topbar
+                    li
+                      a(href='layout_horizontal-topbar-alt.html')
+                        | With Alt Topbar
+                    li
+                      a(href='layout_horizontal-collapsed.html')
+                        | Collapsed onLoad
+                    li
+                      a(href='layout_horizontal-boxed.html')
+                        | In Boxed Layout
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-fire
+                span.sidebar-title Admin Plugins
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='admin_plugins-panels.html')
+                    span.glyphicon.glyphicon-book
+                    |  Admin Panels
+                li
+                  a(href='admin_plugins-modals.html')
+                    span.glyphicon.glyphicon-modal-window
+                    |  Admin Modals
+                li
+                  a(href='admin_plugins-dock.html')
+                    span.glyphicon.glyphicon-equalizer
+                    |  Admin Dock
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-check
+                span.sidebar-title Admin Forms
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='admin_forms-elements.html')
+                    span.glyphicon.glyphicon-edit
+                    |  Admin Elements
+                li
+                  a(href='admin_forms-widgets.html')
+                    span.glyphicon.glyphicon-calendar
+                    |  Admin Widgets
+                li
+                  a(href='admin_forms-validation.html')
+                    span.glyphicon.glyphicon-check
+                    |  Admin Validation
+                li
+                  a(href='admin_forms-layouts.html')
+                    span.fa.fa-desktop
+                    |  Admin Layouts
+                li
+                  a(href='admin_forms-wizard.html')
+                    span.fa.fa-clipboard
+                    |  Admin Wizard
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-shopping-cart
+                span.sidebar-title Shop
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='ecommerce_dashboard.html')
+                    span.glyphicon.glyphicon-shopping-cart
+                    |  Dashboard
+                    span.label.label-xs.bg-primary New
+                li
+                  a(href='ecommerce_products.html')
+                    span.glyphicon.glyphicon-tags
+                    |  Products
+                li
+                  a(href='ecommerce_orders.html')
+                    span.fa.fa-money
+                    |  Orders
+                li
+                  a(href='ecommerce_customers.html')
+                    span.fa.fa-users
+                    |  Customers
+                li
+                  a(href='ecommerce_settings.html')
+                    span.fa.fa-gears
+                    |  Store Settings
+      // Start: Content-Wrapper
+      section#content_wrapper
+        // Start: Topbar-Dropdown
+        #topbar-dropmenu.alt
+          .topbar-menu.row
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-primary.light(href='#')
+                span.glyphicon.glyphicon-inbox.text-muted
+                span.metro-title Messages
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-info.light(href='#')
+                span.glyphicon.glyphicon-user.text-muted
+                span.metro-title Users
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-success.light(href='#')
+                span.glyphicon.glyphicon-headphones.text-muted
+                span.metro-title Support
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-system.light(href='#')
+                span.glyphicon.glyphicon-facetime-video.text-muted
+                span.metro-title Videos
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-warning.light(href='#')
+                span.fa.fa-gears.text-muted
+                span.metro-title Settings
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-alert.light(href='#')
+                span.glyphicon.glyphicon-picture.text-muted
+                span.metro-title Pictures
+        // Start: Topbar
+        header#topbar.alt
+          .topbar-left
+            ol.breadcrumb
+              li
+                a(href="dashboard.html") Dashboard
+              li
+                a(href="admin_forms-elements.html") Form Elements
+              li
+                a(href="maps_basic.html") Plugins Pages
+              li
+                a(href="ui_alerts.html") UI Elements
+              li
+                a(href="documentation/") Documentation
+        // Begin: Content
+        section#content.animated.fadeIn
+          .row
+            .col-md-8
+              .panel
+                .panel-heading
+                  span.panel-icon
+                  span.panel-title  Panel One
+                .panel-body
+                  p
+                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            .col-md-4
+              .panel
+                .panel-heading
+                  span.panel-icon
+                  span.panel-title  Panel Two
+                .panel-body
+                  p
+                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      // Start: Right Sidebar
+      aside#sidebar_right.nano.affix
+        // Start: Sidebar Right Content
+        .sidebar-right-content.nano-content.p15
+          h5.title-divider.text-muted.mb20
+            | Server Statistics
+            span.pull-right
+              | 2013
+              i.fa.fa-caret-down.ml5
+          .progress.mh5
+            .progress-bar.progress-bar-primary(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 44%')
+              span.fs11 DB Request
+          .progress.mh5
+            .progress-bar.progress-bar-info(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 84%')
+              span.fs11.text-left Server Load
+          .progress.mh5
+            .progress-bar.progress-bar-warning(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 61%')
+              span.fs11.text-left Server Connections
+          h5.title-divider.text-muted.mt30.mb10 Traffic Margins
+          .row
+            .col-xs-5
+              h3.text-primary.mn.pl5 132
+            .col-xs-7.text-right
+              h3.text-success-dark.mn
+                i.fa.fa-caret-up
+                |  13.2%
+          h5.title-divider.text-muted.mt25.mb10 Database Request
+          .row
+            .col-xs-5
+              h3.text-primary.mn.pl5 212
+            .col-xs-7.text-right
+              h3.text-success-dark.mn
+                i.fa.fa-caret-up
+                |  25.6%
+          h5.title-divider.text-muted.mt25.mb10 Server Response
+          .row
+            .col-xs-5
+              h3.text-primary.mn.pl5 82.5
+            .col-xs-7.text-right
+              h3.text-danger.mn
+                i.fa.fa-caret-down
+                |  17.9%
+          h5.title-divider.text-muted.mt40.mb20
+            | Server Statistics
+            span.pull-right.text-primary.fw600 USA
+    // core scripts
+    script(src='plugins/core.min.js')
+    // Theme Javascript
+    script(src='assets/js/utility/utility.js')
+    script(src='assets/js/demo/demo.js')
+    script(src='assets/js/main.js')
+    script(type='text/javascript').
+      jQuery(document).ready(function () {
+        "use strict";
+        // Init Theme Core
+        Core.init();
+      });

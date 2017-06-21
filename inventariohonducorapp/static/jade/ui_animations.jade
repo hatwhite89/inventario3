@@ -1,0 +1,920 @@
+extends  _skeleton
+
+block stylesheets
+  link(rel='stylesheet', type='text/css', href='plugins/css/animate.min.css')
+
+block body
+  body.ui-animations-page.disable-tray-rescale
+    // Start: Theme Preview Pane
+    #skin-toolbox
+      .panel
+        .panel-heading
+          span.panel-icon
+            i.fa.fa-gear.text-primary
+          span.panel-title  Theme Options
+        .panel-body.pn
+          ul.nav.nav-list.nav-list-sm.pl15.pt10(role='tablist')
+
+            li.active
+              a(href='#toolbox-sidebar', role='tab', data-toggle='tab') Sidebar
+            li
+              a(href='#toolbox-settings', role='tab', data-toggle='tab') Misc
+          .tab-content.p20.ptn.pb15
+
+            #toolbox-sidebar.tab-pane.active(role='tabpanel')
+              form#toolbox-sidebar-skin
+                h4.mv20 Sidebar Skins
+                .skin-toolbox-swatches
+                  .checkbox-custom.fill.mb5
+                    input#sidebarSkin3(type='radio', name='sidebarSkin', checked='', value='')
+                    label(for='sidebarSkin3') Dark
+                  .checkbox-custom.fill.checkbox-disabled.mb5
+                    input#sidebarSkin1(type='radio', name='sidebarSkin', value='sidebar-light')
+                    label(for='sidebarSkin1') Light
+                  .checkbox-custom.fill.checkbox-light.mb5
+                    input#sidebarSkin2(type='radio', name='sidebarSkin', value='sidebar-light light')
+                    label(for='sidebarSkin2') Lighter
+            #toolbox-settings.tab-pane(role='tabpanel')
+              form#toolbox-settings-misc
+                h4.mv20.mtn Layout Options
+
+                .form-group
+                  .checkbox-custom.fill.mb5
+                    input#sidebar-option(type='checkbox', checked='')
+                    label(for='sidebar-option') Fixed Sidebar
+
+                h4.mv20 Layout Options
+                .form-group
+                  .radio-custom.mb5
+                    input#fullwidth-option(type='radio', checked='', name='layout-option')
+                    label(for='fullwidth-option') Fullwidth Layout
+                .form-group.mb20.pointer-events-none
+                  .radio-custom.radio-disabled.mb5
+                    input#boxed-option(type='radio', name='layout-option', disabled='')
+                    label(for='boxed-option')
+                      | Boxed Layout
+                      b.text-muted (Coming Soon)
+          .form-group.mn.br-t.p10
+            a#clearLocalStorage.btn.btn-primary.btn-block.pb10.pt10(href='#') Clear LocalStorage
+    // Start: Main
+    #main
+      // Start: Sidebar
+      aside#sidebar_left.nano.nano-light.affix
+        // Navbar Branding
+        .navbar-branding
+          a.navbar-brand(href='dashboard.html')
+            span.text-white Ruby
+            = ' '
+            | Admin
+          span#toggle_sidemenu_l.ad.ad-lines
+        // Start: Sidebar Left Content
+        .sidebar-left-content.nano-content
+          // Start: Sidebar Header
+          header.sidebar-header
+            // Sidebar Widget - Author
+            .sidebar-widget.author-widget
+              .media
+                a.media-left(href='#')
+                  img.img-responsive(src='assets/img/avatars/3.jpg')
+                .media-body
+                  .media-links
+                  .media-author Ryan Harrison
+                  a.sidebar-menu-toggle(href='#') User Menu
+                  a(href='pages_login(alt).html') Logout
+            // Sidebar Widget - Menu (slidedown)
+            .sidebar-widget.menu-widget
+              .row.text-center.mbn
+                .col-xs-4
+                  a.text-primary(href='dashboard.html', data-toggle='tooltip', data-placement='top', title='Dashboard')
+                    span.glyphicon.glyphicon-home
+                .col-xs-4
+                  a.text-info(href='pages_messages.html', data-toggle='tooltip', data-placement='top', title='Messages')
+                    span.glyphicon.glyphicon-inbox
+                .col-xs-4
+                  a.text-alert(href='pages_profile.html', data-toggle='tooltip', data-placement='top', title='Tasks')
+                    span.fa.fa-asterisk
+                .col-xs-4
+                  a.text-system(href='pages_timeline.html', data-toggle='tooltip', data-placement='top', title='Activity')
+                    span.fa.fa-desktop
+                .col-xs-4
+                  a.text-danger(href='pages_profile.html', data-toggle='tooltip', data-placement='top', title='Settings')
+                    span.fa.fa-gears
+                .col-xs-4
+                  a.text-warning(href='pages_gallery.html', data-toggle='tooltip', data-placement='top', title='Cron Jobs')
+                    span.fa.fa-flask
+            // Sidebar Widget - Search (hidden)
+            .sidebar-widget.search-widget.hidden
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-search
+                input#sidebar-search.form-control(type='text', placeholder='Search...')
+          // Start: Sidebar Menu
+          ul.nav.sidebar-menu
+            li.sidebar-label.pt30 Menu
+            li
+              a(href='pages_calendar.html')
+                span.fa.fa-calendar
+                span.sidebar-title Calendar
+            li
+              a(href='documentation/')
+                span.glyphicon.glyphicon-book
+                span.sidebar-title Documentation
+            li.active
+              a(href='dashboard.html')
+                span.glyphicon.glyphicon-home
+                span.sidebar-title Dashboard
+            li.sidebar-label.pt15 Theme Tools
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-columns
+                span.sidebar-title Admin Layouts
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa.fa-arrows-h
+                    |                   Sidebars
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_sidebar-left-static.html')
+                        | Left Static
+                    li
+                      a(href='layout_sidebar-left-fixed.html')
+                        | Left Fixed
+                    li
+                      a(href='layout_sidebar-left-widgets.html')
+                        | Left Widgets
+                    li
+                      a(href='layout_sidebar-left-minified.html')
+                        | Left Minified
+                    li
+                      a(href='layout_sidebar-left-light.html')
+                        | Left White
+                    li
+                      a(href='layout_sidebar-right-static.html')
+                        | Right Static
+                    li
+                      a(href='layout_sidebar-right-fixed.html')
+                        | Right Fixed
+                    li
+                      a(href='layout_sidebar-right-menu.html')
+                        | Right w/Menu
+                
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-hand-o-up
+                    |                   Topbar
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_topbar.html')
+                        | Default Style
+                    li
+                      a(href='layout_topbar-menu.html')
+                        | Default w/Menu
+                    li
+                      a(href='layout_topbar-alt.html')
+                        | Alternate Style
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-arrows-v
+                    |                   Content Body
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_content-blank.html')
+                        | Blank Starter
+                    li
+                      a(href='layout_content-fixed.html')
+                        | Fixed Window
+                    li
+                      a(href='layout_content-heading.html')
+                        | Content Heading
+                    li
+                      a(href='layout_content-tabs.html')
+                        | Content Tabs
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-pause
+                    |                   Content Trays
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_tray-left.html')
+                        | Tray Left Static
+                    li
+                      a(href='layout_tray-left-fixed.html')
+                        | Tray Left Fixed
+                    li
+                      a(href='layout_tray-right.html')
+                        | Tray Right Static
+                    li
+                      a(href='layout_tray-right-fixed.html')
+                        | Tray Right Fixed
+                    li
+                      a(href='layout_tray-both.html')
+                        | Left + Right Static
+                    li
+                      a(href='layout_tray-both-fixed.html')
+                        | Left + Right Fixed
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-plus-square-o
+                    |                   Boxed Layout
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_boxed.html')
+                        | Default
+                    li
+                      a(href='layout_boxed-horizontal.html')
+                        | Horizontal Menu
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-arrow-circle-o-up
+                    |                   Horizontal Menu
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_horizontal-sm.html')
+                        | Small Size
+                    li
+                      a(href='layout_horizontal-md.html')
+                        | Medium Size
+                    li
+                      a(href='layout_horizontal-lg.html')
+                        | Large Size
+                    li
+                      a(href='layout_horizontal-light.html')
+                        | Light Skin
+                    li
+                      a(href='layout_horizontal-topbar.html')
+                        | With Topbar
+                    li
+                      a(href='layout_horizontal-topbar-alt.html')
+                        | With Alt Topbar
+                    li
+                      a(href='layout_horizontal-collapsed.html')
+                        | Collapsed onLoad
+                    li
+                      a(href='layout_horizontal-boxed.html')
+                        | In Boxed Layout
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-fire
+                span.sidebar-title Admin Plugins
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='admin_plugins-panels.html')
+                    span.glyphicon.glyphicon-book
+                    |  Admin Panels
+                li
+                  a(href='admin_plugins-modals.html')
+                    span.glyphicon.glyphicon-modal-window
+                    |  Admin Modals
+                li
+                  a(href='admin_plugins-dock.html')
+                    span.glyphicon.glyphicon-equalizer
+                    |  Admin Dock
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-check
+                span.sidebar-title Admin Forms
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='admin_forms-elements.html')
+                    span.glyphicon.glyphicon-edit
+                    |  Admin Elements
+                li
+                  a(href='admin_forms-widgets.html')
+                    span.glyphicon.glyphicon-calendar
+                    |  Admin Widgets
+                li
+                  a(href='admin_forms-validation.html')
+                    span.glyphicon.glyphicon-check
+                    |  Admin Validation
+                li
+                  a(href='admin_forms-layouts.html')
+                    span.fa.fa-desktop
+                    |  Admin Layouts
+                li
+                  a(href='admin_forms-wizard.html')
+                    span.fa.fa-clipboard
+                    |  Admin Wizard
+            li.sidebar-label.pt20 Systems
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-diamond
+                span.sidebar-title Widget Packages
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='widgets_tile.html')
+                    span.fa.fa-cube
+                    |  Tile Widgets
+                li
+                  a(href='widgets_panel.html')
+                    span.fa.fa-desktop
+                    |  Panel Widgets
+                li
+                  a(href='widgets_scroller.html')
+                    span.fa.fa-columns
+                    |  Scroller Widgets
+                li
+                  a(href='widgets_data.html')
+                    span.fa.fa-dot-circle-o
+                    |  Admin Widgets
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-shopping-cart
+                span.sidebar-title Ecommerce
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='ecommerce_dashboard.html')
+                    span.glyphicon.glyphicon-shopping-cart
+                    |  Dashboard
+                    span.label.label-xs.bg-primary New
+                li
+                  a(href='ecommerce_products.html')
+                    span.glyphicon.glyphicon-tags
+                    |  Products
+                li
+                  a(href='ecommerce_orders.html')
+                    span.fa.fa-money
+                    |  Orders
+                li
+                  a(href='ecommerce_customers.html')
+                    span.fa.fa-users
+                    |  Customers
+                li
+                  a(href='ecommerce_settings.html')
+                    span.fa.fa-gears
+                    |  Store Settings
+
+            // sidebar resources
+            li.sidebar-label.pt20 Elements
+            li
+              a.accordion-toggle.menu-open(href='#')
+                span.fa.fa-asterisk
+                span.sidebar-title UI Elements
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='ui_alerts.html')
+                    span.fa.fa-warning
+                    |  Alerts
+                li.active
+                  a(href='ui_animations.html')
+                    span.fa.fa-spinner
+                    |  Animations
+                li
+                  a(href='ui_buttons.html')
+                    span.fa.fa-plus-square-o
+                    |  Buttons
+                li
+                  a(href='ui_typography.html')
+                    span.fa.fa-text-width
+                    |  Typography
+                li
+                  a(href='ui_portlets.html')
+                    span.fa.fa-archive
+                    |  Portlets
+                li
+                  a(href='ui_progress-bars.html')
+                    span.fa.fa-bars
+                    |  Progress Bars
+                li
+                  a(href='ui_tabs.html')
+                    span.fa.fa-toggle-off
+                    |  Tabs
+                li
+                  a(href='ui_icons.html')
+                    span.fa.fa-hand-o-right
+                    |  Icons
+                li
+                  a(href='ui_grid.html')
+                    span.fa.fa-th-large
+                    |  Grid
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-align-justify
+                span.sidebar-title Form Elements
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='form_inputs.html')
+                    span.fa.fa-magic
+                    |  Basic Inputs
+                li
+                  a(href='form_plugins.html')
+                    span.fa.fa-bell-o
+                    |  Plugin Inputs
+                    span.label.label-xs.bg-primary New
+                li
+                  a(href='form_editors.html')
+                    span.fa.fa-clipboard
+                    |  Editors
+                li
+                  a(href='form_treeview.html')
+                    span.fa.fa-tree
+                    |  Treeview
+                li
+                  a(href='form_nestable.html')
+                    span.fa.fa-tasks
+                    |  Nestable
+                li
+                  a(href='form_image-tools.html')
+                    span.fa.fa-cloud-upload
+                    |  Image Tools
+                    span.label.label-xs.bg-primary New
+                li
+                  a(href='form_uploaders.html')
+                    span.fa.fa-cloud-upload
+                    |  Uploaders
+                li
+                  a(href='form_notifications.html')
+                    span.fa.fa-bell-o
+                    |  Notifications
+                li
+                  a(href='form_content-sliders.html')
+                    span.fa.fa-exchange
+                    |  Content Sliders
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-tower
+                span.sidebar-title Plugins
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a.accordion-toggle(href='#')
+                    span.glyphicon.glyphicon-globe
+                    |  Maps
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='maps_basic.html') Basic Maps
+                    li
+                      a(href='maps_vector.html') Vector Maps
+                    li
+                      a(href='maps_full.html') Full Map
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-area-chart
+                    |  Charts
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='charts_highcharts.html') Highcharts
+                    li
+                      a(href='charts_d3.html') D3 Charts
+                    li
+                      a(href='charts_flot.html') Flot Charts
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-table
+                    |  Tables
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='tables_basic.html')  Basic Tables
+
+
+                    li
+                      a(href='tables_footable.html')  FooTables
+                    li
+                      a(href='tables_pricing.html')  Pricing Tables
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-flask
+                    |  Misc
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='misc_tour.html')  Site Tour
+                    li
+                      a(href='misc_timeout.html')  Session Timeout
+                    li
+                      a(href='misc_nprogress.html')  Page Progress Loader
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-duplicate
+                span.sidebar-title Pages
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-gears
+                    |  Utility
+                    span.caret
+                  ul.nav.sub-nav
+
+                    li
+                      a(href='pages_confirmation.html', target='_blank')
+                        | Confirmation
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_login.html', target='_blank')  Login
+                    li
+                      a(href='pages_login(alt).html', target='_blank')
+                        | Login Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_register.html', target='_blank')  Register
+                    li
+                      a(href='pages_register(alt).html', target='_blank')
+                        | Register Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_screenlock.html', target='_blank')  Screenlock
+                    li
+                      a(href='pages_screenlock(alt).html', target='_blank')
+                        | Screenlock Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_forgotpw.html', target='_blank')  Forgot Password
+                    li
+                      a(href='pages_forgotpw(alt).html', target='_blank')
+                        | Forgot Password Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_coming-soon.html', target='_blank')
+                        | Coming Soon
+                    li
+                      a(href='pages_404.html')  404 Error
+                    li
+                      a(href='pages_500.html')  500 Error
+                    li
+                      a(href='pages_404(alt).html')  404 Error Alt
+                    li
+                      a(href='pages_500(alt).html')  500 Error Alt
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-desktop
+                    |  Basic
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='pages_search-results.html')
+                        | Search Results
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_profile.html')  Profile
+                    li
+                      a(href='pages_timeline.html')  Timeline Split
+                    li
+                      a(href='pages_timeline-single.html')  Timeline Single
+                    li
+                      a(href='pages_faq.html')  FAQ Page
+                    li
+                      a(href='pages_calendar.html')  Calendar
+                    li
+                      a(href='pages_messages.html')  Messages
+                    li
+                      a(href='pages_messages(alt).html')  Messages Alt
+                    li
+                      a(href='pages_gallery.html')  Gallery
+                    li
+                      a(href='pages_invoice.html')  Printable Invoice
+            // sidebar bullets
+            li.sidebar-label.pt20 Projects
+            li.sidebar-proj
+              a(href='#projectOne')
+                span.fa.fa-bookmark.text-primary
+                span.sidebar-title Executive Meeting
+            li.sidebar-proj
+              a(href='#projectTwo')
+                span.fa.fa-bookmark.text-info
+                span.sidebar-title HelpDesk Redesign
+            li.sidebar-proj
+              a(href='#projectTwo')
+                span.fa.fa-bookmark.text-danger
+                span.sidebar-title Sony Board Meeting
+            li.sidebar-proj
+              a(href='#projectThree')
+                span.fa.fa-bookmark.text-warning
+                span.sidebar-title Apple Tech Conference
+      // Start: Content-Wrapper
+      section#content_wrapper
+        // Start: Topbar-Dropdown
+        #topbar-dropmenu.alt
+          .topbar-menu.row
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-primary.light(href='#')
+                span.glyphicon.glyphicon-inbox.text-muted
+                span.metro-title Messages
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-info.light(href='#')
+                span.glyphicon.glyphicon-user.text-muted
+                span.metro-title Users
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-success.light(href='#')
+                span.glyphicon.glyphicon-headphones.text-muted
+                span.metro-title Support
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-system.light(href='#')
+                span.glyphicon.glyphicon-facetime-video.text-muted
+                span.metro-title Videos
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-warning.light(href='#')
+                span.fa.fa-gears.text-muted
+                span.metro-title Settings
+          .col-xs-4.col-sm-2
+              a.metro-tile.bg-alert.light(href='#')
+                span.glyphicon.glyphicon-picture.text-muted
+                span.metro-title Pictures
+        // Start: Topbar
+        header#topbar.alt
+          .topbar-left
+            ol.breadcrumb
+              li
+                a(href="dashboard.html") Dashboard
+              li
+                a(href="admin_forms-elements.html") Form Elements
+              li
+                a(href="maps_basic.html") Plugins Pages
+              li
+                a(href="ui_alerts.html") UI Elements
+              li
+                a(href="documentation/") Documentation
+        // Begin: Content
+        section#content.table-layout.animated.fadeIn
+          // begin: .tray-left
+          aside.tray.tray-left.tray350(data-tray-height='match')
+            .animated-delay.mb20(data-animate='["1000","fadeIn"]')
+              .row
+                .col-xs-3.pr5
+                  a.btn.btn-primary.btn-block.ph5.br0.animation-nav(href='#entrances', data-toggle='tab') Enter
+                .col-xs-3.ph5
+                  a.btn.btn-default.btn-block.ph5.br0.animation-nav(href='#exits', data-toggle='tab') Exits
+                .col-xs-3.ph5
+                  a.btn.btn-default.btn-block.ph5.br0.animation-nav(href='#effects', data-toggle='tab') Effects
+                .col-xs-3.pl5
+                  a.btn.btn-default.btn-block.ph5.br0.animation-nav(href='#options', data-toggle='tab') Learn
+            .animated-delay(data-animate='["1300","slideInUp"]')
+              .tray-bin.stretch.animations
+                .tab-content.pn.br-n.bg-none
+                  #entrances.tab-pane.active
+                    // Rotating
+                    h6.p10.pt5.pbn.fs12.text-white  Rotating Entrances:
+                    .primary.pl5
+                      button.btn.btn-primary.btn-gradient.btn-alt(type='button', data-test='rotateIn') rotateIn
+                      button.btn.btn-primary.btn-gradient.btn-alt(type='button', data-test='rotateInDownLeft') rotateInDownLeft
+                      button.btn.btn-primary.btn-gradient.btn-alt(type='button', data-test='rotateInDownRight') rotateInDownRight
+                      button.btn.btn-primary.btn-gradient.btn-alt(type='button', data-test='rotateInUpLeft') rotateInUpLeft
+                      button.btn.btn-primary.btn-gradient.btn-alt(type='button', data-test='rotateInUpRight') rotateInUpRight
+                    // Fades
+                    h6.p10.pbn.fs12.text-white  Fading Entrances:
+                    .info.pl5
+                      button.btn.btn-info.btn-gradient.btn-alt(type='button', data-test='fadeIn') fadeIn
+                      button.btn.btn-info.btn-gradient.btn-alt(type='button', data-test='fadeInUp') fadeInUp
+                      button.btn.btn-info.btn-gradient.btn-alt(type='button', data-test='fadeInDown') fadeInDown
+                      button.btn.btn-info.btn-gradient.btn-alt(type='button', data-test='fadeInLeft') fadeInLeft
+                      button.btn.btn-info.btn-gradient.btn-alt(type='button', data-test='fadeInRight') fadeInRight
+                      button.btn.btn-info.btn-gradient.btn-alt(type='button', data-test='fadeInUpBig') fadeInUpBig
+                      button.btn.btn-info.btn-gradient.btn-alt(type='button', data-test='fadeInDownBig') fadeInDownBig
+                      button.btn.btn-info.btn-gradient.btn-alt(type='button', data-test='fadeInLeftBig') fadeInLeftBig
+                      button.btn.btn-info.btn-gradient.btn-alt(type='button', data-test='fadeInRightBig') fadeInRightBig
+                    // Bounces
+                    h6.p10.pt5.pbn.fs12.text-white Bouncing Entrances:
+                    .alerts.pl5
+                      button.btn.btn-alert.btn-gradient.btn-alt(type='button', data-test='bounceIn') bounceIn
+                      button.btn.btn-alert.btn-gradient.btn-alt(type='button', data-test='bounceInDown') bounceInDown
+                      button.btn.btn-alert.btn-gradient.btn-alt(type='button', data-test='bounceInUp') bounceInUp
+                      button.btn.btn-alert.btn-gradient.btn-alt(type='button', data-test='bounceInRight') bounceInRight
+                      button.btn.btn-alert.btn-gradient.btn-alt(type='button', data-test='bounceInLeft') bounceInLeft
+                  #exits.tab-pane
+                    // Bounces
+                    h6.p10.pt5.pbn.fs12  Bouncing Exits:
+                    .primary.pl5
+                      button.btn.btn-primary.btn-gradient.btn-alt(type='button', data-test='bounceOutRight') bounceOutRight
+                      button.btn.btn-primary.btn-gradient.btn-alt(type='button', data-test='bounceOutLeft') bounceOutLeft
+                      button.btn.btn-primary.btn-gradient.btn-alt(type='button', data-test='bounceOut') bounceOut
+                      button.btn.btn-primary.btn-gradient.btn-alt(type='button', data-test='bounceOutDown') bounceOutDown
+                      button.btn.btn-primary.btn-gradient.btn-alt(type='button', data-test='bounceOutUp') bounceOutUp
+                    // Fades
+                    h6.p10.pbn.fs12  Fading Exits:
+                    .info.pl5
+                      button.btn.btn-info.btn-gradient.btn-alt(type='button', data-test='fadeOut') fadeOut
+                      button.btn.btn-info.btn-gradient.btn-alt(type='button', data-test='fadeOutUp') fadeOutUp
+                      button.btn.btn-info.btn-gradient.btn-alt(type='button', data-test='fadeOutDown') fadeOutDown
+                      button.btn.btn-info.btn-gradient.btn-alt(type='button', data-test='fadeOutLeft') fadeOutLeft
+                      button.btn.btn-info.btn-gradient.btn-alt(type='button', data-test='fadeOutRight') fadeOutRight
+                      button.btn.btn-info.btn-gradient.btn-alt(type='button', data-test='fadeOutUpBig') fadeOutUpBig
+                      button.btn.btn-info.btn-gradient.btn-alt(type='button', data-test='fadeOutDownBig') fadeOutDownBig
+                      button.btn.btn-info.btn-gradient.btn-alt(type='button', data-test='fadeOutLeftBig') fadeOutLeftBig
+                      button.btn.btn-info.btn-gradient.btn-alt(type='button', data-test='fadeOutRightBig') fadeOutRightBig
+                    // Fades
+                    h6.p10.pbn.fs12  Rotating Exits:
+                    .alerts.pl5
+                      button.btn.btn-alert.btn-gradient.btn-alt(type='button', data-test='rotateOut') rotateOut
+                      button.btn.btn-alert.btn-gradient.btn-alt(type='button', data-test='rotateOutDownLeft') rotateOutDownLeft
+                      button.btn.btn-alert.btn-gradient.btn-alt(type='button', data-test='rotateOutDownRight') rotateOutDownRight
+                      button.btn.btn-alert.btn-gradient.btn-alt(type='button', data-test='rotateOutUpLeft') rotateOutUpLeft
+                      button.btn.btn-alert.btn-gradient.btn-alt(type='button', data-test='rotateOutUpRight') rotateOutUpRight
+                  #effects.tab-pane
+                    // Attention Seekers
+                    h6.p10.pt5.pbn.fs12  Attention Seekers:
+                    .primary.pl5
+                      button.btn.btn-primary.btn-gradient.btn-alt(type='button', data-test='bounce') bounce
+                      button.btn.btn-primary.btn-gradient.btn-alt(type='button', data-test='shake') shake
+                      button.btn.btn-primary.btn-gradient.btn-alt(type='button', data-test='tada') tada
+                      button.btn.btn-primary.btn-gradient.btn-alt(type='button', data-test='swing') swing
+                      button.btn.btn-primary.btn-gradient.btn-alt(type='button', data-test='wobble') wobble
+                      button.btn.btn-primary.btn-gradient.btn-alt(type='button', data-test='pulse') pulse
+                      button.btn.btn-primary.btn-gradient.btn-alt(type='button', data-test='flash') flash
+                    // Flippers
+                    h6.p10.pbn.fs12  Flippers:
+                    .info.pl5
+                      button.btn.btn-info.btn-gradient.btn-alt(type='button', data-test='flip') flip
+                      button.btn.btn-info.btn-gradient.btn-alt(type='button', data-test='flipInX') flipInX
+                      button.btn.btn-info.btn-gradient.btn-alt(type='button', data-test='flipOutX') flipOutX
+                      button.btn.btn-info.btn-gradient.btn-alt(type='button', data-test='flipInY') flipInY
+                      button.btn.btn-info.btn-gradient.btn-alt(type='button', data-test='flipOutY') flipOutY
+                    // Sliders
+                    h6.p10.pbn.fs12  Sliders:
+                    .alerts.pl5
+                      button.btn.btn-alert.btn-gradient.btn-alt(type='button', data-test='slideInDown') slideInDown
+                      button.btn.btn-alert.btn-gradient.btn-alt(type='button', data-test='slideInLeft') slideInLeft
+                      button.btn.btn-alert.btn-gradient.btn-alt(type='button', data-test='slideInRight') slideInRight
+                      button.btn.btn-alert.btn-gradient.btn-alt(type='button', data-test='slideOutUp') slideOutUp
+                      button.btn.btn-alert.btn-gradient.btn-alt(type='button', data-test='slideOutLeft') slideOutLeft
+                      button.btn.btn-alert.btn-gradient.btn-alt(type='button', data-test='slideOutRight') slideOutRight
+                    // Specials
+                    h6.p10.pbn.fs12  Specials:
+                    .warning.pl5
+                      button.btn.btn-warning.btn-gradient.btn-alt(type='button', data-test='lightSpeedIn') lightSpeedIn
+                      button.btn.btn-warning.btn-gradient.btn-alt(type='button', data-test='lightSpeedOut') lightSpeedOut
+                      button.btn.btn-warning.btn-gradient.btn-alt(type='button', data-test='hinge') hinge
+                      button.btn.btn-warning.btn-gradient.btn-alt(type='button', data-test='rollIn') rollIn
+                      button.btn.btn-warning.btn-gradient.btn-alt(type='button', data-test='rollOut') rollOut
+                  #options.tab-pane.p10
+                    // Animation OnLoad
+                    h5.mt5.pbn  Animations OnLoad:
+                    p
+                      | Animations are fired immeditiely when the page loads and are a great way to introduce new content.
+                    h6.mt15 Adding an Animation to an Element
+                    code <div class="animated fadeIn">..</div>
+                    h6.mt25 The Required Selectors:
+                    p
+                      b "animated"
+                      |  - Is required on all elements which you choose to animate on load.
+                    p
+                      b "fadeIn"
+                      |  - Is an example of the type of animation you wish to see performed on the element
+                    hr.short
+                    // Animation Delay
+                    h5.mt5 Delayed Animations!
+                    code data-animate='["100","fadeIn"]' class="animated-delay"
+                    // <hr class="alt short">
+                    h6.mt25 The Required Selectors:
+                    p
+                      b animated-delay
+                      |  - Is always required. Take note this uses "animated-delay" NOT"animated"
+                    p
+                      b data-animate='["1500","fadeIn"]'
+                      |  - A data attribute which holds an array for
+                      b two
+                      |  settings. The first is used to set the delay(in miliseconds). The second is for specifiying the animation. Both options are required.
+                    h6.mb10.mt25
+                      | Note: delayed animations require
+                      span.text-danger main.js
+          // begin: .tray-center
+          .tray.tray-center
+            #mac_wire.animated
+      // Start: Right Sidebar
+      aside#sidebar_right.nano.affix
+        // Start: Sidebar Right Content
+        .sidebar-right-content.nano-content
+          .tab-block.sidebar-block.br-n
+            ul.nav.nav-tabs.tabs-border.nav-justified.hidden
+              li.active
+                a(href='#sidebar-right-tab1', data-toggle='tab') Tab 1
+              li
+                a(href='#sidebar-right-tab2', data-toggle='tab') Tab 2
+              li
+                a(href='#sidebar-right-tab3', data-toggle='tab') Tab 3
+            .tab-content.br-n
+              #sidebar-right-tab1.tab-pane.active
+                h5.title-divider.text-muted.mb20
+                  | Server Statistics
+                  span.pull-right
+                    | 2013
+                    i.fa.fa-caret-down.ml5
+                .progress.mh5
+                  .progress-bar.progress-bar-primary(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 44%')
+                    span.fs11 DB Request
+                .progress.mh5
+                  .progress-bar.progress-bar-info(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 84%')
+                    span.fs11.text-left Server Load
+                .progress.mh5
+                  .progress-bar.progress-bar-warning(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 61%')
+                    span.fs11.text-left Server Connections
+                h5.title-divider.text-muted.mt30.mb10 Traffic Margins
+                .row
+                  .col-xs-5
+                    h3.text-primary.mn.pl5 132
+                  .col-xs-7.text-right
+                    h3.text-success-dark.mn
+                      i.fa.fa-caret-up
+                      |  13.2%
+                h5.title-divider.text-muted.mt25.mb10 Database Request
+                .row
+                  .col-xs-5
+                    h3.text-primary.mn.pl5 212
+                  .col-xs-7.text-right
+                    h3.text-success-dark.mn
+                      i.fa.fa-caret-up
+                      |  25.6%
+                h5.title-divider.text-muted.mt25.mb10 Server Response
+                .row
+                  .col-xs-5
+                    h3.text-primary.mn.pl5 82.5
+                  .col-xs-7.text-right
+                    h3.text-danger.mn
+                      i.fa.fa-caret-down
+                      |  17.9%
+                h5.title-divider.text-muted.mt40.mb20
+                  | Server Statistics
+                  span.pull-right.text-primary.fw600 USA
+              #sidebar-right-tab2.tab-pane
+              #sidebar-right-tab3.tab-pane
+    // core scripts
+    script(src='plugins/core.min.js')
+    // Theme Javascript
+    script(src='assets/js/utility/utility.js')
+    script(src='assets/js/demo/demo.js')
+    script(src='assets/js/main.js')
+    script(type='text/javascript').
+      jQuery(document).ready(function () {
+        "use strict";
+        // Init Theme Core
+        Core.init();
+        // Init Demo JS
+        Demo.init();
+        // Demo Code -Toggle animation nav list bg color
+        $('.animation-nav').click(function () {
+          $('.animation-nav').removeClass('btn-primary').addClass('btn-default');
+          $(this).addClass('btn-primary');
+        });
+        // Example animate buttons
+        $('.animations .btn').click(function () {
+          if ($('body.animation-running').length) {
+            return;
+          }
+          $(this).addClass('item-checked');
+          var animateVal = $(this).attr('data-test');
+          testAnim(animateVal)
+        });
+        // Simply adds CSS classes required for animation
+        // and then removes them after an elapsed time
+        var animatedObj = $('#mac_wire');
+
+        function testAnim(x) {
+          $('body').addClass('animation-running');
+          animatedObj.removeClass('fadeIn').addClass(x);
+          animatedObj.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+            $('body').removeClass('animation-running');
+            animatedObj.removeClass(x);
+          });
+        }
+
+        /* Demo Code - Creates animated SVG(desktop image)
+         * Lazy Line Painter - Path Object
+         * Generated using 'SVG to Lazy Line Converter'
+         *
+         * http://lazylinepainter.info
+         * Copyright 2013, Cam O'Connell
+         *
+         */
+        var pathObj = {
+          "mac_wire": {
+            "strokepath": [{
+              "path": "M264.41,447.79   c-1.07,13.219-1.292,40.276-2.087,47.116c-1.064,9.147-3.618,11.702-10,13.403c-5.289,1.409-12.453,3.028-15.439,3.796   c-2.985,0.768-3.923,1.287-3.923,1.879c0,0,0,0.031,0.006,0.089c0.003,0.03,0.007,0.059,0.012,0.086   c0.129,0.788,17.132,2.911,25.421,2.911h143.717c8.287,0,25.29-2.123,25.419-2.911c0.006-0.027,0.01-0.056,0.013-0.086   c0.006-0.058,0.006-0.089,0.006-0.089c0-0.592-0.937-1.11-3.923-1.879c-2.986-0.768-10.15-2.387-15.439-3.796   c-6.382-1.701-8.935-4.256-9.999-13.403c-0.795-6.84-1.018-33.897-2.089-47.116",
+              "duration": 600
+            }, {
+              "path": "M636.122,7.411H24.392   c-7.962,0-14.438,6.477-14.438,14.438v411.503c0,7.961,6.476,14.438,14.438,14.438h242.261l0,0h127.208l0,0h242.261   c7.962,0,14.438-6.478,14.438-14.438V21.849C650.561,13.888,644.084,7.411,636.122,7.411z M623.411,361.445H37.103V34.56h586.308   V361.445z",
+              "duration": 1000
+            }],
+            "dimensions": {
+              "width": 660,
+              "height": 523
+            }
+          }
+        };
+        /*
+         * Setup and Paint your lazyline!
+         */
+        $('#mac_wire').lazylinepainter({
+          "svgData": pathObj,
+          "strokeWidth": 3,
+          "strokeColor": "#e09b99",
+          "delay": 400,
+          "onComplete": function () {
+            $('body').addClass('svg-fill');
+          }
+        }).lazylinepainter('paint');
+      });

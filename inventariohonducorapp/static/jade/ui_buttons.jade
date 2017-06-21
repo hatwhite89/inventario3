@@ -1,0 +1,1600 @@
+extends  _skeleton
+
+block stylesheets
+  link(rel='stylesheet', type='text/css', href='plugins/css/ladda.min.css')
+  link(rel='stylesheet', type='text/css', href='assets/fonts/zocial/zocial.css')
+
+block body
+  body.ui-buttons-page
+    // Start: Theme Preview Pane
+    #skin-toolbox
+      .panel
+        .panel-heading
+          span.panel-icon
+            i.fa.fa-gear.text-primary
+          span.panel-title  Theme Options
+        .panel-body.pn
+          ul.nav.nav-list.nav-list-sm.pl15.pt10(role='tablist')
+
+            li.active
+              a(href='#toolbox-sidebar', role='tab', data-toggle='tab') Sidebar
+            li
+              a(href='#toolbox-settings', role='tab', data-toggle='tab') Misc
+          .tab-content.p20.ptn.pb15
+
+            #toolbox-sidebar.tab-pane.active(role='tabpanel')
+              form#toolbox-sidebar-skin
+                h4.mv20 Sidebar Skins
+                .skin-toolbox-swatches
+                  .checkbox-custom.fill.mb5
+                    input#sidebarSkin3(type='radio', name='sidebarSkin', checked='', value='')
+                    label(for='sidebarSkin3') Dark
+                  .checkbox-custom.fill.checkbox-disabled.mb5
+                    input#sidebarSkin1(type='radio', name='sidebarSkin', value='sidebar-light')
+                    label(for='sidebarSkin1') Light
+                  .checkbox-custom.fill.checkbox-light.mb5
+                    input#sidebarSkin2(type='radio', name='sidebarSkin', value='sidebar-light light')
+                    label(for='sidebarSkin2') Lighter
+            #toolbox-settings.tab-pane(role='tabpanel')
+              form#toolbox-settings-misc
+                h4.mv20.mtn Layout Options
+
+                .form-group
+                  .checkbox-custom.fill.mb5
+                    input#sidebar-option(type='checkbox', checked='')
+                    label(for='sidebar-option') Fixed Sidebar
+
+                h4.mv20 Layout Options
+                .form-group
+                  .radio-custom.mb5
+                    input#fullwidth-option(type='radio', checked='', name='layout-option')
+                    label(for='fullwidth-option') Fullwidth Layout
+                .form-group.mb20.pointer-events-none
+                  .radio-custom.radio-disabled.mb5
+                    input#boxed-option(type='radio', name='layout-option', disabled='')
+                    label(for='boxed-option')
+                      | Boxed Layout
+                      b.text-muted (Coming Soon)
+          .form-group.mn.br-t.p10
+            a#clearLocalStorage.btn.btn-primary.btn-block.pb10.pt10(href='#') Clear LocalStorage
+    // Start: Main
+    #main
+      // Start: Sidebar
+      aside#sidebar_left.nano.nano-light.affix
+        // Navbar Branding
+        .navbar-branding
+          a.navbar-brand(href='dashboard.html')
+            span.text-white Ruby
+            = ' '
+            | Admin
+          span#toggle_sidemenu_l.ad.ad-lines
+        // Start: Sidebar Left Content
+        .sidebar-left-content.nano-content
+          // Start: Sidebar Header
+          header.sidebar-header
+            // Sidebar Widget - Author
+            .sidebar-widget.author-widget
+              .media
+                a.media-left(href='#')
+                  img.img-responsive(src='assets/img/avatars/3.jpg')
+                .media-body
+                  .media-links
+                  .media-author Ryan Harrison
+                  a.sidebar-menu-toggle(href='#') User Menu
+                  a(href='pages_login(alt).html') Logout
+            // Sidebar Widget - Menu (slidedown)
+            .sidebar-widget.menu-widget
+              .row.text-center.mbn
+                .col-xs-4
+                  a.text-primary(href='dashboard.html', data-toggle='tooltip', data-placement='top', title='Dashboard')
+                    span.glyphicon.glyphicon-home
+                .col-xs-4
+                  a.text-info(href='pages_messages.html', data-toggle='tooltip', data-placement='top', title='Messages')
+                    span.glyphicon.glyphicon-inbox
+                .col-xs-4
+                  a.text-alert(href='pages_profile.html', data-toggle='tooltip', data-placement='top', title='Tasks')
+                    span.fa.fa-asterisk
+                .col-xs-4
+                  a.text-system(href='pages_timeline.html', data-toggle='tooltip', data-placement='top', title='Activity')
+                    span.fa.fa-desktop
+                .col-xs-4
+                  a.text-danger(href='pages_profile.html', data-toggle='tooltip', data-placement='top', title='Settings')
+                    span.fa.fa-gears
+                .col-xs-4
+                  a.text-warning(href='pages_gallery.html', data-toggle='tooltip', data-placement='top', title='Cron Jobs')
+                    span.fa.fa-flask
+            // Sidebar Widget - Search (hidden)
+            .sidebar-widget.search-widget.hidden
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-search
+                input#sidebar-search.form-control(type='text', placeholder='Search...')
+          // Start: Sidebar Left Menu
+          ul.nav.sidebar-menu
+            li.sidebar-label.pt30 Menu
+            li
+              a(href='pages_calendar.html')
+                span.fa.fa-calendar
+                span.sidebar-title Calendar
+            li
+              a(href='documentation/')
+                span.glyphicon.glyphicon-book
+                span.sidebar-title Documentation
+            li.active
+              a(href='dashboard.html')
+                span.glyphicon.glyphicon-home
+                span.sidebar-title Dashboard
+            li.sidebar-label.pt15 Theme Tools
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-columns
+                span.sidebar-title Admin Layouts
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa.fa-arrows-h
+                    |                   Sidebars
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_sidebar-left-static.html')
+                        | Left Static
+                    li
+                      a(href='layout_sidebar-left-fixed.html')
+                        | Left Fixed
+                    li
+                      a(href='layout_sidebar-left-widgets.html')
+                        | Left Widgets
+                    li
+                      a(href='layout_sidebar-left-minified.html')
+                        | Left Minified
+                    li
+                      a(href='layout_sidebar-left-light.html')
+                        | Left White
+                    li
+                      a(href='layout_sidebar-right-static.html')
+                        | Right Static
+                    li
+                      a(href='layout_sidebar-right-fixed.html')
+                        | Right Fixed
+                    li
+                      a(href='layout_sidebar-right-menu.html')
+                        | Right w/Menu
+                
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-hand-o-up
+                    |                   Topbar
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_topbar.html')
+                        | Default Style
+                    li
+                      a(href='layout_topbar-menu.html')
+                        | Default w/Menu
+                    li
+                      a(href='layout_topbar-alt.html')
+                        | Alternate Style
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-arrows-v
+                    |                   Content Body
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_content-blank.html')
+                        | Blank Starter
+                    li
+                      a(href='layout_content-fixed.html')
+                        | Fixed Window
+                    li
+                      a(href='layout_content-heading.html')
+                        | Content Heading
+                    li
+                      a(href='layout_content-tabs.html')
+                        | Content Tabs
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-pause
+                    |                   Content Trays
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_tray-left.html')
+                        | Tray Left Static
+                    li
+                      a(href='layout_tray-left-fixed.html')
+                        | Tray Left Fixed
+                    li
+                      a(href='layout_tray-right.html')
+                        | Tray Right Static
+                    li
+                      a(href='layout_tray-right-fixed.html')
+                        | Tray Right Fixed
+                    li
+                      a(href='layout_tray-both.html')
+                        | Left + Right Static
+                    li
+                      a(href='layout_tray-both-fixed.html')
+                        | Left + Right Fixed
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-plus-square-o
+                    |                   Boxed Layout
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_boxed.html')
+                        | Default
+                    li
+                      a(href='layout_boxed-horizontal.html')
+                        | Horizontal Menu
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-arrow-circle-o-up
+                    |                   Horizontal Menu
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_horizontal-sm.html')
+                        | Small Size
+                    li
+                      a(href='layout_horizontal-md.html')
+                        | Medium Size
+                    li
+                      a(href='layout_horizontal-lg.html')
+                        | Large Size
+                    li
+                      a(href='layout_horizontal-light.html')
+                        | Light Skin
+                    li
+                      a(href='layout_horizontal-topbar.html')
+                        | With Topbar
+                    li
+                      a(href='layout_horizontal-topbar-alt.html')
+                        | With Alt Topbar
+                    li
+                      a(href='layout_horizontal-collapsed.html')
+                        | Collapsed onLoad
+                    li
+                      a(href='layout_horizontal-boxed.html')
+                        | In Boxed Layout
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-fire
+                span.sidebar-title Admin Plugins
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='admin_plugins-panels.html')
+                    span.glyphicon.glyphicon-book
+                    |  Admin Panels
+                li
+                  a(href='admin_plugins-modals.html')
+                    span.glyphicon.glyphicon-modal-window
+                    |  Admin Modals
+                li
+                  a(href='admin_plugins-dock.html')
+                    span.glyphicon.glyphicon-equalizer
+                    |  Admin Dock
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-check
+                span.sidebar-title Admin Forms
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='admin_forms-elements.html')
+                    span.glyphicon.glyphicon-edit
+                    |  Admin Elements
+                li
+                  a(href='admin_forms-widgets.html')
+                    span.glyphicon.glyphicon-calendar
+                    |  Admin Widgets
+                li
+                  a(href='admin_forms-validation.html')
+                    span.glyphicon.glyphicon-check
+                    |  Admin Validation
+                li
+                  a(href='admin_forms-layouts.html')
+                    span.fa.fa-desktop
+                    |  Admin Layouts
+                li
+                  a(href='admin_forms-wizard.html')
+                    span.fa.fa-clipboard
+                    |  Admin Wizard
+            li.sidebar-label.pt20 Systems
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-diamond
+                span.sidebar-title Widget Packages
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='widgets_tile.html')
+                    span.fa.fa-cube
+                    |  Tile Widgets
+                li
+                  a(href='widgets_panel.html')
+                    span.fa.fa-desktop
+                    |  Panel Widgets
+                li
+                  a(href='widgets_scroller.html')
+                    span.fa.fa-columns
+                    |  Scroller Widgets
+                li
+                  a(href='widgets_data.html')
+                    span.fa.fa-dot-circle-o
+                    |  Admin Widgets
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-shopping-cart
+                span.sidebar-title Ecommerce
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='ecommerce_dashboard.html')
+                    span.glyphicon.glyphicon-shopping-cart
+                    |  Dashboard
+                    span.label.label-xs.bg-primary New
+                li
+                  a(href='ecommerce_products.html')
+                    span.glyphicon.glyphicon-tags
+                    |  Products
+                li
+                  a(href='ecommerce_orders.html')
+                    span.fa.fa-money
+                    |  Orders
+                li
+                  a(href='ecommerce_customers.html')
+                    span.fa.fa-users
+                    |  Customers
+                li
+                  a(href='ecommerce_settings.html')
+                    span.fa.fa-gears
+                    |  Store Settings
+
+            // sidebar resources
+            li.sidebar-label.pt20 Elements
+            li
+              a.accordion-toggle.menu-open(href='#')
+                span.fa.fa-asterisk
+                span.sidebar-title UI Elements
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='ui_alerts.html')
+                    span.fa.fa-warning
+                    |  Alerts
+                li
+                  a(href='ui_animations.html')
+                    span.fa.fa-spinner
+                    |  Animations
+                li.active
+                  a(href='ui_buttons.html')
+                    span.fa.fa-plus-square-o
+                    |  Buttons
+                li
+                  a(href='ui_typography.html')
+                    span.fa.fa-text-width
+                    |  Typography
+                li
+                  a(href='ui_portlets.html')
+                    span.fa.fa-archive
+                    |  Portlets
+                li
+                  a(href='ui_progress-bars.html')
+                    span.fa.fa-bars
+                    |  Progress Bars
+                li
+                  a(href='ui_tabs.html')
+                    span.fa.fa-toggle-off
+                    |  Tabs
+                li
+                  a(href='ui_icons.html')
+                    span.fa.fa-hand-o-right
+                    |  Icons
+                li
+                  a(href='ui_grid.html')
+                    span.fa.fa-th-large
+                    |  Grid
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-align-justify
+                span.sidebar-title Form Elements
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='form_inputs.html')
+                    span.fa.fa-magic
+                    |  Basic Inputs
+                li
+                  a(href='form_plugins.html')
+                    span.fa.fa-bell-o
+                    |  Plugin Inputs
+                    span.label.label-xs.bg-primary New
+                li
+                  a(href='form_editors.html')
+                    span.fa.fa-clipboard
+                    |  Editors
+                li
+                  a(href='form_treeview.html')
+                    span.fa.fa-tree
+                    |  Treeview
+                li
+                  a(href='form_nestable.html')
+                    span.fa.fa-tasks
+                    |  Nestable
+                li
+                  a(href='form_image-tools.html')
+                    span.fa.fa-cloud-upload
+                    |  Image Tools
+                    span.label.label-xs.bg-primary New
+                li
+                  a(href='form_uploaders.html')
+                    span.fa.fa-cloud-upload
+                    |  Uploaders
+                li
+                  a(href='form_notifications.html')
+                    span.fa.fa-bell-o
+                    |  Notifications
+                li
+                  a(href='form_content-sliders.html')
+                    span.fa.fa-exchange
+                    |  Content Sliders
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-tower
+                span.sidebar-title Plugins
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a.accordion-toggle(href='#')
+                    span.glyphicon.glyphicon-globe
+                    |  Maps
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='maps_basic.html') Basic Maps
+                    li
+                      a(href='maps_vector.html') Vector Maps
+                    li
+                      a(href='maps_full.html') Full Map
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-area-chart
+                    |  Charts
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='charts_highcharts.html') Highcharts
+                    li
+                      a(href='charts_d3.html') D3 Charts
+                    li
+                      a(href='charts_flot.html') Flot Charts
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-table
+                    |  Tables
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='tables_basic.html')  Basic Tables
+
+
+                    li
+                      a(href='tables_footable.html')  FooTables
+                    li
+                      a(href='tables_pricing.html')  Pricing Tables
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-flask
+                    |  Misc
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='misc_tour.html')  Site Tour
+                    li
+                      a(href='misc_timeout.html')  Session Timeout
+                    li
+                      a(href='misc_nprogress.html')  Page Progress Loader
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-duplicate
+                span.sidebar-title Pages
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-gears
+                    |  Utility
+                    span.caret
+                  ul.nav.sub-nav
+
+                    li
+                      a(href='pages_confirmation.html', target='_blank')
+                        | Confirmation
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_login.html', target='_blank')  Login
+                    li
+                      a(href='pages_login(alt).html', target='_blank')
+                        | Login Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_register.html', target='_blank')  Register
+                    li
+                      a(href='pages_register(alt).html', target='_blank')
+                        | Register Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_screenlock.html', target='_blank')  Screenlock
+                    li
+                      a(href='pages_screenlock(alt).html', target='_blank')
+                        | Screenlock Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_forgotpw.html', target='_blank')  Forgot Password
+                    li
+                      a(href='pages_forgotpw(alt).html', target='_blank')
+                        | Forgot Password Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_coming-soon.html', target='_blank')
+                        | Coming Soon
+                    li
+                      a(href='pages_404.html')  404 Error
+                    li
+                      a(href='pages_500.html')  500 Error
+                    li
+                      a(href='pages_404(alt).html')  404 Error Alt
+                    li
+                      a(href='pages_500(alt).html')  500 Error Alt
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-desktop
+                    |  Basic
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='pages_search-results.html')
+                        | Search Results
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_profile.html')  Profile
+                    li
+                      a(href='pages_timeline.html')  Timeline Split
+                    li
+                      a(href='pages_timeline-single.html')  Timeline Single
+                    li
+                      a(href='pages_faq.html')  FAQ Page
+                    li
+                      a(href='pages_calendar.html')  Calendar
+                    li
+                      a(href='pages_messages.html')  Messages
+                    li
+                      a(href='pages_messages(alt).html')  Messages Alt
+                    li
+                      a(href='pages_gallery.html')  Gallery
+                    li
+                      a(href='pages_invoice.html')  Printable Invoice
+            // sidebar bullets
+            li.sidebar-label.pt20 Projects
+            li.sidebar-proj
+              a(href='#projectOne')
+                span.fa.fa-bookmark.text-primary
+                span.sidebar-title Executive Meeting
+            li.sidebar-proj
+              a(href='#projectTwo')
+                span.fa.fa-bookmark.text-info
+                span.sidebar-title HelpDesk Redesign
+            li.sidebar-proj
+              a(href='#projectTwo')
+                span.fa.fa-bookmark.text-danger
+                span.sidebar-title Sony Board Meeting
+            li.sidebar-proj
+              a(href='#projectThree')
+                span.fa.fa-bookmark.text-warning
+                span.sidebar-title Apple Tech Conference
+      // Start: Content-Wrapper
+      section#content_wrapper
+        // Start: Topbar-Dropdown
+        #topbar-dropmenu.alt
+          .topbar-menu.row
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-primary.light(href='#')
+                span.glyphicon.glyphicon-inbox.text-muted
+                span.metro-title Messages
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-info.light(href='#')
+                span.glyphicon.glyphicon-user.text-muted
+                span.metro-title Users
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-success.light(href='#')
+                span.glyphicon.glyphicon-headphones.text-muted
+                span.metro-title Support
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-system.light(href='#')
+                span.glyphicon.glyphicon-facetime-video.text-muted
+                span.metro-title Videos
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-warning.light(href='#')
+                span.fa.fa-gears.text-muted
+                span.metro-title Settings
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-alert.light(href='#')
+                span.glyphicon.glyphicon-picture.text-muted
+                span.metro-title Pictures
+        // Start: Topbar
+        header#topbar.alt
+          .topbar-left
+            ol.breadcrumb
+              li
+                a(href="dashboard.html") Dashboard
+              li
+                a(href="admin_forms-elements.html") Form Elements
+              li
+                a(href="maps_basic.html") Plugins Pages
+              li
+                a(href="ui_alerts.html") UI Elements
+              li
+                a(href="documentation/") Documentation
+        #content.pn.pb30.animated.fadeIn.offset-1
+          // Start: Buttons
+          .hero-content.pv30.inset-6
+            .col-adjust-8
+              .row.mb10.offset-4.inset-3.box.br-b
+                h3.mtn.fw400 Buttons
+              .row.bg-white.box.inset-4.inset-2.inset-3
+                h4.fw700.mb20 Color variations
+                .col-xs-2.inset-5
+                  .bg-primary.light.pv20.text-white.fw600.text-center
+                  .bg-primary.pv20.text-white.fw600.text-center
+                  .bg-primary.dark.pv20.text-white.fw600.text-center
+                .col-xs-2
+                  .btn-mountbattenPink.light.br-lighter.pv20.fw600.text-center
+                  .btn-mountbattenPink.br-light.pv20.fw600.text-center
+                  .btn-mountbattenPink.dark.pv20.fw600.text-center
+                .col-xs-2
+                  .bg-alert.light.pv20.text-white.fw600.text-center
+                  .bg-alert.pv20.text-white.fw600.text-center
+                  .bg-alert.dark.pv20.text-white.fw600.text-center
+                .col-xs-2
+                  .bg-danger.light.pv20.text-white.fw600.text-center
+                  .bg-danger.pv20.text-white.fw600.text-center
+                  .bg-danger.dark.pv20.text-white.fw600.text-center
+                .col-xs-2
+                  .bg-success.light.pv20.text-white.fw600.text-center
+                  .bg-success.pv20.text-white.fw600.text-center
+                  .bg-success.dark.pv20.text-white.fw600.text-center
+                .col-xs-2
+                  .bg-rockBlue.light.pv20.text-white.fw600.text-center
+                  .bg-rockBlue.pv20.text-white.fw600.text-center
+                  .bg-rockBlue.dark.pv20.text-white.fw600.text-center
+          // Start: Button States
+          .col-adjust-8.offset-4
+            .row.box.inset-4.inset-2.inset-3
+              h4.fw700.mb20 Buttons States
+              .col-xs-4.col-md-2.inset-5.inset-12
+                .bs-component
+                  button.btn.btn-primary.btn-states.btn-block(type='button') Normal
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-mountbattenPink.btn-states.btn-block(type='button') Normal
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-alert.btn-states.btn-block(type='button') Normal
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-danger.btn-states.btn-block(type='button') Normal
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-success.btn-states.btn-block(type='button') Normal
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-rockBlue.btn-states.btn-block(type='button') Normal
+            .row.text-center.box.inset-7.inset-2.inset-3
+              .col-xs-4.col-md-2.inset-5
+                .bs-component
+                  button.btn.btn-hover.btn-primary.btn-states.btn-block(type='button') Hover
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-hover.btn-mountbattenPink.btn-states.btn-block(type='button') Hover
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-hover.btn-alert.btn-states.btn-block(type='button') Hover
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-hover.btn-danger.btn-states.btn-block(type='button') Hover
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-hover.btn-success.btn-states.btn-block(type='button') Hover
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-hover.btn-rockBlue.btn-states.bg-carolina-blue.btn-block(type='button') Hover
+            .row.text-center.box.inset-7.inset-2.inset-3
+              .col-xs-4.col-md-2.inset-5.inset-12
+                .bs-component
+                  button.btn.active.btn-primary.btn-states.btn-block(type='button') Active
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.active.btn-mountbattenPink.btn-states.btn-block(type='button') Active
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.active.btn-alert.btn-states.btn-block(type='button') Active
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.active.btn-danger.btn-states.btn-block(type='button') Active
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.active.btn-success.btn-states.btn-block(type='button') Active
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.active.btn-rockBlue.btn-states.btn-block(type='button') Active
+            .row.text-center.box.inset-7.inset-2.inset-3
+              .col-xs-4.col-md-2.inset-5.inset-12
+                .bs-component
+                  button.btn.disabled.btn-lg.btn-default.disable-bg.btn-lg-mod.btn-states.btn-block(type='button') Disable
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.disabled.btn-lg.btn-dark.disable-bg.btn-lg-mod.btn-states.btn-block(type='button') Disable
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.disabled.btn-lg.btn-primary.disable-bg.btn-lg-mod.btn-states.btn-block(type='button') Disable
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.disabled.btn-lg.btn-success.disable-bg.btn-lg-mod.btn-states.btn-block(type='button') Disable
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.disabled.btn-lg.btn-info.disable-bg.btn-lg-mod.btn-states.btn-block(type='button') Disable
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.disabled.btn-lg.btn-warning.disable-bg.btn-lg-mod.btn-states.btn-block(type='button') Disable
+          // button sizes
+          .col-adjust-8.offset-4
+            .row.box.inset-4.inset-2.inset-3
+              h4.fw700.mb20 Button Sizes
+              .col-xs-4.col-md-2.inset-5.inset-12
+                .bs-component
+                  button.btn.btn-xs.btn-primary.btn-block(type='button') Default
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-xs.btn-mountbattenPink.btn-block(type='button') Primary
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-xs.btn-alert.btn-block(type='button') Info
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-xs.btn-danger.btn-block(type='button') Alert
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-xs.btn-success.btn-block(type='button') Success
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-xs.btn-rockBlue.btn-block(type='button') System
+            .row.text-center.box.inset-7.inset-2.inset-3
+              .col-xs-4.col-md-2.inset-5.inset-12
+                .bs-component
+                  button.btn.btn-sm.btn-primary.btn-block(type='button') Default
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-sm.btn-mountbattenPink.btn-block(type='button') Primary
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-sm.btn-alert.btn-block(type='button') Info
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-sm.btn-danger.btn-block(type='button') Alert
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-sm.btn-success.btn-block(type='button') Success
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-sm.btn-rockBlue.btn-block(type='button') System
+            .row.text-center.text-center.box.inset-7.inset-2.inset-3
+              .col-xs-4.col-md-2.inset-5.inset-12
+                .bs-component
+                  button.btn.btn-md.btn-primary.btn-block(type='button') Default
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-md.btn-mountbattenPink.btn-block(type='button') Primary
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-md.btn-alert.btn-block(type='button') Info
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-md.btn-danger.btn-block(type='button') Alert
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-md.btn-success.btn-block(type='button') Success
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-md.btn-rockBlue.btn-block(type='button') System
+            .row.text-center.text-center.box.inset-7.inset-2.inset-3
+              .col-xs-4.col-md-2.inset-5.inset-12
+                .bs-component
+                  button.btn.btn-lg.btn-primary.btn-block(type='button') Default
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-lg.btn-mountbattenPink.btn-block(type='button') Primary
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-lg.btn-alert.btn-block(type='button') Info
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-lg.btn-danger.btn-block(type='button') Alert
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-lg.btn-success.btn-block(type='button') Success
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-lg.btn-rockBlue.btn-block(type='button') System
+          .col-adjust-8.offset-4.demo-btn-dropdowns
+            .row.box.inset-4.inset-2.inset-3
+              h4.fw700.mb20 Button Dropdowns
+              .col-xs-4.col-md-2.inset-5.inset-12
+                .bs-component
+                  .btn-group.btn-block
+                    button.btn-block.btn.btn-primary.dropdown-toggle(type='button', data-toggle='dropdown')
+                      | Default
+                      span.caret.ml5
+                    ul.dropdown-menu(role='menu')
+                      li
+                        a(href='#') Action
+                      li
+                        a(href='#') Another action
+                      li
+                        a(href='#') Something else here
+                      li.divider
+                      li
+                        a(href='#') Separated link
+              .col-xs-4.col-md-2
+                .bs-component
+                  .btn-group.btn-block
+                    button.btn-block.btn.btn-mountbattenPink.dropdown-toggle(type='button', data-toggle='dropdown')
+                      | Dark
+                      span.caret.ml5
+                    ul.dropdown-menu(role='menu')
+                      li
+                        a(href='#') Action
+                      li
+                        a(href='#') Another action
+                      li
+                        a(href='#') Something else here
+                      li.divider
+                      li
+                        a(href='#') Separated link
+              .col-xs-4.col-md-2
+                .bs-component
+                  .btn-group.btn-block
+                    button.btn-block.btn.btn-alert.dropdown-toggle(type='button', data-toggle='dropdown')
+                      | Primary
+                      span.caret.ml5
+                    ul.dropdown-menu(role='menu')
+                      li
+                        a(href='#') Action
+                      li
+                        a(href='#') Another action
+                      li
+                        a(href='#') Something else here
+                      li.divider
+                      li
+                        a(href='#') Separated link
+              .col-xs-4.col-md-2
+                .bs-component
+                  .btn-group.btn-block
+                    button.btn-block.btn.btn-danger.dropdown-toggle(type='button', data-toggle='dropdown')
+                      | Success
+                      span.caret.ml5
+                    ul.dropdown-menu(role='menu')
+                      li
+                        a(href='#') Action
+                      li
+                        a(href='#') Another action
+                      li
+                        a(href='#') Something else here
+                      li.divider
+                      li
+                        a(href='#') Separated link
+              .col-xs-4.col-md-2
+                .bs-component
+                  .btn-group.btn-block
+                    button.btn-block.btn.btn-success.dropdown-toggle(type='button', data-toggle='dropdown')
+                      | Info
+                      span.caret.ml5
+                    ul.dropdown-menu(role='menu')
+                      li
+                        a(href='#') Action
+                      li
+                        a(href='#') Another action
+                      li
+                        a(href='#') Something else here
+                      li.divider
+                      li
+                        a(href='#') Separated link
+              .col-xs-4.col-md-2
+                .bs-component
+                  .btn-group.btn-block
+                    button.btn-block.btn.btn-rockBlue.dropdown-toggle(type='button', data-toggle='dropdown')
+                      | Warning
+                      span.caret.ml5
+                    ul.dropdown-menu(role='menu')
+                      li
+                        a(href='#') Action
+                      li
+                        a(href='#') Another action
+                      li
+                        a(href='#') Something else here
+                      li.divider
+                      li
+                        a(href='#') Separated link
+          // button options
+          .col-adjust-8.offset-4
+            .row.box.inset-4.inset-2.inset-3
+              h4.fw700.mb20 Button Options
+              .col-xs-4.col-md-2.inset-5.inset-12
+                .bs-component
+                  button.btn.btn-rounded.btn-primary.btn-block(type='button') Default
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-rounded.btn-mountbattenPink.btn-block(type='button') Dark
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-rounded.btn-alert.btn-block(type='button') Primary
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-rounded.btn-danger.btn-block(type='button') Success
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-rounded.btn-success.btn-block(type='button') Info
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-rounded.btn-rockBlue.btn-block(type='button') Warning
+            .row.box.inset-4.inset-2.inset-3
+              .col-xs-4.col-md-2.inset-12
+                .bs-component
+                  button.btn.btn-default.btn-primary.btn-block(type='button') Default
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-dark.btn-mountbattenPink.btn-block(type='button') Dark
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-primary.btn-alert.btn-block(type='button') Primary
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-success.btn-danger.btn-block(type='button') Success
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-info.btn-success.btn-block(type='button') Info
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.btn-warning.btn-rockBlue.btn-block(type='button') Warning
+          // loading buttons
+          .col-adjust-8.offset-4.demo-btn-ladda
+            .row.box.inset-4.inset-2.inset-3
+              h4.fw700.mb20 Loading Buttons
+              .col-xs-4.col-md-2.inset-5.inset-12
+                .bs-component
+                  button.btn.ladda-button.btn-block.btn-primary(type='button', data-style='expand-up')
+                    span.ladda-label Load Up
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.ladda-button.btn-block.btn-mountbattenPink(type='button', data-style='expand-right')
+                    span.ladda-label Load Right
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.ladda-button.btn-block.btn-alert(type='button', data-style='expand-down')
+                    span.ladda-label Load Down
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.ladda-button.btn-block.btn-danger(type='button', data-style='expand-left')
+                    span.ladda-label Load Left
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.ladda-button.btn-block.width-2.btn-success(type='button', data-style='contract')
+                    span.ladda-label Contract
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.ladda-button.btn-block.btn-rockBlue(type='button', data-style='zoom-in')
+                    span.ladda-label Zoom In
+            .row.box.inset-4.inset-2.inset-3
+              .col-xs-4.col-md-2.inset-5.inset-12
+                .bs-component
+                  button.btn.ladda-button.btn-block.btn-primary.progress-button(type='button', data-style='expand-up')
+                    span.ladda-label Up
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.ladda-button.btn-block.btn-mountbattenPink.progress-button(type='button', data-style='expand-right')
+                    span.ladda-label Right
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.ladda-button.btn-block.btn-alert.progress-button(type='button', data-style='expand-down')
+                    span.ladda-label Down
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.ladda-button.btn-block.btn-danger.progress-button(type='button', data-style='expand-left')
+                    span.ladda-label Left
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.ladda-button.btn-block.width-2.btn-success.progress-button(type='button', data-style='contract')
+                    span.ladda-label Progress
+              .col-xs-4.col-md-2
+                .bs-component
+                  button.btn.ladda-button.btn-block.btn-rockBlue.progress-button(type='button', data-style='zoom-in')
+                    span.ladda-label In
+          // icon/button groups
+          .col-adjust-8.offset-4.demo-btn-groups.text-center.offset-10
+            .row.box.inset-4.inset-2.inset-3
+              h4.fw700.mb20.text-left Icon/Button Groups
+              .col-xs-4.col-lg-2.inset-5
+                .bs-component
+                  .btn-group.btn-block-sm
+                    button.btn.btn-primary.btn-block-sm(type='button')
+                      i.fa.fa-home
+              .col-xs-4.col-lg-2
+                .bs-component
+                  .btn-group.btn-block-sm
+                    button.btn.btn-mountbattenPink.btn-block-sm(type='button')
+                      i.fa.fa-home
+              .col-xs-4.col-lg-2
+                .bs-component
+                  .btn-group.btn-block-sm
+                    button.btn.btn-alert.btn-block-sm(type='button')
+                      i.fa.fa-home
+              .col-xs-4.col-lg-2
+                .bs-component
+                  .btn-group.btn-block-sm
+                    button.btn.btn-danger.btn-block-sm(type='button')
+                      i.fa.fa-home
+              .col-xs-4.col-lg-2
+                .bs-component
+                  .btn-group.btn-block-sm
+                    button.btn.btn-success.btn-block-sm(type='button')
+                      i.fa.fa-home
+              .col-xs-4.col-lg-2
+                .bs-component
+                  .btn-group.btn-block-sm
+                    button.btn.btn-rockBlue.btn-block-sm(type='button')
+                      i.fa.fa-home
+            .row.box.inset-4.inset-2.inset-3
+              .col-xs-4.col-lg-2.inset-5
+                .bs-component
+                  .btn-group
+                    button.btn.btn-primary.btn-block-sm(type='button')
+                      i.fa.fa-home
+                    button.btn.btn-primary.dark.offset-8.btn-block-sm(type='button')
+                      i.fa.fa-coffee
+              .col-xs-4.col-lg-2
+                .bs-component
+                  .btn-group
+                    button.btn.btn-mountbattenPink.btn-block-sm(type='button')
+                      i.fa.fa-home
+                    button.btn.btn-mountbattenPink.dark.offset-8.btn-block-sm(type='button')
+                      i.fa.fa-coffee
+              .col-xs-4.col-lg-2
+                .bs-component
+                  .btn-group
+                    button.btn.btn-alert.btn-block-sm(type='button')
+                      i.fa.fa-home
+                    button.btn.btn-alert.dark.offset-8.btn-block-sm(type='button')
+                      i.fa.fa-coffee
+              .col-xs-4.col-lg-2
+                .bs-component
+                  .btn-group
+                    button.btn.btn-danger.btn-block-sm(type='button')
+                      i.fa.fa-home
+                    button.btn.btn-danger.dark.offset-8.btn-block-sm(type='button')
+                      i.fa.fa-coffee
+              .col-xs-4.col-lg-2
+                .bs-component
+                  .btn-group
+                    button.btn.btn-success.btn-block-sm(type='button')
+                      i.fa.fa-home
+                    button.btn.btn-success.dark.offset-8.btn-block-sm(type='button')
+                      i.fa.fa-coffee
+              .col-xs-4.col-lg-2
+                .bs-component
+                  .btn-group
+                    button.btn.btn-rockBlue.btn-block-sm(type='button')
+                      i.fa.fa-home
+                    button.btn.btn-rockBlue.dark.offset-8.btn-block-sm(type='button')
+                      i.fa.fa-coffee
+            .row.box.inset-4.inset-2.inset-3
+              .col-xs-4.col-lg-2.inset-5
+                .bs-component
+                  .btn-group
+                    button.btn.icon-xs.btn-primary.light.btn-block-sm(type='button')
+                      i.fa.fa-envelope
+                    button.btn.icon-xs.btn-primary.offset-8.btn-block-sm(type='button')
+                      i.fa.fa-home
+                    button.btn.icon-xs.btn-primary.dark.offset-8.btn-block-sm(type='button')
+                      i.fa.fa-coffee
+              .col-xs-4.col-lg-2
+                .bs-component
+                  .btn-group
+                    button.btn.icon-xs.btn-mountbattenPink.light.btn-block-sm(type='button')
+                      i.fa.fa-envelope
+                    button.btn.icon-xs.btn-mountbattenPink.offset-8.btn-block-sm(type='button')
+                      i.fa.fa-home
+                    button.btn.icon-xs.btn-mountbattenPink.dark.offset-8.btn-block-sm(type='button')
+                      i.fa.fa-coffee
+              .col-xs-4.col-lg-2
+                .bs-component
+                  .btn-group
+                    button.btn.icon-xs.btn-alert.light.btn-block-sm(type='button')
+                      i.fa.fa-envelope
+                    button.btn.icon-xs.btn-alert.offset-8.btn-block-sm(type='button')
+                      i.fa.fa-home
+                    button.btn.icon-xs.btn-alert.dark.offset-8.btn-block-sm(type='button')
+                      i.fa.fa-coffee
+              .col-xs-4.col-lg-2
+                .bs-component
+                  .btn-group
+                    button.btn.icon-xs.btn-danger.light.btn-block-sm(type='button')
+                      i.fa.fa-envelope
+                    button.btn.icon-xs.btn-danger.offset-8.btn-block-sm(type='button')
+                      i.fa.fa-home
+                    button.btn.icon-xs.btn-danger.dark.offset-8.btn-block-sm(type='button')
+                      i.fa.fa-coffee
+              .col-xs-4.col-lg-2
+                .bs-component
+                  .btn-group
+                    button.btn.icon-xs.btn-success.light.btn-block-sm(type='button')
+                      i.fa.fa-envelope
+                    button.btn.icon-xs.btn-success.offset-8.btn-block-sm(type='button')
+                      i.fa.fa-home
+                    button.btn.icon-xs.btn-success.dark.offset-8.btn-block-sm(type='button')
+                      i.fa.fa-coffee
+              .col-xs-4.col-lg-2
+                .bs-component
+                  .btn-group
+                    button.btn.icon-xs.btn-rockBlue.light.btn-block-sm(type='button')
+                      i.fa.fa-envelope
+                    button.btn.icon-xs.btn-rockBlue.offset-8.btn-block-sm(type='button')
+                      i.fa.fa-home
+                    button.btn.icon-xs.btn-rockBlue.dark.offset-8.btn-block-sm(type='button')
+                      i.fa.fa-coffee
+            // social buttons
+            .row
+              .box.inset-2.inset-3.text-center
+                h4.fw700.mb20 Social Buttons
+              .p20.bg-dark.lighter.text-center
+                .bs-component.ib
+                  button.zocial.icon.facebook Sign in with Facebook
+                .bs-component.ib
+                  button.zocial.icon.googleplus Sign in with Google+
+                .bs-component.ib
+                  button.zocial.icon.twitter Sign in with Twitter
+                .bs-component.ib
+                  button.zocial.icon.google Sign in with Google
+                .bs-component.ib
+                  button.zocial.icon.linkedin Sign in with LinkedIn
+                .bs-component.ib
+                  button.zocial.icon.paypal Pay with Paypal
+                .bs-component.ib.ib
+                  button.zocial.icon.amazon Sign in with Amazon
+                .bs-component.ib.ib
+                  button.zocial.icon.dropbox Sync with Dropbox
+                .bs-component.ib
+                  button.zocial.icon.evernote Clip to Evernote
+                .bs-component.ib
+                  button.zocial.icon.skype Call me on Skype
+                .bs-component.ib
+                  button.zocial.icon.guest Sign in as guest
+                .bs-component.ib
+                  button.zocial.icon.spotify Play on Spotify
+                .bs-component.ib
+                  button.zocial.icon.lastfm Sign in with Last.fm
+                .bs-component.ib
+                  button.zocial.icon.songkick Sign in with Songkick
+                .bs-component.ib
+                  button.zocial.icon.forrst Follow me on Forrst
+                .bs-component.ib
+                  button.zocial.icon.dribbble Sign in with Dribbble
+                .bs-component.ib
+                  button.zocial.icon.cloudapp Sign in to CloudApp
+                .bs-component.ib
+                  button.zocial.icon.github Fork me on Github
+                .bs-component.ib
+                  button.zocial.pinterest.icon Follow me on Pinterest
+                .bs-component.ib
+                  button.zocial.quora.icon Follow me on Quora
+                .bs-component.ib
+                  button.zocial.pinboard.icon Bookmark with Pinboard
+                .bs-component.ib
+                  button.zocial.lanyrd.icon Attend on Lanyrd
+                .bs-component.ib
+                  button.zocial.icon.itunes Download on iTunes
+                .bs-component.ib
+                  button.zocial.icon.android Download on Android
+                .bs-component.ib
+                  button.zocial.icon.disqus Sign in with Disqus
+                .bs-component.ib
+                  button.zocial.icon.yahoo Sign in with Yahoo
+                .bs-component.ib
+                  button.zocial.icon.vimeo Upload to Vimeo
+                .bs-component.ib
+                  button.zocial.icon.chrome Add to Chrome
+                .bs-component.ib
+                  button.zocial.icon.ie Get a new browser
+                .bs-component.ib
+                  button.zocial.icon.html5 Made from HTML5
+                .bs-component.ib
+                  button.zocial.icon.instapaper Read It Later
+                .bs-component.ib
+                  button.zocial.icon.scribd Read more on Scribd
+                .bs-component.ib
+                  button.zocial.icon.wikipedia View on Wikipedia
+                .bs-component.ib
+                  button.zocial.icon.flattr Tip with Flattr
+                .bs-component.ib
+                  button.zocial.icon.tumblr Follow me on Tumblr
+                .bs-component.ib
+                  button.zocial.icon.posterous Subscribe to my Posterous
+                .bs-component.ib
+                  button.zocial.icon.gowalla Check in with Gowalla
+                .bs-component.ib
+                  button.zocial.icon.foursquare Check in with foursquare
+                .bs-component.ib
+                  button.zocial.icon.yelp Write a review on Yelp
+                .bs-component.ib
+                  button.zocial.icon.soundcloud Follow me on Soundcloud
+                .bs-component.ib
+                  button.zocial.icon.smashing Read on Smashing Magazine
+                .bs-component.ib
+                  button.zocial.icon.wordpress Sign in with WordPress
+                .bs-component.ib
+                  button.zocial.icon.intensedebate Sign in with IntenseDebate
+                .bs-component.ib
+                  button.zocial.icon.openid Sign in with OpenID
+                .bs-component.ib
+                  button.zocial.icon.gmail Sign in with Gmail
+                .bs-component.ib
+                  button.zocial.icon.eventbrite Sign in with Eventbrite
+                .bs-component.ib
+                  button.zocial.icon.eventasaurus Sign in with Eventasaurus
+                .bs-component.ib
+                  button.zocial.icon.meetup Sign in with Meetup.com
+                .bs-component.ib
+                  button.zocial.icon.aol Sign in with AIM
+                .bs-component.ib
+                  button.zocial.icon.plancast Follow me on Plancast
+                .bs-component.ib
+                  button.zocial.icon.youtube Subscribe on YouTube
+                .bs-component.ib
+                  button.zocial.icon.appstore Available on the Mac App Store
+                .bs-component.ib
+                  button.zocial.icon.creativecommons View Creative Commons Licence
+                .bs-component.ib
+                  button.zocial.icon.rss Subscribe to RSS
+                .bs-component.ib
+                  button.zocial.weibo.icon Follow me on Weibo
+                .bs-component.ib
+                  button.zocial.plurk.icon Follow me on Plurk
+                .bs-component.ib
+                  button.zocial.grooveshark.icon Follow me on Grooveshark
+                .bs-component.ib
+                  button.zocial.blogger.icon Post on Blogger
+                .bs-component.ib
+                  button.zocial.viadeo.icon Sign in with Viadeo
+                .bs-component.ib
+                  button.zocial.podcast.icon Subscribe to this Podcast
+                .bs-component.ib
+                  button.zocial.fivehundredpx.icon View Portfolio on 500px
+                .bs-component.ib
+                  button.zocial.bitcoin.icon Bitcoin accepted here
+                .bs-component.ib
+                  button.zocial.ninetyninedesigns.icon View Portfolio on 99Designs
+                .bs-component.ib
+                  button.zocial.stumbleupon.icon Stumble!
+                .bs-component.ib
+                  button.zocial.itunes.icon Download on iTunes
+                .bs-component.ib
+                  button.zocial.myspace.icon Find me on Myspace
+                .bs-component.ib
+                  button.zocial.windows.icon Sign in with Windows Live
+                .bs-component.ib
+                  button.zocial.eventful.icon Find Events with Eventful
+                .bs-component.ib
+                  button.zocial.klout.icon Influence with Klout
+                .bs-component.ib
+                  button.zocial.xing.icon Sign in with Xing
+                .bs-component.ib
+                  button.zocial.flickr.icon Upload to Flickr
+                .bs-component.ib
+                  button.zocial.delicious.icon Sign in with Del.icio.us
+                .bs-component.ib
+                  button.zocial.googleplay.icon Download from Google Play
+                .bs-component.ib
+                  button.zocial.opentable.icon Reserve with OpenTable
+                .bs-component.ib
+                  button.zocial.digg.icon Digg this
+                .bs-component.ib
+                  button.zocial.reddit.icon Share on Reddit
+                .bs-component.ib
+                  button.zocial.angellist.icon Fund us on AngelList
+                .bs-component.ib
+                  button.zocial.instagram.icon Sign in with Instagram
+                .bs-component.ib
+                  button.zocial.steam.icon Sign in with Steam
+                .bs-component.ib
+                  button.zocial.vk.icon Sign in with VKontakte
+                .bs-component.ib
+                  button.zocial.appnet.icon Sign in with App.net
+                .bs-component.ib
+                  button.zocial.stripe.icon Sign in with Stripe
+                .bs-component.ib
+                  button.zocial.dwolla.icon Sign in with Dwolla
+                .bs-component.ib
+                  button.zocial.drupal.icon Built with Drupal
+                .bs-component.ib
+                  button.zocial.statusnet.icon Share with Status.net/Indenti.ca
+                .bs-component.ib
+                  button.zocial.pocket.icon Save for later
+                .bs-component.ib
+                  button.zocial.acrobat.icon Download Adobe Acrobat
+                .bs-component.ib
+                  button.zocial.bitbucket.icon Fork from Bitbucket
+                .bs-component.ib
+                  button.zocial.buffer.icon Buffer
+                .bs-component.ib
+                  button.zocial.lego.icon Make me out of Lego
+                .bs-component.ib
+                  button.zocial.logmein.icon Log in
+                .bs-component.ib
+                  button.zocial.ycombinator.icon Hacker News
+                .bs-component.ib
+                  button.zocial.stackoverflow.icon Sign in with Stackoverflow
+                br
+              .p20.bg-dark.light.text-center
+                .bs-component.ib
+                  button.zocial.facebook Sign in with Facebook
+                .bs-component.ib
+                  button.zocial.tumblr Follow me on Tumblr
+                .bs-component.ib
+                  button.zocial.twitter Sign in with Twitter
+                .bs-component.ib
+                  button.zocial.linkedin Sign in with LinkedIn
+                .bs-component.ib
+                  button.zocial.google Sign in with Google
+                .bs-component.ib
+                  button.zocial.googleplus Sign in with Google+
+                .bs-component.ib
+                  button.zocial.pinterest Follow me on Pinterest
+                .bs-component.ib
+                  button.zocial.github Fork me on Github
+                .bs-component.ib
+                  button.zocial.dribbble Sign in with Dribbble
+                .bs-component.ib
+                  button.zocial.gmail Sign in with Gmail
+                .bs-component.ib
+                  button.zocial.soundcloud Follow me on Soundcloud
+                .bs-component.ib
+                  button.zocial.itunes Available on iTunes
+                .bs-component.ib
+                  button.zocial.paypal Pay with Paypal
+                .bs-component.ib
+                  button.zocial.amazon Sign in with Amazon
+                .bs-component.ib
+                  button.zocial.skype Call me on Skype
+                .bs-component.ib
+                  button.zocial.cloudapp Sign in to CloudApp
+                .bs-component.ib
+                  button.zocial.forrst Follow me on Forrst
+                .bs-component.ib
+                  button.zocial.spotify Play on Spotify
+                .bs-component.ib
+                  button.zocial.instapaper Read It Later
+                .bs-component.ib
+                  button.zocial.smashing Read on Smashing Magazine
+                .bs-component.ib
+                  button.zocial.dropbox Sync with Dropbox
+                .bs-component.ib
+                  button.zocial.appstore Available on the App Store
+                .bs-component.ib
+                  button.zocial.macstore Available on the Mac App Store
+                .bs-component.ib
+                  button.zocial.android Available on Android Market
+                .bs-component.ib
+                  button.zocial.evernote Clip to Evernote
+                .bs-component.ib
+                  button.zocial.quora Follow me on Quora
+                .bs-component.ib
+                  button.zocial.lanyrd Attend on Lanyrd
+                .bs-component.ib
+                  button.zocial.lastfm Sign in with Last.fm
+                .bs-component.ib
+                  button.zocial.yelp Write a review on Yelp
+                .bs-component.ib
+                  button.zocial.foursquare Check in with foursquare
+                .bs-component.ib
+                  button.zocial.klout Influence with Klout
+                .bs-component.ib
+                  button.zocial.wikipedia View on Wikipedia
+                .bs-component.ib
+                  button.zocial.disqus Sign in with Disqus
+                .bs-component.ib
+                  button.zocial.intensedebate Sign in with IntenseDebate
+                .bs-component.ib
+                  button.zocial.vimeo Upload to Vimeo
+                .bs-component.ib
+                  button.zocial.scribd Read more on Scribd
+                .bs-component.ib
+                  button.zocial.wordpress Sign in with WordPress
+                .bs-component.ib
+                  button.zocial.songkick Sign in with Songkick
+                .bs-component.ib
+                  button.zocial.posterous Sign in with Posterous
+                .bs-component.ib
+                  button.zocial.eventbrite Sign in with Eventbrite
+                .bs-component.ib
+                  button.zocial.flattr Tip with Flattr
+                .bs-component.ib
+                  button.zocial.plancast Follow me on Plancast
+                .bs-component.ib
+                  button.zocial.youtube Subscribe on YouTube
+        // content
+      // Start: Right Sidebar
+      aside#sidebar_right.nano.affix
+        // Start: Sidebar Right Content
+        .sidebar-right-content.nano-content
+          .tab-block.sidebar-block.br-n
+            ul.nav.nav-tabs.tabs-border.nav-justified.hidden
+              li.active
+                a(href='#sidebar-right-tab1', data-toggle='tab') Tab 1
+              li
+                a(href='#sidebar-right-tab2', data-toggle='tab') Tab 2
+              li
+                a(href='#sidebar-right-tab3', data-toggle='tab') Tab 3
+            .tab-content.br-n
+              #sidebar-right-tab1.tab-pane.active
+                h5.title-divider.text-muted.mb20
+                  | Server Statistics
+                  span.pull-right
+                    | 2013
+                    i.fa.fa-caret-down.ml5
+                .progress.mh5
+                  .progress-bar.progress-bar-primary(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 44%')
+                    span.fs11 DB Request
+                .progress.mh5
+                  .progress-bar.progress-bar-info(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 84%')
+                    span.fs11.text-left Server Load
+                .progress.mh5
+                  .progress-bar.progress-bar-warning(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 61%')
+                    span.fs11.text-left Server Connections
+                h5.title-divider.text-muted.mt30.mb10 Traffic Margins
+                .row
+                  .col-xs-5
+                    h3.text-primary.mn.pl5 132
+                  .col-xs-7.text-right
+                    h3.text-success-dark.mn
+                      i.fa.fa-caret-up
+                      |  13.2%
+                h5.title-divider.text-muted.mt25.mb10 Database Request
+                .row
+                  .col-xs-5
+                    h3.text-primary.mn.pl5 212
+                  .col-xs-7.text-right
+                    h3.text-success-dark.mn
+                      i.fa.fa-caret-up
+                      |  25.6%
+                h5.title-divider.text-muted.mt25.mb10 Server Response
+                .row
+                  .col-xs-5
+                    h3.text-primary.mn.pl5 82.5
+                  .col-xs-7.text-right
+                    h3.text-danger.mn
+                      i.fa.fa-caret-down
+                      |  17.9%
+                h5.title-divider.text-muted.mt40.mb20
+                  | Server Statistics
+                  span.pull-right.text-primary.fw600 USA
+              #sidebar-right-tab2.tab-pane
+              #sidebar-right-tab3.tab-pane
+    style.
+      /* Demo Page Styles */
+      .hero-content .btn {
+        border-radius: 0 !important;
+        padding: 12px 0 !important;
+      }
+
+      .col-adjust-8 {
+        padding: 0 30px;
+      }
+
+      .col-adjust-8 > .row > div {
+        /*width: 11.1%;*/
+        padding-left: 7px;
+        padding-right: 7px;
+      }
+
+      .col-adjust-8 > .row > div > .btn {
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+
+      .col-adjust-8 > .row > div > .btn-group > .btn {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      /* Responsive Demo Page Styles */
+      @media (max-width: 700px) {
+        .col-adjust-8 code {
+          display: none;
+        }
+
+        .col-adjust-8 > .row > div {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+
+        .hero-content {
+          border-bottom: 0 !important;
+          padding-bottom: 0 !important;
+        }
+
+        .hero-content .col-adjust-8 h3,
+        .hero-content .col-adjust-8 > .row:first-child > div {
+          margin-bottom: 0px !important;
+        }
+
+        .col-adjust-8.demo-btn-groups > .row > div,
+        .col-adjust-8.demo-btn-dropdowns > .row > div,
+        .col-adjust-8.demo-btn-ladda > .row > div {
+          width: 33%;
+          margin-bottom: 10px;
+        }
+
+        .col-adjust-8.demo-btn-ladda > .row > div > .btn {
+          min-width: 100px;
+        }
+      }
+
+      /* Zocal Demo Page Styles*/
+      button.zocial {
+        margin: 6px;
+      }
+
+      /* Ladd Demo Page Styles*/
+      .ladda-button[data-loading] {
+        overflow: visible;
+      }
+
+      .ladda-button[data-style=contract][data-loading] {
+        width: 35px;
+      }
+    // core scripts
+    script(src='plugins/core.min.js')
+    // Theme Javascript
+    script(src='assets/js/utility/utility.js')
+    script(src='assets/js/demo/demo.js')
+    script(src='assets/js/main.js')
+    script(type='text/javascript').
+      jQuery(document).ready(function () {
+        "use strict";
+        // Init Theme Core
+        Core.init();
+        // Init Demo JS
+        Demo.init();
+        // Init Ladda Plugin on buttons
+        Ladda.bind('.ladda-button', {
+          timeout: 2000
+        });
+        // Bind progress buttons and simulate loading progress. Note: Button still requires ".ladda-button" class.
+        Ladda.bind('.progress-button', {
+          callback: function (instance) {
+            var progress = 0;
+            var interval = setInterval(function () {
+              progress = Math.min(progress + Math.random() * 0.1, 1);
+              instance.setProgress(progress);
+              if (progress === 1) {
+                instance.stop();
+                clearInterval(interval);
+              }
+            }, 200);
+          }
+        });
+      });

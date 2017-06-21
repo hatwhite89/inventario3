@@ -1,0 +1,107 @@
+/**
+ * RD Select Menu
+ */
+@select-color: #333;
+@select-border: 1px solid #ebebeb;
+@select-background: #fff;
+@select-selected-background: #eee;
+@select-font-size: 18px;
+@select-line-height: 30px;
+
+.form-group{
+  text-align: left;
+}
+
+label {
+  display: block;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+.rd-mailform-select {
+  display: block;
+  font-size: @select-font-size;
+  line-height: 46px;
+  border: @select-border;
+  padding: 2px 20px;
+  height: 53px;
+}
+
+.rd-select {
+  position: relative;
+  cursor: pointer;
+}
+
+.rd-select-value{
+  padding: 15px 40px 20px 10px;
+  font-family: "Arial", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #423748;
+  text-transform: uppercase;
+}
+
+.rd-select-value-icon{
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  color: @brand-primary;
+}
+
+.rd-select-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  background: @select-background;
+  text-align: left;
+  color: @select-color;
+  border: @select-border;
+  padding: 4px 0 4px 4px;
+  max-height: 200px;
+  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  li + li {
+    margin-top: 4px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: darken(@select-background, 20%);
+  }
+}
+
+.rd-select-option {
+  font-weight: 400;
+  cursor: pointer;
+  font-size: @select-font-size;
+  line-height: @select-line-height;
+  padding: 5px 20px;
+  transition: .3s all;
+
+  &:hover, &.selected {
+    color: @brand-primary;
+  }
+}
+
+.rd-select-open {
+  .rd-select-menu {
+    display: block;
+  }
+}

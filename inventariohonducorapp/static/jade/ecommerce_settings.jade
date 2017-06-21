@@ -1,0 +1,1344 @@
+extends  _skeleton
+
+block stylesheets
+  link(rel='stylesheet', type='text/css', href='assets/admin-tools/admin-forms/css/admin-forms.css')
+
+block body
+  body.ecommerce-page
+    // Start: Theme Preview Pane
+    #skin-toolbox
+      .panel
+        .panel-heading
+          span.panel-icon
+            i.fa.fa-gear.text-primary
+          span.panel-title  Theme Options
+        .panel-body.pn
+          ul.nav.nav-list.nav-list-sm.pl15.pt10(role='tablist')
+
+            li.active
+              a(href='#toolbox-sidebar', role='tab', data-toggle='tab') Sidebar
+            li
+              a(href='#toolbox-settings', role='tab', data-toggle='tab') Misc
+          .tab-content.p20.ptn.pb15
+
+            #toolbox-sidebar.tab-pane.active(role='tabpanel')
+              form#toolbox-sidebar-skin
+                h4.mv20 Sidebar Skins
+                .skin-toolbox-swatches
+                  .checkbox-custom.fill.mb5
+                    input#sidebarSkin3(type='radio', name='sidebarSkin', checked='', value='')
+                    label(for='sidebarSkin3') Dark
+                  .checkbox-custom.fill.checkbox-disabled.mb5
+                    input#sidebarSkin1(type='radio', name='sidebarSkin', value='sidebar-light')
+                    label(for='sidebarSkin1') Light
+                  .checkbox-custom.fill.checkbox-light.mb5
+                    input#sidebarSkin2(type='radio', name='sidebarSkin', value='sidebar-light light')
+                    label(for='sidebarSkin2') Lighter
+            #toolbox-settings.tab-pane(role='tabpanel')
+              form#toolbox-settings-misc
+                h4.mv20.mtn Layout Options
+
+                .form-group
+                  .checkbox-custom.fill.mb5
+                    input#sidebar-option(type='checkbox', checked='')
+                    label(for='sidebar-option') Fixed Sidebar
+
+                h4.mv20 Layout Options
+                .form-group
+                  .radio-custom.mb5
+                    input#fullwidth-option(type='radio', checked='', name='layout-option')
+                    label(for='fullwidth-option') Fullwidth Layout
+                .form-group.mb20.pointer-events-none
+                  .radio-custom.radio-disabled.mb5
+                    input#boxed-option(type='radio', name='layout-option', disabled='')
+                    label(for='boxed-option')
+                      | Boxed Layout
+                      b.text-muted (Coming Soon)
+          .form-group.mn.br-t.p10
+            a#clearLocalStorage.btn.btn-primary.btn-block.pb10.pt10(href='#') Clear LocalStorage
+    // Start: Main
+    #main
+      // Start: Sidebar
+      aside#sidebar_left.nano.nano-light.affix
+        // Navbar Branding
+        .navbar-branding
+          a.navbar-brand(href='dashboard.html')
+            span.text-white Ruby
+            = ' '
+            | Admin
+          span#toggle_sidemenu_l.ad.ad-lines
+        // Start: Sidebar Left Content
+        .sidebar-left-content.nano-content
+          // Start: Sidebar Header
+          header.sidebar-header
+            // Sidebar Widget - Author
+            .sidebar-widget.author-widget
+              .media
+                a.media-left(href='#')
+                  img.img-responsive(src='assets/img/avatars/3.jpg')
+                .media-body
+                  .media-links
+                  .media-author Ryan Harrison
+                  a.sidebar-menu-toggle(href='#') User Menu
+                  a(href='pages_login(alt).html') Logout
+            // Sidebar Widget - Menu (slidedown)
+            .sidebar-widget.menu-widget
+              .row.text-center.mbn
+                .col-xs-4
+                  a.text-primary(href='dashboard.html', data-toggle='tooltip', data-placement='top', title='Dashboard')
+                    span.glyphicon.glyphicon-home
+                .col-xs-4
+                  a.text-info(href='pages_messages.html', data-toggle='tooltip', data-placement='top', title='Messages')
+                    span.glyphicon.glyphicon-inbox
+                .col-xs-4
+                  a.text-alert(href='pages_profile.html', data-toggle='tooltip', data-placement='top', title='Tasks')
+                    span.fa.fa-asterisk
+              .row.text-center.mbn
+                .col-xs-4
+                  a.text-system(href='pages_timeline.html', data-toggle='tooltip', data-placement='top', title='Activity')
+                    span.fa.fa-desktop
+                .col-xs-4
+                  a.text-danger(href='pages_profile.html', data-toggle='tooltip', data-placement='top', title='Settings')
+                    span.fa.fa-gears
+                .col-xs-4
+                  a.text-warning(href='pages_gallery.html', data-toggle='tooltip', data-placement='top', title='Cron Jobs')
+                    span.fa.fa-flask
+            // Sidebar Widget - Search (hidden)
+            .sidebar-widget.search-widget.hidden
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-search
+                input#sidebar-search.form-control(type='text', placeholder='Search...')
+          // Start: Sidebar Menu
+          ul.nav.sidebar-menu
+            li.sidebar-label.pt30 Menu
+            li
+              a(href='pages_calendar.html')
+                span.fa.fa-calendar
+                span.sidebar-title Calendar
+                span.sidebar-title-tray
+                  span.label.label-xs.bg-primary New
+            li
+              a(href='documentation/')
+                span.glyphicon.glyphicon-book
+                span.sidebar-title Documentation
+            li.active
+              a(href='dashboard.html')
+                span.glyphicon.glyphicon-home
+                span.sidebar-title Dashboard
+            li.sidebar-label.pt15 Theme Tools
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-columns
+                span.sidebar-title Admin Layouts
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa.fa-arrows-h
+                    |                   Sidebars
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_sidebar-left-static.html')
+                        | Left Static
+                    li
+                      a(href='layout_sidebar-left-fixed.html')
+                        | Left Fixed
+                    li
+                      a(href='layout_sidebar-left-widgets.html')
+                        | Left Widgets
+                    li
+                      a(href='layout_sidebar-left-minified.html')
+                        | Left Minified
+                    li
+                      a(href='layout_sidebar-left-light.html')
+                        | Left White
+                    li
+                      a(href='layout_sidebar-right-static.html')
+                        | Right Static
+                    li
+                      a(href='layout_sidebar-right-fixed.html')
+                        | Right Fixed
+                    li
+                      a(href='layout_sidebar-right-menu.html')
+                        | Right w/Menu
+                
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-hand-o-up
+                    |                   Topbar
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_topbar.html')
+                        | Default Style
+                    li
+                      a(href='layout_topbar-menu.html')
+                        | Default w/Menu
+                    li
+                      a(href='layout_topbar-alt.html')
+                        | Alternate Style
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-arrows-v
+                    |                   Content Body
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_content-blank.html')
+                        | Blank Starter
+                    li
+                      a(href='layout_content-fixed.html')
+                        | Fixed Window
+                    li
+                      a(href='layout_content-heading.html')
+                        | Content Heading
+                    li
+                      a(href='layout_content-tabs.html')
+                        | Content Tabs
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-pause
+                    |                   Content Trays
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_tray-left.html')
+                        | Tray Left Static
+                    li
+                      a(href='layout_tray-left-fixed.html')
+                        | Tray Left Fixed
+                    li
+                      a(href='layout_tray-right.html')
+                        | Tray Right Static
+                    li
+                      a(href='layout_tray-right-fixed.html')
+                        | Tray Right Fixed
+                    li
+                      a(href='layout_tray-both.html')
+                        | Left + Right Static
+                    li
+                      a(href='layout_tray-both-fixed.html')
+                        | Left + Right Fixed
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-plus-square-o
+                    |                   Boxed Layout
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_boxed.html')
+                        | Default
+                    li
+                      a(href='layout_boxed-horizontal.html')
+                        | Horizontal Menu
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-arrow-circle-o-up
+                    |                   Horizontal Menu
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_horizontal-sm.html')
+                        | Small Size
+                    li
+                      a(href='layout_horizontal-md.html')
+                        | Medium Size
+                    li
+                      a(href='layout_horizontal-lg.html')
+                        | Large Size
+                    li
+                      a(href='layout_horizontal-light.html')
+                        | Light Skin
+                    li
+                      a(href='layout_horizontal-topbar.html')
+                        | With Topbar
+                    li
+                      a(href='layout_horizontal-topbar-alt.html')
+                        | With Alt Topbar
+                    li
+                      a(href='layout_horizontal-collapsed.html')
+                        | Collapsed onLoad
+                    li
+                      a(href='layout_horizontal-boxed.html')
+                        | In Boxed Layout
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-fire
+                span.sidebar-title Admin Plugins
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='admin_plugins-panels.html')
+                    span.glyphicon.glyphicon-book
+                    |  Admin Panels
+                li
+                  a(href='admin_plugins-modals.html')
+                    span.glyphicon.glyphicon-modal-window
+                    |  Admin Modals
+                li
+                  a(href='admin_plugins-dock.html')
+                    span.glyphicon.glyphicon-equalizer
+                    |  Admin Dock
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-check
+                span.sidebar-title Admin Forms
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='admin_forms-elements.html')
+                    span.glyphicon.glyphicon-shopping-cart
+                    |  Admin Elements
+                li
+                  a(href='admin_forms-widgets.html')
+                    span.glyphicon.glyphicon-calendar
+                    |  Admin Widgets
+                li
+                  a(href='admin_forms-layouts.html')
+                    span.fa.fa-desktop
+                    |  Admin Layouts
+                li
+                  a(href='admin_forms-wizard.html')
+                    span.fa.fa-clipboard
+                    |  Admin Wizard
+                li
+                  a(href='admin_forms-validation.html')
+                    span.glyphicon.glyphicon-check
+                    |  Admin Validation
+            li.sidebar-label.pt20 Systems
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-diamond
+                span.sidebar-title Widget Packages
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='widgets_tile.html')
+                    span.fa.fa-cube
+                    |  Tile Widgets
+                li
+                  a(href='widgets_panel.html')
+                    span.fa.fa-desktop
+                    |  Panel Widgets
+                li
+                  a(href='widgets_scroller.html')
+                    span.fa.fa-columns
+                    |  Scroller Widgets
+                li
+                  a(href='widgets_data.html')
+                    span.fa.fa-dot-circle-o
+                    |  Admin Widgets
+            li
+              a.accordion-toggle.menu-open(href='#')
+                span.glyphicon.glyphicon-shopping-cart
+                span.sidebar-title Ecommerce
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='ecommerce_dashboard.html')
+                    span.glyphicon.glyphicon-shopping-cart
+                    |  Dashboard
+                    span.label.label-xs.bg-primary New
+                li
+                  a(href='ecommerce_products.html')
+                    span.glyphicon.glyphicon-tags
+                    |  Products
+                li
+                  a(href='ecommerce_orders.html')
+                    span.fa.fa-money
+                    |  Orders
+                li
+                  a(href='ecommerce_customers.html')
+                    span.fa.fa-users
+                    |  Customers
+                li.active
+                  a(href='ecommerce_settings.html')
+                    span.fa.fa-gears
+                    |  Store Settings
+
+            // sidebar resources
+            li.sidebar-label.pt20 Elements
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-asterisk
+                span.sidebar-title UI Elements
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='ui_alerts.html')
+                    span.fa.fa-warning
+                    |  Alerts
+                li
+                  a(href='ui_animations.html')
+                    span.fa.fa-spinner
+                    |  Animations
+                li
+                  a(href='ui_buttons.html')
+                    span.fa.fa-plus-square-o
+                    |  Buttons
+                li
+                  a(href='ui_typography.html')
+                    span.fa.fa-text-width
+                    |  Typography
+                li
+                  a(href='ui_portlets.html')
+                    span.fa.fa-archive
+                    |  Portlets
+                li
+                  a(href='ui_progress-bars.html')
+                    span.fa.fa-bars
+                    |  Progress Bars
+                li
+                  a(href='ui_tabs.html')
+                    span.fa.fa-toggle-off
+                    |  Tabs
+                li
+                  a(href='ui_icons.html')
+                    span.fa.fa-hand-o-right
+                    |  Icons
+                li
+                  a(href='ui_grid.html')
+                    span.fa.fa-th-large
+                    |  Grid
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-align-justify
+                span.sidebar-title Form Elements
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='form_inputs.html')
+                    span.fa.fa-magic
+                    |  Basic Inputs
+                li
+                  a(href='form_plugins.html')
+                    span.fa.fa-bell-o
+                    |  Plugin Inputs
+                    span.label.label-xs.bg-primary New
+                li
+                  a(href='form_editors.html')
+                    span.fa.fa-clipboard
+                    |  Editors
+                li
+                  a(href='form_treeview.html')
+                    span.fa.fa-tree
+                    |  Treeview
+                li
+                  a(href='form_nestable.html')
+                    span.fa.fa-tasks
+                    |  Nestable
+                li
+                  a(href='form_image-tools.html')
+                    span.fa.fa-cloud-upload
+                    |  Image Tools
+                    span.label.label-xs.bg-primary New
+                li
+                  a(href='form_uploaders.html')
+                    span.fa.fa-cloud-upload
+                    |  Uploaders
+                li
+                  a(href='form_notifications.html')
+                    span.fa.fa-bell-o
+                    |  Notifications
+                li
+                  a(href='form_content-sliders.html')
+                    span.fa.fa-exchange
+                    |  Content Sliders
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-tower
+                span.sidebar-title Plugins
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a.accordion-toggle(href='#')
+                    span.glyphicon.glyphicon-globe
+                    |  Maps
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='maps_basic.html') Basic Maps
+                    li
+                      a(href='maps_vector.html') Vector Maps
+                    li
+                      a(href='maps_full.html') Full Map
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-area-chart
+                    |  Charts
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='charts_highcharts.html') Highcharts
+                    li
+                      a(href='charts_d3.html') D3 Charts
+                    li
+                      a(href='charts_flot.html') Flot Charts
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-table
+                    |  Tables
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='tables_basic.html')  Basic Tables
+
+
+                    li
+                      a(href='tables_footable.html')  FooTables
+                    li
+                      a(href='tables_pricing.html')  Pricing Tables
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-flask
+                    |  Misc
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='misc_tour.html')  Site Tour
+                    li
+                      a(href='misc_timeout.html')  Session Timeout
+                    li
+                      a(href='misc_nprogress.html')  Page Progress Loader
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-duplicate
+                span.sidebar-title Pages
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-gears
+                    |  Utility
+                    span.caret
+                  ul.nav.sub-nav
+
+                    li
+                      a(href='pages_confirmation.html', target='_blank')
+                        | Confirmation
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_login.html', target='_blank')  Login
+                    li
+                      a(href='pages_login(alt).html', target='_blank')
+                        | Login Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_register.html', target='_blank')  Register
+                    li
+                      a(href='pages_register(alt).html', target='_blank')
+                        | Register Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_screenlock.html', target='_blank')  Screenlock
+                    li
+                      a(href='pages_screenlock(alt).html', target='_blank')
+                        | Screenlock Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_forgotpw.html', target='_blank')  Forgot Password
+                    li
+                      a(href='pages_forgotpw(alt).html', target='_blank')
+                        | Forgot Password Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_coming-soon.html', target='_blank')
+                        | Coming Soon
+                    li
+                      a(href='pages_404.html')  404 Error
+                    li
+                      a(href='pages_500.html')  500 Error
+                    li
+                      a(href='pages_404(alt).html')  404 Error Alt
+                    li
+                      a(href='pages_500(alt).html')  500 Error Alt
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-desktop
+                    |  Basic
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='pages_search-results.html')
+                        | Search Results
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_profile.html')  Profile
+                    li
+                      a(href='pages_timeline.html')  Timeline Split
+                    li
+                      a(href='pages_timeline-single.html')  Timeline Single
+                    li
+                      a(href='pages_faq.html')  FAQ Page
+                    li
+                      a(href='pages_calendar.html')  Calendar
+                    li
+                      a(href='pages_messages.html')  Messages
+                    li
+                      a(href='pages_messages(alt).html')  Messages Alt
+                    li
+                      a(href='pages_gallery.html')  Gallery
+                    li
+                      a(href='pages_invoice.html')  Printable Invoice
+            // sidebar bullets
+            li.sidebar-label.pt20 Projects
+            li.sidebar-proj
+              a(href='#projectOne')
+                span.fa.fa-bookmark.text-primary
+                span.sidebar-title Executive Meeting
+            li.sidebar-proj
+              a(href='#projectTwo')
+                span.fa.fa-bookmark.text-info
+                span.sidebar-title HelpDesk Redesign
+            li.sidebar-proj
+              a(href='#projectTwo')
+                span.fa.fa-bookmark.text-danger
+                span.sidebar-title Sony Board Meeting
+            li.sidebar-proj
+              a(href='#projectThree')
+                span.fa.fa-bookmark.text-warning
+                span.sidebar-title Apple Tech Conference
+      // Start: Content-Wrapper
+      section#content_wrapper
+        // Start: Topbar
+        header#topbar.badges-mod.alt
+          .topbar-left
+            ol.breadcrumb
+              li
+                a(href="dashboard.html") Dashboard
+              li
+                a(href="admin_forms-elements.html") Form Elements
+              li
+                a(href="maps_basic.html") Plugins Pages
+              li
+                a(href="ui_alerts.html") UI Elements
+              li
+                a(href="documentation/") Documentation
+          .topbar-right
+            a.topbar-icon(href='#')
+              span.fa.fa-search
+            a.topbar-icon.topbar-menu-toggle.ml40(href='#', data-toggle='button')
+              span.badge.badge-strikemaster.offset-badge 6
+              span.fa.fa-magic
+            .topbar-icon-wrap.ml40
+              button.topbar-icon.dropdown-toggle(data-toggle='dropdown')
+                span.badge.badge-primary 5
+                span.fa.fa-bell.va-m
+              .dropdown-menu.dropdown-persist.w350.animated.animated-shorter.fadeIn(role='menu')
+                .panel.mbn
+                  .panel-menu
+                    span.panel-icon
+                      i.fa.fa-clock-o
+                    span.panel-title.fw600  Recent Activity
+                    button.btn.btn-xs.pull-right(type='button')
+                      i.fa.fa-refresh
+                  .panel-body.panel-scroller.scroller-navbar.scroller-overlay.scroller-pn.pn
+                    ol.timeline-list
+                      li.timeline-item
+                        .timeline-icon.bg-alert
+                          span.fa.fa-tags
+                        .timeline-desc
+                          b Michael
+                          |  Added to his store:
+                          a(href='#') Ipod
+                        .timeline-date 1:25am
+                      li.timeline-item
+                        .timeline-icon.bg-alert
+                          span.fa.fa-tags
+                        .timeline-desc
+                          b Sara
+                          |  Added his store:
+                          a(href='#') Notebook
+                        .timeline-date 3:05am
+                      li.timeline-item
+                        .timeline-icon.bg-success
+                          span.fa.fa-usd
+                        .timeline-desc
+                          b Admin
+                          |  created invoice for:
+                          a(href='#') Software
+                        .timeline-date 4:15am
+                      li.timeline-item
+                        .timeline-icon.bg-success
+                          span.fa.fa-usd
+                        .timeline-desc
+                          b Admin
+                          |  created invoice for:
+                          a(href='#') Apple
+                        .timeline-date 7:45am
+                      li.timeline-item
+                        .timeline-icon.bg-success
+                          span.fa.fa-usd
+                        .timeline-desc
+                          b Admin
+                          |  created invoice for:
+                          a(href='#') Software
+                        .timeline-date 4:15am
+                      li.timeline-item
+                        .timeline-icon.bg-success
+                          span.fa.fa-usd
+                        .timeline-desc
+                          b Admin
+                          |  created invoice for:
+                          a(href='#') Apple
+                        .timeline-date 7:45am
+                      li.timeline-item
+                        .timeline-icon.bg-alert
+                          span.fa.fa-tags
+                        .timeline-desc
+                          b Michael
+                          |  Added his store:
+                          a(href='#') Ipod
+                        .timeline-date 8:25am
+                      li.timeline-item
+                        .timeline-icon.bg-system
+                          span.fa.fa-fire
+                        .timeline-desc
+                          b Admin
+                          |  created invoice for:
+                          a(href='#') Software
+                        .timeline-date 4:15am
+                      li.timeline-item
+                        .timeline-icon.bg-alert
+                          span.fa.fa-tags
+                        .timeline-desc
+                          b Sara
+                          |  Added to his store:
+                          a(href='#') Notebook
+                        .timeline-date 3:05am
+                  .panel-footer.text-center.p7
+                    a.link-unstyled(href='#')  View All
+            .topbar-icon-wrap.ml35
+              button.topbar-icon.dropdown-toggle(data-toggle='dropdown')
+                span.badge.badge-mandy 5
+                span.fa.fa-comments.va-m
+              .dropdown-menu.dropdown-menu-offset.dropdown-persist.w350.animated.animated-shorter.fadeIn(role='menu')
+                .panel.mbn
+                  .panel-menu
+                    span.panel-title.fw600 Messages
+                  .panel-body.panel-scroller.scroller-navbar.scroller-overlay.scroller-pn.pn
+                    .br-n.p10
+                      .chat-widget
+                        .media
+                          .media-left
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/3.jpg')
+                          .media-body
+                            span.media-status.online
+                            h5.media-heading
+                              | Courtney Faught
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+                        .media
+                          .media-body
+                            span.media-status.offline
+                            h5.media-heading
+                              | Joe Gibbons
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque.
+                          .media-right
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/1.jpg')
+                        .media
+                          .media-left
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/2.jpg')
+                          .media-body
+                            span.media-status.online
+                            h5.media-heading
+                              | Courtney Faught
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metuscommodo.
+                        .media
+                          .media-body
+                            span.media-status.offline
+                            h5.media-heading
+                              | Joe Gibbons
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in Nulla vel metus scelerisque antecommodo.
+                          .media-right
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/1.jpg')
+                        .media
+                          .media-left
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/2.jpg')
+                          .media-body
+                            span.media-status.online
+                            h5.media-heading
+                              | Courtney Faught
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque soltudino.
+                        .media
+                          .media-body
+                            span.media-status.offline
+                            h5.media-heading
+                              | Joe Gibbons
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+                          .media-right
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/1.jpg')
+                  .panel-footer.text-center.p7
+                    a.link-unstyled(href='#')  View All
+        // Start: Topbar-Dropdown
+        #topbar-dropmenu.alt
+          .topbar-menu.row
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-primary.light(href='#')
+                span.glyphicon.glyphicon-inbox.text-white
+                span.metro-title Messages
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-info.light(href='#')
+                span.glyphicon.glyphicon-user.text-white
+                span.metro-title Users
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-success.light(href='#')
+                span.glyphicon.glyphicon-headphones.text-white
+                span.metro-title Support
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-system.light(href='#')
+                span.glyphicon.glyphicon-facetime-video.text-white
+                span.metro-title Videos
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-warning.light(href='#')
+                span.fa.fa-gears.text-white
+                span.metro-title Settings
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-alert.light(href='#')
+                span.glyphicon.glyphicon-picture.text-white
+                span.metro-title Pictures
+        // Begin: Content
+        section#content.table-layout.animated.fadeIn
+          // begin: .tray-center
+          .tray.tray-center
+            .mw1000.center-block
+              // Store Owner Details
+              .panel.panel-warning.panel-border.top.mt20.mb35
+                .panel-heading
+                  span.panel-title Owner Details
+                .panel-body.bg-light.dark
+                  .admin-form
+                    .section.row.mb10
+                      label.field-label.col-md-3.text-center(for='account-name') Account Name:
+                      .col-md-9
+                        label.field.prepend-icon(for='account-name')
+                          input#account-name.gui-input(type='text', name='account-name', value='OwnerAccountName')
+                          label.field-icon(for='account-name')
+                            i.fa.fa-home
+                    .section.row.mb10
+                      label.field-label.col-md-3.text-center(for='account-email') Account Email:
+                      .col-md-9
+                        label.field.prepend-icon(for='account-email')
+                          input#account-email.gui-input(type='email', name='account-email', value='owner@store.com')
+                          label.field-icon(for='account-email')
+                            i.fa.fa-envelope-o
+                    .section.row.mb10
+                      label.field-label.col-md-3.text-center(for='account-phone') Account Phone:
+                      .col-md-9
+                        label.field.prepend-icon(for='account-phone')
+                          input#account-phone.gui-input(type='text', name='account-phone', value='888-888-8888', placeholder='')
+                          label.field-icon(for='account-phone')
+                            i.fa.fa-phone
+                    .section.row.mb10
+                      label.field-label.col-md-3.text-center(for='store-timezone') Store Timezone:
+                      .col-md-9
+                        label.field.select
+                          select#store-timezone(name='store-timezone')
+                            option(value='0', selected='selected') (GMT-8h) US/Pacific
+                            option(value='1') (GMT-11h) Pacific/Samoa
+                            option(value='2') (GMT-10h) Pacific/Johnston
+                            option(value='3') (GMT-8h) Canada/Pacific
+                            option(value='4') (GMT+10h) Pacific/Truk
+                          i.arrow.double
+              // Store Information
+              .panel.panel-info.panel-border.top.mb35
+                .panel-heading
+                  span.panel-title Store Information
+                .panel-body.bg-light.dark
+                  .admin-form
+                    .section.row.mb10
+                      label.field-label.col-md-3.text-center(for='business-name') Business Name:
+                      .col-md-9
+                        label.field.prepend-icon(for='business-name')
+                          input#business-name.gui-input(type='text', name='business-name', value='AdminDesigns')
+                          label.field-icon(for='business-name')
+                            i.fa.fa-home
+                    .section.row.mb10
+                      label.field-label.col-md-3.text-center(for='business-phone') Business Phone:
+                      .col-md-9
+                        label.field.prepend-icon(for='business-phone')
+                          input#business-phone.gui-input(type='text', name='business-phone', value='888-888-8888')
+                          label.field-icon(for='business-phone')
+                            i.fa.fa-phone
+                    hr.short.alt
+                    .section
+                      label.field.prepend-icon(for='lastaddr')
+                        input#lastaddr.gui-input(type='text', name='lastaddr', placeholder='Street address 2')
+                        label.field-icon(for='lastaddr')
+                          i.fa.fa-map-marker
+                    .section
+                      label.field.select
+                        select#location(name='location')
+                          option(value='') Select country...
+                          option(value='AL') Albania
+                          option(value='DZ') Algeria
+                          option(value='AD') Andorra
+                          option(value='AO') Angola
+                          option(value='AI') Anguilla
+                          option(value='AG') Antigua and Barbuda
+                          option(value='AR') Argentina
+                          option(value='AM') Armenia
+                          option(value='AW') Aruba
+                          option(value='AU') Australia
+                          option(value='AT') Austria
+                          option(value='AZ') Azerbaijan Republic
+                          option(value='BS') Bahamas
+                          option(value='BH') Bahrain
+                          option(value='BB') Barbados
+                          option(value='BE') Belgium
+                          option(value='BZ') Belize
+                          option(value='BJ') Benin
+                          option(value='BM') Bermuda
+                          option(value='BT') Bhutan
+                          option(value='BO') Bolivia
+                          option(value='BA') Bosnia and Herzegovina
+                          option(value='BW') Botswana
+                          option(value='BR') Brazil
+                          option(value='BN') Brunei
+                          option(value='BG') Bulgaria
+                          option(value='BF') Burkina Faso
+                          option(value='BI') Burundi
+                          option(value='KH') Cambodia
+                          option(value='CA') Canada
+                          option(value='CV') Cape Verde
+                          option(value='KY') Cayman Islands
+                          option(value='TD') Chad
+                          option(value='CL') Chile
+                          option(value='C2') China Worldwide
+                          option(value='CO') Colombia
+                          option(value='KM') Comoros
+                          option(value='CK') Cook Islands
+                          option(value='CR') Costa Rica
+                          option(value='HR') Croatia
+                          option(value='CY') Cyprus
+                          option(value='CZ') Czech Republic
+                          option(value='CD') Democratic Republic of the Congo
+                          option(value='DK') Denmark
+                          option(value='DJ') Djibouti
+                          option(value='DM') Dominica
+                          option(value='DO') Dominican Republic
+                          option(value='EC') Ecuador
+                          option(value='EG') Egypt
+                          option(value='SV') El Salvador
+                          option(value='ER') Eritrea
+                          option(value='EE') Estonia
+                          option(value='ET') Ethiopia
+                          option(value='FK') Falkland Islands
+                          option(value='FO') Faroe Islands
+                          option(value='FJ') Fiji
+                          option(value='FI') Finland
+                          option(value='FR') France
+                          option(value='GF') French Guiana
+                          option(value='PF') French Polynesia
+                          option(value='GA') Gabon Republic
+                          option(value='GM') Gambia
+                          option(value='GE') Georgia
+                          option(value='DE') Germany
+                          option(value='GI') Gibraltar
+                          option(value='GR') Greece
+                          option(value='GL') Greenland
+                          option(value='GD') Grenada
+                          option(value='GP') Guadeloupe
+                          option(value='GT') Guatemala
+                          option(value='GN') Guinea
+                          option(value='GW') Guinea Bissau
+                          option(value='GY') Guyana
+                          option(value='HN') Honduras
+                          option(value='HK') Hong Kong
+                          option(value='HU') Hungary
+                          option(value='IS') Iceland
+                          option(value='IN') India
+                          option(value='ID') Indonesia
+                          option(value='IE') Ireland
+                          option(value='IL') Israel
+                          option(value='IT') Italy
+                          option(value='JM') Jamaica
+                          option(value='JP') Japan
+                          option(value='JO') Jordan
+                          option(value='KZ') Kazakhstan
+                          option(value='KE') Kenya
+                          option(value='KI') Kiribati
+                          option(value='KW') Kuwait
+                          option(value='KG') Kyrgyzstan
+                          option(value='LA') Laos
+                          option(value='LV') Latvia
+                          option(value='LS') Lesotho
+                          option(value='LI') Liechtenstein
+                          option(value='LT') Lithuania
+                          option(value='LU') Luxembourg
+                          option(value='MG') Madagascar
+                          option(value='MW') Malawi
+                          option(value='MY') Malaysia
+                          option(value='MV') Maldives
+                          option(value='ML') Mali
+                          option(value='MT') Malta
+                          option(value='MH') Marshall Islands
+                          option(value='MQ') Martinique
+                          option(value='MR') Mauritania
+                          option(value='MU') Mauritius
+                          option(value='YT') Mayotte
+                          option(value='MX') Mexico
+                          option(value='FM') Micronesia
+                          option(value='MN') Mongolia
+                          option(value='MS') Montserrat
+                          option(value='MA') Morocco
+                          option(value='MZ') Mozambique
+                          option(value='NA') Namibia
+                          option(value='NR') Nauru
+                          option(value='NP') Nepal
+                          option(value='NL') Netherlands
+                          option(value='AN') Netherlands Antilles
+                          option(value='NC') New Caledonia
+                          option(value='NZ') New Zealand
+                          option(value='NI') Nicaragua
+                          option(value='NE') Niger
+                          option(value='NU') Niue
+                          option(value='NF') Norfolk Island
+                          option(value='NO') Norway
+                          option(value='OM') Oman
+                          option(value='PW') Palau
+                          option(value='PA') Panama
+                          option(value='PG') Papua New Guinea
+                          option(value='PE') Peru
+                          option(value='PH') Philippines
+                          option(value='PN') Pitcairn Islands
+                          option(value='PL') Poland
+                          option(value='PT') Portugal
+                          option(value='QA') Qatar
+                          option(value='CG') Republic of the Congo
+                          option(value='RE') Reunion
+                          option(value='RO') Romania
+                          option(value='RU') Russia
+                          option(value='RW') Rwanda
+                          option(value='KN') Saint Kitts and Nevis Anguilla
+                          option(value='PM') Saint Pierre and Miquelon
+                          option(value='VC') Saint Vincent and Grenadines
+                          option(value='WS') Samoa
+                          option(value='SM') San Marino
+                          option(value='ST') São Tomé and Príncipe
+                          option(value='SA') Saudi Arabia
+                          option(value='SN') Senegal
+                          option(value='RS') Serbia
+                          option(value='SC') Seychelles
+                          option(value='SL') Sierra Leone
+                          option(value='SG') Singapore
+                          option(value='SK') Slovakia
+                          option(value='SI') Slovenia
+                          option(value='SB') Solomon Islands
+                          option(value='SO') Somalia
+                          option(value='ZA') South Africa
+                          option(value='KR') South Korea
+                          option(value='ES') Spain
+                          option(value='LK') Sri Lanka
+                          option(value='SH') St. Helena
+                          option(value='LC') St. Lucia
+                          option(value='SR') Suriname
+                          option(value='SJ') Svalbard and Jan Mayen Islands
+                          option(value='SZ') Swaziland
+                          option(value='SE') Sweden
+                          option(value='CH') Switzerland
+                          option(value='TW') Taiwan
+                          option(value='TJ') Tajikistan
+                          option(value='TZ') Tanzania
+                          option(value='TH') Thailand
+                          option(value='TG') Togo
+                          option(value='TO') Tonga
+                          option(value='TT') Trinidad and Tobago
+                          option(value='TN') Tunisia
+                          option(value='TR') Turkey
+                          option(value='TM') Turkmenistan
+                          option(value='TC') Turks and Caicos Islands
+                          option(value='TV') Tuvalu
+                          option(value='UG') Uganda
+                          option(value='UA') Ukraine
+                          option(value='AE') United Arab Emirates
+                          option(value='GB') United Kingdom
+                          option(value='US') United States
+                          option(value='UY') Uruguay
+                          option(value='VU') Vanuatu
+                          option(value='VA') Vatican City State
+                          option(value='VE') Venezuela
+                          option(value='VN') Vietnam
+                          option(value='VG') Virgin Islands (British)
+                          option(value='WF') Wallis and Futuna Islands
+                          option(value='YE') Yemen
+                          option(value='ZM') Zambia
+                        i.arrow.double
+                    .section.row.mbn
+                      .col-md-3
+                        label.field.prepend-icon(for='zip')
+                          input#zip.gui-input(type='text', name='zip', placeholder='Zip')
+                          label.field-icon(for='zip')
+                            i.fa.fa-certificate
+                      .col-md-4
+                        label.field.prepend-icon(for='city')
+                          input#city.gui-input(type='text', name='city', placeholder='City')
+                          label.field-icon(for='city')
+                            i.fa.fa-building-o
+                      .col-md-5
+                        label.field.select(for='states')
+                          select#states(name='states')
+                            option(value='') Choose state
+                            option(value='AL') Alabama
+                            option(value='AK') Alaska
+                            option(value='AZ') Arizona
+                            option(value='AR') Arkansas
+                            option(value='CA') California
+                            option(value='CO') Colorado
+                            option(value='CT') Connecticut
+                            option(value='DE') Delaware
+                            option(value='DC') District Of Columbia
+                            option(value='FL') Florida
+                            option(value='GA') Georgia
+                            option(value='HI') Hawaii
+                            option(value='ID') Idaho
+                            option(value='IL') Illinois
+                            option(value='IN') Indiana
+                            option(value='IA') Iowa
+                            option(value='KS') Kansas
+                            option(value='KY') Kentucky
+                            option(value='LA') Louisiana
+                            option(value='ME') Maine
+                            option(value='MD') Maryland
+                            option(value='MA') Massachusetts
+                            option(value='MI') Michigan
+                            option(value='MN') Minnesota
+                            option(value='MS') Mississippi
+                            option(value='MO') Missouri
+                            option(value='MT') Montana
+                            option(value='NE') Nebraska
+                            option(value='NV') Nevada
+                            option(value='NH') New Hampshire
+                            option(value='NJ') New Jersey
+                            option(value='NM') New Mexico
+                            option(value='NY') New York
+                            option(value='NC') North Carolina
+                            option(value='ND') North Dakota
+                            option(value='OH') Ohio
+                            option(value='OK') Oklahoma
+                            option(value='OR') Oregon
+                            option(value='PA') Pennsylvania
+                            option(value='RI') Rhode Island
+                            option(value='SC') South Carolina
+                            option(value='SD') South Dakota
+                            option(value='TN') Tennessee
+                            option(value='TX') Texas
+                            option(value='UT') Utah
+                            option(value='VT') Vermont
+                            option(value='VA') Virginia
+                            option(value='WA') Washington
+                            option(value='WV') West Virginia
+                            option(value='WI') Wisconsin
+                            option(value='WY') Wyoming
+                          i.arrow.double
+              // Store Settings
+              .panel.panel-primary.panel-border.top.mb35
+                .panel-heading
+                  span.panel-title Store Settings
+                .panel-body.bg-light.dark
+                  .admin-form
+                    .section.row.mb10
+                      label.field-label.col-md-3.text-center(for='names') Store Timezone:
+                      .col-md-9
+                        label.field.select
+                          select#set-location(name='set-location')
+                            option(value='0', selected='selected') (GMT-8h) US/Pacific
+                            option(value='1') (GMT-11h) Pacific/Samoa
+                            option(value='2') (GMT-10h) Pacific/Johnston
+                            option(value='3') (GMT-8h) Canada/Pacific
+                            option(value='4') (GMT+10h) Pacific/Truk
+                          i.arrow.double
+                    .section.row.mb10
+                      label.field-label.col-md-3.text-center(for='store-currency') Store Currency:
+                      .col-md-9
+                        label.field.prepend-icon(for='store-currency')
+                          input#store-currency.gui-input(type='text', name='store-currency', value='', placeholder='United States Dollar')
+                          label.field-icon(for='store-currency')
+                            i.fa.fa-usd
+                    .section.row.mb10
+                      label.field-label.col-md-3.text-center(for='store-units') Store Unit System:
+                      .col-md-9
+                        label.field.prepend-icon(for='store-units')
+                          input#store-units.gui-input(type='text', name='store-units', value='', placeholder='Metric System')
+                          label.field-icon(for='store-units')
+                            i.fa.fa-exchange
+                    .section.row.mb10
+                      label.field-label.col-md-3.text-center(for='store-weight') Store Weight Unit:
+                      .col-md-9
+                        label.field.prepend-icon(for='store-weight')
+                          input#store-weight.gui-input(type='text', name='store-weight', value='', placeholder='Pound(lb)')
+                          label.field-icon(for='store-weight')
+                            i.fa.fa-anchor
+                    .section.row.mb10
+                      label.field-label.col-md-3.text-center(for='store-desc') Store Description:
+                      .col-md-9
+                        label.field.prepend-icon
+                          textarea#store-desc.gui-textarea(name='store-desc', placeholder='Store Description and Purposes')
+                          label.field-icon(for='store-desc')
+                            i.fa.fa-edit
+              // Store Policies
+              .panel.panel-success.panel-border.top.mb35
+                .panel-heading
+                  span.panel-title Store Policies
+                .panel-body.bg-light.dark
+                  .admin-form
+                    .section.row.mb25
+                      label.field-label.col-md-3.text-center(for='refund-policy') Refund Policy
+                      .col-md-9
+                        label.field.prepend-icon
+                          textarea#refund-policy.gui-textarea(name='refund-policy', placeholder='Describe your return policy and conditions here...')
+                          label.field-icon(for='refund-policy')
+                            i.fa.fa-usd
+                    .section.row.mb25
+                      label.field-label.col-md-3.text-center(for='privacy-policy') Privacy Policy
+                      .col-md-9
+                        label.field.prepend-icon
+                          textarea#privacy-policy.gui-textarea(name='privacy-policy', placeholder='Describe the data your store, collect, and handle here...')
+                          label.field-icon(for='privacy-policy')
+                            i.fa.fa-edit
+                    .section.row.mb15
+                      label.field-label.col-md-3.text-center(for='store-tos') Terms of Service
+                      .col-md-9
+                        label.field.prepend-icon
+                          textarea#store-tos.gui-textarea(name='store-tos', placeholder='Describe any business protocols or methodologies here...')
+                          label.field-icon(for='store-tos')
+                            i.fa.fa-edit
+              // Request Google Analytics
+              .panel.panel-system.panel-border.top.mb35
+                .panel-heading
+                  span.panel-title Google Analytics
+                .panel-body.bg-light.dark
+                  .admin-form
+                    h5.text-muted.fw400.mb10
+                      | Google Analytics account
+                      small (how do I set this up?)
+                    .section.mbn
+                      label.field.prepend-icon
+                        textarea#google-insert.gui-textarea(name='google-insert', placeholder='Paste your code from Google here')
+                        label.field-icon(for='google-insert')
+                          i.fa.fa-google
+          // begin: .tray-right
+          aside.tray.tray-right.tray290(data-tray-height='match')
+            // menu quick links
+            .admin-form
+              h4.text-white  StoreFront Options
+              hr.short
+              h5
+                small Store Name
+              .section.mb15
+                label.field.prepend-icon(for='store-name')
+                  input#store-name.gui-input(type='text', name='store-name', value='My Online Store')
+                  label.field-icon(for='store-name')
+                    i.fa.fa-home
+              h5
+                small Store URL
+              .section.mb15
+                label.field.prepend-icon(for='store-url')
+                  input#store-url.gui-input(type='text', name='store-url', value='http://myonlinestore.com')
+                  label.field-icon(for='store-url')
+                    i.fa.fa-globe
+              hr.short.alt.br-light
+              h5
+                small Store Image
+              .fileupload.fileupload-new(data-provides='fileupload')
+                .fileupload-preview.thumbnail.mb20
+                  img(data-src='holder.js/100%x120', alt='holder')
+                span.btn.btn-default.light.btn-file.btn-block.ph5
+                  span.fileupload-new Change
+                  span.fileupload-exists Change
+                  input(type='file')
+      // Start: Right Sidebar
+      aside#sidebar_right.nano.affix
+        // Start: Sidebar Right Content
+        .sidebar-right-content.nano-content
+          .tab-block.sidebar-block.br-n
+            ul.nav.nav-tabs.tabs-border.nav-justified.hidden
+              li.active
+                a(href='#sidebar-right-tab1', data-toggle='tab') Tab 1
+              li
+                a(href='#sidebar-right-tab2', data-toggle='tab') Tab 2
+              li
+                a(href='#sidebar-right-tab3', data-toggle='tab') Tab 3
+            .tab-content.br-n
+              #sidebar-right-tab1.tab-pane.active
+                h5.title-divider.text-muted.mb20
+                  | Server Statistics
+                  span.pull-right
+                    | 2013
+                    i.fa.fa-caret-down.ml5
+                .progress.mh5
+                  .progress-bar.progress-bar-primary(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 44%')
+                    span.fs11 DB Request
+                .progress.mh5
+                  .progress-bar.progress-bar-info(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 84%')
+                    span.fs11.text-left Server Load
+                .progress.mh5
+                  .progress-bar.progress-bar-warning(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 61%')
+                    span.fs11.text-left Server Connections
+                h5.title-divider.text-muted.mt30.mb10 Traffic Margins
+                .row
+                  .col-xs-5
+                    h3.text-primary.mn.pl5 132
+                  .col-xs-7.text-right
+                    h3.text-success-dark.mn
+                      i.fa.fa-caret-up
+                      |  13.2%
+                h5.title-divider.text-muted.mt25.mb10 Database Request
+                .row
+                  .col-xs-5
+                    h3.text-primary.mn.pl5 212
+                  .col-xs-7.text-right
+                    h3.text-success-dark.mn
+                      i.fa.fa-caret-up
+                      |  25.6%
+                h5.title-divider.text-muted.mt25.mb10 Server Response
+                .row
+                  .col-xs-5
+                    h3.text-primary.mn.pl5 82.5
+                  .col-xs-7.text-right
+                    h3.text-danger.mn
+                      i.fa.fa-caret-down
+                      |  17.9%
+                h5.title-divider.text-muted.mt40.mb20
+                  | Server Statistics
+                  span.pull-right.text-primary.fw600 USA
+              #sidebar-right-tab2.tab-pane
+              #sidebar-right-tab3.tab-pane
+    // core scripts
+    script(src='plugins/core.min.js')
+    // Theme Javascript
+    script(src='assets/js/utility/utility.js')
+    script(src='assets/js/demo/demo.js')
+    script(src='assets/js/main.js')
+    script(type='text/javascript').
+      jQuery(document).ready(function () {
+        "use strict";
+        // Init Theme Core
+        Core.init();
+        // Init Demo JS
+        Demo.init();
+        // select dropdowns - placeholder like creation
+        var selectList = $('.admin-form select');
+        selectList.each(function (i, e) {
+          $(e).on('change', function () {
+            if ($(e).val() == "0") $(e).addClass("empty");
+            else $(e).removeClass("empty")
+          });
+        });
+        selectList.each(function (i, e) {
+          $(e).change();
+        });
+      });

@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+  <head>
+    <!-- Site Title-->
+    <title>Nueva Entrada</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <link rel="icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
+    <!-- Stylesheets-->
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/css/fullcalendar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/admin-tools/admin-forms/css/admin-forms.css' %}">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Arimo:400,700%7CRoboto:400,300,500,700">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/skin/default_skin/css/theme.css' %}">
+
+		<!--[if lt IE 10]>
+    <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+    <script src="js/html5shiv.min.js"></script>
+		<![endif]-->
+  </head>
+  <body data-spy="scroll" data-target="#nav-spy" data-offset="300" class="admin-elements-page">
+    <!-- Start: Theme Preview Pane-->
+   <div id="skin-toolbox">
+      <div class="panel">
+        <div class="panel-heading"><span class="panel-icon"><i class="fa fa-gear text-primary"></i></span><span class="panel-title"> Theme Options</span></div>
+        <div class="panel-body pn">
+          <ul role="tablist" class="nav nav-list nav-list-sm pl15 pt10">
+            <li class="active"><a href="#toolbox-sidebar" role="tab" data-toggle="tab">Sidebar</a></li>
+            <li><a href="#toolbox-settings" role="tab" data-toggle="tab">Misc</a></li>
+          </ul>
+          <div class="tab-content p20 ptn pb15">
+            <div id="toolbox-sidebar" role="tabpanel" class="tab-pane active">
+              <form id="toolbox-sidebar-skin">
+                <h4 class="mv20">Sidebar Skins</h4>
+                <div class="skin-toolbox-swatches">
+                  <div class="checkbox-custom fill mb5">
+                    <input id="sidebarSkin3" type="radio" name="sidebarSkin" checked="" value="">
+                    <label for="sidebarSkin3">Dark</label>
+                  </div>
+                  <div class="checkbox-custom fill checkbox-disabled mb5">
+                    <input id="sidebarSkin1" type="radio" name="sidebarSkin" value="sidebar-light">
+                    <label for="sidebarSkin1">Light</label>
+                  </div>
+                  <div class="checkbox-custom fill checkbox-light mb5">
+                    <input id="sidebarSkin2" type="radio" name="sidebarSkin" value="sidebar-light light">
+                    <label for="sidebarSkin2">Lighter</label>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div id="toolbox-settings" role="tabpanel" class="tab-pane">
+              <form id="toolbox-settings-misc">
+                <h4 class="mv20 mtn">Layout Options</h4>
+                <div class="form-group">
+                  <div class="checkbox-custom fill mb5">
+                    <input id="sidebar-option" type="checkbox" checked="">
+                    <label for="sidebar-option">Fixed Sidebar</label>
+                  </div>
+                </div>
+                <h4 class="mv20">Layout Options</h4>
+                <div class="form-group">
+                  <div class="radio-custom mb5">
+                    <input id="fullwidth-option" type="radio" checked="" name="layout-option">
+                    <label for="fullwidth-option">Fullwidth Layout</label>
+                  </div>
+                </div>
+                <div class="form-group mb20 pointer-events-none">
+                  <div class="radio-custom radio-disabled mb5">
+                    <input id="boxed-option" type="radio" name="layout-option" disabled="">
+                    <label for="boxed-option">Boxed Layout<b class="text-muted">(Coming Soon)</b></label>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="form-group mn br-t p10"><a id="clearLocalStorage" href="#" class="btn btn-primary btn-block pb10 pt10">Clear LocalStorage</a></div>
+        </div>
+      </div>
+    </div>
+    <!-- Start: Main-->
+    <div id="main">
+      <!--
+      ---------------------------------------------------------------+
+      "#sidebar_left" Helper Classes:
+      -------------------------------------------------------------------+
+      * Positioning Classes:
+      '.affix' - Sets Sidebar Left to the fixed position
+      * Available Skin Classes:
+      .sidebar-dark (default no class needed)
+      .sidebar-light
+      .sidebar-light.light
+      -------------------------------------------------------------------+
+      Example: <aside id="sidebar_left" class="affix sidebar-light">
+      Results: Fixed Left Sidebar with light/white background
+      -----------------------------------------------------------------
+      -->
+      <!-- Start: Sidebar-->
+      <aside id="sidebar_left" class="nano nano-light affix">
+        <!--Navbar Branding-->
+        <div class="navbar-branding"><a href="dashboard.html" class="navbar-brand"><span class="text-white">BIENVENIDO</span></a><span id="toggle_sidemenu_l" class="ad ad-lines"></span></div>
+        <!-- Start: Sidebar Left Content-->
+        <div class="sidebar-left-content nano-content">
+          <!-- Start: Sidebar Header-->
+          <header class="sidebar-header">
+            <!-- Sidebar Widget - Author-->
+            <div class="sidebar-widget author-widget">
+                {% if user.foto %}
+                 <div class="media"><a href="#" class="media-left"><img src="{% static 'imagenes/add_male_user_256.png'%}" class="img-responsive"></a>
+                {% else %}
+                <div class="media"><a href="#" class="media-left"><img src="/static/{{user.foto}}" class="img-responsive"></a>
+                {% endif %}
+
+
+
+
+                <div class="media-body">
+
+                  <div class="media-links"></div>
+                  <div class="media-author">{{user.username|capfirst}}</div><a href="/cerrar/">Cerrar Sesion </a>
+                </div>
+              </div>
+            </div>
+            <!-- Sidebar Widget - Menu (slidedown)-->
+            <div class="sidebar-widget menu-widget">
+              <div class="row text-center mbn">
+                <div class="col-xs-4"><a href="dashboard.html" data-toggle="tooltip" data-placement="top" title="Dashboard" class="text-primary"><span class="glyphicon glyphicon-home"></span></a></div>
+                <div class="col-xs-4"><a href="pages_messages.html" data-toggle="tooltip" data-placement="top" title="Messages" class="text-info"><span class="glyphicon glyphicon-inbox"></span></a></div>
+                <div class="col-xs-4"><a href="pages_profile.html" data-toggle="tooltip" data-placement="top" title="Tasks" class="text-alert"><span class="fa fa-asterisk"></span></a></div>
+              </div>
+              <div class="row text-center mbn">
+                <div class="col-xs-4"><a href="pages_timeline.html" data-toggle="tooltip" data-placement="top" title="Activity" class="text-system"><span class="fa fa-desktop"></span></a></div>
+                <div class="col-xs-4"><a href="pages_profile.html" data-toggle="tooltip" data-placement="top" title="Settings" class="text-danger"><span class="fa fa-gears"></span></a></div>
+                <div class="col-xs-4"><a href="pages_gallery.html" data-toggle="tooltip" data-placement="top" title="Cron Jobs" class="text-warning"><span class="fa fa-flask"></span></a></div>
+              </div>
+            </div>
+            <!-- Sidebar Widget - Search (hidden)-->
+            <div class="sidebar-widget search-widget hidden">
+              <div class="input-group"><span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input id="sidebar-search" type="text" placeholder="Search..." class="form-control">
+              </div>
+            </div>
+            </div>
+
+          </header>
+          <!-- Start: Sidebar Menu-->
+          <ul class="nav sidebar-menu">
+            <li class="sidebar-label pt30">Menu</li>
+            <li><a href="pages_calendar.html"><span class="fa fa-calendar"></span><span class="sidebar-title">Calendario</span></a></li>
+            <li><a href="../documentation"><span class="glyphicon glyphicon-book"></span><span class="sidebar-title">Documentacion</span></a></li>
+            <li class="active"><a href="dashboard.html"><span class="glyphicon glyphicon-home"></span><span class="sidebar-title">INICIO</span></a></li>
+            <li class="sidebar-label pt15">ALMACEN</li>
+            <li><a href="#" class="accordion-toggle"><span class="fa fa-columns"></span><span class="sidebar-title">MOVIMIENTOS</span><span class="caret"></span></a>
+              <ul class="nav sub-nav">
+                <li><a href="#" class="accordion-toggle"><span class="glyphicon glyphicon-folder-close"></span>  ENTRADAS<span class="caret"></span></a>
+                  <ul class="nav sub-nav">
+                    <li><a href="/nuevoDetalleArticulo/">Nueva Entrada</a></li>
+                    <li><a href="layout_sidebar-left-fixed.html">Ver Entradas Fecha</a></li>
+                    <li><a href="layout_sidebar-left-widgets.html">Ver Entradas Por Usuario</a></li>
+
+
+                  </ul>
+                </li>
+                <li><a href="#" class="accordion-toggle"><span class="glyphicon glyphicon-folder-close"></span>SALIDAS<span class="caret"></span></a>
+                  <ul class="nav sub-nav">
+                    <li><a href="layout_topbar.html">Nueva Salida</a></li>
+                    <li><a href="layout_topbar-menu.html">Ver Salida Fecha</a></li>
+                    <li><a href="layout_topbar-alt.html">Ver Salidas</a></li>
+                  </ul>
+                </li>
+
+                </li>
+
+
+
+              </ul>
+            </li>
+            <li><a href="#" class="accordion-toggle"><span class="glyphicon glyphicon-list-alt"></span><span class="sidebar-title">SUMINISTROS</span><span class="caret"></span></a>
+              <ul class="nav sub-nav">
+                <li><a href="/nuevoArticulo/"><span class="glyphicon glyphicon-book"></span>  Nuevo Suministro</a></li>
+                <li><a href="admin_plugins-modals.html"><span class="glyphicon glyphicon-modal-window"></span> Buscar Existencias</a></li>
+                <li><a href="admin_plugins-dock.html"><span class="glyphicon glyphicon-equalizer"></span>Reportes </a></li>
+              </ul>
+            </li>
+            <li><a href="#" class="accordion-toggle"><span class="glyphicon glyphicon-check"></span><span class="sidebar-title">INCIDENTES</span><span class="caret"></span></a>
+              <ul class="nav sub-nav">
+                <li><a href="crear_empleado.html"><span class="glyphicon glyphicon-shopping-cart"></span> Registrar Incidente</a></li>
+                <li><a href="admin_forms-widgets.html"><span class="glyphicon glyphicon-calendar"></span> Ver Incidentes</a></li>
+
+              </ul>
+            </li>
+
+
+
+            <!-- sidebar resources-->
+            <li class="sidebar-label pt20">BIENES HONDUCOR</li>
+            <li><a href="#" class="accordion-toggle"><span class="imoon  imoon-cabinet"></span><span class="sidebar-title">MOBILIARIO</span><span class="caret"></span></a>
+              <ul class="nav sub-nav">
+                <li><a href="/nuevoMobiliario/"><span class="fa fa-warning"></span> Agregar Mobiliario</a></li>
+             <li><a href="ui_buttons.html"><span class="fa fa-plus-square-o"></span> Asignar Mobiliario</a></li>
+                <li><a href="ui_typography.html"><span class="fa fa-text-width"></span> Descargar Mobiliario</a></li>
+                 <li><a href="ui_animations.html"><span class="fa fa-spinner"></span> Buscar Mobiliario</a></li>
+
+              </ul>
+            </li>
+            <li><a href="#" class="accordion-toggle"><span class="imoon imoon-truck"></span><span class="sidebar-title">   VEHICULOS</span><span class="caret"></span></a>
+              <ul class="nav sub-nav">
+            <li><a href="/nuevoMobiliario/"><span class="fa fa-warning"></span> Agregar Vehiculo</a></li>
+             <li><a href="ui_buttons.html"><span class="fa fa-plus-square-o"></span> Asignar Vehiculo</a></li>
+                <li><a href="ui_typography.html"><span class="fa fa-text-width"></span> Descargar Vehiculo</a></li>
+                 <li><a href="ui_animations.html"><span class="fa fa-spinner"></span> Buscar Vehiculo</a></li>
+              </ul>
+            </li>
+            <li><a href="#" class="accordion-toggle"><span class="imoon imoon-office"></span><span class="sidebar-title">INMUEBLES</span><span class="caret"></span></a>
+              <ul class="nav sub-nav">
+                <li><a href="#" class="accordion-toggle"><span class="glyphicon glyphicon-globe"></span> Maps<span class="caret"></span></a>
+                  <ul class="nav sub-nav">
+                    <li><a href="maps_basic.html">Basic Maps</a></li>
+                    <li><a href="maps_vector.html">Vector Maps</a></li>
+                    <li><a href="maps_full.html">Full Map</a></li>
+                  </ul>
+                </li>
+                <li><a href="#" class="accordion-toggle"><span class="fa fa-area-chart"></span> Charts<span class="caret"></span></a>
+                  <ul class="nav sub-nav">
+                    <li><a href="charts_highcharts.html">Highcharts</a></li>
+                    <li><a href="charts_d3.html">D3 Charts</a></li>
+                    <li><a href="charts_flot.html">Flot Charts</a></li>
+                  </ul>
+                </li>
+
+                <li><a href="#" class="accordion-toggle"><span class="fa fa-table"></span> Tables<span class="caret"></span></a>
+                  <ul class="nav sub-nav">
+                    <li><a href="tables_basic.html"> Basic Tables</a></li>
+                    <li><a href="tables_footable.html"> FooTables</a></li>
+                    <li><a href="tables_pricing.html"> Pricing Tables</a></li>
+                  </ul>
+                </li>
+                <li><a href="#" class="accordion-toggle"><span class="fa fa-flask"></span> Misc<span class="caret"></span></a>
+                  <ul class="nav sub-nav">
+                    <li><a href="misc_tour.html"> Site Tour</a></li>
+                    <li><a href="misc_timeout.html"> Session Timeout</a></li>
+                    <li><a href="misc_nprogress.html"> Page Progress Loader</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+
+            <!-- sidebar bullets-->
+            <li class="sidebar-label pt20">DOCUMENTOS</li>
+            <li class="sidebar-proj"><a href="#projectOne"><span class="fa fa-bookmark text-primary"></span><span class="sidebar-title">Executive Meeting</span></a></li>
+            <li class="sidebar-proj"><a href="#projectTwo"><span class="fa fa-bookmark text-info"></span><span class="sidebar-title">HelpDesk Redesign</span></a></li>
+            <li class="sidebar-proj"><a href="#projectTwo"><span class="fa fa-bookmark text-danger"></span><span class="sidebar-title">Sony Board Meeting</span></a></li>
+            <li class="sidebar-proj"><a href="#projectThree"><span class="fa fa-bookmark text-warning"></span><span class="sidebar-title">Apple Tech Conference</span></a></li>
+          </ul>
+        </div>
+      </aside>
+      <!-- Start: Content-Wrapper-->
+      <section id="content_wrapper">
+        <!-- Start: Topbar-->
+        <header id="topbar" class="badges-mod alt">
+          <div class="topbar-left">
+                         <ol class="breadcrumb">
+                    <li><a href="/main/">INICIO</a></li>
+
+
+
+{% for group in request.user.groups.all %}
+{% if group.name == 'administrador'  %}
+
+                        <li><a href="/documentacion//">DOCUMENTACION</a></li>
+
+
+                        <li><a href="/admin/">PANEL DE CONTROL</a></li>
+    {% elif group.name == 'bienes' %}
+                         <li><a href="/listarVehiculosIndex/">buscar VEHICULOS</a></li>
+                        <li><a href="/buscarMobiliarioIndex/">buscar MOBIliario</a></li>
+     <li><a href="/listarInmueble/">buscar inmueble</a></li>
+                        <li><a href="/documentacion//">DOCUMENTACION</a></li>
+                    {% else %}
+                        <li><a href="/verEntrada/">Ver ENTRADAs</a></li>
+                        <li><a href="/verSalidas/">ver SALIDAs</a></li>
+    <li><a href="/buscarSoloArticulos/">ver articulos</a></li>
+                        <li><a href="/documentacion/">DOCUMENTACION</a></li>
+                    {% endif %}
+{% endfor %}
+
+                </ol>
+          </div>
+          <div class="topbar-right"><a href="#" class="topbar-icon"></a><a href="#" data-toggle="button" class="topbar-icon topbar-menu-toggle ml40"><span class="fa fa-search"></span></a>
+            <div class="topbar-icon-wrap ml40">
+              <button data-toggle="dropdown" class="topbar-icon dropdown-toggle"><span class="fa fa-bell va-m"></span></button>
+              <div role="menu" class="dropdown-menu dropdown-persist w350 animated animated-shorter fadeIn">
+                <div class="panel mbn">
+                  <div class="panel-menu"><span class="panel-icon"><i class="fa fa-clock-o"></i></span><span class="panel-title fw600"> Actividades Recientes</span>
+                    <button type="button" class="btn btn-xs pull-right"><i class="fa fa-refresh"></i></button>
+                  </div>
+                  <div class="panel-body panel-scroller scroller-navbar scroller-overlay scroller-pn pn">
+
+                  </div>
+                  <div class="panel-footer text-center p7"><a href="#" class="link-unstyled"> View All</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="topbar-icon-wrap ml35">
+                <a href="/cerrar/" >
+              <button    class="topbar-icon dropdown-toggle"><span class="fa fa-close"></span></button>
+</a>
+            </div>
+          </div>
+        </header>
+        <!-- Start: Topbar-Dropdown-->
+        <div id="topbar-dropmenu" class="alt">
+          <div class="topbar-menu row">
+            <div class="col-xs-4 col-sm-2"><a href="#" class="metro-tile bg-primary light"><span class="glyphicon glyphicon-inbox text-white"></span><span class="metro-title">Existencias</span></a></div>
+            <div class="col-xs-4 col-sm-2"><a href="#" class="metro-tile bg-info light"><span class="glyphicon glyphicon-user text-white"></span><span class="metro-title">Entradas</span></a></div>
+            <div class="col-xs-4 col-sm-2"><a href="#" class="metro-tile bg-success light"><span class="glyphicon glyphicon-headphones text-white"></span><span class="metro-title">Salidas</span></a></div>
+            <div class="col-xs-4 col-sm-2"><a href="#" class="metro-tile bg-system light"><span class="glyphicon glyphicon-facetime-video text-white"></span><span class="metro-title">Mobiliario</span></a></div>
+            <div class="col-xs-4 col-sm-2"><a href="#" class="metro-tile bg-warning light"><span class="fa fa-gears text-white"></span><span class="metro-title">Vehiculos</span></a></div>
+            <div class="col-xs-4 col-sm-2"><a href="#" class="metro-tile bg-alert light"><span class="glyphicon glyphicon-picture text-white"></span><span class="metro-title">Pictures</span></a></div>
+          </div>
+        </div>
+
+        <!-- Begin: Content-->
+        <section id="content" class="table-layout animated fadeIn">
+          <!-- begin: .tray-center-->
+          <div class="tray tray-center">
+            <div class="mw1000 center-block">
+              <!-- Begin: Content Header-->
+
+              <!-- Begin: Admin Form-->
+              <div class="admin-form">
+                <div class="panel heading-border">
+                  <div class="panel-body bg-light">
+
+
+
+                    <form id="form-ui"  enctype="multipart/form-data" action="/nuevaEntrada/" method="POST">{% csrf_token %}
+                      <div id="spy1" class="section-divider mb40"><span>Agregar Empleado</span></div>
+
+
+
+
+
+{{ form.as_p }}
+                        <input type="submit" name="submit" id="btn1" value="Crear Empleado">
+</form>
+
+
+
+                      <!-- Ratings Widget-->
+
+                      <div class="section-divider mv40 hidden"><span class="bg-light">Buttons</span></div>
+                      <!-- .tagline-->
+                      <div class="section button-list hidden">
+                        <button class="button"><i class="fa fa-align-left"></i></button>
+                        <button class="button"><i class="fa fa-align-justify"></i></button><a href="javascript:;" class="button"><i class="fa fa-align-center"></i></a><a href="javascript:;" class="button"><i class="fa fa-align-right"></i></a><a href="javascript:;" class="button"><i class="fa fa-align-center"></i></a><a href="javascript:;" class="button btn-primary"><i class="fa fa-align-right"></i></a>
+                        <button class="button btn-primary"><i class="fa fa-align-left"></i></button>
+                        <button class="button btn-primary"><i class="fa fa-align-justify"></i></button><a href="javascript:;" class="button btn-primary"><i class="fa fa-align-center"></i></a><a href="javascript:;" class="button btn-primary"><i class="fa fa-align-right"></i></a>
+                      </div>
+                      <div class="section button-list hidden">
+                        <input type="submit" value="Button normal" class="button">
+                        <button class="button btn-primary">Button primary</button><a href="javascript:;" class="button btn-rounded">Button rounded</a><a href="javascript:;" class="button btn-primary btn-rounded">Primary rounded</a>
+                      </div>
+                      <div class="section button-list hidden">
+                        <input type="submit" value="Pushed normal" class="button pushed">
+                        <button class="button pushed btn-primary">Pushed primary</button><a href="javascript:;" class="button pushed btn-rounded">Pushed round</a><a href="javascript:;" class="button pushed btn-primary btn-rounded">Pushed round</a>
+                      </div>
+                      <div class="section button-list hidden">
+                        <button class="button button-left">Button Left</button>
+                        <button class="button button-right">Button right</button><a href="javascript:;" class="button btn-primary button-left">Primary Left</a><a href="javascript:;" class="button btn-primary button-right">Primary Right</a>
+                      </div>
+                      <div class="section button-list hidden">
+                        <button class="button btn-pointed button-left">Pointed Left</button>
+                        <button class="button btn-pointed button-right">Pointed right</button><a href="javascript:;" class="button btn-pointed btn-primary button-left">Pointed Left</a><a href="javascript:;" class="button btn-pointed btn-primary button-right">Pointed Right</a>
+                      </div>
+                      <div class="section-divider hidden"><span class="bg-light">Simple Pricing Grid</span></div>
+                      <!-- .tagline-->
+                      <!-- Pricing Tables-->
+                      <div class="section row hidden">
+                        <div class="col-md-6">
+                          <div class="section">
+                            <div class="price-box">
+                              <h4><sup>$</sup>29<span class="per-month">/month</span></h4>
+                              <h5>Starter</h5>
+                              <div class="spacer mt20 mb20"></div>
+                              <p>For those looking for something simple to get started.</p>
+                              <div class="spacer mt20 mb20"></div><a href="#" class="button block pushed expand"> Learn more</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="section">
+                            <div class="price-box selected-box">
+                              <div class="ribbon-large">
+                                <div class="ribbon-inner">POPULAR</div>
+                              </div>
+                              <h4><sup>$</sup>179<span class="per-month">/month</span></h4>
+                              <h5>Professional</h5>
+                              <div class="spacer mt20 mb20"></div>
+                              <p>For large enterprises selling over one million plus a year.</p>
+                              <div class="spacer mt20 mb20"></div><a href="#" class="button btn-primary block pushed expand"> Learn more</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="section-divider mv40 hidden"><span class="bg-light">Google Map</span></div>
+                      <!-- .tagline-->
+                      <!-- Google Map-->
+                      <div class="section hidden">
+                        <div class="map-container">
+                          <div id="map_canvas"></div>
+                        </div>
+                      </div>
+                      <!-- Notifications + Progress Bars-->
+                      <div class="section-divider mv40 hidden"><span class="bg-light">Notifications + Progress Bars</span></div>
+                      <div class="section hidden">
+                        <div class="progress">
+                          <div role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 50%" class="progress-bar progress-bar-striped active"><span class="sr-only">40% Complete (success)</span></div>
+                        </div>
+                        <div class="progress">
+                          <div role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%" class="progress-bar progress-bar-success progress-bar-striped"><span class="sr-only">40% Complete (success)</span></div>
+                        </div>
+                        <div class="progress">
+                          <div role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%" class="progress-bar progress-bar-info progress-bar-striped"><span class="sr-only">20% Complete</span></div>
+                        </div>
+                        <div class="progress">
+                          <div role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%" class="progress-bar progress-bar-warning progress-bar-striped"><span class="sr-only">60% Complete (warning)</span></div>
+                        </div>
+                        <div class="progress">
+                          <div role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%" class="progress-bar progress-bar-danger progress-bar-striped"><span class="sr-only">80% Complete (danger)</span></div>
+                        </div>
+                        <div role="alert" class="alert alert-success alert-dismissible">
+                          <button type="button" data-dismiss="alert" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button><strong>Well done!</strong>You successfully read this important alert message.
+                        </div>
+                        <div role="alert" class="alert alert-info alert-dismissible">
+                          <button type="button" data-dismiss="alert" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button><strong>Heads up!</strong>This alert needs your attention, but it's not super important.
+                        </div>
+                        <div role="alert" class="alert alert-warning alert-dismissible">
+                          <button type="button" data-dismiss="alert" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button><strong>Warning!</strong>Better check yourself, you're not looking too good.
+                        </div>
+                        <div role="alert" class="alert alert-danger alert-dismissible">
+                          <button type="button" data-dismiss="alert" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button><strong>Oh snap!</strong>Change a few things up and try submitting again.
+                        </div>
+                      </div>
+                      <div class="panel-footer hidden">
+                        <button type="submit" class="button btn-primary">Proceed to confirm</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- begin: .tray-right-->
+          <aside data-tray-height="match" class="tray tray-right tray290">
+            <div data-spy="affix" data-offset-top="200" class="tray-affix">
+              <div id="skin-switcher" class="tray-bin stretch btn-dimmer row">
+                <div class="col-xs-4 pln"><a data-form-skin="primary" class="btn btn-primary btn-gradient btn-alt btn-block item-active">Primary</a></div>
+                <div class="col-xs-4"><a data-form-skin="success" class="btn btn-success btn-gradient btn-alt btn-block">Success</a></div>
+                <div class="col-xs-4"><a data-form-skin="info" class="btn btn-info btn-gradient btn-alt btn-block">Info</a></div>
+                <div class="col-xs-4 pln"><a data-form-skin="warning" class="btn btn-warning btn-gradient btn-alt btn-block">Warning</a></div>
+                <div class="col-xs-4"><a data-form-skin="danger" class="btn btn-danger btn-gradient btn-alt btn-block">Danger</a></div>
+                <div class="col-xs-4"><a data-form-skin="alert" class="btn btn-alert btn-gradient btn-alt btn-block">Alert</a></div>
+                <div class="col-xs-4 pln"><a data-form-skin="system" class="btn btn-system btn-gradient btn-alt btn-block">System</a></div>
+                <div class="col-xs-4"><a data-form-skin="dark" class="btn btn-dark btn-gradient btn-alt btn-block">Dark</a></div>
+                <div class="col-xs-4"><a data-form-skin="default" class="btn btn-default btn-gradient btn-alt btn-block">Default</a></div>
+              </div>
+              <div id="nav-spy">
+                <ul data-smoothscroll="-90" class="nav tray-nav">
+                  <li class="active"><a href="#spy1"><span class="fa fa-edit fa-lg"></span> Form UI Elements</a></li>
+                  <li><a href="#spy2"><span class="fa fa-flag fa-lg"></span> Input Tooltips</a></li>
+                  <li><a href="#spy3"><span class="fa fa-files-o fa-lg"></span> File Uploaders</a></li>
+                  <li><a href="#spy4"><span class="fa fa-caret-square-o-right fa-lg"></span> Form Input Addons</a></li>
+                  <li><a href="#spy5"><span class="fa fa-check-square-o fa-lg"></span> Radios & Checkboxes</a></li>
+                  <li><a href="#spy6"><span class="fa fa-toggle-off fa-lg"></span> Toggle Switches</a></li>
+                  <li><a href="#spy7"><span class="fa fa-star-o fa-lg"></span> Review & Rating Widgets</a></li>
+                </ul>
+              </div>
+            </div>
+          </aside>
+        </section>
+      </section>
+      <!-- Start: Right Sidebar-->
+      <aside id="sidebar_right" class="nano affix">
+        <!-- Start: Sidebar Right Content-->
+        <div class="sidebar-right-content nano-content">
+          <div class="tab-block sidebar-block br-n">
+            <ul class="nav nav-tabs tabs-border nav-justified hidden">
+              <li class="active"><a href="#sidebar-right-tab1" data-toggle="tab">Tab 1</a></li>
+              <li><a href="#sidebar-right-tab2" data-toggle="tab">Tab 2</a></li>
+              <li><a href="#sidebar-right-tab3" data-toggle="tab">Tab 3</a></li>
+            </ul>
+            <div class="tab-content br-n">
+              <div id="sidebar-right-tab1" class="tab-pane active">
+                <h5 class="title-divider text-muted mb20">Server Statistics<span class="pull-right">2013<i class="fa fa-caret-down ml5"></i></span></h5>
+                <div class="progress mh5">
+                  <div role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 44%" class="progress-bar progress-bar-primary"><span class="fs11">DB Request</span></div>
+                </div>
+                <div class="progress mh5">
+                  <div role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 84%" class="progress-bar progress-bar-info"><span class="fs11 text-left">Server Load</span></div>
+                </div>
+                <div class="progress mh5">
+                  <div role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 61%" class="progress-bar progress-bar-warning"><span class="fs11 text-left">Server Connections</span></div>
+                </div>
+                <h5 class="title-divider text-muted mt30 mb10">Traffic Margins</h5>
+                <div class="row">
+                  <div class="col-xs-5">
+                    <h3 class="text-primary mn pl5">132</h3>
+                  </div>
+                  <div class="col-xs-7 text-right">
+                    <h3 class="text-success-dark mn"><i class="fa fa-caret-up"></i> 13.2%</h3>
+                  </div>
+                </div>
+                <h5 class="title-divider text-muted mt25 mb10">Database Request</h5>
+                <div class="row">
+                  <div class="col-xs-5">
+                    <h3 class="text-primary mn pl5">212</h3>
+                  </div>
+                  <div class="col-xs-7 text-right">
+                    <h3 class="text-success-dark mn"><i class="fa fa-caret-up"></i> 25.6%</h3>
+                  </div>
+                </div>
+                <h5 class="title-divider text-muted mt25 mb10">Server Response</h5>
+                <div class="row">
+                  <div class="col-xs-5">
+                    <h3 class="text-primary mn pl5">82.5</h3>
+                  </div>
+                  <div class="col-xs-7 text-right">
+                    <h3 class="text-danger mn"><i class="fa fa-caret-down"></i> 17.9%</h3>
+                  </div>
+                </div>
+                <h5 class="title-divider text-muted mt40 mb20">Server Statistics<span class="pull-right text-primary fw600">USA</span></h5>
+              </div>
+              <div id="sidebar-right-tab2" class="tab-pane"></div>
+              <div id="sidebar-right-tab3" class="tab-pane"></div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+    <style>
+      /* demo page styles */
+      body {
+        min-height: 2300px;
+      }
+
+      .content-header b,
+      .admin-form .panel.heading-border:before,
+      .admin-form .panel .heading-border:before {
+        transition: all 0.7s ease;
+      }
+
+      /* responsive demo styles */
+      @media (max-width: 800px) {
+        .admin-form .panel-body {
+          padding: 18px 12px;
+        }
+
+        .option-group .option {
+          display: block;
+        }
+
+        .option-group .option + .option {
+          margin-top: 8px;
+        }
+      }
+    </style>
+       <!-- core scripts-->
+    <script src="{% static 'plugins/core.min.js' %}"></script>>
+    <!-- Theme Javascript-->
+    <script src="{% static 'assets/js/utility/utility.js' %}"></script>
+    <script src="{% static 'assets/js/demo/demo.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <!-- Widget Javascript-->
+    <script src="{% static 'assets/js/demo/widgets.js' %}"></script>
+    <script type="text/javascript">
+      jQuery(document).ready(function () {
+        "use strict";
+        // Init Demo JS
+        Demo.init();
+        // Init Theme Core
+        Core.init();
+        $(document).ready(function () {
+          demoHighCharts.init();
+          runVectorMaps();
+          $(window).trigger('resize');
+        });
+        // Init plugins for ".calendar-widget"
+        // plugins: FullCalendar
+        //
+        $('#calendar-widget').fullCalendar({
+          contentHeight: 460
+        });
+        // Init plugins for ".task-widget"
+        // plugins: Custom Functions + jQuery Sortable
+        //
+        var taskWidget = $('div.task-widget');
+        var taskItems = taskWidget.find('li.task-item');
+        var currentItems = taskWidget.find('ul.task-current');
+        var completedItems = taskWidget.find('ul.task-completed');
+        // Init jQuery Sortable on Task Widget
+        taskWidget.sortable({
+          items: taskItems, // only init sortable on list items (not labels)
+          handle: '.task-menu',
+          axis: 'y',
+          connectWith: ".task-list",
+          update: function (event, ui) {
+            var Item = ui.item;
+            var ParentList = Item.parent();
+            // If item is already checked move it to "current items list"
+            if (ParentList.hasClass('task-current')) {
+              Item.removeClass('item-checked').find('input[type="checkbox"]').prop('checked', false);
+            }
+            if (ParentList.hasClass('task-completed')) {
+              Item.addClass('item-checked').find('input[type="checkbox"]').prop('checked', true);
+            }
+          }
+        });
+        // Custom Functions to handle/assign list filter behavior
+        taskItems.on('click', function (e) {
+          e.preventDefault();
+          var This = $(this);
+          var Target = $(e.target);
+          if (Target.is('.task-menu') && Target.parents('.task-completed').length) {
+            This.remove();
+            return;
+          }
+          if (Target.parents('.task-handle').length) {
+            // If item is already checked move it to "current items list"
+            if (This.hasClass('item-checked')) {
+              This.removeClass('item-checked').find('input[type="checkbox"]').prop('checked', false);
+            }
+            // Otherwise move it to the "completed items list"
+            else {
+              This.addClass('item-checked').find('input[type="checkbox"]').prop('checked', true);
+            }
+          }
+        });
+        var highColors = [bgWhite, bgWhite, bgWarningL, bgWhite];
+        // Chart data
+        var seriesData = [{
+          name: 'Phones',
+          data: [5.0, 9, 17, 22, 19, 11.5, 5.2, 9.5, 11.3, 15.3, 19.9, 24.6],
+          marker: {
+            fillColor: '#ffc841'
+          }
+        }, {
+          name: 'Notebooks',
+          data: [2.9, 3.2, 4.7, 5.5, 8.9, 12.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8],
+          marker: {
+            fillColor: '#e27d7f'
+          }
+        }];
+        var ecomChart = $('#ecommerce_chart1');
+        if (ecomChart.length) {
+          ecomChart.highcharts({
+            credits: false,
+            colors: highColors,
+            chart: {
+              backgroundColor: 'transparent',
+              className: '',
+              type: 'line',
+              zoomType: 'x',
+              panning: true,
+              panKey: 'shift',
+              marginTop: 45,
+              marginRight: 0,
+              spacingRight: 0,
+            },
+            title: {
+              text: null
+            },
+            xAxis: {
+              gridLineColor: "rgba(255, 255, 255, 0)",
+              lineColor: "rgba(255, 255, 255, 0)",
+              tickColor: "rgba(255, 255, 255, 0)",
+              categories: ['JAN', 'FEB', 'MAR', 'APR',
+                'MAY', 'JUN', 'JUL', 'AUG',
+                'SEP', 'OCT', 'NOV', 'DEC'
+              ],
+              labels: {
+                style: {
+                  color: 'rgba(255, 255, 255,0.4)',
+                  fontWeight: 'normal',
+                  fontSize: '12px'
+                }
+              }
+            },
+            yAxis: {
+              gridLineColor: "rgba(255, 255, 255, 0)",
+              lineColor: "rgba(255, 255, 255, 0)",
+              tickColor: "rgba(255, 255, 255, 0)",
+              title: {
+                text: null
+              },
+              min: 0,
+              tickInterval: 5,
+              labels: {
+                style: {
+                  color: 'rgba(255, 255, 255,0.4)',
+                  fontWeight: 'normal',
+                  fontSize: '12px'
+                }
+              }
+            },
+            legend: {
+              enabled: true,
+              floating: true,
+              symbol: 'circle',
+              align: 'left',
+              verticalAlign: 'top',
+              padding: 10,
+              x: 25,
+              y: 10,
+              itemStyle: {
+                color: '#fff',
+                fontWeight: 'normal',
+                fontFamily: 'Arimo',
+                fontSize: '14px',
+                hover: {
+                  enabled: false,
+                  fill: '#a288d5'
+                }
+              }
+            },
+            plotOptions: {
+              spline: {
+                lineWidth: 2
+              },
+              series: {
+                marker: {
+                  enabled: true,
+                  symbol: 'circle',
+                  radius: 5,
+                  lineColor: "#fff",
+                  fillColor: '#ffc841',
+                  lineWidth: 2
+                }
+              },
+              line: {
+                lineWidth: 2,
+                marker: {
+                  enabled: true,
+                  symbol: 'circle',
+                  radius: 5,
+                  states: {
+                    hover: {
+                      enabled: true
+                    }
+                  }
+                },
+                states: {
+                  hover: {
+                    lineWidth: 2
+                  }
+                },
+                threshold: null
+              }
+            },
+            series: seriesData
+          });
+
+        }
+        // Widget VectorMap
+        function runVectorMaps() {
+          // Jvector Map Plugin
+          var runJvectorMap = function () {
+            // Data set
+            var mapData = [900, 700, 350, 500];
+            // Init Jvector Map
+            $('#WidgetMap').vectorMap({
+              map: 'us_lcc_en',
+              backgroundColor: 'transparent',
+              series: {
+                markers: [{
+                  attribute: 'r',
+                  scale: [3, 7],
+                  values: mapData
+                }]
+              },
+              regionStyle: {
+                initial: {
+                  fill: '#E8E8E8'
+                },
+                hover: {
+                  "fill-opacity": 0.3
+                }
+              },
+              markerStyle: {
+                initial: {
+                  fill: '#a288d5',
+                  stroke: '#b49ae0',
+                  "fill-opacity": 1,
+                  "stroke-width": 10,
+                  "stroke-opacity": 0.3,
+                  r: 3
+                },
+                hover: {
+                  stroke: 'black',
+                  "stroke-width": 2
+                },
+                selected: {
+                  fill: 'blue'
+                },
+                selectedHover: {}
+              },
+            });
+            // Manual code to alter the Vector map plugin to
+            // allow for individual coloring of countries
+            var states = ['US-CA', 'US-TX', 'US-MO',
+              'US-NY'
+            ];
+            var colors = [bgSmalt, bgPrimary, bgInfo, bgTwilight];
+            $.each(states, function (i, e) {
+              $("#WidgetMap path[data-code=" + e + "]").css({
+                fill: colors[i]
+              });
+            });
+          }
+          if ($('#WidgetMap').length) {
+            runJvectorMap();
+          }
+        }
+        var dbSelect = $(".rd-mailform-select"), i = 0;
+        if (dbSelect.length) {
+          for (i = 0; i < dbSelect.length; i++) {
+            var dropdownSelectItem = dbSelect[i];
+            $(dropdownSelectItem).RDSelectMenu();
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

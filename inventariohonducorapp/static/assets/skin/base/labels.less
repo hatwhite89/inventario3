@@ -1,0 +1,76 @@
+/*==================================================
+  Labels
+==================================================== */
+
+.label {
+  display: inline;
+  padding: 9px 15px;
+  font-size: 84%;
+  font-weight: 600;
+  line-height: 40px;
+  font-weight: 300;
+  font-family: "Arimo";
+  color: @label-color;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+
+  @media (min-width: 1750px) { line-height: 24px; }
+
+  &+ .label { margin-left: 10px; }
+
+  // Label sizes
+  &.label-xs {
+    padding: 0 .35em .1em;
+    font-size: 75%;
+  }
+
+  // Label sizes
+  &.label-sm {
+    padding: .1em .65em .2em;
+    font-size: 75%;
+  }
+  &.label-lg {
+    padding: .4em .9em .5em;
+    font-size: 95%;
+  }
+
+  // Rounded option
+  &.label-rounded {
+    padding: 7px 10px;
+    border-radius: 3px;
+      &.label-xs { padding: 0 .35em .1em; }
+      &.label-sm { padding: .1em .65em .2em; }
+      &.label-lg { padding: .4em .9em .5em; }
+  }
+
+  &.label-rounded-1 {
+    padding: 5px 6px;
+    border-radius: 50%;
+      &.label-xs { padding: 0 .35em .1em; }
+      &.label-sm { padding: .1em .65em .2em; }
+      &.label-lg { padding: .4em .9em .5em; }
+  }
+
+  // Add hover effects, but only for links
+  a& {
+    &:hover,
+    &:focus {
+      color: @label-link-hover-color;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+
+  // Empty labels collapse automatically (not available in IE8)
+  &:empty {
+    display: none;
+  }
+
+  // Quick fix for labels in buttons
+  .btn & {
+    position: relative;
+    top: -1px;
+  }
+}
+

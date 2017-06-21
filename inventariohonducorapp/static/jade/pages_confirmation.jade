@@ -1,0 +1,56 @@
+extends  _skeleton
+
+block body
+  body.external-page.external-alt.sb-l-c.sb-r-c
+    // Start: Main
+    #main.animated.fadeIn
+      // Start: Content-Wrapper
+      section#content_wrapper
+        // Begin: Content
+        section#content
+          .center-block.mt70(style='max-width: 625px')
+            // Login Logo + Meta
+            .row.table-layout
+              .col-xs-7.pln
+                h2.text-dark.mbn.confirmation-header
+                  i.fa.fa-check.text-success
+                  |  Account Confirmed.
+              .col-xs-5.text-right.va-b
+                .meta-links.alt
+                  a(href='#') Yoursite.com
+                  = ' '
+                  span.ph5 &#124;
+                  = ' '
+                  a.active(href='#') support
+            // Confirmation Panel
+            .panel.mt15
+              .panel-body.pt30.p25.pb15
+                p.lead Hello Justin,
+                hr.alt.short.mv25
+                p.lh25.text-muted.fs15
+                  | Thank you for registering with blank. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac nisi massa. Sed gravida arcu et eros euismod aliquam. Cras at fermentum velit. Praesent ligula nibh, venenatis non vulputate sit amet, bibendum non risus.
+                p.text-right.mt20
+                  button.btn.btn-primary.btn-rounded.ph40(type='button') SIGN IN
+            // Registration Links
+            .login-links.mt30
+              p
+                a.active(href='#') Need More Help?
+              p
+                | Misc question two?
+                = ' '
+                a.text-secondary(href='#') Response Link
+    // core scripts
+    script(src='plugins/core.min.js')
+    // Theme Javascript
+    script(src='assets/js/utility/utility.js')
+    script(src='assets/js/demo/demo.js')
+    script(src='assets/js/main.js')
+    // Page Javascript
+    script(type='text/javascript').
+      jQuery(document).ready(function () {
+        "use strict";
+        // Init Theme Core
+        Core.init();
+        // Init Demo JS
+        Demo.init();
+      });

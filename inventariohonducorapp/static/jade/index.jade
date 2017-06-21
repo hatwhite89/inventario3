@@ -1,0 +1,1698 @@
+extends  _skeleton
+
+block stylesheets
+  link(rel='stylesheet', type='text/css', href='plugins/css/fullcalendar.css')
+  link(rel='stylesheet', type='text/css', href='assets/admin-tools/admin-forms/css/admin-forms.css')
+
+block body
+  body.dashboard-page
+    //
+      -----------------------------------------------------------+
+      <body> Helper Classes:
+      ---------------------------------------------------------------+
+      '.sb-l-o' - Sets Left Sidebar to "open"
+      '.sb-l-m' - Sets Left Sidebar to "minified"
+      '.sb-l-c' - Sets Left Sidebar to "closed"
+      '.sb-r-o' - Sets Right Sidebar to "open"
+      '.sb-r-c' - Sets Right Sidebar to "closed"
+      ---------------------------------------------------------------+
+      Example: <body class="example-page sb-l-o sb-r-c">
+      Results: Sidebar left Open, Sidebar right Closed
+      -------------------------------------------------------------
+    // Start: Theme Preview Pane
+    #skin-toolbox
+      .panel
+        .panel-heading
+          span.panel-icon
+            i.fa.fa-gear.text-primary
+          span.panel-title  Theme Options
+        .panel-body.pn
+          ul.nav.nav-list.nav-list-sm.pl15.pt10(role='tablist')
+
+            li.active
+              a(href='#toolbox-sidebar', role='tab', data-toggle='tab') Sidebar
+            li
+              a(href='#toolbox-settings', role='tab', data-toggle='tab') Misc
+          .tab-content.p20.ptn.pb15
+            #toolbox-sidebar.tab-pane.active(role='tabpanel')
+              form#toolbox-sidebar-skin
+                h4.mv20 Sidebar Skins
+                .skin-toolbox-swatches
+                  .checkbox-custom.fill.mb5
+                    input#sidebarSkin3(type='radio', name='sidebarSkin', checked='', value='')
+                    label(for='sidebarSkin3') Dark
+                  .checkbox-custom.fill.checkbox-disabled.mb5
+                    input#sidebarSkin1(type='radio', name='sidebarSkin', value='sidebar-light')
+                    label(for='sidebarSkin1') Light
+                  .checkbox-custom.fill.checkbox-light.mb5
+                    input#sidebarSkin2(type='radio', name='sidebarSkin', value='sidebar-light light')
+                    label(for='sidebarSkin2') Lighter
+            #toolbox-settings.tab-pane(role='tabpanel')
+              form#toolbox-settings-misc
+                h4.mv20.mtn Layout Options
+
+                .form-group
+                  .checkbox-custom.fill.mb5
+                    input#sidebar-option(type='checkbox', checked='')
+                    label(for='sidebar-option') Fixed Sidebar
+
+                h4.mv20 Layout Options
+                .form-group
+                  .radio-custom.mb5
+                    input#fullwidth-option(type='radio', checked='', name='layout-option')
+                    label(for='fullwidth-option') Fullwidth Layout
+                .form-group.mb20.pointer-events-none
+                  .radio-custom.radio-disabled.mb5
+                    input#boxed-option(type='radio', name='layout-option', disabled='')
+                    label(for='boxed-option')
+                      | Boxed Layout
+                      b.text-muted (Coming Soon)
+          .form-group.mn.br-t.p10
+            a#clearLocalStorage.btn.btn-primary.btn-block.pb10.pt10(href='#') Clear LocalStorage
+    // Start: Main
+    #main
+      //
+        ---------------------------------------------------------------+
+        "#sidebar_left" Helper Classes:
+        -------------------------------------------------------------------+
+        * Positioning Classes:
+        '.affix' - Sets Sidebar Left to the fixed position
+        * Available Skin Classes:
+        .sidebar-dark (default no class needed)
+        .sidebar-light
+        .sidebar-light.light
+        -------------------------------------------------------------------+
+        Example: <aside id="sidebar_left" class="affix sidebar-light">
+        Results: Fixed Left Sidebar with light/white background
+        -----------------------------------------------------------------
+      // Start: Sidebar
+      aside#sidebar_left.nano.nano-light.affix
+        //Navbar Branding
+        .navbar-branding
+          a.navbar-brand(href='dashboard.html')
+            span.text-white Ruby
+            = ' '
+            | Admin
+          span#toggle_sidemenu_l.ad.ad-lines
+        // Start: Sidebar Left Content
+        .sidebar-left-content.nano-content
+          // Start: Sidebar Header
+          header.sidebar-header
+            // Sidebar Widget - Author
+            .sidebar-widget.author-widget
+              .media
+                a.media-left(href='#')
+                  img.img-responsive(src='assets/img/avatars/3.jpg')
+                .media-body
+                  .media-links
+                  .media-author Ryan Harrison
+                  a.sidebar-menu-toggle(href='#') User Menu
+                  a(href='pages_login(alt).html') Logout
+            // Sidebar Widget - Menu (slidedown)
+            .sidebar-widget.menu-widget
+              .row.text-center.mbn
+                .col-xs-4
+                  a.text-primary(href='dashboard.html', data-toggle='tooltip', data-placement='top', title='Dashboard')
+                    span.glyphicon.glyphicon-home
+                .col-xs-4
+                  a.text-info(href='pages_messages.html', data-toggle='tooltip', data-placement='top', title='Messages')
+                    span.glyphicon.glyphicon-inbox
+                .col-xs-4
+                  a.text-alert(href='pages_profile.html', data-toggle='tooltip', data-placement='top', title='Tasks')
+                    span.fa.fa-asterisk
+              .row.text-center.mbn
+                .col-xs-4
+                  a.text-system(href='pages_timeline.html', data-toggle='tooltip', data-placement='top', title='Activity')
+                    span.fa.fa-desktop
+                .col-xs-4
+                  a.text-danger(href='pages_profile.html', data-toggle='tooltip', data-placement='top', title='Settings')
+                    span.fa.fa-gears
+                .col-xs-4
+                  a.text-warning(href='pages_gallery.html', data-toggle='tooltip', data-placement='top', title='Cron Jobs')
+                    span.fa.fa-flask
+            // Sidebar Widget - Search (hidden)
+            .sidebar-widget.search-widget.hidden
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-search
+                input#sidebar-search.form-control(type='text', placeholder='Search...')
+          // Start: Sidebar Menu
+          ul.nav.sidebar-menu
+            li.sidebar-label.pt30 Menu
+            li
+              a(href='pages_calendar.html')
+                span.fa.fa-calendar
+                span.sidebar-title Calendar
+                span.sidebar-title-tray
+                  span.label.label-xs.bg-primary New
+            li
+              a(href='documentation/')
+                span.glyphicon.glyphicon-book
+                span.sidebar-title Documentation
+            li.active
+              a(href='dashboard.html')
+                span.glyphicon.glyphicon-home
+                span.sidebar-title Dashboard
+            li.sidebar-label.pt15 Theme Tools
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-columns
+                span.sidebar-title Admin Layouts
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa.fa-arrows-h
+                    |                   Sidebars
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_sidebar-left-static.html')
+                        | Left Static
+                    li
+                      a(href='layout_sidebar-left-fixed.html')
+                        | Left Fixed
+                    li
+                      a(href='layout_sidebar-left-widgets.html')
+                        | Left Widgets
+                    li
+                      a(href='layout_sidebar-left-minified.html')
+                        | Left Minified
+                    li
+                      a(href='layout_sidebar-left-light.html')
+                        | Left White
+                    li
+                      a(href='layout_sidebar-right-static.html')
+                        | Right Static
+                    li
+                      a(href='layout_sidebar-right-fixed.html')
+                        | Right Fixed
+                    li
+                      a(href='layout_sidebar-right-menu.html')
+                        | Right w/Menu
+
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-hand-o-up
+                    |                   Topbar
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_topbar.html')
+                        | Default Style
+                    li
+                      a(href='layout_topbar-menu.html')
+                        | Default w/Menu
+                    li
+                      a(href='layout_topbar-alt.html')
+                        | Alternate Style
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-arrows-v
+                    |                   Content Body
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_content-blank.html')
+                        | Blank Starter
+                    li
+                      a(href='layout_content-fixed.html')
+                        | Fixed Window
+                    li
+                      a(href='layout_content-heading.html')
+                        | Content Heading
+                    li
+                      a(href='layout_content-tabs.html')
+                        | Content Tabs
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-pause
+                    |                   Content Trays
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_tray-left.html')
+                        | Tray Left Static
+                    li
+                      a(href='layout_tray-left-fixed.html')
+                        | Tray Left Fixed
+                    li
+                      a(href='layout_tray-right.html')
+                        | Tray Right Static
+                    li
+                      a(href='layout_tray-right-fixed.html')
+                        | Tray Right Fixed
+                    li
+                      a(href='layout_tray-both.html')
+                        | Left + Right Static
+                    li
+                      a(href='layout_tray-both-fixed.html')
+                        | Left + Right Fixed
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-plus-square-o
+                    |                   Boxed Layout
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_boxed.html')
+                        | Default
+                    li
+                      a(href='layout_boxed-horizontal.html')
+                        | Horizontal Menu
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-arrow-circle-o-up
+                    |                   Horizontal Menu
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_horizontal-sm.html')
+                        | Small Size
+                    li
+                      a(href='layout_horizontal-md.html')
+                        | Medium Size
+                    li
+                      a(href='layout_horizontal-lg.html')
+                        | Large Size
+                    li
+                      a(href='layout_horizontal-light.html')
+                        | Light Skin
+                    li
+                      a(href='layout_horizontal-topbar.html')
+                        | With Topbar
+                    li
+                      a(href='layout_horizontal-topbar-alt.html')
+                        | With Alt Topbar
+                    li
+                      a(href='layout_horizontal-collapsed.html')
+                        | Collapsed onLoad
+                    li
+                      a(href='layout_horizontal-boxed.html')
+                        | In Boxed Layout
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-fire
+                span.sidebar-title Admin Plugins
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='admin_plugins-panels.html')
+                    span.glyphicon.glyphicon-book
+                    |  Admin Panels
+                li
+                  a(href='admin_plugins-modals.html')
+                    span.glyphicon.glyphicon-modal-window
+                    |  Admin Modals
+                li
+                  a(href='admin_plugins-dock.html')
+                    span.glyphicon.glyphicon-equalizer
+                    |  Admin Dock
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-check
+                span.sidebar-title Admin Forms
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='admin_forms-elements.html')
+                    span.glyphicon.glyphicon-shopping-cart
+                    |  Admin Elements
+                li
+                  a(href='admin_forms-widgets.html')
+                    span.glyphicon.glyphicon-calendar
+                    |  Admin Widgets
+                li
+                  a(href='admin_forms-layouts.html')
+                    span.fa.fa-desktop
+                    |  Admin Layouts
+                li
+                  a(href='admin_forms-wizard.html')
+                    span.fa.fa-clipboard
+                    |  Admin Wizard
+                li
+                  a(href='admin_forms-validation.html')
+                    span.glyphicon.glyphicon-check
+                    |  Admin Validation
+            li.sidebar-label.pt20 Systems
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-diamond
+                span.sidebar-title Widget Packages
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='widgets_tile.html')
+                    span.fa.fa-cube
+                    |  Tile Widgets
+                li
+                  a(href='widgets_panel.html')
+                    span.fa.fa-desktop
+                    |  Panel Widgets
+                li
+                  a(href='widgets_scroller.html')
+                    span.fa.fa-columns
+                    |  Scroller Widgets
+                li
+                  a(href='widgets_data.html')
+                    span.fa.fa-dot-circle-o
+                    |  Admin Widgets
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-shopping-cart
+                span.sidebar-title Ecommerce
+                span.caret
+              ul.nav.sub-nav
+                li.active
+                  a(href='ecommerce_dashboard.html')
+                    span.glyphicon.glyphicon-shopping-cart
+                    |  Dashboard
+                    span.label.label-xs.bg-primary New
+                li
+                  a(href='ecommerce_products.html')
+                    span.glyphicon.glyphicon-tags
+                    |  Products
+                li
+                  a(href='ecommerce_orders.html')
+                    span.fa.fa-money
+                    |  Orders
+                li
+                  a(href='ecommerce_customers.html')
+                    span.fa.fa-users
+                    |  Customers
+                li
+                  a(href='ecommerce_settings.html')
+                    span.fa.fa-gears
+                    |  Store Settings
+
+            // sidebar resources
+            li.sidebar-label.pt20 Elements
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-asterisk
+                span.sidebar-title UI Elements
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='ui_alerts.html')
+                    span.fa.fa-warning
+                    |  Alerts
+                li
+                  a(href='ui_animations.html')
+                    span.fa.fa-spinner
+                    |  Animations
+                li
+                  a(href='ui_buttons.html')
+                    span.fa.fa-plus-square-o
+                    |  Buttons
+                li
+                  a(href='ui_typography.html')
+                    span.fa.fa-text-width
+                    |  Typography
+                li
+                  a(href='ui_portlets.html')
+                    span.fa.fa-archive
+                    |  Portlets
+                li
+                  a(href='ui_progress-bars.html')
+                    span.fa.fa-bars
+                    |  Progress Bars
+                li
+                  a(href='ui_tabs.html')
+                    span.fa.fa-toggle-off
+                    |  Tabs
+                li
+                  a(href='ui_icons.html')
+                    span.fa.fa-hand-o-right
+                    |  Icons
+                li
+                  a(href='ui_grid.html')
+                    span.fa.fa-th-large
+                    |  Grid
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-align-justify
+                span.sidebar-title Form Elements
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='form_inputs.html')
+                    span.fa.fa-magic
+                    |  Basic Inputs
+                li
+                  a(href='form_plugins.html')
+                    span.fa.fa-bell-o
+                    |  Plugin Inputs
+                    span.label.label-xs.bg-primary New
+                li
+                  a(href='form_editors.html')
+                    span.fa.fa-clipboard
+                    |  Editors
+                li
+                  a(href='form_treeview.html')
+                    span.fa.fa-tree
+                    |  Treeview
+                li
+                  a(href='form_nestable.html')
+                    span.fa.fa-tasks
+                    |  Nestable
+                li
+                  a(href='form_image-tools.html')
+                    span.fa.fa-cloud-upload
+                    |  Image Tools
+                    span.label.label-xs.bg-primary New
+                li
+                  a(href='form_uploaders.html')
+                    span.fa.fa-cloud-upload
+                    |  Uploaders
+                li
+                  a(href='form_notifications.html')
+                    span.fa.fa-bell-o
+                    |  Notifications
+                li
+                  a(href='form_content-sliders.html')
+                    span.fa.fa-exchange
+                    |  Content Sliders
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-tower
+                span.sidebar-title Plugins
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a.accordion-toggle(href='#')
+                    span.glyphicon.glyphicon-globe
+                    |  Maps
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='maps_basic.html') Basic Maps
+                    li
+                      a(href='maps_vector.html') Vector Maps
+                    li
+                      a(href='maps_full.html') Full Map
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-area-chart
+                    |  Charts
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='charts_highcharts.html') Highcharts
+                    li
+                      a(href='charts_d3.html') D3 Charts
+                    li
+                      a(href='charts_flot.html') Flot Charts
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-table
+                    |  Tables
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='tables_basic.html')  Basic Tables
+                    li
+                      a(href='tables_footable.html')  FooTables
+                    li
+                      a(href='tables_pricing.html')  Pricing Tables
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-flask
+                    |  Misc
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='misc_tour.html')  Site Tour
+                    li
+                      a(href='misc_timeout.html')  Session Timeout
+                    li
+                      a(href='misc_nprogress.html')  Page Progress Loader
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-duplicate
+                span.sidebar-title Pages
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-gears
+                    |  Utility
+                    span.caret
+                  ul.nav.sub-nav
+
+                    li
+                      a(href='pages_confirmation.html', target='_blank')
+                        | Confirmation
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_login.html', target='_blank')  Login
+                    li
+                      a(href='pages_login(alt).html', target='_blank')
+                        | Login Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_register.html', target='_blank')  Register
+                    li
+                      a(href='pages_register(alt).html', target='_blank')
+                        | Register Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_screenlock.html', target='_blank')  Screenlock
+                    li
+                      a(href='pages_screenlock(alt).html', target='_blank')
+                        | Screenlock Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_forgotpw.html', target='_blank')  Forgot Password
+                    li
+                      a(href='pages_forgotpw(alt).html', target='_blank')
+                        | Forgot Pass Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_coming-soon.html', target='_blank')
+                        | Coming Soon
+                    li
+                      a(href='pages_404.html')  404 Error
+                    li
+                      a(href='pages_500.html')  500 Error
+                    li
+                      a(href='pages_404(alt).html')  404 Error Alt
+                    li
+                      a(href='pages_500(alt).html')  500 Error Alt
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-desktop
+                    |  Basic
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='pages_search-results.html')
+                        | Search Results
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_profile.html')  Profile
+                    li
+                      a(href='pages_timeline.html')  Timeline Split
+                    li
+                      a(href='pages_timeline-single.html')  Timeline Single
+                    li
+                      a(href='pages_faq.html')  FAQ Page
+                    li
+                      a(href='pages_calendar.html')  Calendar
+                    li
+                      a(href='pages_messages.html')  Messages
+                    li
+                      a(href='pages_messages(alt).html')  Messages Alt
+                    li
+                      a(href='pages_gallery.html')  Gallery
+            // sidebar bullets
+            li.sidebar-label.pt20 Projects
+            li.sidebar-proj
+              a(href='#projectOne')
+                span.fa.fa-bookmark.text-primary
+                span.sidebar-title Executive Meeting
+            li.sidebar-proj
+              a(href='#projectTwo')
+                span.fa.fa-bookmark.text-info
+                span.sidebar-title HelpDesk Redesign
+            li.sidebar-proj
+              a(href='#projectTwo')
+                span.fa.fa-bookmark.text-danger
+                span.sidebar-title Sony Board Meeting
+            li.sidebar-proj
+              a(href='#projectThree')
+                span.fa.fa-bookmark.text-warning
+                span.sidebar-title Apple Tech Conference
+      // Start: Content-Wrapper
+      section#content_wrapper
+        // Start: Topbar
+        header#topbar.badges-mod.alt
+          .topbar-left
+            ol.breadcrumb
+              li
+                a(href="dashboard.html") Dashboard
+              li
+                a(href="admin_forms-elements.html") Form Elements
+              li
+                a(href="maps_basic.html") Plugins Pages
+              li
+                a(href="ui_alerts.html") UI Elements
+              li
+                a(href="documentation/") Documentation
+          .topbar-right
+            a.topbar-icon(href='#')
+              span.fa.fa-search
+            a.topbar-icon.topbar-menu-toggle.ml40(href='#', data-toggle='button')
+              span.badge.badge-strikemaster.offset-badge 6
+              span.fa.fa-magic
+            .topbar-icon-wrap.ml40
+              button.topbar-icon.dropdown-toggle(data-toggle='dropdown')
+                span.badge.badge-primary 5
+                span.fa.fa-bell.va-m
+              .dropdown-menu.dropdown-persist.w350.animated.animated-shorter.fadeIn(role='menu')
+                .panel.mbn
+                  .panel-menu
+                    span.panel-icon
+                      i.fa.fa-clock-o
+                    span.panel-title.fw600  Recent Activity
+                    button.btn.btn-xs.pull-right(type='button')
+                      i.fa.fa-refresh
+                  .panel-body.panel-scroller.scroller-navbar.scroller-overlay.scroller-pn.pn
+                    ol.timeline-list
+                      li.timeline-item
+                        .timeline-icon.bg-alert
+                          span.fa.fa-tags
+                        .timeline-desc
+                          b Michael
+                          |  Added to his store:
+                          a(href='#') Ipod
+                        .timeline-date 1:25am
+                      li.timeline-item
+                        .timeline-icon.bg-alert
+                          span.fa.fa-tags
+                        .timeline-desc
+                          b Sara
+                          |  Added his store:
+                          a(href='#') Notebook
+                        .timeline-date 3:05am
+                      li.timeline-item
+                        .timeline-icon.bg-success
+                          span.fa.fa-usd
+                        .timeline-desc
+                          b Admin
+                          |  created invoice for:
+                          a(href='#') Software
+                        .timeline-date 4:15am
+                      li.timeline-item
+                        .timeline-icon.bg-success
+                          span.fa.fa-usd
+                        .timeline-desc
+                          b Admin
+                          |  created invoice for:
+                          a(href='#') Apple
+                        .timeline-date 7:45am
+                      li.timeline-item
+                        .timeline-icon.bg-success
+                          span.fa.fa-usd
+                        .timeline-desc
+                          b Admin
+                          |  created invoice for:
+                          a(href='#') Software
+                        .timeline-date 4:15am
+                      li.timeline-item
+                        .timeline-icon.bg-success
+                          span.fa.fa-usd
+                        .timeline-desc
+                          b Admin
+                          |  created invoice for:
+                          a(href='#') Apple
+                        .timeline-date 7:45am
+                      li.timeline-item
+                        .timeline-icon.bg-alert
+                          span.fa.fa-tags
+                        .timeline-desc
+                          b Michael
+                          |  Added his store:
+                          a(href='#') Ipod
+                        .timeline-date 8:25am
+                      li.timeline-item
+                        .timeline-icon.bg-system
+                          span.fa.fa-fire
+                        .timeline-desc
+                          b Admin
+                          |  created invoice for:
+                          a(href='#') Software
+                        .timeline-date 4:15am
+                      li.timeline-item
+                        .timeline-icon.bg-alert
+                          span.fa.fa-tags
+                        .timeline-desc
+                          b Sara
+                          |  Added to his store:
+                          a(href='#') Notebook
+                        .timeline-date 3:05am
+                  .panel-footer.text-center.p7
+                    a.link-unstyled(href='#')  View All
+            .topbar-icon-wrap.ml35
+              button.topbar-icon.dropdown-toggle(data-toggle='dropdown')
+                span.badge.badge-mandy 5
+                span.fa.fa-comments.va-m
+              .dropdown-menu.dropdown-menu-offset.dropdown-persist.w350.animated.animated-shorter.fadeIn(role='menu')
+                .panel.mbn
+                  .panel-menu
+                    span.panel-title.fw600 Messages
+                  .panel-body.panel-scroller.scroller-navbar.scroller-overlay.scroller-pn.pn
+                    .br-n.p10
+                      .chat-widget
+                        .media
+                          .media-left
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/3.jpg')
+                          .media-body
+                            span.media-status.online
+                            h5.media-heading
+                              | Courtney Faught
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+                        .media
+                          .media-body
+                            span.media-status.offline
+                            h5.media-heading
+                              | Joe Gibbons
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque.
+                          .media-right
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/1.jpg')
+                        .media
+                          .media-left
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/2.jpg')
+                          .media-body
+                            span.media-status.online
+                            h5.media-heading
+                              | Courtney Faught
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metuscommodo.
+                        .media
+                          .media-body
+                            span.media-status.offline
+                            h5.media-heading
+                              | Joe Gibbons
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in Nulla vel metus scelerisque antecommodo.
+                          .media-right
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/1.jpg')
+                        .media
+                          .media-left
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/2.jpg')
+                          .media-body
+                            span.media-status.online
+                            h5.media-heading
+                              | Courtney Faught
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque soltudino.
+                        .media
+                          .media-body
+                            span.media-status.offline
+                            h5.media-heading
+                              | Joe Gibbons
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+                          .media-right
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/1.jpg')
+                  .panel-footer.text-center.p7
+                    a.link-unstyled(href='#')  View All
+        // Start: Topbar-Dropdown
+        #topbar-dropmenu.alt
+          .topbar-menu.row
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-primary.light(href='#')
+                span.glyphicon.glyphicon-inbox.text-white
+                span.metro-title Messages
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-info.light(href='#')
+                span.glyphicon.glyphicon-user.text-white
+                span.metro-title Users
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-success.light(href='#')
+                span.glyphicon.glyphicon-headphones.text-white
+                span.metro-title Support
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-system.light(href='#')
+                span.glyphicon.glyphicon-facetime-video.text-white
+                span.metro-title Videos
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-warning.light(href='#')
+                span.fa.fa-gears.text-white
+                span.metro-title Settings
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-alert.light(href='#')
+                span.glyphicon.glyphicon-picture.text-white
+                span.metro-title Pictures
+        // Begin: Content
+        section#content.table-layout.animated.fadeIn
+          // begin: .tray-center
+          .tray.tray-center
+            // Admin-panels
+            .admin-panels
+              .row
+                // Three Pane Widget
+                .col-md-12.admin-grid
+                  // dashboard activity
+                  #p01.panel.sort-disable(data-panel-title='false')
+                    .panel-heading
+                      span.panel-title.hidden-xs.hidden  Recent Activity
+                      ul.nav.panel-tabs.panel-tabs-left
+                        // Demo Note: all hrefs set to #tab1_1
+                        li.active
+                          a(href='#tab1_1', data-toggle='tab')  User Activity
+                        li
+                          a.hidden-xs(href='#tab1_1', data-toggle='tab')  Popular Items
+                        li
+                          a(href='#tab1_1', data-toggle='tab')  Conversions
+                    .panel-body.pn
+                      .tab-content
+                        #tab1_1.tab-pane.active(role='tabpanel')
+                          .row
+                            // Chart Column
+                            .col-md-12
+                              h5.ml5.mt20.ph10.pb5.br-b.fw600.hidden
+                                | Visitors
+                                small.pull-right.fw600
+                                  | 13,253
+                                  span.text-primary (8,251 unique)
+                              #ecommerce_chart1(style='height: 430px;')
+                            .col-md-6.pl40.pln-lg
+                              h3.mt30.mbn.ph10.pb25.fw300
+                                | Top Referrals
+                              table.table.mbn.tc-med-1
+                                thead
+                                  tr.hidden
+                                    th Source
+                                    th Count
+                                tbody
+                                  tr
+                                    td
+                                      span Google.com
+                                    td.text-right 1.597
+                                  tr
+                                    td
+                                      span Yahoo.com
+                                    td.text-right 1.296
+                                  tr.br-b
+                                    td
+                                      span Templatemonster.com
+                                    td.text-right  783
+                                  tr
+                                    td.pt30.pb30
+                                      a(href='#').text-primary View Report
+                            .col-md-6.pr40
+                              h3.mt30.mbn.ph10.pb25.fw300.pl40
+                                | Top Search Terms
+                              table.table.mbn.tc-med-1
+                                thead
+                                  tr.hidden
+                                    th Source
+                                    th Count
+                                tbody
+                                  tr
+                                    td
+                                      span admin theme
+                                    td.text-right 1.597
+                                  tr
+                                    td
+                                      span admin dashboard
+                                    td.text-right 1.296
+                                  tr.br-b
+                                    td
+                                      span dashboard theme
+                                    td.text-right 783
+                                  tr
+                                    td.pt30.pb30
+                                      a(href='#').text-primary View Report
+              // Circle Stats
+              .row.text-center
+                .col-lg-3.col-sm-6
+                  .panel
+                    .panel-body.pl40.pr40
+                      #c1.info-circle(title="1,425", value='35', data-circle-color='twilight')
+                      h3.fw300.mt30  New Orders
+                      p.ffs.mt10 3% increase 1W AGO
+                .col-lg-3.col-sm-6
+                  .panel
+                    .panel-body.pl40.pr40
+                      #c2.info-circle(title="64,487", value='75', data-circle-color='primary')
+                      h3.fw300.mt30  Total Sales Gross
+                      p.ffs.mt10 13% increase 1W AGO
+                .col-lg-3.col-sm-6
+                  .panel
+                    .panel-body.pl40.pr40
+                      #c3.info-circle(title="248", value='18', data-circle-color='info')
+                      h3.fw300.mt30  Total Sales Gross
+                      p.ffs.mt10 2.7% Decrease 1W AGO
+                .col-lg-3.col-sm-6
+                  .panel
+                    .panel-body.pl40.pr40
+                      #c4.info-circle(title="4,487", value='42', data-circle-color='smalt')
+                      h3.fw300.mt30  Unique Visits
+                      p.ffs.mt10 3% increase 1W AGO
+              .row
+                .col-md-6.admin-grid
+                  // Calendar Widget
+                  #p02.panel.panel-widget.calendar-widget.calendar-alt
+                    .panel-heading.br-b
+                      span.panel-title  Calendar Widget
+                    .panel-body.bg-white.p15
+                      #calendar-widget
+                  // Column Graph
+                .col-md-6.admin-grid
+                  #pchart9.panel
+                    .panel-heading.br-b
+                      span.panel-title  Column Graph
+                    .panel-body.text-center
+                      .row
+                        .col-lg-7.mt20
+                          #high-column
+                        .col-lg-5.offset-7
+                          table.table.text-left
+                            tbody
+                              tr
+                                td.br-n
+                                  span.fa.fa-circle.text-facebook.fs14.mr10.va-t.m4
+                                  | Facebook
+                                td.br-n.fw700 54%
+                              tr
+                                td.br-n
+                                  span.fa.fa-circle.text-twitter.fs14.mr10.va-t.m4
+                                  | Twitter
+                                td.br-n.fw700 25%
+                              tr
+                                td.br-n
+                                  span.fa.fa-circle.text-behance.fs14.mr10.va-t.m4
+                                  | Behance
+                                td.br-n.fw700 39%
+                              tr
+                                td.br-n
+                                  span.fa.fa-circle.text-dribble.fs14.mr10.va-t.m4
+                                  | Dribbble
+                                td.br-n.fw700 17%
+                      a.text-primary.text-uppercase.link.link-sm(href="#")
+                        |Add social network
+              .row
+                .col-sm-12
+                  // Stats Top Graph Bot
+                  #p7.panel
+                    .panel-heading.br-b
+                      span.panel-title Area Graph
+                    .row
+                      .col-md-4.ml35.mt30.mb30
+                        // RD SelectMenu
+                        label.mnw-210(for='select-1')
+                          select#select-1.rd-mailform-select
+                            option(value='Search state') Search state
+                            option(value='Search state 2') Search state 2
+                            option(value='Search state 3') Search state 3
+                      .col-lg-4.pull-right.mr30.mt35
+                        .panel-body.pn
+                          .admin-form
+                            table.table.mbn
+                              tbody
+                                tr
+                                  td.fw600.text-right.text-secondary 54%
+                                  td.va-m.fw400.text-muted
+                                    | Male
+                                  td.fw600.text-right.text-secondary 46%
+                                  td.va-m.fw400.text-muted
+                                    | Female
+                                  td.fs14.fw600.text-right.text-secondary 46%
+                                  td.va-m.fw400.text-muted
+                                    | Unemployed
+                    .row
+                      .col-lg-12
+                        #high-line3(style='width: 100%; height: 371px; margin: 0 auto')
+              .row
+                .col-lg-12
+                  // Geo Map + Table Stats
+                  #p9.panel
+                    .panel-heading.br-b
+                      span.panel-title Visitor Geograph
+                    .row
+                      .col-md-4.ml35.mt30.mb30
+                        // RD SelectMenu
+                        label.mnw300(for='select-2')
+                          select#select-2.rd-mailform-select
+                            option(value='United states of america') United states of america
+                            option(value='China') China
+                            option(value='Italy') Italy
+                    .row
+                      .panel-body
+                        .col-lg-9
+                          #WidgetMap.jvector-colors.hide-jzoom(style='width: 100%; height: 490px;')
+                        .col-lg-3
+                          .row
+                            .col-lg-12.col-sm-3
+                              .row
+                                .col-sm-6.col-lg-4.mt10
+                                  #c5.info-circle(value='21', width='15', data-circle-color='twilight')
+                                .col-sm-6.col-lg-8
+                                  h1.text-secondary-v1.fw700  21%
+                                  h3.ffs New York
+                            .col-lg-12.col-sm-3
+                              .row
+                                .col-sm-6.col-lg-4.mt10
+                                  #c6.info-circle(value='47', width='15', data-circle-color='primary')
+                                .col-sm-6.col-lg-8
+                                  h1.text-secondary-v1.fw700  47%
+                                  h3.ffs Texas
+                            .col-lg-12.col-sm-3
+                              .row
+                                .col-sm-6.col-lg-4.mt10
+                                  #c7.info-circle(value='14', width='15', data-circle-color='info')
+                                .col-sm-6.col-lg-8
+                                  h1.text-secondary-v1.fw700  14%
+                                  h3.ffs Missouri
+                            .col-lg-12.col-sm-3
+                              .row
+                                .col-sm-6.col-lg-4.mt10
+                                  #c8.info-circle(value='24', width='15', data-circle-color='smalt')
+                                .col-sm-6.col-lg-8
+                                  h1.text-secondary-v1.fw700  24%
+                                  h3.ffs California
+              //Task Widget
+              .row
+                .col-lg-6
+                  #p05.panel.panel-widget.task-widget.task-alt
+                    .panel-heading
+                      span.panel-title  Task-List Widget
+                    .panel-body.pl30.pr30
+                      h3.mb30.mt20.text-muted.fs18.fw300
+                        |  Personal Tasks
+                      ul.task-list.task-current
+                        li.task-item.mt10
+                          .task-handle
+                            .checkbox-custom
+                              input#task1(type='checkbox')
+                              label(for='task1')
+                          .task-desc Create documentation for launch
+                          .task-menu
+                        li.task-item.mt10
+                          .task-handle
+                            .checkbox-custom
+                              input#task2(type='checkbox')
+                              label(for='task2')
+                          .task-desc Add new servers to design board
+                          .task-menu
+                        li.task-item.mt10
+                          .task-handle
+                            .checkbox-custom
+                              input#task3(type='checkbox')
+                              label(for='task3')
+                          .task-desc Finish building prototype for Sony
+                          .task-menu
+                        li.task-item.mt10
+                          .task-handle
+                            .checkbox-custom
+                              input#task4(type='checkbox')
+                              label(for='task4')
+                          .task-desc Order new building supplies for Microsof
+                          .task-menu
+                        li.task-item.mt10
+                          .task-handle
+                            .checkbox-custom
+                              input#task5(type='checkbox')
+                              label(for='task5')
+                          .task-desc Add new servers to design board
+                          .task-menu
+                      h3.mb30.mt50.text-muted.fs18.fw300
+                        | Completed Tasks
+                      ul.task-list.task-completed
+                        li.task-item.item-checked.mt10
+                          .task-handle
+                            .checkbox-custom
+                              input#task7(type='checkbox', checked='')
+                              label(for='task7')
+                          .task-desc Create documentation for launch
+                          .task-menu
+                        li.task-item.item-checked.mt10
+                          .task-handle
+                            .checkbox-custom
+                              input#task8(type='checkbox', checked='')
+                              label(for='task8')
+                          .task-desc Create documentation for launch
+                          .task-menu
+                        li.task-item.item-checked.mt10
+                          .task-handle
+                            .checkbox-custom
+                              input#task9(type='checkbox', checked='')
+                              label(for='task9')
+                          .task-desc Create documentation for launch
+                          .task-menu
+                        li.task-item.item-checked.mt10
+                          .task-handle
+                            .checkbox-custom
+                              input#task10(type='checkbox', checked='')
+                              label(for='task10')
+                          .task-desc Create documentation for launch
+                          .task-menu
+                        li.task-item.item-checked.mt10
+                          .task-handle
+                            .checkbox-custom
+                              input#task11(type='checkbox', checked='')
+                              label(for='task11')
+                          .task-desc Create documentation for launch
+                          .task-menu
+                        li.task-item.item-checked.mt10
+                          .task-handle
+                            .checkbox-custom
+                              input#task12(type='checkbox', checked='')
+                              label(for='task12')
+                          .task-desc Create documentation for launch
+                          .task-menu
+                  // Search List
+                .col-lg-6
+                  #p17.panel
+                    .panel-heading.br-b
+                      span.panel-title Crawler List
+                    .panel-body.pn.pl30.pr30
+                      table.table.mbn.tc-med-1.tc-bold-last
+                        tbody
+                          tr
+                            td.pt20.pb20
+                              span.fa.fa-chain.va-t.mr10.fs18.pt5
+                              | pages.com/img/15
+                            td 7%
+                          tr
+                            td.pt20.pb20
+                              span.fa.fa-chain.va-t.mr10.fs18.pt5
+                              | pages.com/popular
+                            td 14%
+                          tr
+                            td.pt20.pb20
+                              span.fa.fa-chain.va-t.mr10.fs18.pt5
+                              | pages.com/news/3
+                            td 31%
+                          tr
+                            td.pt20.pb20
+                              span.fa.fa-chain.va-t.mr10.fs18.pt5
+                              | pages.com/featured/16
+                            td 49%
+                          tr
+                            td.pt20.pb20
+                              span.fa.fa-chain.va-t.mr10.fs18.pt5
+                              | pages.com/featured/16
+                            td 94%
+                          tr
+                            td.pt20.pb20
+                              span.fa.fa-chain.va-t.mr10.fs18.pt5
+                              | pages.com/featured/16
+                            td 5%
+                  // Country List
+                  #p16.panel
+                    .panel-heading.br-b
+                      span.panel-title Country List
+                    .panel-body.pn.pl30.pr30
+                      table.table.mbn.tc-med-1.tc-bold-last
+                        tbody
+                          tr
+                            td.pt10.pb15
+                              span.flag-sm.flag-us.mr10.va-b.top-5
+                              span
+                                | United States
+                            td 24%
+                          tr
+                            td.pt10.pb15
+                              span.flag-sm.flag-de.mr10.va-b.top-5
+                              span
+                                | Germany
+                            td 7%
+                          tr
+                            td.pt10.pb15
+                              span.flag-sm.flag-fr.mr10.va-b.top-5
+                              span
+                                | France
+                            td 14%
+                          tr
+                            td.pt10.pb15
+                              span.flag-sm.flag-tr.mr10.va-b.top-5
+                              span
+                                | Turkey
+                            td 31%
+                          tr
+                            td.pt10.pb15
+                              span.flag-sm.flag-es.mr10.va-b.top-5
+                              span
+                                | Spain
+                            td 22%
+                  // Browser List
+                  #p18.panel
+                    .panel-heading.br-b
+                      span.panel-title Tabs
+                    .panel-body.pn.pl30.pr30
+                      table.table.mbn.tc-med-1.tc-bold-last
+                        tbody
+                          tr
+                            td.pt20.pb20
+                              span.mr10.mt1.fa.fa-chrome
+                              | Google Chrome
+                            td 54%
+                          tr
+                            td.pt20.pb20
+                              span.mr10.mt1.fa.fa-opera
+                              | Opera
+                            td 18%
+                          tr
+                            td.pt20.pb20
+                              span.mr10.mt1.fa.fa-firefox
+                              | FireFox
+                            td 25%
+                          tr
+                            td.pt20.pb20
+                              span.mr10.mt1.fa.fa-safari
+                              | Safari
+                            td 49%
+                          tr
+                            td.pt20.pb20
+                              span.mr10.mt1.fa.fa-internet-explorer
+                              | Explorer
+                            td 94%
+          // begin: .tray-right
+          aside.tray.tray-right.tray270.pn.hidden(data-tray-height='match')
+            // store activity timeline
+            ol.timeline-list.pl5.mt5
+              li.timeline-item
+                .timeline-icon.bg-dark.light
+                  span.fa.fa-tags
+                .timeline-desc
+                  b Michael
+                  |  Added a new item to his store:
+                  a(href='#') Ipod
+                .timeline-date 1:25am
+              li.timeline-item
+                .timeline-icon.bg-dark.light
+                  span.fa.fa-tags
+                .timeline-desc
+                  b Sara
+                  |  Added a new item to his store:
+                  a(href='#') Notebook
+                .timeline-date 3:05am
+              li.timeline-item
+                .timeline-icon.bg-success
+                  span.fa.fa-usd
+                .timeline-desc
+                  b Admin
+                  |  created a new invoice for:
+                  a(href='#') Software
+                .timeline-date 4:15am
+              li.timeline-item
+                .timeline-icon.bg-warning
+                  span.fa.fa-pencil
+                .timeline-desc
+                  b Laura
+                  |  edited her work experience
+                .timeline-date 5:25am
+              li.timeline-item
+                .timeline-icon.bg-success
+                  span.fa.fa-usd
+                .timeline-desc
+                  b Admin
+                  |  created a new invoice for:
+                  a(href='#') Apple Inc.
+                .timeline-date 7:45am
+              li.timeline-item
+                .timeline-icon.bg-dark.light
+                  span.fa.fa-tags
+                .timeline-desc
+                  b Michael
+                  |  Added a new item to his store:
+                  a(href='#') Ipod
+                .timeline-date 8:25am
+              li.timeline-item
+                .timeline-icon.bg-dark.light
+                  span.fa.fa-tags
+                .timeline-desc
+                  b Sara
+                  |  Added a new item to his store:
+                  a(href='#') Watch
+                .timeline-date 9:35am
+              li.timeline-item
+                .timeline-icon.bg-system
+                  span.fa.fa-fire
+                .timeline-desc
+                  b Admin
+                  |  created a new invoice for:
+                  a(href='#') Software
+                .timeline-date 4:15am
+              li.timeline-item
+                .timeline-icon.bg-warning
+                  span.fa.fa-pencil
+                .timeline-desc
+                  b Laura
+                  |  edited her work experience
+                .timeline-date 5:25am
+              li.timeline-item
+                .timeline-icon.bg-success
+                  span.fa.fa-usd
+                .timeline-desc
+                  b Admin
+                  |  created a new invoice for:
+                  a(href='#') Software
+                .timeline-date 4:15am
+              li.timeline-item
+                .timeline-icon.bg-warning
+                  span.fa.fa-pencil
+                .timeline-desc
+                  b Laura
+                  |  edited her work experience
+                .timeline-date 5:25am
+              li.timeline-item
+                .timeline-icon.bg-success
+                  span.fa.fa-usd
+                .timeline-desc
+                  b Admin
+                  |  created a new invoice for:
+                  a(href='#') Apple Inc.
+                .timeline-date 7:45am
+              li.timeline-item
+                .timeline-icon.bg-dark.light
+                  span.fa.fa-tags
+                .timeline-desc
+                  b Michael
+                  |  Added a new item to his store:
+                  a(href='#') Ipod
+                .timeline-date 8:25am
+              li.timeline-item
+                .timeline-icon.bg-dark.light
+                  span.fa.fa-tags
+                .timeline-desc
+                  b Sara
+                  |  Added a new item to his store:
+                  a(href='#') Watch
+                .timeline-date 9:35am
+        // Page Footer
+        block footer
+          include _footer
+      // Start: Right Sidebar
+      aside#sidebar_right.nano.affix
+        // Start: Sidebar Right Content
+        .sidebar-right-content.nano-content
+          .tab-block.sidebar-block.br-n
+            ul.nav.nav-tabs.tabs-border.nav-justified.hidden
+              li.active
+                a(href='#sidebar-right-tab1', data-toggle='tab') Tab 1
+              li
+                a(href='#sidebar-right-tab2', data-toggle='tab') Tab 2
+              li
+                a(href='#sidebar-right-tab3', data-toggle='tab') Tab 3
+            .tab-content.br-n
+              #sidebar-right-tab1.tab-pane.active
+                h5.title-divider.text-muted.mb20
+                  | Server Statistics
+                  span.pull-right
+                    | 2013
+                    i.fa.fa-caret-down.ml5
+                .progress.mh5
+                  .progress-bar.progress-bar-primary(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 44%')
+                    span.fs11 DB Request
+                .progress.mh5
+                  .progress-bar.progress-bar-info(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 84%')
+                    span.fs11.text-left Server Load
+                .progress.mh5
+                  .progress-bar.progress-bar-warning(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 61%')
+                    span.fs11.text-left Server Connections
+                h5.title-divider.text-muted.mt30.mb10 Traffic Margins
+                .row
+                  .col-xs-5
+                    h3.text-primary.mn.pl5 132
+                  .col-xs-7.text-right
+                    h3.text-success-dark.mn
+                      i.fa.fa-caret-up
+                      |  13.2%
+                h5.title-divider.text-muted.mt25.mb10 Database Request
+                .row
+                  .col-xs-5
+                    h3.text-primary.mn.pl5 212
+                  .col-xs-7.text-right
+                    h3.text-success-dark.mn
+                      i.fa.fa-caret-up
+                      |  25.6%
+                h5.title-divider.text-muted.mt25.mb10 Server Response
+                .row
+                  .col-xs-5
+                    h3.text-primary.mn.pl5 82.5
+                  .col-xs-7.text-right
+                    h3.text-danger.mn
+                      i.fa.fa-caret-down
+                      |  17.9%
+                h5.title-divider.text-muted.mt40.mb20
+                  | Server Statistics
+                  span.pull-right.text-primary.fw600 USA
+              #sidebar-right-tab2.tab-pane
+              #sidebar-right-tab3.tab-pane
+    // core scripts
+    script(src='plugins/core.min.js')
+    // Theme Javascript
+    script(src='assets/js/utility/utility.js')
+    script(src='assets/js/demo/demo.js')
+    script(src='assets/js/main.js')
+    // Widget Javascript
+    script(src='assets/js/demo/widgets.js')
+    script(type='text/javascript').
+      jQuery(document).ready(function () {
+        "use strict";
+        // Init Demo JS
+        Demo.init();
+        // Init Theme Core
+        Core.init();
+        $(document).ready(function () {
+          demoHighCharts.init();
+          runVectorMaps();
+          $(window).trigger('resize');
+        });
+        // Init plugins for ".calendar-widget"
+        // plugins: FullCalendar
+        //
+        $('#calendar-widget').fullCalendar({
+          contentHeight: 460
+        });
+        // Init plugins for ".task-widget"
+        // plugins: Custom Functions + jQuery Sortable
+        //
+        var taskWidget = $('div.task-widget');
+        var taskItems = taskWidget.find('li.task-item');
+        var currentItems = taskWidget.find('ul.task-current');
+        var completedItems = taskWidget.find('ul.task-completed');
+        // Init jQuery Sortable on Task Widget
+        taskWidget.sortable({
+          items: taskItems, // only init sortable on list items (not labels)
+          handle: '.task-menu',
+          axis: 'y',
+          connectWith: ".task-list",
+          update: function (event, ui) {
+            var Item = ui.item;
+            var ParentList = Item.parent();
+            // If item is already checked move it to "current items list"
+            if (ParentList.hasClass('task-current')) {
+              Item.removeClass('item-checked').find('input[type="checkbox"]').prop('checked', false);
+            }
+            if (ParentList.hasClass('task-completed')) {
+              Item.addClass('item-checked').find('input[type="checkbox"]').prop('checked', true);
+            }
+          }
+        });
+        // Custom Functions to handle/assign list filter behavior
+        taskItems.on('click', function (e) {
+          e.preventDefault();
+          var This = $(this);
+          var Target = $(e.target);
+          if (Target.is('.task-menu') && Target.parents('.task-completed').length) {
+            This.remove();
+            return;
+          }
+          if (Target.parents('.task-handle').length) {
+            // If item is already checked move it to "current items list"
+            if (This.hasClass('item-checked')) {
+              This.removeClass('item-checked').find('input[type="checkbox"]').prop('checked', false);
+            }
+            // Otherwise move it to the "completed items list"
+            else {
+              This.addClass('item-checked').find('input[type="checkbox"]').prop('checked', true);
+            }
+          }
+        });
+        var highColors = [bgWhite, bgWhite, bgWarningL, bgWhite];
+        // Chart data
+        var seriesData = [{
+          name: 'Phones',
+          data: [5.0, 9, 17, 22, 19, 11.5, 5.2, 9.5, 11.3, 15.3, 19.9, 24.6],
+          marker: {
+            fillColor: '#ffc841'
+          }
+        }, {
+          name: 'Notebooks',
+          data: [2.9, 3.2, 4.7, 5.5, 8.9, 12.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8],
+          marker: {
+            fillColor: '#e27d7f'
+          }
+        }];
+        var ecomChart = $('#ecommerce_chart1');
+        if (ecomChart.length) {
+          ecomChart.highcharts({
+            credits: false,
+            colors: highColors,
+            chart: {
+              backgroundColor: 'transparent',
+              className: '',
+              type: 'line',
+              zoomType: 'x',
+              panning: true,
+              panKey: 'shift',
+              marginTop: 45,
+              marginRight: 0,
+              spacingRight: 0,
+            },
+            title: {
+              text: null
+            },
+            xAxis: {
+              gridLineColor: "rgba(255, 255, 255, 0)",
+              lineColor: "rgba(255, 255, 255, 0)",
+              tickColor: "rgba(255, 255, 255, 0)",
+              categories: ['JAN', 'FEB', 'MAR', 'APR',
+                'MAY', 'JUN', 'JUL', 'AUG',
+                'SEP', 'OCT', 'NOV', 'DEC'
+              ],
+              labels: {
+                style: {
+                  color: 'rgba(255, 255, 255,0.4)',
+                  fontWeight: 'normal',
+                  fontSize: '12px'
+                }
+              }
+            },
+            yAxis: {
+              gridLineColor: "rgba(255, 255, 255, 0)",
+              lineColor: "rgba(255, 255, 255, 0)",
+              tickColor: "rgba(255, 255, 255, 0)",
+              title: {
+                text: null
+              },
+              min: 0,
+              tickInterval: 5,
+              labels: {
+                style: {
+                  color: 'rgba(255, 255, 255,0.4)',
+                  fontWeight: 'normal',
+                  fontSize: '12px'
+                }
+              }
+            },
+            legend: {
+              enabled: true,
+              floating: true,
+              symbol: 'circle',
+              align: 'left',
+              verticalAlign: 'top',
+              padding: 10,
+              x: 25,
+              y: 10,
+              itemStyle: {
+                color: '#fff',
+                fontWeight: 'normal',
+                fontFamily: 'Arimo',
+                fontSize: '14px',
+                hover: {
+                  enabled: false,
+                  fill: '#a288d5'
+                }
+              }
+            },
+            plotOptions: {
+              spline: {
+                lineWidth: 2
+              },
+              series: {
+                marker: {
+                  enabled: true,
+                  symbol: 'circle',
+                  radius: 5,
+                  lineColor: "#fff",
+                  fillColor: '#ffc841',
+                  lineWidth: 2
+                }
+              },
+              line: {
+                lineWidth: 2,
+                marker: {
+                  enabled: true,
+                  symbol: 'circle',
+                  radius: 5,
+                  states: {
+                    hover: {
+                      enabled: true
+                    }
+                  }
+                },
+                states: {
+                  hover: {
+                    lineWidth: 2
+                  }
+                },
+                threshold: null
+              }
+            },
+            series: seriesData
+          });
+
+        }
+        // Widget VectorMap
+        function runVectorMaps() {
+          // Jvector Map Plugin
+          var runJvectorMap = function () {
+            // Data set
+            var mapData = [900, 700, 350, 500];
+            // Init Jvector Map
+            $('#WidgetMap').vectorMap({
+              map: 'us_lcc_en',
+              backgroundColor: 'transparent',
+              series: {
+                markers: [{
+                  attribute: 'r',
+                  scale: [3, 7],
+                  values: mapData
+                }]
+              },
+              regionStyle: {
+                initial: {
+                  fill: '#E8E8E8'
+                },
+                hover: {
+                  "fill-opacity": 0.3
+                }
+              },
+              markerStyle: {
+                initial: {
+                  fill: '#a288d5',
+                  stroke: '#b49ae0',
+                  "fill-opacity": 1,
+                  "stroke-width": 10,
+                  "stroke-opacity": 0.3,
+                  r: 3
+                },
+                hover: {
+                  stroke: 'black',
+                  "stroke-width": 2
+                },
+                selected: {
+                  fill: 'blue'
+                },
+                selectedHover: {}
+              },
+            });
+            // Manual code to alter the Vector map plugin to
+            // allow for individual coloring of countries
+            var states = ['US-CA', 'US-TX', 'US-MO',
+              'US-NY'
+            ];
+            var colors = [bgSmalt, bgPrimary, bgInfo, bgTwilight];
+            $.each(states, function (i, e) {
+              $("#WidgetMap path[data-code=" + e + "]").css({
+                fill: colors[i]
+              });
+            });
+          }
+          if ($('#WidgetMap').length) {
+            runJvectorMap();
+          }
+        }
+        var dbSelect = $(".rd-mailform-select"), i = 0;
+        if (dbSelect.length) {
+          for (i = 0; i < dbSelect.length; i++) {
+            var dropdownSelectItem = dbSelect[i];
+            $(dropdownSelectItem).RDSelectMenu();
+          }
+        }
+      });

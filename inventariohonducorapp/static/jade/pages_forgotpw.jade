@@ -1,0 +1,64 @@
+extends  _skeleton
+
+block stylesheets
+  link(rel='stylesheet', type='text/css', href='assets/admin-tools/admin-forms/css/admin-forms.css')
+
+block body
+  body.external-page.sb-l-c.sb-r-c
+    // Start: Main
+    #main.animated.fadeIn
+      // Start: Content-Wrapper
+      section#content_wrapper
+        // begin canvas animation bg
+        #canvas-wrapper
+          canvas#demo-canvas
+        // Begin: Content
+        section#content.animated.fadeIn
+          #login.admin-form.theme-info.mw500(style='margin-top: 10%;')
+            .row.mb15.table-layout
+              .col-xs-6.pln
+                a(href='dashboard.html', title='Return to Dashboard')
+                  img.img-responsive.w250(src='assets/img/logos/logo_white.png', title='AdminDesigns Logo')
+              .col-xs-6.va-b
+                .login-links.text-right
+                  a(href='#', title='False Credentials') Password Reset
+            .panel.panel-primary.heading-border.br-n
+              form#contact(method='post', action='/')
+                .panel-body.p15.pt25.bg-gradient-1
+                  .alert.alert-micro.alert-border-left.alert-primary.pastel.alert-dismissable.mn
+                    button.close.bg-none(type='button', data-dismiss='alert', aria-hidden='true') &times;
+                    i.fa.fa-info.pr10
+                    |  Enter your
+                    = ' '
+                    b Email
+                    |  and instructions will be sent to you!
+                  .panel-footer.p25.pv15.mt15
+                    .section.mn
+                      .smart-widget.sm-right.smr-80
+                        label.field.prepend-icon(for='email')
+                          input#email.gui-input(type='text', name='email', placeholder='Your Email Address')
+                          label.field-icon(for='email')
+                            i.fa.fa-envelope-o
+                        label.button(for='email') Reset
+    // core scripts
+    script(src='plugins/core.min.js')
+    // Theme Javascript
+    script(src='assets/js/utility/utility.js')
+    script(src='assets/js/demo/demo.js')
+    script(src='assets/js/main.js')
+    // Page Javascript
+    script(type='text/javascript').
+      jQuery(document).ready(function () {
+        "use strict";
+        // Init Theme Core
+        Core.init();
+        // Init Demo JS
+        Demo.init();
+        // Init CanvasBG and pass target starting location
+        CanvasBG.init({
+          Loc: {
+            x: window.innerWidth / 2.1,
+            y: window.innerHeight / 2.2
+          },
+        });
+      });

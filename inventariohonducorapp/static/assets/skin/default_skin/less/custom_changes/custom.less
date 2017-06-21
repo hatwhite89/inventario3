@@ -1,0 +1,203 @@
+//hightharts heading panel custom styles
+//location dashbord.html, index.html
+#p01{
+  .panel-heading{
+    height: 100px;
+    .panel-tabs{
+      bottom: auto;
+      top: 50%;
+      transform: translateY(-50%);
+      li{
+        border-radius: 25px;
+        a{
+          border-radius: 25px;
+        }
+        &:hover, &.active{
+          background: @brand-primary;
+          a{
+            color: @white;
+            background: @brand-primary;
+          }
+        }
+      }
+    }
+  }
+}
+//custom select
+//location dashboard.html widget Area Graph
+.custom-select {
+  p {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 0;
+    padding: 15px;
+    font-family: "Arial", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    border: 1px solid #eee;
+    color:#423748;
+    &:after {
+      content: "\f107";
+      padding-left: 30px;
+      font-family: "FontAwesome";
+      color:@brand-primary;
+    }
+  }
+}
+
+// Boxes
+// for titles on ui_alerts page
+.box {
+  padding: 30px;
+  background: @white;
+}
+//custom button
+//used on pages_massages on panel message
+
+.btn-custom{
+  background: transparent;
+  color: #d5ced7;
+  border: none;
+  &:hover{
+    color:@brand-primary;
+  }
+}
+//custom message table
+//pages_massages
+#message-table{
+  th{
+    color:#d5ced7;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: @font-family-sec;
+  }
+  .message-unread{
+    background: #fdfdfd;
+    + .message-unread{
+      margin-top: 10px;
+    }
+  }
+}
+// Tables
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+  padding: 5px;
+  color: #423748;
+}
+//Links
+.link {
+  display: inline-block;
+  letter-spacing: 0.06em;
+}
+.link-sm {
+  font-weight: 700;
+  font-family: "Arial";
+  font-size: 13px;
+}
+//Icons FA
+.fa-chrome, .fa-opera, .fa-firefox, .fa-safari, .fa-internet-explorer {
+  &:before {
+    font-size: 18px;
+    color: #d5ced7;
+
+    @media (min-width: 1200px) {
+      position: relative;
+      top: 2px;
+    }
+  }
+}
+.fa-chrome:before { content: '\f268'; }
+.fa-opera:before { content: '\f26a'; }
+.fa-firefox:before { content: '\f269'; }
+.fa-safari:before { content: '\f267'; }
+.fa-internet-explorer:before { content: '\f26b'; }
+#geocoding_form{
+  margin-top: -5px;
+}
+
+//social icon hover styles
+a[title*="twitter"] {
+
+  &:hover {
+    i{
+      -webkit-transition: 0.35s all ease;-moz-transition: 0.35s all ease;-ms-transition: 0.35s all ease;-o-transition: 0.35s all ease;transition: 0.35s all ease;
+      color: darken(#78cdf4, 10%);
+    }
+
+  }
+}
+a[title*="google"] {
+
+  &:hover {
+    i{
+      -webkit-transition: 0.35s all ease;-moz-transition: 0.35s all ease;-ms-transition: 0.35s all ease;-o-transition: 0.35s all ease;transition: 0.35s all ease;
+      color: darken(#fc6159, 10%);
+    }
+
+  }
+}
+a[title*="email"] {
+
+  &:hover {
+    i.text-warning{
+      -webkit-transition: 0.35s all ease;-moz-transition: 0.35s all ease;-ms-transition: 0.35s all ease;-o-transition: 0.35s all ease;transition: 0.35s all ease;
+      color: darken(#f6bb42, 10%);
+    }
+
+  }
+}
+.bg-gradient-1 a.text-white:hover{
+  color:@brand-primary;
+  -webkit-transition: 0.35s all ease;-moz-transition: 0.35s all ease;-ms-transition: 0.35s all ease;-o-transition: 0.35s all ease;transition: 0.35s all ease;
+}
+.admin-form.theme-primary .bg-gradient-1 .gui-input:focus{
+  color:#fff;
+}
+
+.admin-form {
+  /* BUTTON CONTEXTUALS
+   */
+  .btn-default {
+    // Special Settings for Light/White Buttons
+    .button-variant-light(@btn-default-color; @btn-default-bg; @btn-default-border);
+  }
+  // Primary appears as blue
+  .btn-primary when (@skin-primary) and (@skin-primary-btn) {
+    .button-variant(@btn-primary-color; @btn-primary-bg; @btn-primary-border);
+  }
+  // Success appears as green
+  .btn-success when (@skin-success) and (@skin-success-btn) {
+    .button-variant(@btn-success-color; @btn-success-bg; @btn-success-border);
+  }
+  // Info appears as light blue
+  .btn-info when (@skin-info) and (@skin-info-btn) {
+    .button-variant(@btn-info-color; @btn-info-bg; @btn-info-border);
+  }
+  // Warning appears as orange
+  .btn-warning when (@skin-warning) and (@skin-warning-btn) {
+    .button-variant(@btn-warning-color; @btn-warning-bg; @btn-warning-border);
+  }
+  // Danger and error appear as red
+  .btn-danger when (@skin-danger) and (@skin-danger-btn) {
+    .button-variant(@btn-danger-color; @btn-danger-bg; @btn-danger-border);
+  }
+  // Alert and error appear as purple
+  .btn-alert when (@skin-alert) and (@skin-alert-btn) {
+    .button-variant(@btn-alert-color; @btn-alert-bg; @btn-alert-border);
+  }
+  // System and error appear as teal
+  .btn-system when (@skin-system) and (@skin-system-btn) {
+    .button-variant(@btn-system-color; @btn-system-bg; @btn-system-border);
+  }
+  // Dark and error appear as dark/black
+  .btn-dark when (@skin-dark) and (@skin-dark-btn) {
+    .button-variant(@btn-dark-color; @btn-dark-bg; @btn-dark-border);
+  }
+  //Pink
+  .btn-mountbattenPink  when (@skin-mountbattenPink) and (@skin-mountbattenPink-btn) {
+    .button-variant(@btn-mountbattenPink-color; @btn-mountbattenPink-bg; @btn-mountbattenPink-border);
+  }
+  //Blue
+  .btn-rockBlue  when (@skin-rockBlue) and (@skin-rockBlue-btn) {
+    .button-variant(@btn-rockBlue-color; @btn-rockBlue-bg; @btn-rockBlue-border);
+  }
+}

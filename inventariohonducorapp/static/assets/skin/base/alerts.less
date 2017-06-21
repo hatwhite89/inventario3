@@ -1,0 +1,144 @@
+/*==================================================
+  Alerts
+==================================================== */
+
+
+// Base styles
+// -------------------------
+
+.alert {
+  color: @white;
+  font-size: @alert-font-size;
+  font-family: "Arimo";
+  font-size: 15px;
+  padding: @alert-padding;
+  margin-bottom: @line-height-computed;
+
+  &-lg {
+    padding: 35px;
+  }
+
+  h3 {
+    font-weight: 300;
+    font-family: "Roboto";
+    color: @white;
+  }
+
+  &-strikemaster {
+    background: #956387;
+
+    .btn-strikemaster:hover {
+      color: @white;
+      background: darken(#956387, 5%);
+      border-color: darken(#956387, 5%);
+    }
+  }
+
+  &-outrageousOrange {
+    background: #f76b40;
+
+    .btn-outrageousOrange:hover {
+      color: @white;
+      background: darken(#f76b40, 5%);
+      border-color: darken(#f76b40, 5%);
+    }
+  }
+
+  &-feijoa {
+    background: #9fdd7c;
+
+    .btn-feijoa:hover {
+      color: @white;
+      background: darken(#9fdd7c, 5%);
+      border-color: darken(#9fdd7c, 5%);
+    }
+  }
+
+  .btn-contrast {
+    color: #000;
+    background: @white;
+    border-color: @white;
+  }
+
+  &-outrageousOrange, &-strikemaster, &-feijoa {
+    .btn {
+      background: @white;
+    }
+  }
+
+  button {
+    transition: .3s all ease;
+  }
+
+  // Adjust close link position
+  .close {
+    color: @text-color;
+      &:hover { 
+        color: @text-color;
+      }
+  }
+
+  // Divider
+  hr {
+    border-top-color: rgba(0,0,0,0.1);
+  }
+
+  // Headings for larger alerts
+  h4 {
+    margin-top: 0;
+    // Specified for the h4 to prevent conflicts of changing @headings-color
+    color: inherit;
+  }
+  // Provide class for links that match alerts
+  .alert-link {
+    color: @white;
+    font-weight: @alert-link-font-weight;
+  }
+
+  // Improve alignment and spacing of inner content
+  > p,
+  > ul {
+    margin-bottom: 0;
+  }
+  > p + p {
+    margin-top: 15px;
+  }
+
+  // Alert sizes
+  &.alert-micro,.alert-sm {
+  font-size: 13px;
+  padding: 9px 35px 9px 9px;
+  border-radius: 0;
+  }
+  &.alert-sm { padding: 12px 35px 12px 12px; }
+
+  // Border variations - options
+  &.alert-border { border: 1px solid transparent; }
+  &.alert-border-right { border-right-width: 6px; }
+  &.alert-border-top { border-top-width: 3px; }
+  &.alert-border-bottom { border-bottom-width: 3px; }
+  &.alert-border-left {
+    padding-left: 15px;
+    border-left-width: 6px;
+  }
+
+}
+
+// Dismissible alerts
+//
+// Expand the right padding and account for the close button's positioning.
+.alert-dismissable, // The misspelled .alert-dismissable was deprecated in 3.2.0.
+.alert-dismissible {
+  padding-right: (@alert-padding + 20);
+
+  // Adjust close link position
+  .close {
+    position: relative;
+    right: -21px;
+    color: #FFF;
+
+      &:hover { 
+        color: #FFF;
+      }
+  }
+}

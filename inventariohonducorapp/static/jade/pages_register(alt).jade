@@ -1,0 +1,81 @@
+extends  _skeleton
+
+block stylesheets
+  link(rel='stylesheet', type='text/css', href='assets/admin-tools/admin-forms/css/admin-forms.css')
+
+block body
+  body.external-page.external-alt.sb-l-c.sb-r-c
+    // Start: Main
+    #main.animated.fadeIn
+      // Start: Content-Wrapper
+      section#content_wrapper.bg-gradient-1.well-cover
+        // Begin: Content
+        section#content
+          #register.admin-form.theme-primary.mw600(style='margin-top: 3%;')
+            // Registration Logo
+            .row.table-layout
+            // Registration Panel/Form
+            .panel.mt40
+              form#contact(method='post', action='/')
+                .panel-body.p25.pb15.text-uppercase.text-center.text-white
+                  // Social Login Buttons
+                  .section
+                    p.fw700.ls100 Username
+                    label.field.prepend-icon(for='firstname')
+                      input#firstname.gui-input(type='text', name='firstname', placeholder='First name...')
+                  .section
+                    label.field.prepend-icon(for='lastname')
+                      input#lastname.gui-input(type='text', name='lastname', placeholder='Last name...')
+                  .section
+                    p.fw700.ls100 Email
+                    label.field.prepend-icon(for='email')
+                      input#email.gui-input(type='email', name='email', placeholder='Email address')
+                  .section
+                    p.fw700.ls100 Password
+                    label.field.prepend-icon(for='password')
+                      input#password.gui-input(type='password', name='password', placeholder='Create a password')
+                  .section
+                    label.field.prepend-icon(for='confirmPassword')
+                      input#confirmPassword.gui-input(type='password', name='confirmPassword', placeholder='Retype your password')
+                  .section
+                    .panel-footer.clearfix
+                      button.button.btn-primary.mr10.pull-right.text-uppercase.fw700.ls100(type='submit') Register
+                      label.option.mt10
+                        input(type='checkbox', name='terms')
+                        span.checkbox
+                        | I agree to the
+                        a.theme-link(href='#')  terms of use.
+                      label.switch.block.switch-primary.mt10.hidden
+                        input#remember(type='checkbox', name='remember', checked='')
+                        label(for='remember', data-on='YES', data-off='NO')
+                        span Remember me
+            // Registration Social Links
+            .section.row.center-block.text-center(style='width: 400px;')
+              .col-md-6
+                a.fw700.ls100.text-white.text-uppercase(href='#')
+                  | Facebook
+              .col-md-6
+                a.fw700.ls100.text-white.text-uppercase(href='#')
+                  | Google +
+            .login-links
+              p
+                a.active.hidden(href='pages_forgotpw(alt).html', title='Sign In') Forgot Password?
+              p
+                | Already registered?
+                = ' '
+                a.active(href='pages_login(alt).html', title='Sign In') Sign in here
+    // core scripts
+    script(src='plugins/core.min.js')
+    // Theme Javascript
+    script(src='assets/js/utility/utility.js')
+    script(src='assets/js/demo/demo.js')
+    script(src='assets/js/main.js')
+    // Page Javascript
+    script(type='text/javascript').
+      jQuery(document).ready(function () {
+        "use strict";
+        // Init Theme Core
+        Core.init();
+        // Init Demo JS
+        Demo.init();
+      });

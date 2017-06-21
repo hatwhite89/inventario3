@@ -1,0 +1,36 @@
+/*==================================================
+  Breadcrumbs
+==================================================== */
+
+
+.breadcrumb {
+  padding: @breadcrumb-padding-vertical @breadcrumb-padding-horizontal;
+  margin-bottom: @line-height-computed;
+  list-style: none;
+  background-color: @breadcrumb-bg;
+  border-radius: @border-radius-base;
+
+  width: 100%;
+  text-align: center;
+
+  @media (min-width: 993px) {
+    width: auto;
+    text-align: left;
+  }
+
+  > li {
+    display: inline-block;
+
+    &+ li {
+      margin-left: 10px;
+
+      @media (min-width: 1200px) {
+        margin-left: 40px;
+      }
+    }
+  }
+
+  > .active {
+    color: @breadcrumb-active-color;
+  }
+}

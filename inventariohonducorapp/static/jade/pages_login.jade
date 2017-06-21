@@ -1,0 +1,79 @@
+extends  _skeleton
+
+block stylesheets
+  link(rel='stylesheet', type='text/css', href='assets/admin-tools/admin-forms/css/admin-forms.css')
+
+block body
+  body.external-page.sb-l-c.sb-r-c
+    // Start: Main
+    #main.animated.fadeIn
+      // Start: Content-Wrapper
+      section#content_wrapper
+        // begin canvas animation bg
+        #canvas-wrapper
+          canvas#demo-canvas
+        // Begin: Content
+        section#content
+          #login1.admin-form.theme-primary
+            .row.mb15.table-layout
+              .col-xs-6.va-m.pln
+                a(href='dashboard.html', title='Return to Dashboard')
+                  img.img-responsive.w250(src='assets/img/logos/logo_white.png', title='AdminDesigns Logo')
+              .col-xs-6.text-right.va-b.pr5
+                .login-links
+                  a.active(href='pages_login.html', title='Sign In') Sign In
+                  = ' '
+                  span.text-white &#124;
+                  = ' '
+                  a(href='pages_register.html', title='Register') Register
+            .panel.panel-info.mt10.br-n.bg-gradient-1.mw500.mauto
+              form#contact(method='post', action='/')
+                .panel-body.text-center.p50.text-center
+                  .section
+                    p.text-uppercase.text-white.ls100.fw700 Username
+                    label.field.prepend-icon(for='username')
+                      input#username.gui-input(type='text', name='username', placeholder='Enter username')
+                  .section
+                    p.text-uppercase.text-white.ls100.fw700 Password
+                    label.field.prepend-icon(for='password')
+                      input#password.gui-input(type='password', name='password', placeholder='Enter password')
+                  .panel-footer.clearfix.p10.ph15
+                    button.button.btn-primary.mr10.pull-right.text-uppercase.text-white.ls100.fw700(type='submit') Sign In
+                    label.switch.ib.switch-primary.pull-left.input-align.mt10
+                      input#remember(type='checkbox', name='remember', checked='')
+                      label(for='remember', data-on='YES', data-off='NO')
+                      = ' '
+                      span Remember me
+                  .section.text-left.pt20.pb10
+                    a(href="#") Forget password?
+                    p
+                      span.text-white Haven't yet registration? #[a(href="#") Sign up here]
+                  .section.row
+                    .col-md-6
+                      a.fw700.ls100.text-white.text-uppercase(href='#')
+                        | Facebook
+                    .col-md-6
+                      a.fw700.ls100.text-white.text-uppercase(href='#')
+                        | Google +
+    // core scripts
+    script(src='plugins/core.min.js')
+    // Theme Javascript
+    script(src='assets/js/utility/utility.js')
+    script(src='assets/js/demo/demo.js')
+    script(src='assets/js/main.js')
+    // Page Javascript
+    script(type='text/javascript').
+      jQuery(document).ready(function () {
+        "use strict";
+        // Init Theme Core
+        Core.init();
+        // Init Demo JS
+        Demo.init();
+        // Init CanvasBG and pass target starting location
+        CanvasBG.init({
+          Loc: {
+            x: window.innerWidth / 2,
+            y: window.innerHeight / 3.3
+          },
+        });
+      });

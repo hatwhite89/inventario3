@@ -1,0 +1,1527 @@
+extends  _skeleton
+
+block stylesheets
+  link(rel='stylesheet', type='text/css', href='plugins/css/tagmanager.css')
+  link(rel='stylesheet', type='text/css', href='plugins/css/daterangepicker.css')
+  link(rel='stylesheet', type='text/css', href='plugins/css/bootstrap-datetimepicker.css')
+  link(rel='stylesheet', type='text/css', href='plugins/css/bootstrap-colorpicker.min.css')
+  link(rel='stylesheet', type='text/css', href='plugins/css/core.css')
+
+block body
+  body.form-plugins-page
+    // Start: Theme Preview Pane
+    #skin-toolbox
+      .panel
+        .panel-heading
+          span.panel-icon
+            i.fa.fa-gear.text-primary
+          span.panel-title  Theme Options
+        .panel-body.pn
+          ul.nav.nav-list.nav-list-sm.pl15.pt10(role='tablist')
+
+            li.active
+              a(href='#toolbox-sidebar', role='tab', data-toggle='tab') Sidebar
+            li
+              a(href='#toolbox-settings', role='tab', data-toggle='tab') Misc
+          .tab-content.p20.ptn.pb15
+            #toolbox-sidebar.tab-pane.active(role='tabpanel')
+              form#toolbox-sidebar-skin
+                h4.mv20 Sidebar Skins
+                .skin-toolbox-swatches
+                  .checkbox-custom.fill.mb5
+                    input#sidebarSkin3(type='radio', name='sidebarSkin', checked='', value='')
+                    label(for='sidebarSkin3') Dark
+                  .checkbox-custom.fill.checkbox-disabled.mb5
+                    input#sidebarSkin1(type='radio', name='sidebarSkin', value='sidebar-light')
+                    label(for='sidebarSkin1') Light
+                  .checkbox-custom.fill.checkbox-light.mb5
+                    input#sidebarSkin2(type='radio', name='sidebarSkin', value='sidebar-light light')
+                    label(for='sidebarSkin2') Lighter
+            #toolbox-settings.tab-pane(role='tabpanel')
+              form#toolbox-settings-misc
+                h4.mv20.mtn Layout Options
+
+                .form-group
+                  .checkbox-custom.fill.mb5
+                    input#sidebar-option(type='checkbox', checked='')
+                    label(for='sidebar-option') Fixed Sidebar
+
+                h4.mv20 Layout Options
+                .form-group
+                  .radio-custom.mb5
+                    input#fullwidth-option(type='radio', checked='', name='layout-option')
+                    label(for='fullwidth-option') Fullwidth Layout
+                .form-group.mb20.pointer-events-none
+                  .radio-custom.radio-disabled.mb5
+                    input#boxed-option(type='radio', name='layout-option', disabled='')
+                    label(for='boxed-option')
+                      | Boxed Layout
+                      b.text-muted (Coming Soon)
+          .form-group.mn.br-t.p10
+            a#clearLocalStorage.btn.btn-primary.btn-block.pb10.pt10(href='#') Clear LocalStorage
+    // Start: Main
+    #main
+      // Start: Sidebar
+      aside#sidebar_left.nano.nano-light.affix
+        // Navbar Branding
+        .navbar-branding
+          a.navbar-brand(href='dashboard.html')
+            span.text-white Ruby
+            = ' '
+            | Admin
+          span#toggle_sidemenu_l.ad.ad-lines
+        // Start: Sidebar Left Content
+        .sidebar-left-content.nano-content
+          // Start: Sidebar Header
+          header.sidebar-header
+            // Sidebar Widget - Author
+            .sidebar-widget.author-widget
+              .media
+                a.media-left(href='#')
+                  img.img-responsive(src='assets/img/avatars/3.jpg')
+                .media-body
+                  .media-links
+                  .media-author Ryan Harrison
+                  a.sidebar-menu-toggle(href='#') User Menu
+                  a(href='pages_login(alt).html') Logout
+            // Sidebar Widget - Menu (slidedown)
+            .sidebar-widget.menu-widget
+              .row.text-center.mbn
+                .col-xs-4
+                  a.text-primary(href='dashboard.html', data-toggle='tooltip', data-placement='top', title='Dashboard')
+                    span.glyphicon.glyphicon-home
+                .col-xs-4
+                  a.text-info(href='pages_messages.html', data-toggle='tooltip', data-placement='top', title='Messages')
+                    span.glyphicon.glyphicon-inbox
+                .col-xs-4
+                  a.text-alert(href='pages_profile.html', data-toggle='tooltip', data-placement='top', title='Tasks')
+                    span.fa.fa-asterisk
+              .row.text-center.mbn
+                .col-xs-4
+                  a.text-system(href='pages_timeline.html', data-toggle='tooltip', data-placement='top', title='Activity')
+                    span.fa.fa-desktop
+                .col-xs-4
+                  a.text-danger(href='pages_profile.html', data-toggle='tooltip', data-placement='top', title='Settings')
+                    span.fa.fa-gears
+                .col-xs-4
+                  a.text-warning(href='pages_gallery.html', data-toggle='tooltip', data-placement='top', title='Cron Jobs')
+                    span.fa.fa-flask
+            // Sidebar Widget - Search (hidden)
+            .sidebar-widget.search-widget.hidden
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-search
+                input#sidebar-search.form-control(type='text', placeholder='Search...')
+          // Start: Sidebar Menu
+          ul.nav.sidebar-menu
+            li.sidebar-label.pt30 Menu
+            li
+              a(href='pages_calendar.html')
+                span.fa.fa-calendar
+                span.sidebar-title Calendar
+                span.sidebar-title-tray
+                  span.label.label-xs.bg-primary New
+            li
+              a(href='../README/index.html')
+                span.glyphicon.glyphicon-book
+                span.sidebar-title Documentation
+            li.active
+              a(href='dashboard.html')
+                span.glyphicon.glyphicon-home
+                span.sidebar-title Dashboard
+            li.sidebar-label.pt15 Exclusive Tools
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-columns
+                span.sidebar-title Admin Layouts
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa.fa-arrows-h
+                    |                   Sidebars
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_sidebar-left-static.html')
+                        | Left Static
+                    li
+                      a(href='layout_sidebar-left-fixed.html')
+                        | Left Fixed
+                    li
+                      a(href='layout_sidebar-left-widgets.html')
+                        | Left Widgets
+                    li
+                      a(href='layout_sidebar-left-minified.html')
+                        | Left Minified
+                    li
+                      a(href='layout_sidebar-left-light.html')
+                        | Left White
+                    li
+                      a(href='layout_sidebar-right-static.html')
+                        | Right Static
+                    li
+                      a(href='layout_sidebar-right-fixed.html')
+                        | Right Fixed
+                    li
+                      a(href='layout_sidebar-right-menu.html')
+                        | Right w/Menu
+                
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-hand-o-up
+                    |                   Topbar
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_topbar.html')
+                        | Default Style
+                    li
+                      a(href='layout_topbar-menu.html')
+                        | Default w/Menu
+                    li
+                      a(href='layout_topbar-alt.html')
+                        | Alternate Style
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-arrows-v
+                    |                   Content Body
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_content-blank.html')
+                        | Blank Starter
+                    li
+                      a(href='layout_content-fixed.html')
+                        | Fixed Window
+                    li
+                      a(href='layout_content-heading.html')
+                        | Content Heading
+                    li
+                      a(href='layout_content-tabs.html')
+                        | Content Tabs
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-pause
+                    |                   Content Trays
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_tray-left.html')
+                        | Tray Left Static
+                    li
+                      a(href='layout_tray-left-fixed.html')
+                        | Tray Left Fixed
+                    li
+                      a(href='layout_tray-right.html')
+                        | Tray Right Static
+                    li
+                      a(href='layout_tray-right-fixed.html')
+                        | Tray Right Fixed
+                    li
+                      a(href='layout_tray-both.html')
+                        | Left + Right Static
+                    li
+                      a(href='layout_tray-both-fixed.html')
+                        | Left + Right Fixed
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-plus-square-o
+                    |                   Boxed Layout
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_boxed.html')
+                        | Default
+                    li
+                      a(href='layout_boxed-horizontal.html')
+                        | Horizontal Menu
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-arrow-circle-o-up
+                    |                   Horizontal Menu
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='layout_horizontal-sm.html')
+                        | Small Size
+                    li
+                      a(href='layout_horizontal-md.html')
+                        | Medium Size
+                    li
+                      a(href='layout_horizontal-lg.html')
+                        | Large Size
+                    li
+                      a(href='layout_horizontal-light.html')
+                        | Light Skin
+                    li
+                      a(href='layout_horizontal-topbar.html')
+                        | With Topbar
+                    li
+                      a(href='layout_horizontal-topbar-alt.html')
+                        | With Alt Topbar
+                    li
+                      a(href='layout_horizontal-collapsed.html')
+                        | Collapsed onLoad
+                    li
+                      a(href='layout_horizontal-boxed.html')
+                        | In Boxed Layout
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-fire
+                span.sidebar-title Admin Plugins
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='admin_plugins-panels.html')
+                    span.glyphicon.glyphicon-book
+                    |  Admin Panels
+                li
+                  a(href='admin_plugins-modals.html')
+                    span.glyphicon.glyphicon-modal-window
+                    |  Admin Modals
+                li
+                  a(href='admin_plugins-dock.html')
+                    span.glyphicon.glyphicon-equalizer
+                    |  Admin Dock
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-check
+                span.sidebar-title Admin Forms
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='admin_forms-elements.html')
+                    span.glyphicon.glyphicon-edit
+                    |  Admin Elements
+                li
+                  a(href='admin_forms-widgets.html')
+                    span.glyphicon.glyphicon-calendar
+                    |  Admin Widgets
+                li
+                  a(href='admin_forms-validation.html')
+                    span.glyphicon.glyphicon-check
+                    |  Admin Validation
+                li
+                  a(href='admin_forms-layouts.html')
+                    span.fa.fa-desktop
+                    |  Admin Layouts
+                li
+                  a(href='admin_forms-wizard.html')
+                    span.fa.fa-clipboard
+                    |  Admin Wizard
+            li.sidebar-label.pt20 Systems
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-diamond
+                span.sidebar-title Widget Packages
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='widgets_tile.html')
+                    span.fa.fa-cube
+                    |  Tile Widgets
+                li
+                  a(href='widgets_panel.html')
+                    span.fa.fa-desktop
+                    |  Panel Widgets
+                li
+                  a(href='widgets_scroller.html')
+                    span.fa.fa-columns
+                    |  Scroller Widgets
+                li
+                  a(href='widgets_data.html')
+                    span.fa.fa-dot-circle-o
+                    |  Admin Widgets
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-shopping-cart
+                span.sidebar-title Ecommerce
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='ecommerce_dashboard.html')
+                    span.glyphicon.glyphicon-shopping-cart
+                    |  Dashboard
+                    span.label.label-xs.bg-primary New
+                li
+                  a(href='ecommerce_products.html')
+                    span.glyphicon.glyphicon-tags
+                    |  Products
+                li
+                  a(href='ecommerce_orders.html')
+                    span.fa.fa-money
+                    |  Orders
+                li
+                  a(href='ecommerce_customers.html')
+                    span.fa.fa-users
+                    |  Customers
+                li
+                  a(href='ecommerce_settings.html')
+                    span.fa.fa-gears
+                    |  Store Settings
+            li
+              a(href='email_templates.html')
+                span.fa.fa-envelope-o
+                span.sidebar-title Email Templates
+            // sidebar resources
+            li.sidebar-label.pt20 Elements
+            li
+              a.accordion-toggle(href='#')
+                span.fa.fa-asterisk
+                span.sidebar-title UI Elements
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='ui_alerts.html')
+                    span.fa.fa-warning
+                    |  Alerts
+                li
+                  a(href='ui_animations.html')
+                    span.fa.fa-spinner
+                    |  Animations
+                li
+                  a(href='ui_buttons.html')
+                    span.fa.fa-plus-square-o
+                    |  Buttons
+                li
+                  a(href='ui_typography.html')
+                    span.fa.fa-text-width
+                    |  Typography
+                li
+                  a(href='ui_portlets.html')
+                    span.fa.fa-archive
+                    |  Portlets
+                li
+                  a(href='ui_progress-bars.html')
+                    span.fa.fa-bars
+                    |  Progress Bars
+                li
+                  a(href='ui_tabs.html')
+                    span.fa.fa-toggle-off
+                    |  Tabs
+                li
+                  a(href='ui_icons.html')
+                    span.fa.fa-hand-o-right
+                    |  Icons
+                li
+                  a(href='ui_grid.html')
+                    span.fa.fa-th-large
+                    |  Grid
+            li
+              a.accordion-toggle.menu-open(href='#')
+                span.fa.fa-align-justify
+                span.sidebar-title Form Elements
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a(href='form_inputs.html')
+                    span.fa.fa-magic
+                    |  Basic Inputs
+                li.active
+                  a(href='form_plugins.html')
+                    span.fa.fa-bell-o
+                    |  Plugin Inputs
+                    span.label.label-xs.bg-primary New
+                li
+                  a(href='form_editors.html')
+                    span.fa.fa-clipboard
+                    |  Editors
+                li
+                  a(href='form_treeview.html')
+                    span.fa.fa-tree
+                    |  Treeview
+                li
+                  a(href='form_nestable.html')
+                    span.fa.fa-tasks
+                    |  Nestable
+                li
+                  a(href='form_image-tools.html')
+                    span.fa.fa-cloud-upload
+                    |  Image Tools
+                    span.label.label-xs.bg-primary New
+                li
+                  a(href='form_uploaders.html')
+                    span.fa.fa-cloud-upload
+                    |  Uploaders
+                li
+                  a(href='form_notifications.html')
+                    span.fa.fa-bell-o
+                    |  Notifications
+                li
+                  a(href='form_content-sliders.html')
+                    span.fa.fa-exchange
+                    |  Content Sliders
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-tower
+                span.sidebar-title Plugins
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a.accordion-toggle(href='#')
+                    span.glyphicon.glyphicon-globe
+                    |  Maps
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='maps_basic.html') Basic Maps
+                    li
+                      a(href='maps_vector.html') Vector Maps
+                    li
+                      a(href='maps_full.html') Full Map
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-area-chart
+                    |  Charts
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='charts_highcharts.html') Highcharts
+                    li
+                      a(href='charts_d3.html') D3 Charts
+                    li
+                      a(href='charts_flot.html') Flot Charts
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-table
+                    |  Tables
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='tables_basic.html')  Basic Tables
+                    li
+                      a(href='tables_footable.html')  FooTables
+                    li
+                      a(href='tables_pricing.html')  Pricing Tables
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-flask
+                    |  Misc
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='misc_tour.html')  Site Tour
+                    li
+                      a(href='misc_timeout.html')  Session Timeout
+                    li
+                      a(href='misc_nprogress.html')  Page Progress Loader
+            li
+              a.accordion-toggle(href='#')
+                span.glyphicon.glyphicon-duplicate
+                span.sidebar-title Pages
+                span.caret
+              ul.nav.sub-nav
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-gears
+                    |  Utility
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='pages_confirmation.html', target='_blank')
+                        | Confirmation
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_login.html', target='_blank')  Login
+                    li
+                      a(href='pages_login(alt).html', target='_blank')
+                        | Login Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_register.html', target='_blank')  Register
+                    li
+                      a(href='pages_register(alt).html', target='_blank')
+                        | Register Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_screenlock.html', target='_blank')  Screenlock
+                    li
+                      a(href='pages_screenlock(alt).html', target='_blank')
+                        | Screenlock Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_forgotpw.html', target='_blank')  Forgot Password
+                    li
+                      a(href='pages_forgotpw(alt).html', target='_blank')
+                        | Forgot Password Alt
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_coming-soon.html', target='_blank')
+                        | Coming Soon
+                    li
+                      a(href='pages_404.html')  404 Error
+                    li
+                      a(href='pages_500.html')  500 Error
+                    li
+                      a(href='pages_404(alt).html')  404 Error Alt
+                    li
+                      a(href='pages_500(alt).html')  500 Error Alt
+                li
+                  a.accordion-toggle(href='#')
+                    span.fa.fa-desktop
+                    |  Basic
+                    span.caret
+                  ul.nav.sub-nav
+                    li
+                      a(href='pages_search-results.html')
+                        | Search Results
+                        span.label.label-xs.bg-primary New
+                    li
+                      a(href='pages_profile.html')  Profile
+                    li
+                      a(href='pages_timeline.html')  Timeline Split
+                    li
+                      a(href='pages_timeline-single.html')  Timeline Single
+                    li
+                      a(href='pages_faq.html')  FAQ Page
+                    li
+                      a(href='pages_calendar.html')  Calendar
+                    li
+                      a(href='pages_messages.html')  Messages
+                    li
+                      a(href='pages_messages(alt).html')  Messages Alt
+                    li
+                      a(href='pages_gallery.html')  Gallery
+                    li
+                      a(href='pages_invoice.html')  Printable Invoice
+            // sidebar bullets
+            li.sidebar-label.pt20 Projects
+            li.sidebar-proj
+              a(href='#projectOne')
+                span.fa.fa-bookmark.text-primary
+                span.sidebar-title Executive Meeting
+            li.sidebar-proj
+              a(href='#projectTwo')
+                span.fa.fa-bookmark.text-info
+                span.sidebar-title HelpDesk Redesign
+            li.sidebar-proj
+              a(href='#projectTwo')
+                span.fa.fa-bookmark.text-danger
+                span.sidebar-title Sony Board Meeting
+            li.sidebar-proj
+              a(href='#projectThree')
+                span.fa.fa-bookmark.text-warning
+                span.sidebar-title Apple Tech Conference
+      // Start: Content-Wrapper
+      section#content_wrapper
+        // Start: Topbar
+        header#topbar.badges-mod.alt
+          .topbar-left
+            ol.breadcrumb
+              li
+                a(href="dashboard.html") Dashboard
+              li
+                a(href="admin_forms-elements.html") Form Elements
+              li
+                a(href="maps_basic.html") Plugins Pages
+              li
+                a(href="ui_alerts.html") UI Elements
+              li
+                a(href="documentation/") Documentation
+          .topbar-right
+            a.topbar-icon(href='#')
+              span.fa.fa-search
+            a.topbar-icon.topbar-menu-toggle.ml40(href='#', data-toggle='button')
+              span.badge.badge-strikemaster.offset-badge 6
+              span.fa.fa-magic
+            .topbar-icon-wrap.ml40
+              button.topbar-icon.dropdown-toggle(data-toggle='dropdown')
+                span.badge.badge-primary 5
+                span.fa.fa-bell.va-m
+              .dropdown-menu.dropdown-persist.w350.animated.animated-shorter.fadeIn(role='menu')
+                .panel.mbn
+                  .panel-menu
+                    span.panel-icon
+                      i.fa.fa-clock-o
+                    span.panel-title.fw600  Recent Activity
+                    button.btn.btn-xs.pull-right(type='button')
+                      i.fa.fa-refresh
+                  .panel-body.panel-scroller.scroller-navbar.scroller-overlay.scroller-pn.pn
+                    ol.timeline-list
+                      li.timeline-item
+                        .timeline-icon.bg-alert
+                          span.fa.fa-tags
+                        .timeline-desc
+                          b Michael
+                          |  Added to his store:
+                          a(href='#') Ipod
+                        .timeline-date 1:25am
+                      li.timeline-item
+                        .timeline-icon.bg-alert
+                          span.fa.fa-tags
+                        .timeline-desc
+                          b Sara
+                          |  Added his store:
+                          a(href='#') Notebook
+                        .timeline-date 3:05am
+                      li.timeline-item
+                        .timeline-icon.bg-success
+                          span.fa.fa-usd
+                        .timeline-desc
+                          b Admin
+                          |  created invoice for:
+                          a(href='#') Software
+                        .timeline-date 4:15am
+                      li.timeline-item
+                        .timeline-icon.bg-success
+                          span.fa.fa-usd
+                        .timeline-desc
+                          b Admin
+                          |  created invoice for:
+                          a(href='#') Apple
+                        .timeline-date 7:45am
+                      li.timeline-item
+                        .timeline-icon.bg-success
+                          span.fa.fa-usd
+                        .timeline-desc
+                          b Admin
+                          |  created invoice for:
+                          a(href='#') Software
+                        .timeline-date 4:15am
+                      li.timeline-item
+                        .timeline-icon.bg-success
+                          span.fa.fa-usd
+                        .timeline-desc
+                          b Admin
+                          |  created invoice for:
+                          a(href='#') Apple
+                        .timeline-date 7:45am
+                      li.timeline-item
+                        .timeline-icon.bg-alert
+                          span.fa.fa-tags
+                        .timeline-desc
+                          b Michael
+                          |  Added his store:
+                          a(href='#') Ipod
+                        .timeline-date 8:25am
+                      li.timeline-item
+                        .timeline-icon.bg-system
+                          span.fa.fa-fire
+                        .timeline-desc
+                          b Admin
+                          |  created invoice for:
+                          a(href='#') Software
+                        .timeline-date 4:15am
+                      li.timeline-item
+                        .timeline-icon.bg-alert
+                          span.fa.fa-tags
+                        .timeline-desc
+                          b Sara
+                          |  Added to his store:
+                          a(href='#') Notebook
+                        .timeline-date 3:05am
+                  .panel-footer.text-center.p7
+                    a.link-unstyled(href='#')  View All
+            .topbar-icon-wrap.ml35
+              button.topbar-icon.dropdown-toggle(data-toggle='dropdown')
+                span.badge.badge-mandy 5
+                span.fa.fa-comments.va-m
+              .dropdown-menu.dropdown-menu-offset.dropdown-persist.w350.animated.animated-shorter.fadeIn(role='menu')
+                .panel.mbn
+                  .panel-menu
+                    span.panel-title.fw600 Messages
+                  .panel-body.panel-scroller.scroller-navbar.scroller-overlay.scroller-pn.pn
+                    .br-n.p10
+                      .chat-widget
+                        .media
+                          .media-left
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/3.jpg')
+                          .media-body
+                            span.media-status.online
+                            h5.media-heading
+                              | Courtney Faught
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+                        .media
+                          .media-body
+                            span.media-status.offline
+                            h5.media-heading
+                              | Joe Gibbons
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque.
+                          .media-right
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/1.jpg')
+                        .media
+                          .media-left
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/2.jpg')
+                          .media-body
+                            span.media-status.online
+                            h5.media-heading
+                              | Courtney Faught
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metuscommodo.
+                        .media
+                          .media-body
+                            span.media-status.offline
+                            h5.media-heading
+                              | Joe Gibbons
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in Nulla vel metus scelerisque antecommodo.
+                          .media-right
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/1.jpg')
+                        .media
+                          .media-left
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/2.jpg')
+                          .media-body
+                            span.media-status.online
+                            h5.media-heading
+                              | Courtney Faught
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque soltudino.
+                        .media
+                          .media-body
+                            span.media-status.offline
+                            h5.media-heading
+                              | Joe Gibbons
+                              small  - 12:30am
+                            |  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+                          .media-right
+                            a(href='#')
+                              img.media-object(alt='64x64', src='assets/img/avatars/1.jpg')
+                  .panel-footer.text-center.p7
+                    a.link-unstyled(href='#')  View All
+        // Start: Topbar-Dropdown
+        #topbar-dropmenu.alt
+          .topbar-menu.row
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-primary.light(href='#')
+                span.glyphicon.glyphicon-inbox.text-white
+                span.metro-title Messages
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-info.light(href='#')
+                span.glyphicon.glyphicon-user.text-white
+                span.metro-title Users
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-success.light(href='#')
+                span.glyphicon.glyphicon-headphones.text-white
+                span.metro-title Support
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-system.light(href='#')
+                span.glyphicon.glyphicon-facetime-video.text-white
+                span.metro-title Videos
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-warning.light(href='#')
+                span.fa.fa-gears.text-white
+                span.metro-title Settings
+            .col-xs-4.col-sm-2
+              a.metro-tile.bg-alert.light(href='#')
+                span.glyphicon.glyphicon-picture.text-white
+                span.metro-title Pictures
+        // Begin: Content
+        #content.animated.fadeIn
+          .row
+            .col-md-6
+              // Plugin: Bootstrap Multiselect
+              .panel
+                .panel-heading
+                  span.panel-title Bootstrap Multiselects
+                .panel-body
+                  .row
+                    .col-lg-12
+                      form.form-horizontal(role='form')
+                        .form-group
+                          label.control-label.text-left(for='multiselect1') Single
+                          .row
+                            .col-md-12.mt10
+                              select#multiselect1
+                                option(value='cheese') Cheese
+                                option(value='tomatoes') Tomatoes
+                                option(value='mozarella', selected='') Mozzarella
+                                option(value='mushrooms') Mushrooms
+                                option(value='pepperoni') Pepperoni
+                                option(value='onions') Onions
+                            .col-md-12.mt10
+                              select#multiselect5
+                                option(value='cheese') Cheese
+                                option(value='tomatoes') Tomatoes
+                                option(value='mozarella', selected='') Mozzarella
+                                option(value='mushrooms') Mushrooms
+                                option(value='pepperoni') Pepperoni
+                                option(value='onions') Onions
+                        .form-group
+                          label.text-left.control-label(for='multiselect2') Multiple
+                          .row
+                            .col-md-12.mt10
+                              select#multiselect2(multiple='multiple')
+                                option(value='cheese') Cheese
+                                option(value='tomatoes') Tomatoes
+                                option(value='mozarella') Mozzarella
+                                option(value='mushrooms') Mushrooms
+                                option(value='pepperoni') Pepperoni
+                                option(value='onions') Onions
+                            .col-md-12.mt10
+                              select#multiselect6(multiple='multiple')
+                                option(value='cheese') Cheese
+                                option(value='tomatoes') Tomatoes
+                                option(value='mozarella') Mozzarella
+                                option(value='mushrooms') Mushrooms
+                                option(value='pepperoni') Pepperoni
+                                option(value='onions') Onions
+                        .form-group
+                          label.control-label.text-left(for='multiselect3') With Labels
+                          .row
+                            .col-md-12.mt10
+                              select#multiselect3.multiselect-withlabels(multiple='multiple')
+                                optgroup(label='Mathematics')
+                                  option(value='analysis') Analysis
+                                  option(value='discrete') Discrete Mathematics
+                                  option(value='probability') Probability Theory
+                                optgroup(label='Computer Science')
+                                  option(value='programming') Introduction to Programming
+                                  option(value='automata') Automata Theory
+                                  option(value='complexity') Complexity Theory
+                            .col-md-12.mt10
+                              select#multiselect7.multiselect-withlabels(multiple='multiple')
+                                optgroup(label='Mathematics')
+                                  option(value='analysis') Analysis
+                                  option(value='discrete') Discrete Mathematics
+                                  option(value='probability') Probability Theory
+                                optgroup(label='Computer Science')
+                                  option(value='programming') Introduction to Programming
+                                  option(value='automata') Automata Theory
+                                  option(value='complexity') Complexity Theory
+                        .form-group
+                          label.text-left.control-label(for='multiselect4') With Sorting
+                          .row
+                            .col-md-12.mt10
+                              select#multiselect4(multiple='multiple')
+                                option(value='cheese') Cheese
+                                option(value='tomatoes') Tomatoes
+                                option(value='mozarella') Mozzarella
+                                option(value='mushrooms') Mushrooms
+                                option(value='pepperoni') Pepperoni
+                                option(value='onions') Onions
+                            .col-md-12.mt10
+                              select#multiselect8(multiple='multiple')
+                                option(value='cheese') Cheese
+                                option(value='tomatoes') Tomatoes
+                                option(value='mozarella') Mozzarella
+                                option(value='mushrooms') Mushrooms
+                                option(value='pepperoni') Pepperoni
+                                option(value='onions') Onions
+              // Plugin: Dual Select List
+              .panel
+                form#demoform.hide-list-label(action='#', method='post')
+                  .panel-heading
+                    span.panel-title  Dual Select Listbox
+                  .panel-body.p25
+                    select.demo1(multiple='multiple', size='10', name='demo1')
+                      option(value='option1') Option 1
+                      option(value='option2') Option 2
+                      option(value='option3') Option 3
+                      option(value='option4') Option 4
+                      option(value='option5') Option 5
+                      option(value='option6') Option 6
+                      option(value='option7') Option 7
+                      option(value='option8') Option 8
+                      option(value='option9') Option 9
+                      option(value='option10') Option 10
+                      option(value='option11') Option 11
+                      option(value='option12') Option 12
+                  .panel-footer.text-right
+                    button.btn.btn-default.ph25(type='submit') Submit Data
+              // Plugin: Field Maxlength
+              .panel
+                .panel-heading
+                  span.panel-title  Input Field Maxlength
+                .panel-body.p25
+                  form.form-horizontal(role='form')
+                    .form-group
+                      label.col-md-3.control-label Input MaxLength
+                      .col-md-8
+                        input.form-control(type='text', maxlength='15', placeholder='Maxlength of 15 characters..')
+              // Plugin: Typeahead Input
+              .panel
+                .panel-heading
+                  span.panel-title  Typeahead Inputs
+                .panel-body.p25
+                  form.form-horizontal(role='form')
+                    .form-group
+                      label.col-md-3.control-label Try Me
+                      .col-md-8
+                        input#test-field.form-control.typeahead(type='text', placeholder='States of USA')
+              // Plugin: Spinner Fields
+              .panel
+                .panel-heading
+                  span.panel-title Spinner Fields
+                .panel-body
+                  form.form-horizontal(role='form')
+                    .form-group
+                      label.col-lg-2.control-label(for='spinner1') Default
+                      .col-lg-9
+                        .input-group
+                          span.input-group-addon
+                            i.fa.fa-level-up
+                          input#spinner1.form-control.ui-spinner-input(name='spinner', value='15')
+                    .form-group
+                      label.col-lg-2.control-label(for='spinner2') Currency
+                      .col-lg-9
+                        .input-group
+                          span.input-group-addon
+                            i.fa.fa-usd
+                          input#spinner2.form-control.ui-spinner-input(name='spinner', value='35')
+                    .form-group
+                      label.col-lg-2.control-label(for='spinner3') Decimal
+                      .col-lg-9
+                        .input-group
+                          span.input-group-addon
+                            i.fa.fa-signal
+                          input#spinner3.form-control.ui-spinner-input(name='spinner', value='13.5')
+                    .form-group
+                      label.col-lg-2.control-label(for='spinner4') Time
+                      .col-lg-9
+                        .input-group
+                          span.input-group-addon
+                            i.fa.fa-clock-o
+                          input#spinner4.form-control.ui-spinner-input(name='spinner', value='08:30 PM')
+              // Plugin: Masked Fields
+              .panel
+                .panel-heading
+                  span.panel-title Masked Input Fields
+                .panel-body
+                  form.form-horizontal(role='form')
+                    .form-group
+                      label.col-lg-2.control-label(for='maskedDate') Date
+                      .col-lg-9
+                        .input-group
+                          span.input-group-addon
+                            i.fa.fa-calendar
+                          input#maskedDate.form-control.date(type='text', maxlength='10', autocomplete='off', placeholder='11/11/1111')
+                    .form-group
+                      label.col-lg-2.control-label(for='maskedTime') Time
+                      .col-lg-9
+                        .input-group
+                          span.input-group-addon
+                            i.fa.fa-clock-o
+                          input#maskedTime.form-control.time(type='text', maxlength='10', autocomplete='off', placeholder='00:00:00')
+                    .form-group
+                      label.col-lg-2.control-label(for='maskedMultiple') Date and Time
+                      .col-lg-9
+                        .input-group
+                          span.input-group-addon
+                            i.fa.fa-clock-o
+                          input#maskedMultiple.form-control.date_time(type='text', maxlength='10', autocomplete='off', placeholder='99/99/9999 00:00:00')
+                    .form-group
+                      label.col-lg-2.control-label(for='maskedZip') Zip Code
+                      .col-lg-9
+                        .input-group
+                          span.input-group-addon
+                            i.fa.fa-bolt
+                          input#maskedZip.form-control.zip(type='text', maxlength='10', autocomplete='off', placeholder='99999-999')
+                    .form-group
+                      label.col-lg-2.control-label(for='maskedPhone') Phone
+                      .col-lg-9
+                        .input-group
+                          span.input-group-addon
+                            i.fa.fa-phone
+                          input#maskedPhone.form-control.phone(type='text', maxlength='10', autocomplete='off', placeholder='(999) 999-9999')
+                    .form-group
+                      label.col-lg-2.control-label(for='maskedExt') Phone + Ext
+                      .col-lg-9
+                        .input-group
+                          span.input-group-addon
+                            i.fa.fa-phone
+                          input#maskedExt.form-control.phoneext(type='text', maxlength='10', autocomplete='off', placeholder='9999-9999')
+                    .form-group
+                      label.col-lg-2.control-label(for='maskedMoney') Money
+                      .col-lg-9
+                        .input-group
+                          span.input-group-addon
+                            i.fa.fa-usd
+                          input#maskedMoney.form-control.money(type='text', maxlength='10', autocomplete='off', placeholder='000.000.000.000')
+                    .form-group
+                      label.col-lg-2.control-label(for='maskedKey') Product Key
+                      .col-lg-9
+                        .input-group
+                          span.input-group-addon
+                            i.fa.fa-key
+                          input#maskedKey.form-control.product(type='text', maxlength='10', autocomplete='off', placeholder='000.000.000.000,00')
+                    .form-group
+                      label.col-lg-2.control-label(for='maskedID') Tax ID
+                      .col-lg-9
+                        .input-group
+                          span.input-group-addon
+                            i.fa.fa-gavel
+                          input#maskedID.form-control.tin(type='text', maxlength='10', autocomplete='off', placeholder='99999-999')
+                    .form-group
+                      label.col-lg-2.control-label(for='maskedSSN') SSN
+                      .col-lg-9
+                        .input-group
+                          span.input-group-addon
+                            i.fa.fa-exclamation
+                          input#maskedSSN.form-control.ssn(type='text', maxlength='10', autocomplete='off', placeholder='999-99-9999')
+                    .form-group
+                      label.col-lg-2.control-label(for='maskedScript') Eye Script
+                      .col-lg-9
+                        .input-group
+                          span.input-group-addon
+                            i.fa.fa-eye
+                          input#maskedScript.form-control.eyescript(type='text', maxlength='10', autocomplete='off', placeholder='0ZZ.0ZZ.0ZZ.0ZZ')
+                    .form-group
+                      label.col-lg-2.control-label(for='maskedCustom') Custom
+                      .col-lg-9
+                        .input-group
+                          span.input-group-addon
+                            i.fa.fa-flask
+                          input#maskedCustom.form-control.custom(type='text', maxlength='10', autocomplete='off', placeholder='1-22-333-4444')
+            .col-md-6
+              // Plugin: Select2 Multiselect
+              .panel
+                .panel-heading
+                  span.panel-title  Select2 Multiselect
+                .panel-body.p25.pb10
+                  form.form-horizontal(role='form')
+                    .form-group
+                      label.col-md-3.control-label Single Select
+                      .col-md-8
+                        select.select2-single.form-control
+                          option(value='CA') California
+                          option(value='AL') Alabama
+                          option(value='WY') Wyoming
+                    .form-group
+                      label.col-md-3.control-label Multiple Select
+                      .col-md-8
+                        select.select2-multiple.form-control.select-primary(multiple='multiple')
+                          option(value='CA') California
+                          option(value='AL') Alabama
+                          option(value='WY') Wyoming
+                  hr.alt.short
+                  .row
+                    .col-md-6
+                      .form-group
+                        select.select2-primary.form-control
+                          option(value='CA') California
+                          option(value='AL') Alabama
+                          option(value='WY') Wyoming
+                      .form-group
+                        select.select2-info.form-control
+                          option(value='CA') California
+                          option(value='AL') Alabama
+                          option(value='WY') Wyoming
+                    .col-md-6
+                      .form-group
+                        select.select2-success.form-control
+                          option(value='CA') California
+                          option(value='AL') Alabama
+                          option(value='WY') Wyoming
+                      .form-group
+                        select.select2-warning.form-control
+                          option(value='CA') California
+                          option(value='AL') Alabama
+                          option(value='WY') Wyoming
+              // Plugin: Tag Manager
+              .panel
+                .panel-heading
+                  span.panel-title Tag manager
+                .panel-body
+                  form.form-horizontal(role='form')
+                    .form-group.mbn
+                      label.col-md-2.control-label(for='tagmanager') Tag Field
+                      .col-md-10
+                        input#tagmanager.form-control.tm-input(type='text', placeholder='Create a new tag..')
+                        .tag-container.tags
+                .panel-footer
+                  form.form-horizontal(role='form')
+                    .form-group
+                      label.col-md-2.control-label.pt20(for='tagmanager2') Tag Options
+                      .col-md-10
+                        .mt15
+                          span.tm-tag.tm-tag-primary
+                            span Primary Tag
+                          span.tm-tag.tm-tag-success
+                            span Success Tag
+                          span.tm-tag.tm-tag-info
+                            span Info Tag
+                          span.tm-tag.tm-tag-warning
+                            span Warning Tag
+                          span.tm-tag.tm-tag-danger
+                            span Danger Tag
+                          span.tm-tag.tm-tag-alert
+                            span Alert Tag
+                          span.tm-tag.tm-tag-system
+                            span System Tag
+                          span.tm-tag.tm-tag-inverse
+                            span Inverse Tag
+              // Plugin: Color Picker
+              .panel
+                .panel-heading
+                  span.panel-title Color Picker
+                .panel-body
+                  form.form-horizontal(role='form')
+                    .form-group
+                      label.col-lg-3.control-label.pt5(for='cp1') Static
+                      .col-lg-9
+                        a#demo_apidemo.btn.btn-sm.btn-default.demo.form-control-static.ib(href='#', data-color='#5384ce') Click to open me!
+                    .form-group
+                      label.col-md-3.control-label(for='cp2') Default Field
+                      .col-md-8
+                        input.form-control.demo.demo-1.demo-auto(type='text', value='#5367ce')
+                    .form-group
+                      label.col-md-3.control-label(for='cp3') Component Field
+                      .col-md-8
+                        .input-group.colorpicker-component.demo.demo-auto.cursor
+                          span.input-group-addon
+                            i
+                          input.form-control(type='text', value='')
+                .panel-footer.pt25
+                  form.form-horizontal(role='form')
+                    .form-group
+                      label.col-md-2.control-label Inline
+                      .col-md-8.pull-right
+                        .demo.demo-auto.ib.ml15(data-container='true', data-color='#5384ce', data-inline='true')
+                        #demo_cont.demo.demo-auto.ml15.ib(data-container='#demo_cont', data-color='rgba(83,167,206,1)', data-inline='true')
+                  .clearfix
+              // Plugin: Daterange Picker
+              .panel
+                .panel-heading
+                  span.panel-title Date Range Picker
+                .panel-body
+                  form.form-horizontal(role='form')
+                    .form-group
+                      label.col-md-3.control-label(for='daterangepicker1') Default Field
+                      .col-md-8
+                        input#daterangepicker1.form-control.pull-right(type='text', name='daterange')
+                    .form-group
+                      label.col-md-3.control-label(for='daterangepicker2') Component Field
+                      .col-md-8
+                        #daterangepicker2.input-group.date.pull-right
+                          input.form-control(type='text')
+                          span.input-group-addon.cursor
+                            i.fa.fa-calendar
+              // Plugin: Datetime Picker
+              .panel
+                .panel-heading
+                  span.panel-title Date/Time Picker
+                .panel-body
+                  form.form-horizontal(role='form')
+                    .form-group.mt10
+                      label.col-md-3.control-label(for='datetimepicker1') Default Field
+                      .col-md-8
+                        input#datetimepicker1.form-control(type='text')
+                    .form-group
+                      label.col-md-3.control-label(for='datetimepicker2') Component Field
+                      .col-md-8
+                        #datetimepicker2.input-group.date
+                          span.input-group-addon.cursor
+                            i.fa.fa-calendar
+                          input.form-control(type='text')
+                .panel-footer.pt25
+                  form.form-horizontal(role='form')
+                    .form-group
+                      label.col-md-3.control-label Inline Picker
+                      .col-md-8
+                        #datetimepicker3
+                          input.form-control(type='text', style='max-width: 250px;')
+                  .clearfix
+              // Plugin: Time Picker
+              .panel
+                .panel-heading
+                  span.panel-title Time Picker
+                .panel-body
+                  form.form-horizontal(role='form')
+                    .form-group.mt10
+                      label.col-md-3.control-label(for='datetimepicker5') Default Field
+                      .col-md-8
+                        input#datetimepicker5.form-control(type='text')
+                    .form-group
+                      label.col-md-3.control-label(for='datetimepicker6') Component Field
+                      .col-md-8
+                        #datetimepicker6.input-group.date
+                          span.input-group-addon.cursor
+                            i.fa.fa-calendar
+                          input.form-control(type='text')
+                .panel-footer.pt25
+                  form.form-horizontal(role='form')
+                    .form-group.mt10
+                      label.col-md-3.control-label(for='datetimepicker7') Inline Time
+                      .col-md-8
+                        #datetimepicker7.timepicker-sm
+                          input.form-control(type='text', style='max-width: 250px;')
+                  .clearfix
+      // Start: Right Sidebar
+      aside#sidebar_right.nano.affix
+        // Start: Sidebar Right Content
+        .sidebar-right-content.nano-content
+          .tab-block.sidebar-block.br-n
+            ul.nav.nav-tabs.tabs-border.nav-justified.hidden
+              li.active
+                a(href='#sidebar-right-tab1', data-toggle='tab') Tab 1
+              li
+                a(href='#sidebar-right-tab2', data-toggle='tab') Tab 2
+              li
+                a(href='#sidebar-right-tab3', data-toggle='tab') Tab 3
+            .tab-content.br-n
+              #sidebar-right-tab1.tab-pane.active
+                h5.title-divider.text-muted.mb20
+                  | Server Statistics
+                  span.pull-right
+                    | 2013
+                    i.fa.fa-caret-down.ml5
+                .progress.mh5
+                  .progress-bar.progress-bar-primary(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 44%')
+                    span.fs11 DB Request
+                .progress.mh5
+                  .progress-bar.progress-bar-info(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 84%')
+                    span.fs11.text-left Server Load
+                .progress.mh5
+                  .progress-bar.progress-bar-warning(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 61%')
+                    span.fs11.text-left Server Connections
+                h5.title-divider.text-muted.mt30.mb10 Traffic Margins
+                .row
+                  .col-xs-5
+                    h3.text-primary.mn.pl5 132
+                  .col-xs-7.text-right
+                    h3.text-success-dark.mn
+                      i.fa.fa-caret-up
+                      |  13.2%
+                h5.title-divider.text-muted.mt25.mb10 Database Request
+                .row
+                  .col-xs-5
+                    h3.text-primary.mn.pl5 212
+                  .col-xs-7.text-right
+                    h3.text-success-dark.mn
+                      i.fa.fa-caret-up
+                      |  25.6%
+                h5.title-divider.text-muted.mt25.mb10 Server Response
+                .row
+                  .col-xs-5
+                    h3.text-primary.mn.pl5 82.5
+                  .col-xs-7.text-right
+                    h3.text-danger.mn
+                      i.fa.fa-caret-down
+                      |  17.9%
+                h5.title-divider.text-muted.mt40.mb20
+                  | Server Statistics
+                  span.pull-right.text-primary.fw600 USA
+              #sidebar-right-tab2.tab-pane
+              #sidebar-right-tab3.tab-pane
+    // jQuery
+    // core scripts
+    script(src='plugins/core.min.js')
+    // Theme Javascript
+    script(src='assets/js/utility/utility.js')
+    script(src='assets/js/demo/demo.js')
+    script(src='assets/js/main.js')
+    script(type='text/javascript').
+      jQuery(document).ready(function () {
+        "use strict";
+        // Init Theme Core
+        Core.init();
+        // Init Demo JS
+        Demo.init();
+        // Init Select2 - Basic Single
+        $(".select2-single").select2();
+        // Init Select2 - Basic Multiple
+        $(".select2-multiple").select2({
+          placeholder: "Select a state",
+          allowClear: true
+        });
+        // Init Select2 - Contextuals (via html classes)
+        $(".select2-primary").select2(); // select2 contextual - primary
+        $(".select2-success").select2(); // select2 contextual - success
+        $(".select2-info").select2();    // select2 contextual - info
+        $(".select2-warning").select2(); // select2 contextual - warning
+        // Init Bootstrap Maxlength Plugin
+        $('input[maxlength]').maxlength({
+          threshold: 15,
+          placement: "right"
+        });
+        // Dual List Plugin Init
+        var demo1 = $('.demo1').bootstrapDualListbox({
+          nonSelectedListLabel: 'Options',
+          selectedListLabel: 'Selected',
+          preserveSelectionOnMove: 'moved',
+          moveOnSelect: true,
+          nonSelectedFilter: 'ion ([7-9]|[1][0-2])'
+        });
+        $("#demoform").submit(function () {
+          alert("Options Selected: " + $('.demo1').val());
+          return false;
+        });
+        // Init Twitter Typeahead.js
+        var substringMatcher = function (strs) {
+          return function findMatches(q, cb) {
+            var matches, substrRegex;
+            // an array that will be populated with substring matches
+            matches = [];
+            // regex used to determine if a string contains the substring `q`
+            substrRegex = new RegExp(q, 'i');
+            // iterate through the pool of strings and for any string that
+            // contains the substring `q`, add it to the `matches` array
+            $.each(strs, function (i, str) {
+              if (substrRegex.test(str)) {
+                // the typeahead jQuery plugin expects suggestions to a
+                // JavaScript object, refer to typeahead docs for more info
+                matches.push({
+                  value: str
+                });
+              }
+            });
+            cb(matches);
+          };
+        };
+        var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
+          'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
+          'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+          'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+          'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+          'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+          'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
+          'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+          'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+        ];
+        // Init Typeahead Plugin with state aray
+        $('.typeahead').typeahead({
+          hint: true,
+          highlight: true,
+          minLength: 1
+        }, {
+          name: 'states',
+          displayKey: 'value',
+          source: substringMatcher(states)
+        });
+        // DateRange plugin options
+        var rangeOptions = {
+          ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+            'Last 7 Days': [moment().subtract('days', 6), moment()],
+            'Last 30 Days': [moment().subtract('days', 29), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+          },
+          startDate: moment().subtract('days', 29),
+          endDate: moment()
+        }
+        // Init DateRange plugin
+        $('#daterangepicker1').daterangepicker();
+        // Init DateRange plugin
+        $('#daterangepicker2').daterangepicker(
+                rangeOptions,
+                function (start, end) {
+                  $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                }
+        );
+        // Init DateRange plugin
+        $('#inline-daterange').daterangepicker(
+                rangeOptions,
+                function (start, end) {
+                  $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                }
+        );
+        // Init DateTimepicker - fields
+        $('#datetimepicker1').datetimepicker();
+        $('#datetimepicker2').datetimepicker();
+        // Init DateTimepicker - inline + range detection
+        $('#datetimepicker3').datetimepicker({
+          defaultDate: "9/4/2014",
+          inline: true,
+        });
+        // Init DateTimepicker - fields + Date disabled (only time picker)
+        $('#datetimepicker5').datetimepicker({
+          defaultDate: "9/25/2014",
+          pickDate: false,
+        });
+        // Init DateTimepicker - fields + Date disabled (only time picker)
+        $('#datetimepicker6').datetimepicker({
+          defaultDate: "9/25/2014",
+          pickDate: false,
+        });
+        // Init DateTimepicker - inline + Date disabled (only time picker)
+        $('#datetimepicker7').datetimepicker({
+          defaultDate: "9/25/2014",
+          pickDate: false,
+          inline: true
+        });
+        // Init Colorpicker plugin
+        $('#demo_apidemo').colorpicker({
+          color: bgPrimary
+        });
+        $('.demo-auto').colorpicker();
+        // Init jQuery Tags Manager
+        $(".tm-input").tagsManager({
+          tagsContainer: '.tags',
+          prefilled: ["Miley Cyrus", "Apple", "A Long Tag", "Na uh"],
+          tagClass: 'tm-tag-info',
+        });
+        // Init Boostrap Multiselects
+        $('#multiselect1').multiselect();
+        $('#multiselect2').multiselect({
+          includeSelectAllOption: true
+        });
+        $('#multiselect3').multiselect();
+        $('#multiselect4').multiselect({
+          enableFiltering: true,
+        });
+        $('#multiselect5').multiselect({
+          buttonClass: 'multiselect dropdown-toggle btn btn-default btn-primary'
+        });
+        $('#multiselect6').multiselect({
+          buttonClass: 'multiselect dropdown-toggle btn btn-default btn-info'
+        });
+        $('#multiselect7').multiselect({
+          buttonClass: 'multiselect dropdown-toggle btn btn-default btn-success'
+        });
+        $('#multiselect8').multiselect({
+          buttonClass: 'multiselect dropdown-toggle btn btn-default btn-warning'
+        });
+        // Init jQuery spinner init - default
+        $("#spinner1").spinner();
+        // Init jQuery spinner init - currency
+        $("#spinner2").spinner({
+          min: 5,
+          max: 2500,
+          step: 25,
+          start: 1000,
+          //numberFormat: "C"
+        });
+        // Init jQuery spinner init - decimal
+        $("#spinner3").spinner({
+          step: 0.01,
+          numberFormat: "n"
+        });
+        // jQuery Time Spinner settings
+        $.widget("ui.timespinner", $.ui.spinner, {
+          options: {
+            // seconds
+            step: 60 * 1000,
+            // hours
+            page: 60
+          },
+          _parse: function (value) {
+            if (typeof value === "string") {
+              // already a timestamp
+              if (Number(value) == value) {
+                return Number(value);
+              }
+              return +Globalize.parseDate(value);
+            }
+            return value;
+          },
+          _format: function (value) {
+            return Globalize.format(new Date(value), "t");
+          }
+        });
+        // Init jQuery Time Spinner
+        $("#spinner4").timespinner();
+        // Init jQuery Masked inputs
+        $('.date').mask('99/99/9999');
+        $('.time').mask('99:99:99');
+        $('.date_time').mask('99/99/9999 99:99:99');
+        $('.zip').mask('99999-999');
+        $('.phone').mask('(999) 999-9999');
+        $('.phoneext').mask("(999) 999-9999 x99999");
+        $(".money").mask("999,999,999.999");
+        $(".product").mask("999.999.999.999");
+        $(".tin").mask("99-9999999");
+        $(".ssn").mask("999-99-9999");
+        $(".ip").mask("9ZZ.9ZZ.9ZZ.9ZZ");
+        $(".eyescript").mask("~9.99 ~9.99 999");
+        $(".custom").mask("9.99.999.9999");
+      });
