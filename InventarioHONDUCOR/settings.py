@@ -81,7 +81,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'db_inventarioHONDUCOR',
-        'USER': 'Admin',
+        'USER': 'postgres',
         'PASSWORD': 'alexandra',
         'HOST': 'localhost',
         'PORT': '5432',
