@@ -259,30 +259,30 @@
         <!-- Start: Topbar-->
         <header id="topbar" class="badges-mod alt">
           <div class="topbar-left">
-                         <ol class="breadcrumb">
+                           <ol class="breadcrumb">
                     <li><a href="/main/">INICIO</a></li>
 
 
 
-{% for group in request.user.groups.all %}
-{% if group.name == 'administrador'  %}
+                    {% for group in request.user.groups.all %}
+                        {% if group.name == 'administrador' %}
 
-                        <li><a href="/documentacion//">DOCUMENTACION</a></li>
+                          <li><a href={% static 'pdf/manual_usuario.pdf' %}>DOCUMENTACIÓN</a></li>
 
 
-                        <li><a href="/admin/">PANEL DE CONTROL</a></li>
-    {% elif group.name == 'bienes' %}
-                         <li><a href="/listarVehiculosIndex/">buscar VEHICULOS</a></li>
-                        <li><a href="/buscarMobiliarioIndex/">buscar MOBIliario</a></li>
-     <li><a href="/listarInmueble/">buscar inmueble</a></li>
-                        <li><a href="/documentacion//">DOCUMENTACION</a></li>
-                    {% else %}
-                        <li><a href="/verEntrada/">Ver ENTRADAs</a></li>
-                        <li><a href="/verSalidas/">ver SALIDAs</a></li>
-    <li><a href="/buscarSoloArticulos/">ver articulos</a></li>
-                        <li><a href="/documentacion/">DOCUMENTACION</a></li>
-                    {% endif %}
-{% endfor %}
+                            <li><a href="/admin/">PANEL DE CONTROL</a></li>
+                        {% elif group.name == 'bienes' %}
+                            <li><a href="/listarVehiculosIndex/">buscar VEHÍCULOS</a></li>
+                            <li><a href="/buscarMobiliarioIndex/">buscar MOBIliario</a></li>
+                            <li><a href="/listarInmueble/">buscar inmueble</a></li>
+                         <li><a href={% static 'pdf/manual_usuario.pdf' %}>DOCUMENTACIÓN</a></li>
+                        {% else %}
+                            <li><a href="/verEntrada/">Ver ENTRADAs</a></li>
+                            <li><a href="/verSalidas/">ver SALIDAs</a></li>
+                            <li><a href="/buscarSoloArticulos/">ver artículos</a></li>
+                            <li><a href={% static 'pdf/manual_usuario.pdf' %}>DOCUMENTACIÓN</a></li>
+                        {% endif %}
+                    {% endfor %}
 
                 </ol>
           </div>

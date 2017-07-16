@@ -113,16 +113,17 @@
 <!-- Start: Main-->
 <div id="main">
     <!-- Start: Sidebar Left-->
-    <aside id="sidebar_left" class="nano nano-light affix">
-        <!-- Navbar Branding-->
-        <div class="navbar-branding"><a href="/main/" class="navbar-brand"><span class="text-white">BIENVENIDO</span>
-        </a><span id="toggle_sidemenu_l" class="ad ad-lines"></span></div>
+     <aside id="sidebar_left" class="nano nano-light affix">
+        <!--Navbar Branding-->
+        <div class="navbar-branding"><a class="navbar-brand"><span
+                class="text-white">BIENVENIDO</span></a><span id="toggle_sidemenu_l" class="ad ad-lines"></span></div>
         <!-- Start: Sidebar Left Content-->
         <div class="sidebar-left-content nano-content">
             <!-- Start: Sidebar Header-->
             <header class="sidebar-header">
                 <!-- Sidebar Widget - Author-->
                 <div class="sidebar-widget author-widget">
+                    <!-- NOMBRE E IMAGEN DE USUARIO-->
                     <div class="media">
                         {% if user.is_superuser %}
                             <a href="#" class="media-left"><img src="{% static 'imagenes/user.png' %}"
@@ -139,35 +140,12 @@
 
                             <div class="media-links"></div>
                             <div class="media-author">{{ user.username|capfirst }}</div>
-                            <a href="/cerrar/">Cerrar Sesion </a>
+                            <a href="/cerrar/">Cerrar sesión </a>
                         </div>
                     </div>
                 </div>
                 <!-- Sidebar Widget - Menu (slidedown)-->
-                <div class="sidebar-widget menu-widget">
-                    <div class="row text-center mbn">
-                        <div class="col-xs-4"><a href="dashboard.html" data-toggle="tooltip" data-placement="top"
-                                                 title="Dashboard" class="text-primary"><span
-                                class="glyphicon glyphicon-home"></span></a></div>
-                        <div class="col-xs-4"><a href="pages_messages.html" data-toggle="tooltip" data-placement="top"
-                                                 title="Messages" class="text-info"><span
-                                class="glyphicon glyphicon-inbox"></span></a></div>
-                        <div class="col-xs-4"><a href="pages_profile.html" data-toggle="tooltip" data-placement="top"
-                                                 title="Tasks" class="text-alert"><span
-                                class="fa fa-asterisk"></span></a></div>
-                    </div>
-                    <div class="row text-center mbn">
-                        <div class="col-xs-4"><a href="pages_timeline.html" data-toggle="tooltip" data-placement="top"
-                                                 title="Activity" class="text-system"><span
-                                class="fa fa-desktop"></span></a></div>
-                        <div class="col-xs-4"><a href="pages_profile.html" data-toggle="tooltip" data-placement="top"
-                                                 title="Settings" class="text-danger"><span class="fa fa-gears"></span></a>
-                        </div>
-                        <div class="col-xs-4"><a href="pages_gallery.html" data-toggle="tooltip" data-placement="top"
-                                                 title="Cron Jobs" class="text-warning"><span
-                                class="fa fa-flask"></span></a></div>
-                    </div>
-                </div>
+
                 <!-- Sidebar Widget - Search (hidden)-->
                 <div class="sidebar-widget search-widget hidden">
                     <div class="input-group"><span class="input-group-addon"><i class="fa fa-search"></i></span>
@@ -175,127 +153,338 @@
                     </div>
                 </div>
             </header>
-            <!-- Start: Sidebar Left Menu-->
+            <!-- Start: Sidebar Menu-->
             <ul class="nav sidebar-menu">
-                <li class="sidebar-label pt30">Menu</li>
-                <li><a href="pages_calendar.html"><span class="fa fa-calendar"></span><span class="sidebar-title">Calendario</span></a>
-                </li>
-                <li><a href="../documentation"><span class="glyphicon glyphicon-book"></span><span
-                        class="sidebar-title">Documentacion</span></a></li>
-                <li class="active"><a href="dashboard.html"><span class="glyphicon glyphicon-home"></span><span
+
+                <li class="sidebar-label pt30">Menú</li>
+                <li class="active"><a href="/main/"><span class="glyphicon glyphicon-home"></span><span
                         class="sidebar-title">INICIO</span></a></li>
-                <li class="sidebar-label pt15">ALMACEN</li>
-                <li><a href="#" class="accordion-toggle"><span class="fa fa-columns"></span><span class="sidebar-title">MOVIMIENTOS</span><span
-                        class="caret"></span></a>
-                    <ul class="nav sub-nav">
-                        <li><a href="#" class="accordion-toggle"><span class="glyphicon glyphicon-folder-close"></span>
-                            ENTRADAS<span class="caret"></span></a>
-                            <ul class="nav sub-nav">
-                                <li><a href="/nuevoDetalleArticulo/">Nueva Entrada</a></li>
-                                <li><a href="layout_sidebar-left-fixed.html">Ver Entradas Fecha</a></li>
-                                <li><a href="layout_sidebar-left-widgets.html">Ver Entradas Por Usuario</a></li>
+
+                <li><a href={% static 'pdf/manual_usuario.pdf' %}><span class="glyphicon glyphicon-book"></span><span
+                        class="sidebar-title">DOCUMENTACIÓN</span></a></li>
 
 
-                            </ul>
-                        </li>
-                        <li><a href="#" class="accordion-toggle"><span class="glyphicon glyphicon-folder-close"></span>SALIDAS<span
-                                class="caret"></span></a>
-                            <ul class="nav sub-nav">
-                                <li><a href="layout_topbar.html">Nueva Salida</a></li>
-                                <li><a href="layout_topbar-menu.html">Ver Salida Fecha</a></li>
-                                <li><a href="layout_topbar-alt.html">Ver Salidas</a></li>
-                            </ul>
-                        </li>
-
-                        </li>
-
-
-                    </ul>
-                </li>
-                <li><a href="#" class="accordion-toggle"><span class="glyphicon glyphicon-list-alt"></span><span
-                        class="sidebar-title">SUMINISTROS</span><span class="caret"></span></a>
-                    <ul class="nav sub-nav">
-                        <li><a href="/nuevoArticulo/"><span class="glyphicon glyphicon-book"></span> Nuevo
-                            Suministro</a></li>
-                        <li><a href="admin_plugins-modals.html"><span class="glyphicon glyphicon-modal-window"></span>
-                            Buscar Existencias</a></li>
-                        <li><a href="admin_plugins-dock.html"><span class="glyphicon glyphicon-equalizer"></span>Reportes
-                        </a></li>
-                    </ul>
-                </li>
-                <li><a href="#" class="accordion-toggle"><span class="glyphicon glyphicon-check"></span><span
-                        class="sidebar-title">INCIDENTES</span><span class="caret"></span></a>
-                    <ul class="nav sub-nav">
-                        <li><a href="crear_empleado.html"><span class="glyphicon glyphicon-shopping-cart"></span>
-                            Registrar Incidente</a></li>
-                        <li><a href="admin_forms-widgets.html"><span class="glyphicon glyphicon-calendar"></span> Ver
-                            Incidentes</a></li>
-
-                    </ul>
-                </li>
-
-
-                <!-- sidebar resources-->
-                <li class="sidebar-label pt20">BIENES HONDUCOR</li>
-                <li><a href="#" class="accordion-toggle"><span class="imoon  imoon-cabinet"></span><span
-                        class="sidebar-title">MOBILIARIO</span><span class="caret"></span></a>
-                    <ul class="nav sub-nav">
-                        <li><a href="/nuevoMobiliario/"><span class="fa fa-warning"></span> Agregar Mobiliario</a></li>
-                        <li><a href="ui_buttons.html"><span class="fa fa-plus-square-o"></span> Asignar Mobiliario</a>
-                        </li>
-                        <li><a href="ui_typography.html"><span class="fa fa-text-width"></span> Descargar Mobiliario</a>
-                        </li>
-                        <li><a href="ui_animations.html"><span class="fa fa-spinner"></span> Buscar Mobiliario</a></li>
-
-                    </ul>
-                </li>
-                <li><a href="#" class="accordion-toggle"><span class="imoon imoon-truck"></span><span
-                        class="sidebar-title">   VEHICULOS</span><span class="caret"></span></a>
-                    <ul class="nav sub-nav">
-                        <li><a href="/nuevoMobiliario/"><span class="fa fa-warning"></span> Agregar Vehiculo</a></li>
-                        <li><a href="ui_buttons.html"><span class="fa fa-plus-square-o"></span> Asignar Vehiculo</a>
-                        </li>
-                        <li><a href="ui_typography.html"><span class="fa fa-text-width"></span> Descargar Vehiculo</a>
-                        </li>
-                        <li><a href="ui_animations.html"><span class="fa fa-spinner"></span> Buscar Vehiculo</a></li>
-                    </ul>
-                </li>
-                <li><a href="#" class="accordion-toggle"><span class="imoon imoon-office"></span><span
-                        class="sidebar-title">INMUEBLES</span><span class="caret"></span></a>
-                    <ul class="nav sub-nav">
-                        <li><a href="#" class="accordion-toggle"><span class="glyphicon glyphicon-globe"></span>
-                            Maps<span class="caret"></span></a>
-                            <ul class="nav sub-nav">
-                                <li><a href="maps_basic.html">Basic Maps</a></li>
-                                <li><a href="maps_vector.html">Vector Maps</a></li>
-                                <li><a href="maps_full.html">Full Map</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#" class="accordion-toggle"><span class="fa fa-area-chart"></span> Charts<span
-                                class="caret"></span></a>
-                            <ul class="nav sub-nav">
-                                <li><a href="charts_highcharts.html">Highcharts</a></li>
-                                <li><a href="charts_d3.html">D3 Charts</a></li>
-                                <li><a href="charts_flot.html">Flot Charts</a></li>
-                            </ul>
-                        </li>
-
-                        <li><a href="#" class="accordion-toggle"><span class="fa fa-table"></span> Tables<span
+                {% for group in request.user.groups.all %}
+                    {% if group.name == 'bajo' or user.is_superuser %}
+                        <!-- ALMACEN HONDUROC-->
+                        <li class="sidebar-label pt15">ALMACÉN HONDUCOR</li>
+                        <li><a href="#" class="accordion-toggle"><span class="fa fa-columns"></span><span
+                                class="sidebar-title">MOVIMIENTOS</span><span
                                 class="caret"></span></a>
                             <ul class="nav sub-nav">
 
+                                <!-- ENTRADAS-->
+                                <li><a href="#" class="accordion-toggle"><span
+                                        class="glyphicon glyphicon-folder-close"></span>
+                                    ENTRADAS<span class="caret"></span></a>
+                                    <ul class="nav sub-nav">
+                                        <li><a href="/nuevoDetalleArticuloLista/"><span class="imoon imoon-plus"></span>
+                                            Nueva
+                                            Entrada</a></li>
+                                        <li><a href="/verEntradaModificar/"><span class="imoon imoon-pencil"></span>
+                                            Modificar Entrada
+                                        </a></li>
+                                        <li><a href="/verEntrada/"><span class="imoon imoon-search"></span> Ver Entradas
+                                            Registradas</a></li>
+
+                                        <li><a href="/verEntradaFecha/"><span class="imoon imoon-search"></span> Ver
+                                            Entradas
+                                            Fecha</a></li>
+
+                                    </ul>
+                                </li>
+                                <!-- SALIDAS-->
+                                <li><a href="#" class="accordion-toggle"><span
+                                        class="glyphicon glyphicon-folder-close"></span>SALIDAS<span
+                                        class="caret"></span></a>
+                                    <ul class="nav sub-nav">
+                                        <li><a href="/nuevoDetSalida/?flat=true"><span class="imoon imoon-plus"></span>
+                                            NUEVA Salida</a></li>
+
+                                        <li><a href="/verSalidas/"><span class="imoon imoon-search"></span> Ver Salidas
+                                            Registradas</a></li>
+                                        <li><a href="/verSalidaFecha/"><span class="imoon imoon-search"></span> Ver
+                                            Salidas
+                                            fecha</a></li>
+                                    </ul>
+                                </li>
+
+                                </li>
+
+
                             </ul>
                         </li>
-                        <li><a href="#" class="accordion-toggle"><span class="fa fa-flask"></span> Misc<span
-                                class="caret"></span></a>
+                        <!-- ARTICULOS-->
+                        <li><a href="#" class="accordion-toggle"><span class="glyphicon glyphicon-list-alt"></span><span
+                                class="sidebar-title">artículos</span><span class="caret"></span></a>
+
+                            <ul class="nav sub-nav">
+                                <li><a href="/nuevoArticulo/"><span class="glyphicon glyphicon-book"></span> Nuevo
+                                    ARTÍCULO
+                                </a></li>
+                                <li><a href="/modificarArticulo/"><span class="imoon imoon-pencil"></span> Modificar
+                                    ARTÍCULO
+                                </a></li>
+                                <li><a href="/bajaArticulo/"><span class="imoon imoon-close"></span> dar baja
+                                    ARTÍCULO</a>
+                                </li>
+
+                                <li><a href="/buscarSoloArticulos/"><span class="imoon imoon-search"></span>Buscar
+                                    ARTÍCULOS
+                                </a></li>
+                            </ul>
+                        </li>
+                        <!-- EXISTENCIAS-->
+                        <li><a href="#" class="accordion-toggle"><span class="imoon imoon-barcode"></span><span
+                                class="sidebar-title">EXISTENCIAS</span><span class="caret"></span></a>
+
+                            <ul class="nav sub-nav">
+                                <li><a href="/verlista/"><span class="glyphicon glyphicon-usd"></span> Ver valores de
+                                    existencias </a></li>
+                                <li><a href="/verExistencias/"><span class="imoon imoon-search"></span> Ver
+                                    Existencias Detalladas</a></li>
+                                <li><a href="/verNoExistencias/"><span class="imoon imoon-search"></span> Ver
+                                    artículo Sin Existencia</a></li>
+
+
+                            </ul>
+                        </li>
+                        <li><a href="#" class="accordion-toggle"><span class="imoon imoon-bars"></span><span
+                                class="sidebar-title">ESTADÍSTICAS</span><span class="caret"></span></a>
+
                             <ul class="nav sub-nav">
 
+                                <li><a href="/graficos/"><span class="imoon imoon-bars2"></span> ESTADÍSTICA mensual</a>
+                                </li>
+                                <li><a href="/graficos2/"><span class="imoon imoon-bars2"></span> Costo POR AGENCIA</a>
+                                </li>
+
+
                             </ul>
                         </li>
-                    </ul>
-                </li>
+
+                        <!-- INCIDENTES ARTICULO-->
+                        <li><a href="#" class="accordion-toggle"><span class="glyphicon glyphicon-check"></span><span
+                                class="sidebar-title">INCIDENTES</span><span class="caret"></span></a>
+                            <ul class="nav sub-nav">
+                                <li><a href="/listarArticulosIncidencias/"><span class="imoon imoon-plus"></span>
+                                    Registrar incidente</a></li>
+                                <li><a href="/listarIncidenteArticulo2/"><span
+                                        class="glyphicon glyphicon-calendar"></span> Ver
+                                    Incidentes</a></li>
+
+                            </ul>
+                        </li>
+                        <li><a href="#" class="accordion-toggle"><span class="imoon imoon-address-book"></span><span
+                                class="sidebar-title">PROVEEDORES</span><span class="caret"></span></a>
+                            <ul class="nav sub-nav">
+                                <li><a href="/nuevoProveedor/"><span class="imoon imoon-plus"></span>
+                                    nuevo proveedor</a></li>
+
+                                <li><a href="/listarProveedor/"><span class="glyphicon glyphicon-search"></span>Buscar
+                                    Proveedor</a></li>
+
+                            </ul>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% for group in request.user.groups.all %}
+                    {% if group.name == 'bienes' or user.is_superuser %}
+
+                        <!-- BIENES HONDUROR-->
+                        <li class="sidebar-label pt20">BIENES HONDUCOR</li>
+                        <li><a href="#" class="accordion-toggle"><span class="imoon  imoon-cabinet"></span><span
+                                class="sidebar-title">MOBILIARIO</span><span class="caret"></span></a>
+                            <ul class="nav sub-nav">
+                                <li><a href="/nuevoMobiliario/"><span class="imoon imoon-plus"></span> Nuevo Mobiliario</a>
+                                </li>
+                                <li><a href="/modificarMobiliario/"><span class="imoon imoon-pencil"></span> Modificar
+                                    Mobiliario
+                                </a></li>
+                                <li><a href="/bajaMobiliario/"><span class="imoon imoon-close"></span>Dar baja
+                                    Mobiliario</a>
+                                </li>
+                                <li><a href="/buscarMobiliario2/"><span class="imoon imoon-forward"></span> Asignar
+                                    Mobiliario</a>
+                                </li>
+                                <li><a href="/BuscarMobiliarioPrestado/"><span class="imoon imoon-reply"></span>
+                                    Descargar
+                                    Mobiliario</a>
+                                </li>
+                                <li><a href="/buscarMobiliarioIndex/"><span class="imoon imoon-search"></span>Buscar
+                                    Mobiliario</a>
+                                </li>
+                                <li><a href="/mobiliarioSolo/"><span class="imoon imoon-search"></span> Buscar
+                                    Mobiliario Prestado</a>
+                                </li>
+                                <li><a href="/mobiliarioPorEmpleado/"><span class="imoon imoon-search"></span> Buscar
+                                    Mobiliario Por Empleado</a>
+                                </li>
+                                <li><a href="/agenciaMobiliario/"><span class="imoon imoon-search"></span>Ver Mobiliario
+                                    por agencia</a>
+                                </li>
+                                <li><a href="/graficoMobiliario/"><span class="imoon imoon-bars"></span>VALOR POR
+                                    categoría de MOBILIARIO</a>
+                                </li>
+                                <li><a href="/graficoMobiliario2/"><span class="imoon imoon-bars"></span>gráfico VALOR
+                                    DE INVENTARIOS POR AGENCIA</a>
+                                </li>
 
 
+                            </ul>
+                        </li>
+                        <!-- FIN BIENES HONDURCOR-->
+
+                        <!-- VEHICULOS-->
+                        <li><a href="#" class="accordion-toggle"><span class="imoon imoon-truck"></span><span
+                                class="sidebar-title">VEHÍCULOS</span><span class="caret"></span></a>
+                            <ul class="nav sub-nav">
+                                <li><a href="/nuevoVehiculo/"><span class="imoon imoon-plus"></span> Nuevo VEHÍCULO</a>
+                                </li>
+                                <li><a href="/modificarVehiculo/"><span class="imoon imoon-pencil"></span> Modificar
+                                    VEHÍCULO
+                                </a></li>
+                                <li><a href="/bajaVehiculo/"><span class="imoon imoon-close"></span> dar baja
+                                    VEHÍCULO</a>
+                                </li>
+                                <li><a href="/asignarVehiculo/"><span class="imoon imoon-forward"></span> Asignar
+                                    VEHÍCULO</a>
+                                </li>
+                                <li><a href="/descargarVehiculo/"><span class="imoon imoon-reply"></span> Descargar
+                                    VEHÍCULO</a>
+                                </li>
+                                <li><a href="/listarVehiculosIndex/"><span class="imoon imoon-search"></span> Buscar
+                                    VEHÍCULO</a>
+                                </li>
+                                <li><a href="/graficoVehiculo/"><span class="imoon imoon-bars"></span>CANTIDAD DE
+                                    VEHÍCULOS gráfico</a>
+                                </li>
+
+
+                            </ul>
+                        </li>
+                        <!-- INMUEBLES-->
+                        <li><a href="#" class="accordion-toggle"><span class="imoon imoon-office"></span><span
+                                class="sidebar-title">INMUEBLES</span><span class="caret"></span></a>
+                            <ul class="nav sub-nav">
+                                <li><a href="/nuevoInmueble/"><span class="imoon imoon-plus"></span> Nuevo inmueble</a>
+                                </li>
+                                <li><a href="/modificarInmueble/"><span class="imoon imoon-pencil"></span> Modificar
+                                    inmueble
+                                </a></li>
+                                <li><a href="/asignarInmueble/"><span class="imoon imoon-forward"></span> asignar
+                                    inmueble</a>
+                                </li>
+                                <li><a href="/descargarInmuebleLista/"><span class="imoon imoon-reply"></span> descargar
+                                    inmueble</a>
+                                </li>
+                                <li><a href="/listarInmueble/"><span class="imoon imoon-search"></span> buscar inmueble</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                <!-- BITACORA DE AUDITORIA-->
+                <li class="sidebar-label pt15">BITÁCORAS</li>
+                <!-- BITACORA DE BIENES HONDUCOR-->
+                {% for group in request.user.groups.all %}
+                    {% if group.name == 'bienes' or user.is_superuser %}
+                        <li><a href="#" class="accordion-toggle"><span class="glyphicon glyphicon-bookmark"></span><span
+                                class="sidebar-title">BIENES HONDUCOR</span><span class="caret"></span></a>
+                            <ul class="nav sub-nav">
+                                <li><a href="#" class="accordion-toggle"><span
+                                        class="glyphicon glyphicon-folder-close"></span>MOBILIARIO<span
+                                        class="caret"></span></a>
+                                    <ul class="nav sub-nav">
+                                        <li><a href="/bitacoraMobiliarioFecha/"><span class="imoon imoon-disk"></span>
+                                            REGISTROS FECHA</a></li>
+
+                                        <li><a href="/bitacoraMobiliario/"><span class="imoon imoon-disk"></span> TODOS
+                                            LOS REGISTROS</a></li>
+
+                                    </ul>
+                                </li>
+                                <li><a href="#" class="accordion-toggle"><span
+                                        class="glyphicon glyphicon-folder-close"></span>VEHÍCULO<span
+                                        class="caret"></span></a>
+                                    <ul class="nav sub-nav">
+                                        <li><a href="/bitacoraVehiculoFecha/"><span class="imoon imoon-disk"></span>
+                                            REGISTROS FECHA</a></li>
+
+                                        <li><a href="/bitacoraVehiculo/"><span class="imoon imoon-disk"></span> TODOS
+                                            LOS REGISTROS</a></li>
+
+                                    </ul>
+                                </li>
+
+
+                            </ul>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                <!-- BITACORA DE ALMACEN HONDUCOR-->
+                {% for group in request.user.groups.all %}
+                    {% if group.name == 'bajo' or user.is_superuser %}
+
+                        <li><a href="#" class="accordion-toggle"><span class="glyphicon glyphicon-bookmark"></span><span
+                                class="sidebar-title">ALMACÉN HONDUCOR</span><span class="caret"></span></a>
+                            <ul class="nav sub-nav">
+                                <li><a href="#" class="accordion-toggle"><span
+                                        class="glyphicon glyphicon-folder-close"></span>ENTRADAS<span
+                                        class="caret"></span></a>
+                                    <ul class="nav sub-nav">
+                                        <li><a href="/bitacoraEntradaFecha/"><span class="imoon imoon-disk"></span>
+                                            REGISTROS FECHA</a></li>
+
+                                        <li><a href="/bitacoraEntrada/"><span class="imoon imoon-disk"></span> TODOS LOS
+                                            REGISTROS</a></li>
+
+                                    </ul>
+                                </li>
+
+                                <li><a href="#" class="accordion-toggle"><span
+                                        class="glyphicon glyphicon-folder-close"></span>SALIDAS<span
+                                        class="caret"></span></a>
+                                    <ul class="nav sub-nav">
+                                        <li><a href="/bitacoraSalidaFecha/"><span class="imoon imoon-disk"></span>
+                                            REGISTROS FECHA</a></li>
+
+                                        <li><a href="/bitacoraSalida/"><span class="imoon imoon-disk"></span> TODOS LOS
+                                            REGISTROS</a></li>
+
+                                    </ul>
+                                </li>
+
+
+                            </ul>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% for group in request.user.groups.all %}
+                    {% if group.name == 'administrador' or user.is_superuser %}
+
+
+
+                        <!-- BITACORA DE INICIO DE SESION-->
+                        <li><a href="#" class="accordion-toggle"><span class="glyphicon glyphicon-bookmark"></span><span
+                                class="sidebar-title">INICIO DE SESIÓN DE USUARIOS</span><span class="caret"></span></a>
+                            <ul class="nav sub-nav">
+
+                                <li><a href="/bitacoraLogin/"><span class="imoon imoon-disk"></span> todos los registros
+                                </a></li>
+
+                                </li>
+
+
+                            </ul>
+                        </li>
+                    {% endif %}
+                {% endfor %}
             </ul>
         </div>
     </aside>
@@ -304,12 +493,31 @@
         <!-- Start: Topbar-->
         <header id="topbar" class="badges-mod alt">
             <div class="topbar-left">
-                <ol class="breadcrumb">
+                  <ol class="breadcrumb">
                     <li><a href="/main/">INICIO</a></li>
-                    <li><a href="/buscarEmpleado/">Form Elements</a></li>
-                    <li><a href="maps_basic.html">Plugins Pages</a></li>
-                    <li><a href="ui_alerts.html">UI Elements</a></li>
-                    <li><a href="../documentation">Documentation</a></li>
+
+
+
+                    {% for group in request.user.groups.all %}
+                        {% if group.name == 'administrador' %}
+
+                          <li><a href={% static 'pdf/manual_usuario.pdf' %}>DOCUMENTACIÓN</a></li>
+
+
+                            <li><a href="/admin/">PANEL DE CONTROL</a></li>
+                        {% elif group.name == 'bienes' %}
+                            <li><a href="/listarVehiculosIndex/">buscar VEHÍCULOS</a></li>
+                            <li><a href="/buscarMobiliarioIndex/">buscar MOBIliario</a></li>
+                            <li><a href="/listarInmueble/">buscar inmueble</a></li>
+                         <li><a href={% static 'pdf/manual_usuario.pdf' %}>DOCUMENTACIÓN</a></li>
+                        {% else %}
+                            <li><a href="/verEntrada/">Ver ENTRADAs</a></li>
+                            <li><a href="/verSalidas/">ver SALIDAs</a></li>
+                            <li><a href="/buscarSoloArticulos/">ver artículos</a></li>
+                            <li><a href={% static 'pdf/manual_usuario.pdf' %}>DOCUMENTACIÓN</a></li>
+                        {% endif %}
+                    {% endfor %}
+
                 </ol>
             </div>
 <div class="topbar-right"><a href="#" class="topbar-icon"></a>
