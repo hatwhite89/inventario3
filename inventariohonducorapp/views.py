@@ -58,13 +58,13 @@ def main(request):
     contador = tb_Articulo.objects.filter(existencia__lte=10).count()
     print(contador)
 
-    return render(request, 'Inventario/index.html', {'existencia': existencia_menor, 'alerta': contador})
+    return render(request, 'index.html', {'existencia': existencia_menor, 'alerta': contador})
 
 
 # CALENDARIO DEL SITIO
 @login_required()
 def Calendario(request):
-    return render(request, 'Inventario/pages_calendar.html', {})
+    return render(request, 'pages_calendar.html', {})
 
 
 # VISTA DE DOCUMENTACION
@@ -76,7 +76,7 @@ def Documentacion(request):
 # VISTA LOGIN, pertenece a la clase de django auth.login, se encarga de redireccionar a el archivo base
 # login los datos para realizar la autenticacion
 def login(request):
-    return render(request, 'Inventario/login.html', {})
+    return render(request, 'login.html', {})
 
 
 # FUNCION TOP 10 PRODUCOTS CON MAS EXISTENCIAS
@@ -110,7 +110,7 @@ def graficos(request):
     # SEGUNDO JSON PARA ENVIAR LAS EXISTENCIAS
     jsona = json.dumps([['articulos', 'existencias']] + row)
 
-    return render(request, 'Inventario/graficos.html', {'array': jsona, 'array2': jsona2})
+    return render(request, 'graficos.html', {'array': jsona, 'array2': jsona2})
 
 
 # GRAFICO DE AGENCIAS
@@ -147,10 +147,10 @@ def grafico_agencia(request):
         # llenar json para enviar a template
         jsona2 = json.dumps(row2)
 
-        return render(request, 'Inventario/grafico_2.html', {'array': jsona2})
+        return render(request, 'grafico_2.html', {'array': jsona2})
     else:
 
-        return render(request, 'Inventario/grafico_2.html', {'array': jsona})
+        return render(request, 'grafico_2.html', {'array': jsona})
 
 
 # ================================================= graficos mobiliarios
@@ -170,7 +170,7 @@ def graficosMobiliario(request):
     # LLENAR JSON PARA ENVIAR EXISTENCIAS
     jsona = json.dumps([['articulos', 'existencias']] + row)
 
-    return render(request, 'Inventario/grafico_mobiliario.html', {'array': jsona})
+    return render(request, 'grafico_mobiliario.html', {'array': jsona})
 
 
 # ============================== GRAFICO DE MOBILIARIOS 2
@@ -191,7 +191,7 @@ def grafico_mobiliario_agencia(request):
     # lleNAR el json para enviar al template
     jsona2 = json.dumps(row2)
 
-    return render(request, 'Inventario/grafico_mobiliario2.html', {'array': jsona2})
+    return render(request, 'grafico_mobiliario2.html', {'array': jsona2})
 
 
 # GRAFICOS PARA VEHICULOS
@@ -211,7 +211,7 @@ def graficosVehiculo(request):
     # llana json para enviar a template
     jsona = json.dumps([['articulos', 'existencias']] + row)
 
-    return render(request, 'Inventario/grafico_vehiculo.html', {'array': jsona})
+    return render(request, 'grafico_vehiculo.html', {'array': jsona})
 
 
 # ========================================== INSERTAR EN FORMULARIOS ===============================
@@ -262,7 +262,7 @@ def nuevoArticulo(request):
         # NUEVA INSTANCIA DE FORMULARIO
         form = Tb_ArticuloForm()
     # REGRESA A A LA PAGINA NUEVO ARTICULO Y CARGA LOS DATOS DEL FORMULARIO
-    return render(request, 'Inventario/nuevo_articulo.html', {'form': form})
+    return render(request, 'nuevo_articulo.html', {'form': form})
 
 
 @login_required()
@@ -361,7 +361,7 @@ def nuevoDetalleArticulo(request):
         # NUEVA INSTANCIA DE FORMULARIO
         form = Tb_DetalleArtForm()
     # RETORNA A LA PAGINA QUE LO LLAMO Y CARGA EL FORMULARIO
-    return render(request, 'Inventario/nuevo_detalle_articulo.html', {'form': form})
+    return render(request, 'nuevo_detalle_articulo.html', {'form': form})
 
 
 # ===========================   NUEVO MOBILIARIO ============================================================
@@ -420,7 +420,7 @@ def nuevoMobiliario(request):
         # NUEVA INSTANCIA DE FORMULARIO
         form = Tb_MobiliarioForm()
     # REGRESA A LA PAGINA QUE LO LLAMO Y CARGA EL FORMULARIO
-    return render(request, 'Inventario/nuevo_mobiliario.html', {'form': form})
+    return render(request, 'nuevo_mobiliario.html', {'form': form})
 
 
 # ========================= ASIGNAR MOBILIARIO ============================
@@ -517,7 +517,7 @@ def asignarMobiliario(request):
                     cod_empleado = tb_Empleado.objects.all().filter(id=request.POST['cod_empleado'])
 
                     cod_mobiliario = tb_Mobiliario.objects.all().filter(id=request.POST['cod_mobiliario'])
-                    return render(request, "inventario/asignar_mobiliario.html",
+                    return render(request, "asignar_mobiliario.html",
                                   {'codigo_boton': codigo_b, 'cod_empleado': cod_empleado, 'fecha_p': fecha_prestado,
                                    'gerencia': gerencia, 'mobiliario': cod_mobiliario})
 
@@ -531,7 +531,7 @@ def asignarMobiliario(request):
         # NUEVA INSTANCIA DE FORMULARIO
         form = Tb_MobiliarioPrestadoForm()
     # REGRESA A LA PAGINA QUE LO LLAMO Y CARGA EL FORMULARIO
-    return render(request, 'Inventario/asignar_mobiliario.html', {'form': form})
+    return render(request, 'asignar_mobiliario.html', {'form': form})
 
 
 # ================================ ASIGNAR MOBILIARIO ============================================
@@ -623,7 +623,7 @@ def descargarMobiliario(request):
         # NUEVA INSTANCIA DE FORMULARIO Tb_DescargarMobiliarioForm
         form = Tb_DescargarMobiliarioForm
     # REGRESA A LA PAGINA QUE LO LLAMO Y CARGA EL FORMULARIO
-    return render(request, 'Inventario/descargar_mobiliario.html', {'form': form})
+    return render(request, 'descargar_mobiliario.html', {'form': form})
 
 
 # ============================================== REGISTRAR NUEVA SALIDA ===========================================
@@ -729,7 +729,7 @@ def nuevaSalida(request):
         # NUEVA INSTANCIA DE FORMULARIO
         form = Tb_SalidaForm
     # REGRESA A LA PAGINA QUE LO LLAMO Y CARGA EL FORMULARIO
-    return render(request, 'Inventario/nueva_salida.html', {'form': form})
+    return render(request, 'nueva_salida.html', {'form': form})
 
 
 # ========================================= REGISTRAR NUEVA INCIDENCIA  =========================
@@ -764,7 +764,7 @@ def nuevaIncidenciaArticulo(request):
         # NUEVA INSTANCIA DE UN FORMULARIO
         form = Tb_IncidenciaArticulo
     # REGRESA A LA PAGINA QUE LO LLAMO Y CARGA EL FORMULARIO
-    return render(request, 'Inventario/registrar_incidencia_articulo.html', {'form': form})
+    return render(request, 'registrar_incidencia_articulo.html', {'form': form})
 
 
 # ================================= NUEVO VEHICULO ========================================
@@ -807,7 +807,7 @@ def nuevoVehiculo(request):
         # NUEVA INSTANCIA DE FORMULARIO
         form = Tb_NuevoVehiculo()
     # REGRESA A LA PAGINA QUE LO LLAMO Y CARGA EL FORMULARIO
-    return render(request, 'Inventario/nuevo_vehiculo', {'form': form})
+    return render(request, 'nuevo_vehiculo', {'form': form})
 
 
 # ============================= ASIGNAR VEHICULO ===================================================
@@ -843,7 +843,7 @@ def asignarVehiculo(request):
         # NUEVA ISNTANCIA DE FORMULARIO
         form = Tb_MobiliarioForm()
     # REGRESA A LA PAGINA QUE LO LLAMO Y CARGA EL FORMULARIO
-    return render(request, 'Inventario/asignar_vehiculo.html', {'form': form})
+    return render(request, 'asignar_vehiculo.html', {'form': form})
 
 
 # ============================================= DESCARGAR VEHICULO ===============================
@@ -883,7 +883,7 @@ def descargarVehiculo(request):
         # NUEVA INSTANCIA DE UN FORMULARIO
         form = Tb_DescargarVehiculoForm()
         # REGRESA A LA PAGINA QUE LO LLAMO Y CARGA EL FORMULARIO
-    return render(request, 'Inventario/descargar_vehiculo.html', {'form': form})
+    return render(request, 'descargar_vehiculo.html', {'form': form})
 
 
 # =========================== NUEVO INMUEBLE
@@ -925,7 +925,7 @@ def nuevoInmueble(request):
         # NUEVA INSTANCIA DE INMUEBLE
         form = Tb_NuevoInmuebleForm()
         # REGRESA A LA PAGINA QUE LO LLAMO Y CARGA EL FORMULARIO
-    return render(request, 'Inventario/nuevo_inmueble.html', {'form': form})
+    return render(request, 'nuevo_inmueble.html', {'form': form})
 
 
 # ====================================== ASIGNAR INMUEBLE ==============================
@@ -961,7 +961,7 @@ def asignarInmueble(request):
         ##CREA UNA NUEVA INSTANCIA DE FORMULARIO
         form = Tb_AsignarInmuebleForm()
     # REGRESA A LA PAGINA QUE LO LLAMO Y CARGA EL FORMULARIO
-    return render(request, 'inventario/asignar_inmueble.html', {'form': form})
+    return render(request, 'asignar_inmueble.html', {'form': form})
 
 
 # DESCARGAR INMUEBLE
@@ -1003,7 +1003,7 @@ def descargarInmueble(request):
         # NUEVA INSTANCIA DE FORMULARIO
         form = Tb_DescargarInmueble()
     # REGRESA A LA PAGINA QUE LO LLAMO Y CARGA EL FORMULARIO
-    return render(request, 'inventario/descargar_inmueble.html')
+    return render(request, 'descargar_inmueble.html')
 
 
 # DETALLE DE SALIDAS, REALIZA LAS SALIDAS DEL ALMACEN
@@ -1032,7 +1032,7 @@ def detalleSalida(request):
                 cur.close
                 codigo = valor_cod
                 # REGRESA A LA PAGINA QUE LO LLAMO Y CARGA EL FORMULARIO
-                return render(request, 'inventario/nuevo_detalle_salida_get.html', {'form': form, 'codigo': codigo})
+                return render(request, 'nuevo_detalle_salida_get.html', {'form': form, 'codigo': codigo})
 
         except Exception:
             hora = time.strftime('%Y-%m-%d')
@@ -1041,7 +1041,7 @@ def detalleSalida(request):
         # NUEVA ISNTANCIA DE FORMUARIO
         form = Tb_NuevoDetalleSalida()
     # REGRESA A LA PAGINA QUE LO LLAMO Y CARGA EL FORMULARIO
-    return render(request, 'inventario/nuevo_detalle_salida_get.html')
+    return render(request, 'nuevo_detalle_salida_get.html')
 
 
 # DETALLE DE SALIDA
@@ -1081,7 +1081,7 @@ def nuevoDetalleSalida2(request):
             detalle_art_send = tb_DetalleArticulo.objects.all()
             codigo_s4 = request.GET.get('cod_salida')
             salidas = tb_detalle_salida.objects.filter(cod_salida_id=codigo_s4)
-            return render(request, 'inventario/nuevo_detalle_salida.html',
+            return render(request, 'nuevo_detalle_salida.html',
                           {'salidas': salidas, 'articulos': articulo_send, 'detalle_art': detalle_art_send})
         except Exception:
             # VARIABLES PARA ENVIAR AL FORMULARIO CON INFORMACION SOBRE EL DETALLE DE LAS SALIDAS QUE SE ESTA REALIZANDO
@@ -1089,7 +1089,7 @@ def nuevoDetalleSalida2(request):
             detalle_art_send = tb_DetalleArticulo.objects.all()
             codigo_s4 = request.GET.get('cod_salida')
             salidas = tb_detalle_salida.objects.filter(cod_salida_id=codigo_s4)
-            return render(request, 'inventario/nuevo_detalle_salida.html',
+            return render(request, 'nuevo_detalle_salida.html',
                           {'salidas': salidas, 'articulos': articulo_send, 'detalle_art': detalle_art_send})
     # EN CAOS DE QUE EL METODO SEA GET ENTONCES PUEDE CONTINUAR
     elif request.method == "GET":
@@ -1132,7 +1132,7 @@ def nuevoDetalleSalida2(request):
                 salidas = tb_detalle_salida.objects.filter(cod_salida=codigo_s1)
                 messages.error(request, "EL CODIGO DE BARRAS ES INCORRECTO")
 
-                return render(request, 'inventario/nuevo_detalle_salida.html',
+                return render(request, 'nuevo_detalle_salida.html',
                               {'salidas': salidas, 'articulos': articulo_send, 'detalle_art': detalle_art_send})
             # VERIFICA QUE LA EXISTENCIA QUE SE SOLICITA NO SEA MAYOR A LA REAL, CASO CONTRARIO ENVIA UN MENSAJE CON EL ERROR A CORREGIR
             elif existencia > exis_real:
@@ -1141,7 +1141,7 @@ def nuevoDetalleSalida2(request):
                 codigo_s2 = request.GET.get('cod_salida')
                 salidas = tb_detalle_salida.objects.filter(cod_salida=codigo_s2)
                 messages.error(request, "LA CANTIDAD A ENVIAR SOBREPASA LA EXISTENCIA REAL")
-                return render(request, 'inventario/nuevo_detalle_salida.html',
+                return render(request, 'nuevo_detalle_salida.html',
                               {'salidas': salidas, 'articulos': articulo_send, 'detalle_art': detalle_art_send})
 
             else:
@@ -1186,7 +1186,7 @@ def nuevoDetalleSalida2(request):
                     articulo_send = tb_Articulo.objects.all()
                     detalle_art_send = tb_DetalleArticulo.objects.all()
                     salidas = tb_detalle_salida.objects.filter(cod_salida=codigo)
-                    return render(request, 'inventario/nuevo_detalle_salida.html',
+                    return render(request, 'nuevo_detalle_salida.html',
                                   {'salidas': salidas, 'articulos': articulo_send, 'detalle_art': detalle_art_send})
                 except Exception:
                     # VARIABLES CON LOS DETALLES DE SALIDAS QUE SE ESTAN CARGANDO EN LOS FORMULARIO
@@ -1194,7 +1194,7 @@ def nuevoDetalleSalida2(request):
                     detalle_art_send = tb_DetalleArticulo.objects.all()
                     codigo_s4 = request.GET.get('cod_salida')
                     salidas = tb_detalle_salida.objects.filter(cod_salida_id=codigo_s4)
-                    return render(request, 'inventario/nuevo_detalle_salida.html',
+                    return render(request, 'nuevo_detalle_salida.html',
                                   {'salidas': salidas, 'articulos': articulo_send, 'detalle_art': detalle_art_send})
 
 
@@ -1204,12 +1204,12 @@ def nuevoDetalleSalida2(request):
         detalle_art_send = tb_DetalleArticulo.objects.all()
         codigo_s4 = request.GET.get('cod_salida')
         salidas = tb_detalle_salida.objects.filter(cod_salida_id=codigo_s4)
-        return render(request, 'inventario/nuevo_detalle_salida.html',
+        return render(request, 'nuevo_detalle_salida.html',
                       {'salidas': salidas, 'articulos': articulo_send, 'detalle_art': detalle_art_send})
 
     else:
         # REGRESA A LA PAGINA QUE LO LLAMO Y CARGA EL FORMULARIO
-        return render(request, 'inventario/nuevo_detalle_salida.html')
+        return render(request, 'nuevo_detalle_salida.html')
 
 
 # ============================================================================== MODIFICAR ===========================================
@@ -1255,7 +1255,7 @@ def ModificarArticulo2(request):
         # NUEVA INSTANCIA DE FORMULARIO
         form = Tb_ModificarArticulo()
         # REGRESA A LA PAGINA QUE LO LLAMO Y CARGA EL FORMULARIO
-        return render(request, 'inventario/modificar_articulo.html', {'form': form})
+        return render(request, 'modificar_articulo.html', {'form': form})
 
 
 # ================================== MODIFICAR MOBILIARIO
@@ -1313,7 +1313,7 @@ def ModificarMobiliario2(request):
         #NUEVA ISNTANCIA DE FORMULARIO
         form = Tb_ModificarMobiliario()
         # REGRESA A LA PAGINA QUE LO LLAMO Y CARGA EL FORMULARIO
-        return render(request, 'inventario/modificar_mobiliario.html', {'form': form})
+        return render(request, 'modificar_mobiliario.html', {'form': form})
 
 
 # ================================================================== MODIFICAR VEHICULOS
@@ -1372,7 +1372,7 @@ def ModificarVehiculo2(request):
         #NUAVA ISNTANCIA DE FORMULARIO
         form = Tb_ModificarArticulo()
         # REGRESA A LA PAGINA QUE LO LLAMO Y CARGA EL FORMULARIO
-        return render(request, 'inventario/modificar_vehiculo.html', {'form': form})
+        return render(request, 'modificar_vehiculo.html', {'form': form})
 
 
 # =========================================================================== MODIFICAR INMUEBLE
@@ -1418,7 +1418,7 @@ def ModificarInmueble2(request):
         #NUEVA INSTANCIA DE FORMULARIO
         form = Tb_ModificarInmueble()
         # REGRESA A LA PAGINA QUE LO LLAMO Y CARGA EL FORMULARIO
-        return render(request, 'inventario/modificar_inmueble.html', {'form': form})
+        return render(request, 'modificar_inmueble.html', {'form': form})
 
 
 # =======================================================================================================
@@ -1470,7 +1470,7 @@ def ModificarEntrada2(request):
             return redirect("/modificarEntradas2")
     else:
         # REGRESA A LA PAGINA QUE LO LLAMO Y CARGA EL FORMULARIO
-        return render(request, 'inventario/modificar_entrada.html')
+        return render(request, 'modificar_entrada.html')
 
 
 # ========================================================================================================
@@ -1535,7 +1535,7 @@ def DarBajaArticulo(request):
 #LISTVIEW PARA LISTAR LOS DETALLES DE LAS SALIDAS
 class ListaSalidaPrueba(ListView):
     model = tb_Inmueble
-    template_name = 'inventario/nuevo_detalle_salida.html'
+    template_name = 'nuevo_detalle_salida.html'
     context_object_name = 'inmuebles'
 
 
@@ -1546,28 +1546,28 @@ class ListaSalidaPrueba(ListView):
 #LISTVIEW PARA LISTAR AQUELLOS INMUEBLES QUE SE DESEAN ASIGNAR
 class ListarInmuebleAsignar(ListView):
     model = tb_Inmueble
-    template_name = 'inventario/listar_inmueble_asignar.html'
+    template_name = 'listar_inmueble_asignar.html'
     context_object_name = 'inmuebles'
     queryset = tb_Inmueble.objects.all().filter(estado="disponible")
 
 #LISTA TODOS LOS INMUEBLES
 class ListarInmueble(ListView):
     model = tb_Inmueble
-    template_name = 'inventario/listar_inmueble_index.html'
+    template_name = 'listar_inmueble_index.html'
     context_object_name = 'inmuebles'
     queryset = tb_Inmueble.objects.all().filter(estado="disponible")
 
 # LISTA LOS EMPLEADOS PARA ASIGNAR UN INMUEBLE
 class ListarEmpleadoInmueble(ListView):
     model = tb_Empleado
-    template_name = 'inventario/buscar_empleado_inmueble.html'
+    template_name = 'buscar_empleado_inmueble.html'
     context_object_name = 'empleado'
     queryset = tb_Empleado.objects.all().order_by('id')
 
 #LISTVIEW PARA LOS INMUEBLES QUE SE DESEA DESCARGAR
 class ListarDescargarInmueble(ListView):
     model = tb_Admin_Inmueble
-    template_name = 'inventario/listar_inmueble_descargar.html'
+    template_name = 'listar_inmueble_descargar.html'
     context_object_name = 'inmuebles'
     queryset = tb_Admin_Inmueble.objects.filter(estado="ocupado")
     #FUNCION PARA RETORNAR LOS CONTEXTOS DE MOBILIARIOS  Y EMPLEADOS AL TEMPLATE
@@ -1580,7 +1580,7 @@ class ListarDescargarInmueble(ListView):
 #LISTVIEW PARA LISTAR LOS INMUEBLES QUE SE VAN A MODIFICAR
 class ListarInmuebleModificar(ListView):
     model = tb_Inmueble
-    template_name = 'inventario/listar_inmueble_modificar.html'
+    template_name = 'listar_inmueble_modificar.html'
     context_object_name = 'inmuebles'
 
 # ============================================================FIN DE  VISTAS INMUEBLES
@@ -1588,14 +1588,14 @@ class ListarInmuebleModificar(ListView):
 # este listview es para consultar los mobiliarios por agencia
 class ListarAgenciasMobiliario(ListView):
     model = Agencia
-    template_name = 'inventario/buscar_agencia_mobiliario.html'
+    template_name = 'buscar_agencia_mobiliario.html'
     context_object_name = 'agencias'
 
 # este listview es para consultar los mobiliarios por agencia
 # esta clase recibe dos parametros get para realizar una consulta mas expedita
 class ListarAgenciasMobiliario2(ListView):
     model = tb_Mobiliario
-    template_name = 'inventario/inventario_mobiliario_agencia.html'
+    template_name = 'inventario_mobiliario_agencia.html'
     context_object_name = 'mobiliarios'
     #FUNCION PARA REALIZAR UN FILTRO POR AGENCIAS DEL INVENTARIO DEL INMUEBLE
     def get_queryset(self):
@@ -1610,20 +1610,20 @@ class ListarAgenciasMobiliario2(ListView):
 # este listview devuelve todos los articulos dentro del inventarios
 class Personas(ListView):
     model = tb_Articulo
-    template_name = 'Inventario/buscar_articulo.html'
+    template_name = 'buscar_articulo.html'
     context_object_name = 'personas'
 
 # LISTAR ALERTA PARA EXISTENCIAS
 class AlertaExistencias(ListView):
     model = tb_Articulo
-    template_name = 'inventario/alerta_existencias.html'
+    template_name = 'alerta_existencias.html'
     context_object_name = 'articulos'
     queryset = tb_Articulo.objects.filter(existencia__lte=10)
 
 # LISTAR ARTICULOS DAR DE BAJA
 class ListarDarBajaArticulo(ListView):
     model = tb_Articulo
-    template_name = 'Inventario/dar_baja_articulo.html'
+    template_name = 'dar_baja_articulo.html'
     context_object_name = 'articulos'
 
 
@@ -1631,7 +1631,7 @@ class ListarDarBajaArticulo(ListView):
 # este listview devuelve todos las entradas registradas dentro del inventarios
 class VerEntradas(ListView):
     model = tb_entrada
-    template_name = 'inventario/ver_entradas.html'
+    template_name = 'ver_entradas.html'
     context_object_name = 'entradas'
 
 
@@ -1639,7 +1639,7 @@ class VerEntradas(ListView):
 class VerEntradasModificar(ListView):
     model = tb_DetalleArticulo
 
-    template_name = 'inventario/listar_entradas_modificar.html'
+    template_name = 'listar_entradas_modificar.html'
     context_object_name = 'entradas'
 
 
@@ -1647,7 +1647,7 @@ class VerEntradasModificar(ListView):
 # este listview devuelve todos las salidas registradas dentro del inventarios
 class VerSalidas(ListView):
     model = tb_detalle_salida
-    template_name = 'inventario/ver_salidas.html'
+    template_name = 'ver_salidas.html'
     context_object_name = 'salidas'
 
 
@@ -1655,7 +1655,7 @@ class VerSalidas(ListView):
 # este listview devuelve todos los mobiliarios que se encuentran disponibless
 class BuscarMobiliario(ListView):
     model = tb_Mobiliario
-    template_name = 'inventario/buscar_mobiliario.html'
+    template_name = 'buscar_mobiliario.html'
     context_object_name = 'mobiliario'
     #FUNCION PARA FILTAR EL MOBILIARIO POR ESTADO DISPONIBLE
     def get_queryset(self):
@@ -1667,7 +1667,7 @@ class BuscarMobiliario(ListView):
 # este listview devuelve todos los mobiliarios que se encuentran disponibles
 class BuscarMobiliario2(ListView):
     model = tb_Mobiliario
-    template_name = 'inventario/buscar_mobiliario2.html'
+    template_name = 'buscar_mobiliario2.html'
     context_object_name = 'mobiliario'
     #FUNCION PARA FILTAR EL ESTADO DEL MOBILIARIO POR DISPONIBLE
     def get_queryset(self):
@@ -1678,19 +1678,19 @@ class BuscarMobiliario2(ListView):
 # LISTVIEW PARA MODIFICAR MOBILIARIO
 class ListarModificarMobiliario(ListView):
     model = tb_Mobiliario
-    template_name = 'inventario/listar_modificar_mobiliario.html'
+    template_name = 'listar_modificar_mobiliario.html'
     context_object_name = 'mobiliario'
 
 # LISTVIEW ASIGNAR MOBILIARIO DETALLE
 class MobiliarioDetalle11(ListView):
     model = tb_Mobiliario
-    template_name = 'inventario/asignar_mobiliario2_detalle.html'
+    template_name = 'asignar_mobiliario2_detalle.html'
     context_object_name = 'mobiliarios'
 
 
 # LISTAR MOBILIARIO PRESTADO
 class ListarMobiliarioPrestadoSolo(ListView):
-    template_name = 'inventario/listar_mobiliario_prestado_solo.html'
+    template_name = 'listar_mobiliario_prestado_solo.html'
     context_object_name = 'mobiliarios'
     queryset = tb_Mobiliario.objects.all()
     #FUNCION PARA RETORNAR EL CONTEXTO DE MOBILIARIO, MOBILIARIO PRESTADO Y DE EMPLEADOS
@@ -1707,39 +1707,39 @@ class ListarMobiliarioPrestadoSolo(ListView):
 # este listview devuelve todos los empleados
 class BuscarEmpleado(ListView):
     model = tb_Empleado
-    template_name = 'inventario/buscar_empleado_mobiliario.html'
+    template_name = 'buscar_empleado_mobiliario.html'
     context_object_name = 'empleado'
 
 # empleado que se asigna a detalle mobiliario
 class BuscarEmpleado10(ListView):
     model = tb_Empleado
-    template_name = 'inventario/asignar_mobiliario2_empleado.html'
+    template_name = 'asignar_mobiliario2_empleado.html'
     context_object_name = 'empleado'
 
 # Listview para la pagina buscar_empleado_mobiliario.html
 # este listview devuelve todos los empleados
 class BuscarEmpleadoMP(ListView):
     model = tb_Empleado
-    template_name = 'inventario/buscar_empleado_mobiliarioP.html'
+    template_name = 'buscar_empleado_mobiliarioP.html'
     context_object_name = 'empleado'
 
 # Lista los empleados para ver que mobiliarios tiene asignagos
 class BuscarEmpleadoMobiliarioAsignado(ListView):
     model = tb_Empleado
-    template_name = 'inventario/busca_empleado_mobiliario_asignado2.html'
+    template_name = 'busca_empleado_mobiliario_asignado2.html'
     context_object_name = 'empleadoss'
 
 #LISTA EL MOBILIARIO QUE SERA DADO DE BAJA
 class ListarMobiliarioDarDeBaja(ListView):
     model = tb_Mobiliario
-    template_name = 'inventario/dar_baja_mobiliario.html'
+    template_name = 'dar_baja_mobiliario.html'
     context_object_name = 'mobiliario'
 
 
 # ================================================================
 #LISTVIEW PARA LISTA EL MOBILIARIO QUE SE ENCUENTRA PRESTADO
 class BuscarMobiliarioPrestado(ListView):
-    template_name = 'inventario/buscar_mobiliarioPrestado.html'
+    template_name = 'buscar_mobiliarioPrestado.html'
     context_object_name = 'mobiliarioP'
     queryset = tb_MobiliarioPrestado.objects.filter(estado="ocupado")
     #RETORNA EL CONTEXTO DE EL MOBILIARIO Y DE LOS EMPLEADOS
@@ -1754,7 +1754,7 @@ class BuscarMobiliarioPrestado(ListView):
 # VER EXISTENCIAS DE LOS ARTICULOS
 class VerExistenciasArticulos(ListView):
     model = tb_Articulo
-    template_name = 'inventario/ver_existencias.html'
+    template_name = 'ver_existencias.html'
     context_object_name = 'existencias'
     queryset = tb_Articulo.objects.filter(existencia__gte=1)
 
@@ -1762,32 +1762,32 @@ class VerExistenciasArticulos(ListView):
 # VER ARTICULOS QUE NO TIENEN EXISTENCIA
 class VerSinExistenciasArticulos(ListView):
     model = tb_Articulo
-    template_name = 'inventario/ver_no_existencias.html'
+    template_name = 'ver_no_existencias.html'
     context_object_name = 'existencias'
     queryset = tb_Articulo.objects.filter(existencia=0)
 
 #LISTA LAS EXISTENCIAS DE LOS ARTICULOS
 class VerExistenciasArticulosPDF(ListView):
     model = tb_Articulo
-    template_name = 'inventario/lista_existencias_articulosPDF.html'
+    template_name = 'lista_existencias_articulosPDF.html'
     context_object_name = 'existencias'
 
 #LISTA POR DETALLE LAS EXISTENCIAS DE LOS ARTICULOS
 class VerExistenciasArticulosDet(ListView):
     model = tb_DetalleArticulo
-    template_name = 'inventario/buscar_articulo_detalle.html'
+    template_name = 'buscar_articulo_detalle.html'
     context_object_name = 'existencias'
 
 #LISTVIEW PARA LISTAR TODOS LOS MOBILIARIOS SOLAMENTE
 class BuscarMobiliarioIndex(ListView):
     model = tb_Mobiliario
-    template_name = 'inventario/buscar_mobiliario_index.html'
+    template_name = 'buscar_mobiliario_index.html'
     context_object_name = 'existencias'
 
 #LISTVIEW PARA LISTAR TODOS LOS ARTICULOS SOLAMENTE
 class BuscarAticulosSolamente(ListView):
     model = tb_Articulo
-    template_name = 'inventario/buscar_articulos_solo.html'
+    template_name = 'buscar_articulos_solo.html'
     context_object_name = 'articulos'
 
 
@@ -1795,7 +1795,7 @@ class BuscarAticulosSolamente(ListView):
 # este listview devuelve todos las entradas registradas dentro del inventarios
 class VerArticulosEntradas(ListView):
     model = tb_Articulo
-    template_name = 'inventario/listar_articulosEntradas.html'
+    template_name = 'listar_articulosEntradas.html'
     context_object_name = 'existencias'
 
 
@@ -1804,14 +1804,14 @@ class VerArticulosEntradas(ListView):
 
 class ListaArticulosIncidentias(ListView):
     model = tb_DetalleArticulo
-    template_name = 'inventario/ver_det_incidencias.html'
+    template_name = 'ver_det_incidencias.html'
     context_object_name = 'existencias'
 
 
 #LISTVIEW PARA MODIFICAR ARTICULOS
 class ModificarArticulo(ListView):
     model = tb_Articulo
-    template_name = 'inventario/listar_modificar_articulo.html'
+    template_name = 'listar_modificar_articulo.html'
     context_object_name = 'articulos'
 
 
@@ -1820,27 +1820,27 @@ class ModificarArticulo(ListView):
 #LISTVIEW VEHICULOS QUE SE VAN A DAR DE BAJA
 class ListarVehiculosDarBaja(ListView):
     model = tb_Vehiculo
-    template_name = 'inventario/dar_baja_vehiculo.html'
+    template_name = 'dar_baja_vehiculo.html'
     context_object_name = 'vehiculos'
 
 
 # este listview es para listar todos los vehiculos
 class ListarVehiculos(ListView):
     model = tb_Vehiculo
-    template_name = 'inventario/buscar_vehiculo.html'
+    template_name = 'buscar_vehiculo.html'
     context_object_name = 'vehiculos'
 
 
 # este listview es para listar los vehiculos que se van a asignar a los empleados
 class ListarVehiculosAsignar(ListView):
     model = tb_Vehiculo
-    template_name = 'inventario/listar_vehiculos_asinar.html'
+    template_name = 'listar_vehiculos_asinar.html'
     context_object_name = 'vehiculos'
 
 
 # este listview es para listar los vehiculos que se van a descargara los empleados
 class ListarVehiculosDescargar(ListView):
-    template_name = 'inventario/lista_vehiculo_descargar.html'
+    template_name = 'lista_vehiculo_descargar.html'
     context_object_name = 'vehiculos'
     queryset = tb_Vehiculo.objects.all()
     #FUNCION PARA RETORNAR LOS CONTEXTO DE VEHICULO ASIGNADO Y DE EMPLEADOS
@@ -1854,7 +1854,7 @@ class ListarVehiculosDescargar(ListView):
 
 # lista incidentes de articulos
 class ListarIncidenteArticulo2(ListView):
-    template_name = 'inventario/listar_incidente_articulo.html'
+    template_name = 'listar_incidente_articulo.html'
     context_object_name = 'incidentes'
     queryset = tb_incidenciaArticulo.objects.all()
     #FUNCION PARA RETORNAR LOS CONTEXTO DE ARTICULOS Y DETALLE DE ARTICULOS
@@ -1869,14 +1869,14 @@ class ListarIncidenteArticulo2(ListView):
 # este listview es para listar los empleados que se van a asignar a los vehiculos
 class ListarEmpleadosAsignarVehi(ListView):
     model = tb_Empleado
-    template_name = 'inventario/asignar_vehiculo_empleado.html'
+    template_name = 'asignar_vehiculo_empleado.html'
     context_object_name = 'empleados'
 
 
 # LISTAR LOS VEHICULOS QUE SE VAN A MODIFICAR
 class ListarVehiculosModificar(ListView):
     model = tb_Vehiculo
-    template_name = 'inventario/listar_vehiculos_modificar.html'
+    template_name = 'listar_vehiculos_modificar.html'
     context_object_name = 'vehiculos'
 
 
@@ -1884,7 +1884,7 @@ class ListarVehiculosModificar(ListView):
 #LISTVIEW PARA MOSTAR LOS DETALLES DE LOS ARTICULOS
 class pruebaListview(ListView):
     model = tb_DetalleArticulo
-    template_name = 'inventario/prueba.html'
+    template_name = 'prueba.html'
     context_object_name = 'existencias'
     #FUNCION PARA DEVOLVER LOS CONTEXTOS DE LAS EXISTENCIAS DE LOS ARTICULOS
     def get_context_data(self, **kwargs):
@@ -1912,7 +1912,7 @@ class AncillaryDetail(ListView):
 # LISTVIEW  PARA EL MOBILIARIO QUE SE ENCUENTRA PRESTADO
 class VerMobiliarioP3(ListView):
     context_object_name = 'mobiliario'
-    template_name = 'inventario/mobiliario_prestadoe3.html'
+    template_name = 'mobiliario_prestadoe3.html'
     queryset = tb_MobiliarioPrestado.objects.all()
 
     # FUNCION PARA FILTAR EL EMPLEADO
@@ -1934,7 +1934,7 @@ class VerMobiliarioP3(ListView):
 # LISTVIEW PARA VER LAS SALIDAS POR RANGO DE FECHA
 class VerSalidaFecha(ListView):
     context_object_name = 'existencias'
-    template_name = 'inventario/salidas_fecha.html'
+    template_name = 'salidas_fecha.html'
 
     queryset = tb_detalle_salida.objects.all()
 
@@ -1966,7 +1966,7 @@ class VerSalidaFecha(ListView):
 # LISTVIEW PARA VER LAS   ENTRADAS POR  RANGO DE FECHA
 class VerEntradaFecha(ListView):
     model = tb_entrada
-    template_name = 'inventario/entradas_fecha.html'
+    template_name = 'entradas_fecha.html'
     context_object_name = 'existencias'
 
     # LAS FECHAS SON OBTENIDAS POR MEDIO DEL METODO GET EN EL REQUEST
@@ -1989,7 +1989,7 @@ class VerEntradaFecha(ListView):
 # LISTVIEW PARA LAS BITACORAS DE MOBILIARIO POR FECHA
 class BitacoraMobiliarioFecha(ListView):
     model = tb_audit_mobiliario
-    template_name = 'inventario/bitacora_mobiliario_fecha.html'
+    template_name = 'bitacora_mobiliario_fecha.html'
     context_object_name = 'bitacoras'
 
     # LAS FECHAS SON OBTENIDAS POR MEDIO DEL METODO GET EN EL REQUEST
@@ -2012,7 +2012,7 @@ class BitacoraMobiliarioFecha(ListView):
 # LISTVIEW DE LAS BITACORAS PARA LOS VEHICULOS
 class BitacoraVehiculoFecha(ListView):
     model = tb_audit_det_vehiculo
-    template_name = 'inventario/bitacora_vehiculo_fecha.html'
+    template_name = 'bitacora_vehiculo_fecha.html'
     context_object_name = 'bitacoras'
     #FUNCION PARA RETORNAR LA BITACORA EN RANGO DE FECHAS
     def get_queryset(self):
@@ -2035,7 +2035,7 @@ class BitacoraVehiculoFecha(ListView):
 # LISTVIEW PARA LAS BITACORAS DE ENTRADAS POR FECHA
 class BitacoraEntradaFecha(ListView):
     model = tb_audit_entrada
-    template_name = 'inventario/bitacora_entrada_fecha.html'
+    template_name = 'bitacora_entrada_fecha.html'
     context_object_name = 'bitacoras'
 
     # LAS FECHAS SON OBTENIDAS POR MEDIO DEL METODO GET EN EL REQUEST
@@ -2059,7 +2059,7 @@ class BitacoraEntradaFecha(ListView):
 # LISTVIEW PARA BITACORAS DE SALIDAS POR FECHA
 class BitacoraSalidaFecha(ListView):
     model = tb_audit_salida
-    template_name = 'inventario/bitacora_salida_fecha.html'
+    template_name = 'bitacora_salida_fecha.html'
     context_object_name = 'bitacoras'
 
     # LAS FECHAS SON OBTENIDAS POR MEDIO DEL METODO GET EN EL REQUEST
@@ -2288,42 +2288,42 @@ def export_mobiliario_excel(request):
 # ================================================= BITACORAS
 # LISTVIEW PARA BITACORA DE MOBILIARIO
 class BitacoraMobiliario(ListView):
-    template_name = 'inventario/bitacora_mobiliario.html'
+    template_name = 'bitacora_mobiliario.html'
     context_object_name = 'bitacoras'
     queryset = tb_audit_mobiliario.objects.all().order_by('id').reverse()
 
 
 # LISTVIEW BITACORA DE DETALLE DE ENTRADA
 class BitacoraDetEntrada(ListView):
-    template_name = 'inventario/bitacora_det_entrada.html'
+    template_name = 'bitacora_det_entrada.html'
     context_object_name = 'bitacoras'
     queryset = tb_audit_det_articulo.objects.all().order_by('id').reverse()
 
 
 # LISTVIEW PARA BITACORAS DE ENTRADA
 class BitacoraEntrada(ListView):
-    template_name = 'inventario/bitacora_entrada.html'
+    template_name = 'bitacora_entrada.html'
     context_object_name = 'bitacoras'
     queryset = tb_audit_entrada.objects.all().order_by('id').reverse()
 
 
 # LISTVIEW PARA BITACORAS DE SALIDA
 class BitacoraSalida(ListView):
-    template_name = 'inventario/bitacora_salida.html'
+    template_name = 'bitacora_salida.html'
     context_object_name = 'bitacoras'
     queryset = tb_audit_salida.objects.all().order_by('id').reverse()
 
 
 # LISTVIEW PARA BITACORA DE VEHICULOS
 class BitacoraVehiculo(ListView):
-    template_name = 'inventario/bitacora_vehiculo.html'
+    template_name = 'bitacora_vehiculo.html'
     context_object_name = 'bitacoras'
     queryset = tb_audit_det_vehiculo.objects.all().order_by('id').reverse()
 
 
 # LISTVIEW PARA BITACORA DE INICIO DE SESION
 class BitacoraLogin(ListView):
-    template_name = 'inventario/bitacora_login.html'
+    template_name = 'bitacora_login.html'
     context_object_name = 'bitacoras'
     queryset = tb_audit_login.objects.all().order_by('id').reverse()
 
@@ -2331,14 +2331,14 @@ class BitacoraLogin(ListView):
 # ================================================================= PROVEEDORES
 # LISTAR PROVEEDORES
 class ListarProveedor(ListView):
-    template_name = 'inventario/listar_proveedor.html'
+    template_name = 'listar_proveedor.html'
     context_object_name = 'proveedores'
     model = tb_proveedor
 
 
 # LISTAR PROVEEDORES A MODIFICAR
 class ListarProveedorModificar(ListView):
-    template_name = 'inventario/listar_proveedor_modificar.html'
+    template_name = 'listar_proveedor_modificar.html'
     context_object_name = 'proveedores'
     model = tb_proveedor
 
@@ -2378,7 +2378,7 @@ def nuevoProveedor(request):
         #NUEVA ISNTANCIA DE FORMULARIO
         form = Tb_ProveedorForm()
     #REGRESA A LA PAGINA QUE LO LLAMO Y CARGA EL FORMULARIO
-    return render(request, 'Inventario/nuevo_proveedor.html', {'form': form})
+    return render(request, 'nuevo_proveedor.html', {'form': form})
 
 #PRUEBA
 class AuthorUpdate(UpdateView):
