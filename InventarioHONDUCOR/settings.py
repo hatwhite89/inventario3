@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 from django.core.urlresolvers import reverse_lazy
 import os
 from django.db import models
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -52,6 +53,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'InventarioHONDUCOR.urls'
 
+print([os.path.join(BASE_DIR, 'templates')])
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
