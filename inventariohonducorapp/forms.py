@@ -7,6 +7,10 @@ from django.forms import ModelForm, ClearableFileInput, FileInput, TextInput
 from inventariohonducorapp.models import tb_Articulo, tb_categoria_art, tb_CategoriaMobiliario, tb_DetalleArticulo, \
     tb_MobiliarioPrestado, Agencia, tb_Jefatura, tb_salida,tb_MobiliarioDevuelto,tb_Empleado,tb_Mobiliario,tb_incidenciaArticulo,tb_Departamento,tb_proveedor
 
+"""
+EN ESTA SECCION SE ENCUENTRAN TODOS LOS FORM DEL SISTEMA, LOS FORM SIRVEN PARA CONTROLAR LO QUE SE ESPERA QUE EL TEMPLATE 
+HTML RECIBA, ASI MISMO, VALIDA QUE LOS DATOS QUE SE INGRESAN EN EL TEMPLATE SEAN CORRECTOS.
+"""
 class Tb_ProveedorForm(ModelForm):
     class Meta:
         model = tb_proveedor
@@ -35,7 +39,7 @@ class Tb_ArticuloForm(forms.Form):
     # no es necesario agregar todos los campos
     # imagen_art = forms.FileField(label='seleccion un archivo')
 
-    cod_categoria = forms.CharField(label="CATEGORIA", widget=forms.Select(attrs={"class": "gui-input"},
+    cod_categoria = forms.CharField(label="CATEGORÍA", widget=forms.Select(attrs={"class": "gui-input"},
         choices=tb_categoria_art.objects.all().values_list('id', 'nombre_cat')))
 
 
@@ -47,10 +51,14 @@ class Tb_DetalleArtForm(forms.Form):
 
 class Tb_NuevoVehiculo(forms.Form):
 
-    def query_static(self):
-        return 1
+    gerencia = forms.CharField(label="AGENCIA", widget=forms.Select(attrs={"class": "gui-input"},
+                                                                    choices=Agencia.objects.all().values_list(
+                                                                        'nombre_agencia', 'nombre_agencia')))
+
+
 
 class Tb_NuevoVehiculoAsignado(forms.Form):
+
     def query_static(self):
         return 1
 
@@ -65,7 +73,7 @@ class Tb_IncidenciaArticulo(ModelForm):
         fields = '__all__'
 
 class Tb_MobiliarioForm(forms.Form):
-    cod_cat_mobiliario_id = forms.CharField(label="CATEGORIA MOBILIARIO", widget=forms.Select(attrs={"class": "gui-input"},
+    cod_cat_mobiliario_id = forms.CharField(label="CATEGORÍA MOBILIARIO", widget=forms.Select(attrs={"class": "gui-input"},
         choices=tb_CategoriaMobiliario.objects.all().values_list('id', 'nombre_categoria')))
 
 
@@ -83,7 +91,7 @@ class Tb_MobiliarioPrestadoForm(forms.Form):
                                                                     choices=Agencia.objects.all().values_list(
                                                                         'nombre_agencia', 'nombre_agencia')))
 
-    cod_mobiliario= forms.CharField(label="CODIGO DE INVENTARIO", widget=forms.Select(attrs={"class": "gui-input"},
+    cod_mobiliario= forms.CharField(label="CÓDIGO DE INVENTARIO", widget=forms.Select(attrs={"class": "gui-input"},
                                                                     choices=tb_Mobiliario.objects.values_list(
                                                                         'id', 'cod_inventario')))
 
@@ -99,7 +107,7 @@ class Tb_SalidaForm(forms.Form):
                                                                        'id', 'nombre_agencia')))
 
 class Tb_DescargarMobiliarioForm(forms.Form):
-    cod_mobiliario = forms.CharField(label="CODIGO DE INVENTARIO", widget=forms.Select(attrs={"class": "gui-input"},
+    cod_mobiliario = forms.CharField(label="CÓDIGO DE INVENTARIO", widget=forms.Select(attrs={"class": "gui-input"},
                                                                                        choices=tb_Mobiliario.objects.values_list(
                                                                                            'id', 'cod_inventario')))
 
@@ -110,6 +118,7 @@ class Tb_DescargarMobiliarioForm(forms.Form):
 
 
 class Tb_DescargarVehiculoForm(forms.Form):
+
 
     def query_static(self):
         return 1
@@ -147,11 +156,11 @@ class Tb_nuevoDetalleSalida2(forms.Form):
 
 
 class Tb_ModificarArticulo(forms.Form):
-    cod_categoria = forms.CharField(label="CATEGORIA", widget=forms.Select(attrs={"class": "gui-input"},
+    cod_categoria = forms.CharField(label="CATEGORÍA", widget=forms.Select(attrs={"class": "gui-input"},
                                                                            choices=tb_categoria_art.objects.all().values_list(
                                                                                'id', 'nombre_cat')))
 class Tb_ModificarMobiliario(forms.Form):
-    cod_cat_mobiliario_id = forms.CharField(label="CATEGORIA MOBILIARIO",
+    cod_cat_mobiliario_id = forms.CharField(label="CATEGORÍA MOBILIARIO",
                                             widget=forms.Select(attrs={"class": "gui-input"},
                                                                 choices=tb_CategoriaMobiliario.objects.all().values_list(
                                                                     'id', 'nombre_categoria')))

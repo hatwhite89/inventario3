@@ -2,7 +2,7 @@ from django.contrib import admin
 from inventariohonducorapp.models import tb_Articulo, tb_DetalleArticulo, tb_categoria_art, tb_entrada, \
     tb_CategoriaMobiliario, tb_Mobiliario, tb_Empleado, Agencia, tb_Municipio, tb_Departamento, tb_Jefatura, \
     tb_MobiliarioPrestado, tb_salida, tb_MobiliarioDevuelto, tb_incidenciaArticulo, tb_Vehiculo, tb_VehiculoAsignado, \
-    tb_Inmueble, tb_estado, tb_clasificacion_estados,tb_Admin_Inmueble
+    tb_Inmueble, tb_estado, tb_clasificacion_estados,tb_Admin_Inmueble, tb_proveedor
 
 # from django.contrib.auth.models import User
 
@@ -32,6 +32,7 @@ admin.site.register(tb_salida)
 
 admin.site.register(tb_Vehiculo)
 admin.site.register(tb_VehiculoAsignado)
+admin.site.register(tb_proveedor)
 
 # registros de inmuebles
 admin.site.register(tb_Inmueble)

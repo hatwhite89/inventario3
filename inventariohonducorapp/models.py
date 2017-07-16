@@ -3,7 +3,11 @@ from django.db import models
 
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
+"""
+EN ESTA SECCION SE ENCUENTRAN TODOS LOS MODELOS DEL SISTEMA
+LOS MODELOS SON QUIENES HACEN REPLICA Y CONEXCION CON LA BASE DE DATOS
 
+"""
 
 #Create your models here.
 
@@ -36,7 +40,7 @@ class tb_Empleado(models.Model):
     estado_emp=models.CharField(max_length=30, null=True,blank=True)
 
     foto = models.ImageField(upload_to='imagenes/')
-
+    puesto = models.CharField(max_length=30, null=True, blank=True)
 
 
 
@@ -166,6 +170,7 @@ class tb_Vehiculo(models.Model):
     imagen_vehi=models.FileField(upload_to='imagenes/',null=True, blank=True)
     estado_vehi=models.CharField(max_length=30,null=True,blank=True)
     usuario_regis= models.CharField(max_length=50, null=True, blank=True)
+    agencia= models.CharField(max_length=50, null=True, blank=True)
 
 #esta clase representa al modelo asignar vehiculo al empleado
 class tb_VehiculoAsignado(models.Model):
