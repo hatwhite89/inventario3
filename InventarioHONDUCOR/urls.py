@@ -51,7 +51,7 @@ urlpatterns = [
     # URL para el sitio de panel de administracion
     url(r'^admin/', admin.site.urls),
     # esta URL es para redireccionar al login y realizar todos los procesos de autenticacion
-    url(r'^$', login, {'template_name': 'Inventario/login.html'}, name='login'),
+    url(r'^$', login, {'template_name': 'login.html'}, name='login'),
     # Esta url redireccion al index del sitio
     url(r'^main/$', views.main, name="main"),
     # esta url redirecciona al calendario
